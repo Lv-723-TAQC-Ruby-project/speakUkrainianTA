@@ -24,11 +24,27 @@ public class examplesTest extends BaseTestRunner {
         Assert.assertEquals(driver.getTitle(), "Навчай українською");
     }
 
+    @Test
+    public void loginSuccessTest() {
+        boolean isContainExit = new HomePage(driver)
+                .openGuestProfileMenu()
+                .openLoginModal()
+                .enterEmail("ToDo")
+                .enterPassword("ToDo")
+                .clickLogin()
+                .openGuestProfileMenu()
+                .isContain("Вийти");
+
+        Assert.assertTrue(isContainExit);
+    }
+
     @AfterMethod
     public void tearDown() {
         if (driver != null) {
             driver.quit();
         }
     }
+
+
 
 }
