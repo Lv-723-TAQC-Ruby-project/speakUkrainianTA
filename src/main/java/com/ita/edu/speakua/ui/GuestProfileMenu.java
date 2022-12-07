@@ -12,6 +12,9 @@ public class GuestProfileMenu extends BasePO {
     @FindBy(xpath = "//div[contains(text(), 'Увійти')]")
     private WebElement loginButton;
 
+    @FindBy(xpath = "//a[text()='Мій Профіль']")
+    private WebElement myProfileButton;
+
     public GuestProfileMenu(WebDriver driver) {
         super(driver);
     }
