@@ -38,6 +38,16 @@ public class examplesTest extends BaseTestRunner {
         Assert.assertTrue(isContainExit);
     }
 
+    @Test
+    public void ClubPageSuccessTest() {
+        String actualeTitle = new HomePage(driver)
+                .clickClub()
+                .getCards()
+                .get(2).
+                getTitle();
+
+        Assert.assertEquals(actualeTitle, "IT освіта: курси \"ГРАНД\"");
+    }
     @AfterMethod
     public void tearDown() {
         if (driver != null) {
