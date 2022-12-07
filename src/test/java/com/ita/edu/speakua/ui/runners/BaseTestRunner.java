@@ -1,5 +1,6 @@
 package com.ita.edu.speakua.ui.runners;
 
+import com.ita.edu.speakua.utils.ConfigProperties;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,9 +12,11 @@ import java.time.Duration;
 
 public class BaseTestRunner {
     protected WebDriver driver;
+    protected ConfigProperties configProperties;
 
     @BeforeSuite
     public void initDriver() {
+        configProperties = new ConfigProperties();
         WebDriverManager.chromedriver().setup();
     }
 
@@ -22,7 +25,7 @@ public class BaseTestRunner {
         options.addArguments("--start-maximized");
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get("https://speak-ukrainian.org.ua/dev/");
+        driver.get(configProperties.getBaseWebUrl());
     }
 
     @AfterSuite

@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class GuestProfileMenu extends BasePage{
+public class GuestProfileMenu extends BasePO {
     @FindBy(xpath = "//div[contains(text(), 'Зареєструватися')]")
     private WebElement registrationButton;
 
