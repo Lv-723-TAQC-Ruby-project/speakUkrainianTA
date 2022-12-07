@@ -2,6 +2,7 @@ package com.ita.edu.speakua.ui.headercomponent;
 
 import com.ita.edu.speakua.ui.BasePO;
 import com.ita.edu.speakua.ui.ClubsPO.ClubsPO;
+import com.ita.edu.speakua.ui.ExtendedSearch;
 import com.ita.edu.speakua.ui.GuestProfileMenu;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,6 +14,9 @@ public class HeaderComponent extends BasePO {
 
     @FindBy(xpath = "//a[contains(text(), 'Гуртки')]")
     private WebElement clubButton;
+
+    @FindBy(xpath = "//*[@data-icon='control']")
+    private WebElement extendedSearchButton;
 
 
     public HeaderComponent(WebDriver driver) {
@@ -28,6 +32,11 @@ public class HeaderComponent extends BasePO {
         clubButton.click();
         sleep(3);
         return new ClubsPO(this.driver);
+    }
+
+    public ExtendedSearch openExtendedSearch(){
+        extendedSearchButton.click();
+        return new ExtendedSearch(driver);
     }
 
 }
