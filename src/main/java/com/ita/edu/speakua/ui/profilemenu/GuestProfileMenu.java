@@ -12,8 +12,6 @@ public class GuestProfileMenu extends BasePO {
     @FindBy(xpath = "//div[contains(text(), 'Зареєструватися')]")
     private WebElement registrationButton;
 
-    @FindBy(xpath = "//button[contains(@class, 'ant-modal-close')]")
-    private WebElement closeButton;
     @FindBy(xpath = "//div[contains(text(), 'Увійти')]")
     private WebElement loginButton;
 
@@ -31,10 +29,7 @@ public class GuestProfileMenu extends BasePO {
         registrationButton.click();
         return new RegisterModel(driver);
     }
-    public RegisterModel cancelRegistration() {
-        closeButton.click();
-        return new RegisterModel(driver);
-    }
+
 
     public boolean isContain(String name) {
         try {

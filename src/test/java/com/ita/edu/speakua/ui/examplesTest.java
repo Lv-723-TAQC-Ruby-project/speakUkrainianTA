@@ -48,6 +48,31 @@ public class examplesTest extends BaseTestRunner {
 
         Assert.assertEquals(actualeTitle, "IT освіта: курси \"ГРАНД\"");
     }
+    @Test
+    public void RegistrationDataRemembered() {
+        new HomePage(driver)
+                .openGuestProfileMenu()
+                .openRegistrationModel()
+                .enterLastName(configProperties.getLastName())
+                .enterFirstName(configProperties.getFirstName())
+                .enterPhone(configProperties.getPhone())
+                .enterEmail(configProperties.getEmail())
+                .enterPassword(configProperties.getPassword())
+                .enterPasswordConfirm(configProperties.getConfirm())
+                        .cancelRegistration();
+
+
+         Assert.assertEquals("Войтович","Войтович");
+        Assert.assertEquals("Світлана","Світлана");
+        Assert.assertEquals("671234567","671234567");
+        Assert.assertEquals("svitlanawhite@gmail.com","svitlanawhite@gmail.com");
+        Assert.assertEquals("12345678","12345678");
+        Assert.assertEquals("12345678","12345678");
+
+
+    }
+
+
     @AfterMethod
     public void tearDown() {
         if (driver != null) {

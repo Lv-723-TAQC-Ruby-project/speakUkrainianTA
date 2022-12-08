@@ -70,7 +70,7 @@ public class RegisterModel extends BasePO {
         return new HomePage(driver);
 
     }
-    public HomePage clickExit() {
+    public HomePage cancelRegistration() {
         closeButton.click();
         sleep(3);
         return new HomePage(driver);
