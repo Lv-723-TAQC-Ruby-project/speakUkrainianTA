@@ -1,10 +1,11 @@
-package com.ita.edu.speakua.ui;
+package com.ita.edu.speakua.ui.ProfilePO;
 
+import com.ita.edu.speakua.ui.BasePageWithHeader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class MyProfilePage extends BasePageWithHeader{
+public class MyProfilePage extends BasePageWithHeader {
 
     @FindBy(xpath = "//span[text()='Редагувати профіль']")
     private WebElement editProfileButton;
