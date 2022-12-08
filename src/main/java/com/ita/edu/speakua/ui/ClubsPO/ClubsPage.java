@@ -1,22 +1,20 @@
 package com.ita.edu.speakua.ui.ClubsPO;
 
-import com.ita.edu.speakua.ui.BasePO;
-import com.ita.edu.speakua.ui.headercomponent.HeaderComponent;
+import com.ita.edu.speakua.ui.BasePageWithHeader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
-public class ClubsPO extends BasePO {
+public class ClubsPage extends BasePageWithHeader {
 
     private List<ClubCard> cards;
 
     @FindBy(xpath = "//div[contains(@class,'ant-card ant-card-bordered card')]")
     protected List<WebElement> cardsBody;
-    public ClubsPO(WebDriver driver) {
+    public ClubsPage(WebDriver driver) {
         super(driver);
 
     }

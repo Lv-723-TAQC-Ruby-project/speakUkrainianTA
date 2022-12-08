@@ -1,7 +1,7 @@
 package com.ita.edu.speakua.ui.headercomponent;
 
 import com.ita.edu.speakua.ui.BasePO;
-import com.ita.edu.speakua.ui.ClubsPO.ClubsPO;
+import com.ita.edu.speakua.ui.ClubsPO.ClubsPage;
 import com.ita.edu.speakua.ui.ExtendedSearchPage;
 import com.ita.edu.speakua.ui.profilemenu.GuestProfileMenu;
 import com.ita.edu.speakua.ui.profilemenu.UserProfileMenu;
@@ -29,10 +29,10 @@ public class HeaderComponent extends BasePO {
         return new GuestProfileMenu(driver);
     }
 
-    public ClubsPO clickClub(){
+    public ClubsPage clickClub(){
         clubButton.click();
         sleep(3);
-        return new ClubsPO(this.driver);
+        return new ClubsPage(this.driver);
     }
 
     public ExtendedSearchPage openExtendedSearch(){
