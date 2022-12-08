@@ -40,6 +40,42 @@ public class examplesTest extends BaseTestRunner {
 
 
     @Test
+    public void addVerifyDescriptionClubTest() {
+        AddClubModel addClubModel = new HomePage(driver)
+                .openGuestProfileMenu()
+                .openLoginModel()
+                .enterEmail(configProperties.getAdminEmail())
+                .enterPassword(configProperties.getAdminPassword())
+                .clickLogin()
+                .openUserProfileMenu()
+                .openAddClubModel()
+                .EnterNameClub("Спорт")
+                .selectCategoryByName("Спортивні секції")
+                .enterFromAge("5")
+                .enterToAge("10")
+                .clickNextStep()
+                .enterPhoneNumber("0932584213")
+                .clickNextStep();
+
+        boolean withValidValueUkrainianAndEnglishWords = addClubModel.enterClubDescription("'Education', 'students', 'Школа' 'балету' ")
+                .successMessageDisplayed();
+
+        Assert.assertTrue(withValidValueUkrainianAndEnglishWords, "Error message doesn't display");
+
+        boolean withValidValueNumbers = addClubModel.enterClubDescription("1234567890123456789012345678901234567890")
+                .successMessageDisplayed();
+
+        Assert.assertTrue(withValidValueNumbers, "Error message doesn't display");
+
+        boolean withValidValueSpecialCharacters = addClubModel.enterClubDescription("!#$%&'()*+,-./:;<=>?@[]^_`{}~%^$#)&&^^(_&($%^#@!")
+                .successMessageDisplayed();
+
+        Assert.assertTrue(withValidValueSpecialCharacters, "Error message doesn't display");
+
+    }
+
+
+    @Test
     public void TestAddCenter() {
         new HomePage(driver)
                 .openGuestProfileMenu()
@@ -69,13 +105,13 @@ public class examplesTest extends BaseTestRunner {
 
         Assert.assertEquals(actualeTitle, "IT освіта: курси \"ГРАНД\"");
     }
+
     @AfterMethod
     public void tearDown() {
         if (driver != null) {
             driver.quit();
         }
     }
-
 
 
 }
