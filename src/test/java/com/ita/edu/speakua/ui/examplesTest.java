@@ -117,7 +117,9 @@ public class examplesTest extends BaseTestRunner {
                 .enterEmail(configProperties.getEmail())
                 .enterPassword(configProperties.getPassword())
                 .enterPasswordConfirm(configProperties.getConfirm())
-                        .cancelRegistration();
+                        .cancelRegistration()
+                                .openGuestProfileMenu()
+                                        .openRegistrationModel();
 
 
          Assert.assertEquals("Войтович","Войтович");
