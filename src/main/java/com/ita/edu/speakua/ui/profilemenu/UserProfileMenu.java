@@ -1,6 +1,7 @@
 package com.ita.edu.speakua.ui.profilemenu;
 
 import com.ita.edu.speakua.ui.BasePO;
+import com.ita.edu.speakua.ui.ClubsPO.AddClubModel;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -36,5 +37,7 @@ public class UserProfileMenu extends BasePO {
         addCenterButton.click();
         // return new AddCenterModel(driver);
     }
+
+
 
 }
