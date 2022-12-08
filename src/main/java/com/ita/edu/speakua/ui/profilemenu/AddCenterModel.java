@@ -29,6 +29,7 @@ public class AddCenterModel extends BasePO {
     @FindBy(xpath = "//input[@id='phone']")
     private WebElement phoneLocation;
 
+
     public AddCenterModel(WebDriver driver) {
         super(driver);
     }
