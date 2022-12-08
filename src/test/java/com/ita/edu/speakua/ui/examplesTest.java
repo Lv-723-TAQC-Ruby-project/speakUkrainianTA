@@ -28,7 +28,7 @@ public class examplesTest extends BaseTestRunner {
     public void loginSuccessTest() {
         boolean isContainExit = new HomePage(driver)
                 .openGuestProfileMenu()
-                .openLoginModal()
+                .openLoginModel()
                 .enterEmail(configProperties.getAdminEmail())
                 .enterPassword(configProperties.getAdminPassword())
                 .clickLogin()
