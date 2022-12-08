@@ -47,8 +47,14 @@ public class examplesTest extends BaseTestRunner {
                 .enterEmail(configProperties.getAdminEmail())
                 .enterPassword(configProperties.getAdminPassword())
                 .clickLogin()
-                .openGuestProfileMenu()
-                .isContain("Вийти");
+                .openUserProfileMenu()
+                .openAddCenterModel()
+                .EnterCenterName("New Center Name")
+                .AddLocation()
+                .AddLocationName("New Location name")
+                .AddLocationAddress("New Location address")
+                .AddLocationCoordinates("New Location coordinates")
+                .AddLocationPhone("0661111111");
 
         Assert.assertEquals(true, true);
     }
