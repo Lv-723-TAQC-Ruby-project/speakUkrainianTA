@@ -20,11 +20,12 @@ public class AdminProfileMenu extends BasePO {
 
     public TasksPage openTasksPage() {
 
-        Actions action = new Actions(driver);
-        action.moveToElement(contentButton).perform();
+        Actions actionContentButton = new Actions(driver);
+        actionContentButton.moveToElement(contentButton).perform();
         sleep(2);
 
-        action.moveToElement(challengesButton).perform();
+        Actions actionChallengesButton = new Actions(driver);
+        actionChallengesButton.moveToElement(challengesButton).perform();
         sleep(2);
 
         tasksButton.click();
