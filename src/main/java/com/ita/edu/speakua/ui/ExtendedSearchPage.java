@@ -4,16 +4,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class ExtendedSearch extends BasePO{
+public class ExtendedSearchPage extends BasePO{
 
     @FindBy(xpath = "//span[text()='Центр']")
     private WebElement centerButton;
 
-    public ExtendedSearch(WebDriver driver) {
+    public ExtendedSearchPage(WebDriver driver) {
         super(driver);
     }
 
-    public ExtendedSearch clickCenter() {
+    public ExtendedSearchPage clickCenter() {
         centerButton.click();
         return this;
     }
