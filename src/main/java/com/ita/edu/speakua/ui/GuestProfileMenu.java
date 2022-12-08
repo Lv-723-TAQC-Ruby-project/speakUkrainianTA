@@ -19,9 +19,9 @@ public class GuestProfileMenu extends BasePO {
         super(driver);
     }
 
-    public LoginModal openLoginModal() {
+    public LoginModel openLoginModal() {
         loginButton.click();
-        return new LoginModal(driver);
+        return new LoginModel(driver);
     }
 
     public void openRegistrationModal() {
