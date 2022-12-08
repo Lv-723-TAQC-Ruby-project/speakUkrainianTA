@@ -4,6 +4,7 @@ import com.ita.edu.speakua.ui.BasePO;
 import com.ita.edu.speakua.ui.ClubsPO.ClubsPO;
 import com.ita.edu.speakua.ui.ExtendedSearch;
 import com.ita.edu.speakua.ui.profilemenu.GuestProfileMenu;
+import com.ita.edu.speakua.ui.profilemenu.UserProfileMenu;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

@@ -1,7 +1,6 @@
 package com.ita.edu.speakua.ui.profilemenu;
 
 import com.ita.edu.speakua.ui.BasePO;
-import com.ita.edu.speakua.ui.LoginModel;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 public class UserProfileMenu extends BasePO {
 
     @FindBy(xpath = "//div[contains(text(), 'Додати гурток')]")
-    private WebElement addCircleButton;
+    private WebElement addClubButton;
 
     @FindBy(xpath = "//div[contains(text(), 'Додати центр')]")
     private WebElement addCenterButton;
@@ -28,9 +27,9 @@ public class UserProfileMenu extends BasePO {
         super(driver);
     }
 
-    public void openAddCircleModel() {
-        addCircleButton.click();
-        // return new AddCircleModel(driver);
+    public AddClubModel openAddClubModel() {
+        addClubButton.click();
+         return new AddClubModel(driver);
     }
 
     public void openAddCenterModel() {

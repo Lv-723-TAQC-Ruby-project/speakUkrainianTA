@@ -1,4 +1,4 @@
-package com.ita.edu.speakua.ui.headercomponent;
+package com.ita.edu.speakua.ui.profilemenu;
 
 import com.ita.edu.speakua.ui.BasePO;
 import org.openqa.selenium.WebDriver;
