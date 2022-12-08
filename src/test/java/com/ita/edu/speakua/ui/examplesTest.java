@@ -38,6 +38,21 @@ public class examplesTest extends BaseTestRunner {
         Assert.assertTrue(isContainExit);
     }
 
+
+    @Test
+    public void TestAddCenter() {
+        new HomePage(driver)
+                .openGuestProfileMenu()
+                .openLoginModel()
+                .enterEmail(configProperties.getAdminEmail())
+                .enterPassword(configProperties.getAdminPassword())
+                .clickLogin()
+                .openGuestProfileMenu()
+                .isContain("Вийти");
+
+        Assert.assertEquals(true, true);
+    }
+
     @Test
     public void ClubPageSuccessTest() {
         String actualeTitle = new HomePage(driver)

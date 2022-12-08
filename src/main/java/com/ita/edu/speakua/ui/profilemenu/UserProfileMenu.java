@@ -1,5 +1,6 @@
 package com.ita.edu.speakua.ui.profilemenu;
 
+import com.ita.edu.speakua.ui.AddCenterModel;
 import com.ita.edu.speakua.ui.BasePO;
 import com.ita.edu.speakua.ui.AddClubModel;
 import com.ita.edu.speakua.ui.ProfilePO.MyProfilePage;
@@ -34,9 +35,9 @@ public class UserProfileMenu extends BasePO {
          return new AddClubModel(driver);
     }
 
-    public void openAddCenterModel() {
+    public AddCenterModel openAddCenterModel() {
         addCenterButton.click();
-        // return new AddCenterModel(driver);
+        return new AddCenterModel(driver);
     }
 
     public MyProfilePage openMyProfileModel(){
