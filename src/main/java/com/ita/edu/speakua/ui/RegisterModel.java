@@ -27,6 +27,9 @@ public class RegisterModel extends BasePO {
     @FindBy(xpath = "//button[contains(@class, 'registration-button')]")
     private WebElement registerButton;
 
+    @FindBy(xpath = "//button[contains(@class, 'ant-modal-close')]")
+    private WebElement closeButton;
+
     public RegisterModel(WebDriver driver) {
         super(driver);
     }
@@ -63,6 +66,12 @@ public class RegisterModel extends BasePO {
 
     public HomePage clickRegister() {
         registerButton.click();
+        sleep(3);
+        return new HomePage(driver);
+
+    }
+    public HomePage clickExit() {
+        closeButton.click();
         sleep(3);
         return new HomePage(driver);
 
