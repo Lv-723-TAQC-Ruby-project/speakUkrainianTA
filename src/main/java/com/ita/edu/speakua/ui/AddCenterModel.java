@@ -10,6 +10,7 @@ public class AddCenterModel extends BasePO {
     @FindBy(xpath = "//input[@id= 'basic_name']")
     private WebElement nameCenterInput;
 
+
     @FindBy(xpath = "//button[@class='ant-btn ant-btn-default add-location-btn']")
     private WebElement addCenterLocation;
 
