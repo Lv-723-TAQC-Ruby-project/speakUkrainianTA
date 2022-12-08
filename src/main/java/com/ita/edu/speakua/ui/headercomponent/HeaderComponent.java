@@ -39,4 +39,9 @@ public class HeaderComponent extends BasePO {
         return new ExtendedSearch(driver);
     }
 
+    public UserProfileMenu openUserProfileMenu(){
+        profileMenuButton.click();
+        return new UserProfileMenu(driver);
+    }
+
 }
