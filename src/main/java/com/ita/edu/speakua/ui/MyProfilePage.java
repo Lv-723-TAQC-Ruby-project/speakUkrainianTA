@@ -4,13 +4,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class MyProfileModel extends BasePO{
+public class MyProfilePage extends BasePageWithHeader{
 
     @FindBy(xpath = "//span[text()='Редагувати профіль']")
     private WebElement editProfileButton;
 
 
-    public MyProfileModel(WebDriver driver) {
+    public MyProfilePage(WebDriver driver) {
         super(driver);
     }
 
