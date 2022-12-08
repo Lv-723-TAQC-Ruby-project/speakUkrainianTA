@@ -1,7 +1,7 @@
 package com.ita.edu.speakua.ui.profilemenu;
 
 import com.ita.edu.speakua.ui.BasePO;
-import com.ita.edu.speakua.ui.ClubsPO.AddClubModel;
+import com.ita.edu.speakua.ui.AddClubModel;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
