@@ -2,7 +2,7 @@ package com.ita.edu.speakua.ui.headercomponent;
 
 import com.ita.edu.speakua.ui.BasePO;
 import com.ita.edu.speakua.ui.ClubsPO.ClubsPO;
-import com.ita.edu.speakua.ui.ExtendedSearch;
+import com.ita.edu.speakua.ui.ExtendedSearchPage;
 import com.ita.edu.speakua.ui.profilemenu.GuestProfileMenu;
 import com.ita.edu.speakua.ui.profilemenu.UserProfileMenu;
 import org.openqa.selenium.WebDriver;
@@ -35,9 +35,9 @@ public class HeaderComponent extends BasePO {
         return new ClubsPO(this.driver);
     }
 
-    public ExtendedSearch openExtendedSearch(){
+    public ExtendedSearchPage openExtendedSearch(){
         extendedSearchButton.click();
-        return new ExtendedSearch(driver);
+        return new ExtendedSearchPage(driver);
     }
 
     public UserProfileMenu openUserProfileMenu(){
