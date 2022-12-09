@@ -69,6 +69,26 @@ public class examplesTest extends BaseTestRunner {
 
         Assert.assertEquals(actualeTitle, "IT освіта: курси \"ГРАНД\"");
     }
+
+    @Test
+    public void MessageAboutIncorrectlyEnteredLastNameTest(){
+        boolean IsMassageMore25Characters= new HomePage(driver)
+                .openGuestProfileMenu()
+                .openLoginModel()
+                .enterEmail(configProperties.getAdminEmail())
+                .enterPassword(configProperties.getAdminPassword())
+                .clickLogin()
+                .openUserProfileMenu()
+                .openMyProfileModel()
+                .openEditProfileModel()
+                .EnterLastName("AfBbCcDdEeFfGgHhIiJjKkLlMmNn")
+                .isOpenMassageErrorContain("Прізвище не може містити більше, ніж 25 символів");
+        Assert.assertTrue(IsMassageMore25Characters);
+
+    }
+
+
+
     @AfterMethod
     public void tearDown() {
         if (driver != null) {
