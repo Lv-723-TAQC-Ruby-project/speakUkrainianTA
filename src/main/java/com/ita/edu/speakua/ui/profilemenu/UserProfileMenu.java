@@ -32,7 +32,7 @@ public class UserProfileMenu extends BasePO {
 
     public AddClubModel openAddClubModel() {
         addClubButton.click();
-         return new AddClubModel(driver);
+        return new AddClubModel(driver);
     }
 
     public AddCenterModel openAddCenterModel() {
@@ -40,11 +40,10 @@ public class UserProfileMenu extends BasePO {
         return new AddCenterModel(driver);
     }
 
-    public MyProfilePage openMyProfileModel(){
+    public MyProfilePage openMyProfileModel() {
         myProfileButton.click();
         return new MyProfilePage(driver);
     }
-
 
 
 }

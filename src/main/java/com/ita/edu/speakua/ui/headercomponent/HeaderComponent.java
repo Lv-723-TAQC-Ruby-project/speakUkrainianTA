@@ -3,6 +3,7 @@ package com.ita.edu.speakua.ui.headercomponent;
 import com.ita.edu.speakua.ui.BasePO;
 import com.ita.edu.speakua.ui.ClubsPO.ClubsPage;
 import com.ita.edu.speakua.ui.ExtendedSearchPage;
+import com.ita.edu.speakua.ui.profilemenu.AdminProfileMenu;
 import com.ita.edu.speakua.ui.profilemenu.GuestProfileMenu;
 import com.ita.edu.speakua.ui.profilemenu.UserProfileMenu;
 import org.openqa.selenium.WebDriver;
@@ -27,6 +28,10 @@ public class HeaderComponent extends BasePO {
     public GuestProfileMenu openGuestProfileMenu() {
         profileMenuButton.click();
         return new GuestProfileMenu(driver);
+    }
+    public AdminProfileMenu openAdminProfileMenu() {
+        profileMenuButton.click();
+        return new AdminProfileMenu(driver);
     }
 
     public ClubsPage clickClub(){

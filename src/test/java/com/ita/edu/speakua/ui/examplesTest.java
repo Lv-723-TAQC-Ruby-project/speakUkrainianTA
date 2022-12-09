@@ -40,6 +40,42 @@ public class examplesTest extends BaseTestRunner {
 
 
     @Test
+    public void addVerifyDescriptionClubTest() {
+        AddClubModel addClubModel = new HomePage(driver)
+                .openGuestProfileMenu()
+                .openLoginModel()
+                .enterEmail(configProperties.getAdminEmail())
+                .enterPassword(configProperties.getAdminPassword())
+                .clickLogin()
+                .openUserProfileMenu()
+                .openAddClubModel()
+                .EnterNameClub("Спорт")
+                .selectCategoryByName("Спортивні секції")
+                .enterFromAge("5")
+                .enterToAge("10")
+                .clickNextStep()
+                .enterPhoneNumber("0932584213")
+                .clickNextStep();
+
+        boolean withValidValueUkrainianAndEnglishWords = addClubModel.enterClubDescription("'Education', 'students', 'Школа' 'балету' ")
+                .successMessageDisplayed();
+
+        Assert.assertTrue(withValidValueUkrainianAndEnglishWords, "Error message doesn't display");
+
+        boolean withValidValueNumbers = addClubModel.enterClubDescription("1234567890123456789012345678901234567890")
+                .successMessageDisplayed();
+
+        Assert.assertTrue(withValidValueNumbers, "Error message doesn't display");
+
+        boolean withValidValueSpecialCharacters = addClubModel.enterClubDescription("!#$%&'()*+,-./:;<=>?@[]^_`{}~%^$#)&&^^(_&($%^#@!")
+                .successMessageDisplayed();
+
+        Assert.assertTrue(withValidValueSpecialCharacters, "Error message doesn't display");
+
+    }
+
+
+    @Test
     public void TestAddCenter() {
         new HomePage(driver)
                 .openGuestProfileMenu()
@@ -88,6 +124,30 @@ public class examplesTest extends BaseTestRunner {
     }
 
 
+    public void RegistrationDataRemembered() {
+        new HomePage(driver)
+                .openGuestProfileMenu()
+                .openRegistrationModel()
+                .enterLastName(configProperties.getLastName())
+                .enterFirstName(configProperties.getFirstName())
+                .enterPhone(configProperties.getPhone())
+                .enterEmail(configProperties.getEmail())
+                .enterPassword(configProperties.getPassword())
+                .enterPasswordConfirm(configProperties.getConfirm())
+                        .cancelRegistration()
+                                .openGuestProfileMenu()
+                                        .openRegistrationModel();
+
+
+         Assert.assertEquals("Войтович","Войтович");
+        Assert.assertEquals("Світлана","Світлана");
+        Assert.assertEquals("671234567","671234567");
+        Assert.assertEquals("svitlanawhite@gmail.com","svitlanawhite@gmail.com");
+        Assert.assertEquals("12345678","12345678");
+        Assert.assertEquals("12345678","12345678");
+
+
+    }
 
     @AfterMethod
     public void tearDown() {
@@ -95,7 +155,6 @@ public class examplesTest extends BaseTestRunner {
             driver.quit();
         }
     }
-
 
 
 }
