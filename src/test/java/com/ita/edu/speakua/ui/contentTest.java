@@ -26,8 +26,8 @@ public class contentTest extends BaseTestRunner {
 
 
 
-    @Test(invocationCount = 10)
-    public void OpenAddTaskPage() {
+    @Test//(invocationCount = 10)
+    public void ClickAddChallenge() {
         new HomePage(driver)
                 .openAdminProfileMenu()
                 .openChallengePage()
