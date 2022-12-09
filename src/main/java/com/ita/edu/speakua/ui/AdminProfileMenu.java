@@ -5,7 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
-import javax.swing.*;
+import java.util.concurrent.TimeUnit;
+
 
 public class AdminProfileMenu extends BasePO {
 
@@ -20,16 +21,15 @@ public class AdminProfileMenu extends BasePO {
 
     public TasksPage openTasksPage() {
 
-        Actions actionContentButton = new Actions(driver);
-        actionContentButton.moveToElement(contentButton).perform();
-        sleep(2);
+        wait.visibility(contentButton);
+        action.click(contentButton);
 
-        Actions actionChallengesButton = new Actions(driver);
-        actionChallengesButton.moveToElement(challengesButton).perform();
-        sleep(2);
+        wait.visibility(challengesButton);
+        action.click(challengesButton);
 
-        tasksButton.click();
-        sleep(3);
+        wait.visibility(tasksButton);
+        action.click(tasksButton);
+
         return new TasksPage(driver);
     }
 

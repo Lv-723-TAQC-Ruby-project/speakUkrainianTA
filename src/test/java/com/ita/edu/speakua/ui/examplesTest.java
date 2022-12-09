@@ -49,19 +49,6 @@ public class examplesTest extends BaseTestRunner {
         Assert.assertEquals(actualeTitle, "IT освіта: курси \"ГРАНД\"");
     }
 
-    @Test
-    public void OpenAddTaskPage() {
-         new HomePage(driver)
-                .openGuestProfileMenu()
-                .openLoginModal()
-                .enterEmail(configProperties.getAdminEmail())
-                .enterPassword(configProperties.getAdminPassword())
-                .clickLogin()
-                .openAdminProfileMenu()
-                .openTasksPage();
-
-    }
-
 
     @AfterMethod
     public void tearDown() {
