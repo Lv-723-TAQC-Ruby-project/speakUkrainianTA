@@ -18,14 +18,13 @@ private WebElement challengesButton;
 
 
     public ChallengePage openChallengePage() {
-        Actions action1 = new Actions(driver);
-        action1.moveToElement(contentButton).perform();
-        sleep(3);
-        Actions action2 = new Actions(driver);
-        action2.moveToElement(challengeButton).perform();
-        sleep(3);
-        challengesButton.click();
-        sleep(3);
+
+        wait.visibility(contentButton);
+        action.click(contentButton);
+        wait.visibility(challengeButton);
+        action.click(challengeButton);
+        wait.visibility(challengesButton);
+        action.click(challengesButton);
         return new ChallengePage(driver);
     }
     public AdminProfileMenu(WebDriver driver) {super(driver);}

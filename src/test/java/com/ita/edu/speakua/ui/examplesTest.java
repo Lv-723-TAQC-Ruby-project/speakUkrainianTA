@@ -147,18 +147,6 @@ public class examplesTest extends BaseTestRunner {
         Assert.assertTrue(true,"12345678");
         Assert.assertTrue(true,"12345678");
     }
-    @Test
-    public void ClickAddChallenge(){
-        new HomePage(driver)
-                .openGuestProfileMenu()
-                .openLoginModel()
-                .enterEmail(configProperties.getAdminEmail())
-                .enterPassword(configProperties.getAdminPassword())
-                .clickLogin()
-                .openAdminProfileMenu()
-                .openChallengePage()
-                .clickAddChallengeButton();
-    }
 
     @AfterMethod
     public void tearDown() {
