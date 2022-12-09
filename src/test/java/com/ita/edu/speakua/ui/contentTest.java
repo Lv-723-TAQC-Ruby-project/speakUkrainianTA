@@ -34,6 +34,15 @@ public class contentTest extends BaseTestRunner {
                 .clickAddChallengeButton();
 
     }
+    @Test
+    public void OpenAddTaskPage() {
+        new HomePage(driver)
+                .openAdminProfileMenu()
+                .openTasksPage()
+                .addTaskButton();
+
+    }
+
 
 
     @AfterClass
