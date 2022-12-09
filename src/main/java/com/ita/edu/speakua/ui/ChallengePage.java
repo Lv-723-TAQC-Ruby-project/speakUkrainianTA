@@ -11,6 +11,7 @@ public class ChallengePage extends BasePO{
 
     public AddChallengePage clickAddChallengeButton(){
         addChallengeButton.click();
+        sleep(3);
         return new AddChallengePage(driver);
     }
 }

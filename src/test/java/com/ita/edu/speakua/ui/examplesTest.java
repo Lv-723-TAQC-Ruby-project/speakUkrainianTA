@@ -123,7 +123,7 @@ public class examplesTest extends BaseTestRunner {
 
     }
 
-
+    @Test
     public void RegistrationDataRemembered() {
         new HomePage(driver)
                 .openGuestProfileMenu()
@@ -138,15 +138,26 @@ public class examplesTest extends BaseTestRunner {
                                 .openGuestProfileMenu()
                                         .openRegistrationModel();
 
-
-         Assert.assertEquals("Войтович","Войтович");
-        Assert.assertEquals("Світлана","Світлана");
-        Assert.assertEquals("671234567","671234567");
-        Assert.assertEquals("svitlanawhite@gmail.com","svitlanawhite@gmail.com");
-        Assert.assertEquals("12345678","12345678");
-        Assert.assertEquals("12345678","12345678");
-
-
+          Assert.assertTrue(true,"Войтович");
+        Assert.assertTrue(true,"Світлана");
+        Assert.assertTrue(true,"671234567");
+        Assert.assertTrue(true,"671234567");
+        Assert.assertTrue(true,"671234567");
+        Assert.assertTrue(true,"svitlanawhite@gmail.com");
+        Assert.assertTrue(true,"12345678");
+        Assert.assertTrue(true,"12345678");
+    }
+    @Test
+    public void ClickAddChallenge(){
+        new HomePage(driver)
+                .openGuestProfileMenu()
+                .openLoginModel()
+                .enterEmail(configProperties.getAdminEmail())
+                .enterPassword(configProperties.getAdminPassword())
+                .clickLogin()
+                .openAdminProfileMenu()
+                .openChallengePage()
+                .clickAddChallengeButton();
     }
 
     @AfterMethod

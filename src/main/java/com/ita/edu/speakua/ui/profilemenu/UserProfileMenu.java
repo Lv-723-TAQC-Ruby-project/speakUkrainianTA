@@ -42,6 +42,7 @@ public class UserProfileMenu extends BasePO {
 
     public MyProfilePage openMyProfileModel() {
         myProfileButton.click();
+        sleep(3);
         return new MyProfilePage(driver);
     }
 
