@@ -1,5 +1,6 @@
 package com.ita.edu.speakua.ui;
 
+import com.ita.edu.speakua.ui.ProfilePO.EditProfileModel;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -108,7 +109,7 @@ public class examplesTest extends BaseTestRunner {
 
     @Test
     public void MessageAboutIncorrectlyEnteredLastNameTest(){
-        boolean IsMassageMore25Characters= new HomePage(driver)
+        EditProfileModel editProfileModel= new HomePage(driver)
                 .openGuestProfileMenu()
                 .openLoginModel()
                 .enterEmail(configProperties.getAdminEmail())
@@ -116,11 +117,37 @@ public class examplesTest extends BaseTestRunner {
                 .clickLogin()
                 .openUserProfileMenu()
                 .openMyProfileModel()
-                .openEditProfileModel()
-                .EnterLastName("AfBbCcDdEeFfGgHhIiJjKkLlMmNn")
+                .openEditProfileModel();
+        boolean isMassageMore25Characters=editProfileModel.EnterLastName("AfBbCcDdEeFfGgHhIiJjKkLlMmNn")
                 .isOpenMassageErrorContain("Прізвище не може містити більше, ніж 25 символів");
-        Assert.assertTrue(IsMassageMore25Characters);
-
+        Assert.assertTrue(isMassageMore25Characters);
+        boolean isMassageWithSpecialCharacters=editProfileModel.EnterLastName("!@#$%^&,")
+                .isOpenMassageErrorContain("Прізвище не може містити спеціальні символи");
+        Assert.assertTrue(isMassageWithSpecialCharacters);
+        boolean isMassageWithNumbers=editProfileModel.EnterLastName("1234")
+                .isOpenMassageErrorContain("Прізвище не може містити спеціальні символи");
+        Assert.assertTrue(isMassageWithNumbers);
+        boolean isMassageStartedWithHyphen=editProfileModel.EnterLastName("-Lastname")
+                .isOpenMassageErrorContain("Прізвище повинно починатися і закінчуватися літерою");
+        Assert.assertTrue(isMassageStartedWithHyphen);
+        boolean isMassageStartedWithSpace=editProfileModel.EnterLastName(" Lastname")
+                .isOpenMassageErrorContain("Прізвище повинно починатися і закінчуватися літерою");
+        Assert.assertTrue(isMassageStartedWithSpace);
+        boolean isMassageStartedWithApostrophe=editProfileModel.EnterLastName("'Lastname")
+                .isOpenMassageErrorContain("Прізвище повинно починатися і закінчуватися літерою");
+        Assert.assertTrue(isMassageStartedWithApostrophe);
+        boolean isMassageEndedWithHyphen=editProfileModel.EnterLastName("Lastname-")
+                .isOpenMassageErrorContain("Прізвище повинно починатися і закінчуватися літерою");
+        Assert.assertTrue(isMassageEndedWithHyphen);
+        boolean isMassageEndedWithSpace=editProfileModel.EnterLastName("Lastname ")
+                .isOpenMassageErrorContain("Прізвище повинно починатися і закінчуватися літерою");
+        Assert.assertTrue(isMassageEndedWithSpace);
+        boolean isMassageEndedWithApostrophe=editProfileModel.EnterLastName("Lastname'")
+                .isOpenMassageErrorContain("Прізвище повинно починатися і закінчуватися літерою");
+        Assert.assertTrue(isMassageEndedWithApostrophe);
+        boolean isMassageDeleteData=editProfileModel.DeleteLastName()
+                .isOpenMassageErrorContain("Будь ласка введіть Ваше прізвище");
+        Assert.assertTrue(isMassageDeleteData);
     }
 
 
