@@ -1,4 +1,4 @@
-package com.ita.edu.speakua.ui.ChallengePage;
+package com.ita.edu.speakua.ui.ChallengePО;
 
 import com.ita.edu.speakua.ui.BasePO;
 import org.openqa.selenium.WebDriver;

@@ -24,11 +24,15 @@ public class AddTaskPage extends BasePO {
 
     @FindBy(xpath = "//input[@id=challengeId]")
     public WebElement challenge;
-
+    @FindBy(xpath = "//span[contains(text(),'Зберегти')]")
+    private WebElement saveTaskButton;
     public AddTaskPage(WebDriver driver) {
         super(driver);
     }
-
+    public AddTaskPage saveTaskClick() {
+        saveTaskButton.click();
+        return new AddTaskPage(driver);
+    }
     //String date = "2023-1-1";
     public AddTaskPage enterStartDate(String date) {
         startDate.sendKeys(date);
@@ -54,5 +58,41 @@ public class AddTaskPage extends BasePO {
     public AddTaskPage enterTaskDescription(String taskDescription) {
         this.taskDescription.sendKeys(taskDescription);
         return this;
+    }
+    public boolean startDateEmpty(){
+        if (startDate.getAttribute("value")!=""){
+            return false;
+        }
+        return true;
+    }
+    public boolean notLoadedImage(){
+        if (uploadImage.getAttribute("value")!=""){
+            return false;
+        }
+        return true;
+    }
+    public boolean taskNameFieldEmpty(){
+        if (taskName.getAttribute("value")!=""){
+            return false;
+        }
+        return true;
+    }
+    public boolean taskTitleEmpty(){
+        if (taskTitle.getAttribute("value")!=""){
+            return false;
+        }
+        return true;
+    }
+    public boolean taskDescriptionEmpty(){
+        if (taskDescription.getAttribute("value")!=""){
+            return false;
+        }
+        return true;
+    }
+    public boolean taskFieldsEmpty(){
+        if (taskNameFieldEmpty()&&taskTitleEmpty()&&taskDescriptionEmpty()&&notLoadedImage()&&startDateEmpty()){
+            return true;
+        }
+        return false;
     }
 }
