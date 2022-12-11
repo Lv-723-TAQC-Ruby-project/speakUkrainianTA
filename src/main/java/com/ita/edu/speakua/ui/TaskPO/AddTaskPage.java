@@ -1,6 +1,7 @@
 package com.ita.edu.speakua.ui.TaskPO;
 
 import com.ita.edu.speakua.ui.BasePO;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,13 +20,15 @@ public class AddTaskPage extends BasePO {
     @FindBy(xpath = "//div[contains(@class, 'ql-editor ql-blank')]")
     public WebElement taskTitle;
 
-    @FindBy(xpath = "(//div[contains(@class, 'ql-editor ql-blank')])[2]")
+    @FindBy(xpath = "//div[contains(@class, 'ql-editor ql-blank')]")
     public WebElement taskDescription;
 
     @FindBy(xpath = "//input[@id=challengeId]")
     public WebElement challenge;
-    @FindBy(xpath = "//span[contains(text(),'Зберегти')]")
+    @FindBy(xpath = "//button[contains(@class, 'add-contact-type-button')]")
     private WebElement saveTaskButton;
+    @FindBy(xpath = "//div[@class='ant-message']")
+    private WebElement errorMessage;
     public AddTaskPage(WebDriver driver) {
         super(driver);
     }
@@ -89,6 +92,15 @@ public class AddTaskPage extends BasePO {
         }
         return true;
     }
+    public boolean isContainErrorMessage(String name){
+        try {
+            driver.findElement(By.xpath(String.format("//div[@class='ant-message']",  name)));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     public boolean taskFieldsEmpty(){
         if (taskNameFieldEmpty()&&taskTitleEmpty()&&taskDescriptionEmpty()&&notLoadedImage()&&startDateEmpty()){
             return true;
