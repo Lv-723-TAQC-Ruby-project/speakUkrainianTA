@@ -39,7 +39,8 @@ public class contentTest extends BaseTestRunner {
         new HomePage(driver)
                 .openAdminProfileMenu()
                 .openTasksPage()
-                .addTaskButton();
+                .clickAddTask()
+                .enterTaskDescription("12345");
 
     }
 
