@@ -40,7 +40,13 @@ public class contentTest extends BaseTestRunner {
                 .openAdminProfileMenu()
                 .openTasksPage()
                 .clickAddTask()
-                .enterTaskDescription("12345");
+                .enterStartDate("2023-1-1")
+                .uploadImage("C:\\Users\\User\\Desktop\\world-cup.jpg")
+                .enterTaskName("bohddan_kh's task")
+                .enterTaskTitle("some title")
+                .enterTaskDescription("some description")
+                .chooseChallenge()
+                .clickSave();
 
     }
 

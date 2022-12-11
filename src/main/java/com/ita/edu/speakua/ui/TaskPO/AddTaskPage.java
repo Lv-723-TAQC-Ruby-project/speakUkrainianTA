@@ -4,6 +4,7 @@ import com.ita.edu.speakua.ui.BasePO;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 
 public class AddTaskPage extends BasePO {
 
@@ -22,8 +23,14 @@ public class AddTaskPage extends BasePO {
     @FindBy(xpath = "(//div[contains(@class, 'ql-editor ql-blank')])[2]")
     public WebElement taskDescription;
 
-    @FindBy(xpath = "//input[@id=challengeId]")
+    @FindBy(xpath = "//input[@id='challengeId']")
+    public WebElement chooseChallenge;
+
+    @FindBy(xpath = "//div[contains(text(), 'New Challenge')]")
     public WebElement challenge;
+
+    @FindBy(xpath = "//button[contains(@class, 'ant-btn ant-btn-primary flooded-button add-contact-type-button')]")
+    public WebElement saveButton;
 
     public AddTaskPage(WebDriver driver) {
         super(driver);
@@ -53,6 +60,18 @@ public class AddTaskPage extends BasePO {
 
     public AddTaskPage enterTaskDescription(String taskDescription) {
         this.taskDescription.sendKeys(taskDescription);
+        return this;
+    }
+
+    public AddTaskPage chooseChallenge() {
+        chooseChallenge.click();
+        challenge.click();
+        return this;
+    }
+
+    public AddTaskPage clickSave() {
+        saveButton.click();
+        sleep(3);
         return this;
     }
 }
