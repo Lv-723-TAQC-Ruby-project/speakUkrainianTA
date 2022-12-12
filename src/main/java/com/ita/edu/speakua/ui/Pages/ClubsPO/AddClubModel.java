@@ -1,6 +1,7 @@
 package com.ita.edu.speakua.ui.Pages.ClubsPO;
 
 import com.ita.edu.speakua.ui.BasePO;
+import com.ita.edu.speakua.ui.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -36,6 +37,12 @@ public class AddClubModel extends BasePO {
 
     @FindBy(xpath = "//div[contains(@class, 'ant-form-item-explain-error')]")
     private WebElement languageErrorMessage;
+
+    @FindBy(xpath = "//input[@id=\"basic_centerId\"][@type='search']")
+    private WebElement enterBelongingCenter;
+
+    @FindBy(xpath = "//*[text()= 'Завершити']")
+    private WebElement completeButton;
 
     public AddClubModel(WebDriver driver) {
         super(driver);
@@ -86,5 +93,15 @@ public class AddClubModel extends BasePO {
 
     public boolean successMessageDisplayed() {
         return successMessage.isDisplayed();
+    }
+
+    public AddClubModel enterBelongingToCenter(String nameCenter){
+        enterBelongingCenter.sendKeys(nameCenter);
+        return this;
+    }
+
+    public HomePage finishAddingCenter(){
+        completeButton.click();
+        return new HomePage(driver);
     }
 }

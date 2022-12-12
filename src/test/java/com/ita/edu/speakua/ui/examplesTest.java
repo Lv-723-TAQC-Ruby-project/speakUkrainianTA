@@ -2,6 +2,7 @@ package com.ita.edu.speakua.ui;
 
 import com.ita.edu.speakua.ui.Pages.ClubsPO.AddClubModel;
 import com.ita.edu.speakua.ui.Pages.ProfilePO.EditProfileModel;
+import com.ita.edu.speakua.ui.Pages.ProfilePO.MyProfilePage;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -192,12 +193,41 @@ public class examplesTest extends BaseTestRunner {
         Assert.assertTrue(true,"12345678");
     }
 
+    @Test
+    public void VerifyCreatingClubAndFindingInformationAboutTest(){
+        new HomePage(driver)
+                .openGuestProfileMenu()
+                .openLoginModel()
+                .enterEmail(configProperties.getEmail())
+                .enterPassword(configProperties.getPassword())
+                .clickLogin()
+                .openUserProfileMenu()
+                .openAddClubModel()
+                .EnterNameClub("Малявки")
+                .selectCategoryByName("Спортивні секції")
+                .enterFromAge("8")
+                .enterToAge("16")
+                .enterBelongingToCenter("Курси програмування IT-stat")
+                .clickNextStep()
+                .enterPhoneNumber("0934444444")
+                .clickNextStep()
+                .enterClubDescription("Відділення образотворчого та декоративного мистецтва відкрите з моменту заснування Студії.У 2005р. відбулась перша виставка робіт учасників Студії у Львівському обласному палаці мистецтв.")
+                .finishAddingCenter();
+        String checkInformationAboutCenterByNumber= new HomePage(driver)
+                .openUserProfileMenu()
+                .openMyProfileModel()
+                .clickDetailedSecondCenter()
+                .getNumberPhone();
+        Assert.assertEquals(checkInformationAboutCenterByNumber, "+380934444444");
+        boolean checkInformationAboutCenterByDescription = new MyProfilePage(driver)
+                .getDescriptionAboutCenter("Відділення образотворчого та декоративного мистецтва відкрите з моменту заснування Студії.У 2005р. відбулась перша виставка робіт учасників Студії у Львівському обласному палаці мистецтв.");
+        Assert.assertTrue(checkInformationAboutCenterByDescription);
+    }
+
     @AfterMethod
     public void tearDown() {
         if (driver != null) {
             driver.quit();
         }
     }
-
-
 }
