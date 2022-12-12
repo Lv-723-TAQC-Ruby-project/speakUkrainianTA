@@ -167,21 +167,6 @@ public class examplesTest extends BaseTestRunner {
         Assert.assertEquals(textNumber19,"18");
     }
 
-    @Test
-    public void RegistrationDataRemembered() {
-          boolean dataSaved= new HomePage(driver)
-                .openGuestProfileMenu()
-                .openRegistrationModel()
-                 .enterLastName("Войтович")
-                .enterFirstName("Світлана")
-                .enterPhone("671234567")
-                .enterEmail("svitlanawhite@gmail.com")
-                .enterPassword("12345678")
-                .enterPasswordConfirm("12345678")
-                .cancelRegistration()
-                .openGuestProfileMenu().openRegistrationModel().allDataSaved();
-       Assert.assertTrue(dataSaved);
-    }
     @AfterMethod
     public void tearDown() {
         if (driver != null) {
