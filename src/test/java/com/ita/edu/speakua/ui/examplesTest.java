@@ -2,6 +2,7 @@ package com.ita.edu.speakua.ui;
 
 import com.ita.edu.speakua.ui.Pages.ClubsPO.AddClubModel;
 import com.ita.edu.speakua.ui.Pages.ProfilePO.EditProfileModel;
+import com.ita.edu.speakua.ui.Pages.ProfilePO.MyProfilePage;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -167,12 +168,69 @@ public class examplesTest extends BaseTestRunner {
         Assert.assertEquals(textNumber19,"18");
     }
 
+<<<<<<< HEAD
+    @Test
+    public void RegistrationDataRemembered() {
+        new HomePage(driver)
+                .openGuestProfileMenu()
+                .openRegistrationModel()
+                .enterLastName(configProperties.getLastName())
+                .enterFirstName(configProperties.getFirstName())
+                .enterPhone(configProperties.getPhone())
+                .enterEmail(configProperties.getEmail())
+                .enterPassword(configProperties.getPassword())
+                .enterPasswordConfirm(configProperties.getConfirm())
+                        .cancelRegistration()
+                                .openGuestProfileMenu()
+                                        .openRegistrationModel();
+
+          Assert.assertTrue(true,"Войтович");
+        Assert.assertTrue(true,"Світлана");
+        Assert.assertTrue(true,"671234567");
+        Assert.assertTrue(true,"671234567");
+        Assert.assertTrue(true,"671234567");
+        Assert.assertTrue(true,"svitlanawhite@gmail.com");
+        Assert.assertTrue(true,"12345678");
+        Assert.assertTrue(true,"12345678");
+    }
+
+    @Test
+    public void VerifyCreatingClubAndFindingInformationAboutTest(){
+        new HomePage(driver)
+                .openGuestProfileMenu()
+                .openLoginModel()
+                .enterEmail(configProperties.getEmail())
+                .enterPassword(configProperties.getPassword())
+                .clickLogin()
+                .openUserProfileMenu()
+                .openAddClubModel()
+                .EnterNameClub("Малявки")
+                .selectCategoryByName("Спортивні секції")
+                .enterFromAge("8")
+                .enterToAge("16")
+                .enterBelongingToCenter("Курси програмування IT-stat")
+                .clickNextStep()
+                .enterPhoneNumber("0934444444")
+                .clickNextStep()
+                .enterClubDescription("Відділення образотворчого та декоративного мистецтва відкрите з моменту заснування Студії.У 2005р. відбулась перша виставка робіт учасників Студії у Львівському обласному палаці мистецтв.")
+                .finishAddingCenter();
+        String checkInformationAboutCenterByNumber= new HomePage(driver)
+                .openUserProfileMenu()
+                .openMyProfileModel()
+                .clickDetailedSecondCenter()
+                .getNumberPhone();
+        Assert.assertEquals(checkInformationAboutCenterByNumber, "+380934444444");
+        boolean checkInformationAboutCenterByDescription = new MyProfilePage(driver)
+                .getDescriptionAboutCenter("Відділення образотворчого та декоративного мистецтва відкрите з моменту заснування Студії.У 2005р. відбулась перша виставка робіт учасників Студії у Львівському обласному палаці мистецтв.");
+        Assert.assertTrue(checkInformationAboutCenterByDescription);
+    }
+
+=======
+>>>>>>> 228815d0e62429d609e1ea696d0977822692c52c
     @AfterMethod
     public void tearDown() {
         if (driver != null) {
             driver.quit();
         }
     }
-
-
 }
