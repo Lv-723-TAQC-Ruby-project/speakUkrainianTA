@@ -1,8 +1,8 @@
 package com.ita.edu.speakua.ui.headercomponent;
 
 import com.ita.edu.speakua.ui.BasePO;
-import com.ita.edu.speakua.ui.ClubsPO.ClubsPage;
-import com.ita.edu.speakua.ui.ExtendedSearchPage;
+import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubsPage;
+import com.ita.edu.speakua.ui.AdvancedSearchModel;
 import com.ita.edu.speakua.ui.profilemenu.AdminProfileMenu;
 import com.ita.edu.speakua.ui.profilemenu.GuestProfileMenu;
 import com.ita.edu.speakua.ui.profilemenu.UserProfileMenu;
@@ -18,7 +18,7 @@ public class HeaderComponent extends BasePO {
     private WebElement clubButton;
 
     @FindBy(xpath = "//*[@data-icon='control']")
-    private WebElement extendedSearchButton;
+    private WebElement advancedSearchButton;
 
 
     public HeaderComponent(WebDriver driver) {
@@ -40,13 +40,14 @@ public class HeaderComponent extends BasePO {
         return new ClubsPage(this.driver);
     }
 
-    public ExtendedSearchPage openExtendedSearch(){
-        extendedSearchButton.click();
-        return new ExtendedSearchPage(driver);
+    public AdvancedSearchModel openAdvancedSearch(){
+        advancedSearchButton.click();
+        return new AdvancedSearchModel(driver);
     }
 
     public UserProfileMenu openUserProfileMenu(){
-        profileMenuButton.click();
+        wait.visibility(profileMenuButton);
+        action.click(profileMenuButton);
         return new UserProfileMenu(driver);
     }
 

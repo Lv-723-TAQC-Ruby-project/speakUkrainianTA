@@ -1,7 +1,7 @@
 package com.ita.edu.speakua.ui.profilemenu;
 
-import com.ita.edu.speakua.ui.ChallengePО.ChallengePage;
-import com.ita.edu.speakua.ui.TaskPO.TasksPage;
+import com.ita.edu.speakua.ui.Pages.ChallengePО.ChallengePage;
+import com.ita.edu.speakua.ui.Pages.TaskPO.TasksPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

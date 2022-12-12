@@ -1,6 +1,7 @@
-package com.ita.edu.speakua.ui.TaskPO;
+package com.ita.edu.speakua.ui.Pages.TaskPO;
 
 import com.ita.edu.speakua.ui.BasePO;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,25 +21,27 @@ public class AddTaskPage extends BasePO {
     @FindBy(xpath = "//div[contains(@class, 'ql-editor ql-blank')]")
     public WebElement taskTitle;
 
-    @FindBy(xpath = "//div[contains(@class, 'ql-editor ql-blank')]")
+    @FindBy(xpath = "(//div[contains(@class, 'ql-editor ql-blank')])[1]")
     public WebElement taskDescription;
 
-    @FindBy(xpath = "//input[@id=challengeId]")
+    @FindBy(xpath = "//input[@id='challengeId']")
+    public WebElement chooseChallenge;
+
+    @FindBy(xpath = "//div[contains(text(), 'New Challenge')]")
     public WebElement challenge;
-    @FindBy(xpath = "//button[contains(@class, 'add-contact-type-button')]")
-    private WebElement saveTaskButton;
+
+    @FindBy(xpath = "//button[contains(@class, 'ant-btn ant-btn-primary flooded-button add-contact-type-button')]")
+    public WebElement saveButton;
+
     @FindBy(xpath = "//div[@class='ant-message']")
     private WebElement errorMessage;
     public AddTaskPage(WebDriver driver) {
         super(driver);
     }
-    public AddTaskPage saveTaskClick() {
-        saveTaskButton.click();
-        return new AddTaskPage(driver);
-    }
+
     //String date = "2023-1-1";
     public AddTaskPage enterStartDate(String date) {
-        startDate.sendKeys(date);
+        startDate.sendKeys(date, Keys.ENTER);
         return this;
     }
 
@@ -88,5 +91,17 @@ public class AddTaskPage extends BasePO {
 
     public boolean taskFieldsEmpty(){
         return taskNameFieldEmpty() && taskTitleEmpty() && taskDescriptionEmpty() && notLoadedImage() && startDateEmpty();
+    }
+
+    public AddTaskPage chooseChallenge() {
+        chooseChallenge.click();
+        challenge.click();
+        return this;
+    }
+
+    public AddTaskPage clickSave() {
+        saveButton.click();
+        sleep(3);
+        return this;
     }
 }
