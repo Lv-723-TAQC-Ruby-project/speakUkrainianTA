@@ -8,23 +8,33 @@ import org.openqa.selenium.support.FindBy;
 
 public class AdvancedSearchModel extends BasePO{
 
-    @FindBy(xpath = "//span[text()='Центр']")
-    private WebElement centerButton;
-
     @FindBy(xpath = "//input[@class='ant-input-number-input']")
     private WebElement inputAgeChildField;
 
     @FindBy(xpath = "//span[@id='basic_age']")
     private WebElement valueAgeChildField;
 
+    @FindBy(xpath = "//label[.//span[contains(text(),'Центр')]]//span//input[@type='radio']")
+    private WebElement radioCenter;
+    @FindBy(xpath = "//label[.//span[contains(text(),'Гурток')]]//span//input[@type='radio']")
+    private WebElement radioClub;
+
+    @FindBy(xpath = "//label[.//span[@class='ant-radio ant-radio-checked']]//span[not(@class)]")
+    private WebElement radioValue;
+
     public AdvancedSearchModel(WebDriver driver) {
         super(driver);
     }
 
-    public AdvancedSearchModel clickCenter() {
-        centerButton.click();
+    public AdvancedSearchModel clickRadioCenter() {
+        radioCenter.click();
         return this;
     }
+    public AdvancedSearchModel clickRadioClub() {
+        radioClub.click();
+        return this;
+    }
+
     public boolean isAdvancedSearchOpen() {
         try {
             wait.visibility(By.xpath("//div[contains(text(), 'Розширений пошук')]"));
@@ -34,6 +44,10 @@ public class AdvancedSearchModel extends BasePO{
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public String getRadioValueString() {
+        return radioValue.getText();
     }
 
     public String getAgeChildField(){
