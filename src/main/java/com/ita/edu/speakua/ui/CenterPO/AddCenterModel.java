@@ -1,5 +1,6 @@
-package com.ita.edu.speakua.ui;
+package com.ita.edu.speakua.ui.CenterPO;
 
+import com.ita.edu.speakua.ui.BasePO;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,14 +25,14 @@ public class AddCenterModel extends BasePO {
         return this;
     }
 
-    public AddLocationModel AddLocation() {
+    public AddLocationCenterModel AddLocation() {
         addCenterLocation.click();
-        return new AddLocationModel(driver);
+        return new AddLocationCenterModel(driver);
     }
 
-    public AddCenterModel clickNextStep() {
+    public AddContactsCenterModel clickNextStep() {
         nextStepButton.click();
-        return new AddCenterModel(driver);
+        return new AddContactsCenterModel(driver);
     }
 
 

@@ -89,9 +89,12 @@ public class examplesTest extends BaseTestRunner {
                 .EnterCenterName("New Center Name")
                 .AddLocation()
                 .AddLocationName("New Location name")
-                .AddLocationAddress("New Location address")
-                .AddLocationCoordinates("New Location coordinates")
+                .ChooseLocationCity("Дніпро")
+               .AddLocationAddress("New Location address")
+                .AddLocationCoordinates("49.9935, 36.2304")
                 .AddLocationPhone("0661111111");
+
+//                .clickAddLocationButton();
 
         Assert.assertEquals(true, true);
     }
