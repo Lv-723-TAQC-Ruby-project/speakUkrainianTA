@@ -16,7 +16,7 @@ public class AddChallengePage extends BasePO {
     private WebElement challengeDescription;
     @FindBy(xpath = "//input[@type='file']")
     private WebElement uploadPhoto;
-    @FindBy(xpath = "//span[contains(text(),'Зберегти')]")
+    @FindBy(xpath = "//button[contains(@class, 'add-contact-type-button')]")
     private WebElement saveButton;
 
     public AddChallengePage enterSequenceNumber(String sequence){
