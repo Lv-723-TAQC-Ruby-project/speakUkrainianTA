@@ -1,4 +1,4 @@
-package com.ita.edu.speakua.ui.ChallengePage;
+package com.ita.edu.speakua.ui.ChallengePО;
 
 import com.ita.edu.speakua.ui.BasePO;
 import org.openqa.selenium.WebDriver;
@@ -8,6 +8,8 @@ import org.openqa.selenium.support.FindBy;
 public class ChallengePage extends BasePO {
     @FindBy(xpath = "//button[contains(@class, 'add-btn')]")
     private WebElement addChallengeButton;
+    @FindBy(xpath = "//table/tbody/tr[1]/td[1]")
+    private WebElement lastChallenge;
     public ChallengePage(WebDriver driver) {super(driver);}
 
     public AddChallengePage clickAddChallengeButton(){
@@ -15,4 +17,5 @@ public class ChallengePage extends BasePO {
         addChallengeButton.click();
         return new AddChallengePage(driver);
     }
+
 }

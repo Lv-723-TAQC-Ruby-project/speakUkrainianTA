@@ -4,7 +4,6 @@ import com.ita.edu.speakua.ui.BasePO;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
 
 public class AddTaskPage extends BasePO {
 
@@ -61,6 +60,42 @@ public class AddTaskPage extends BasePO {
     public AddTaskPage enterTaskDescription(String taskDescription) {
         this.taskDescription.sendKeys(taskDescription);
         return this;
+    }
+    public boolean startDateEmpty(){
+        if (startDate.getAttribute("value")!=""){
+            return false;
+        }
+        return true;
+    }
+    public boolean notLoadedImage(){
+        if (uploadImage.getAttribute("value")!=""){
+            return false;
+        }
+        return true;
+    }
+    public boolean taskNameFieldEmpty(){
+        if (taskName.getAttribute("value")!=""){
+            return false;
+        }
+        return true;
+    }
+    public boolean taskTitleEmpty(){
+        if (taskTitle.getAttribute("value")!=""){
+            return false;
+        }
+        return true;
+    }
+    public boolean taskDescriptionEmpty(){
+        if (taskDescription.getAttribute("value")!=""){
+            return false;
+        }
+        return true;
+    }
+    public boolean taskFieldsEmpty(){
+        if (taskNameFieldEmpty()&&taskTitleEmpty()&&taskDescriptionEmpty()&&notLoadedImage()&&startDateEmpty()){
+            return true;
+        }
+        return false;
     }
 
     public AddTaskPage chooseChallenge() {
