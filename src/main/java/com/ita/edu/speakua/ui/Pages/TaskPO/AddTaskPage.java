@@ -66,34 +66,19 @@ public class AddTaskPage extends BasePO {
         return this;
     }
     public boolean startDateEmpty(){
-        if (startDate.getAttribute("value")!=""){
-            return false;
-        }
-        return true;
+        return startDate.getAttribute("value")=="";
     }
     public boolean notLoadedImage(){
-        if (uploadImage.getAttribute("value")!=""){
-            return false;
-        }
-        return true;
+        return uploadImage.getAttribute("value") == "";
     }
     public boolean taskNameFieldEmpty(){
-        if (taskName.getAttribute("value")!=""){
-            return false;
-        }
-        return true;
+        return taskName.getAttribute("value") == "";
     }
     public boolean taskTitleEmpty(){
-        if (taskTitle.getAttribute("value")!=""){
-            return false;
-        }
-        return true;
+        return taskTitle.getAttribute("value") == "";
     }
     public boolean taskDescriptionEmpty(){
-        if (taskDescription.getAttribute("value")!=""){
-            return false;
-        }
-        return true;
+        return taskDescription.getAttribute("value") == "";
     }
     public boolean isContainErrorMessage(String name){
         try {
@@ -105,10 +90,7 @@ public class AddTaskPage extends BasePO {
     }
 
     public boolean taskFieldsEmpty(){
-        if (taskNameFieldEmpty()&&taskTitleEmpty()&&taskDescriptionEmpty()&&notLoadedImage()&&startDateEmpty()){
-            return true;
-        }
-        return false;
+        return taskNameFieldEmpty() && taskTitleEmpty() && taskDescriptionEmpty() && notLoadedImage() && startDateEmpty();
     }
 
     public AddTaskPage chooseChallenge() {

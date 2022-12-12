@@ -168,6 +168,7 @@ public class examplesTest extends BaseTestRunner {
         Assert.assertEquals(textNumber19,"18");
     }
 
+<<<<<<< HEAD
     @Test
     public void RegistrationDataRemembered() {
         new HomePage(driver)
@@ -224,6 +225,8 @@ public class examplesTest extends BaseTestRunner {
         Assert.assertTrue(checkInformationAboutCenterByDescription);
     }
 
+=======
+>>>>>>> 228815d0e62429d609e1ea696d0977822692c52c
     @AfterMethod
     public void tearDown() {
         if (driver != null) {

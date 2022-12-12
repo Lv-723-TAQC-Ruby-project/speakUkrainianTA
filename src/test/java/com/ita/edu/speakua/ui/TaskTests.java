@@ -28,7 +28,7 @@ public class TaskTests extends BaseTestRunner {
 
 @Test
 public void addTaskWithoutChallenge(){
-      new HomePage(driver)
+   new HomePage(driver)
             .openAdminProfileMenu()
             .openTasksPage()
             .clickAddTask()
@@ -38,7 +38,7 @@ public void addTaskWithoutChallenge(){
            .openAdminProfileMenu()
            .openTasksPage()
            .clickAddTask()
-           .enterStartDate("2023-03-03")
+           .enterStartDate("2021-03-03")
            .uploadImage("C:\\Users\\lovel\\IdeaProjects\\speakUkrainianTA723\\R.jpeg")
            .enterTaskName("LearnTest")
            .enterTaskTitle("Positive emotions like curiosity, satisfaction, and liveliness have a massive\n impact on how your brain processes your\n learning.")

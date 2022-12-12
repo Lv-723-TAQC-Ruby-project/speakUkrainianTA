@@ -1,6 +1,6 @@
 package com.ita.edu.speakua.ui.runners;
 
-import com.ita.edu.speakua.ui.AddClubModel;
+import com.ita.edu.speakua.ui.Pages.ClubsPO.AddClubModel;
 import com.ita.edu.speakua.ui.HomePage;
 import org.testng.Assert;
 import org.testng.annotations.*;
