@@ -155,15 +155,15 @@ public class examplesTest extends BaseTestRunner {
 
     @Test
     public void InputAgeChildTest() {
-        ExtendedSearchPage extendedSearchPage = new HomePage(driver)
-                .openExtendedSearch();
-        String textNumber1 = extendedSearchPage.EnterNumberAge("1").getAgeChildField();
+        AdvancedSearchModel advancedSearchModel = new HomePage(driver)
+                .openAdvancedSearch();
+        String textNumber1 = advancedSearchModel.EnterNumberAge("1").getAgeChildField();
         Assert.assertEquals(textNumber1,"2");
-        String textNumber2 = extendedSearchPage.EnterNumberAge("2").getAgeChildField();
+        String textNumber2 = advancedSearchModel.EnterNumberAge("2").getAgeChildField();
         Assert.assertEquals(textNumber2,"2");
-        String textNumber18 = extendedSearchPage.EnterNumberAge("18").getAgeChildField();
+        String textNumber18 = advancedSearchModel.EnterNumberAge("18").getAgeChildField();
         Assert.assertEquals(textNumber18,"18");
-        String textNumber19 = extendedSearchPage.EnterNumberAge("19").getAgeChildField();
+        String textNumber19 = advancedSearchModel.EnterNumberAge("19").getAgeChildField();
         Assert.assertEquals(textNumber19,"18");
     }
 
