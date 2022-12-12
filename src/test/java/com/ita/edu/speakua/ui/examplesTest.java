@@ -168,39 +168,15 @@ public class examplesTest extends BaseTestRunner {
         Assert.assertEquals(textNumber19,"18");
     }
 
-<<<<<<< HEAD
-    @Test
-    public void RegistrationDataRemembered() {
-        new HomePage(driver)
-                .openGuestProfileMenu()
-                .openRegistrationModel()
-                .enterLastName(configProperties.getLastName())
-                .enterFirstName(configProperties.getFirstName())
-                .enterPhone(configProperties.getPhone())
-                .enterEmail(configProperties.getEmail())
-                .enterPassword(configProperties.getPassword())
-                .enterPasswordConfirm(configProperties.getConfirm())
-                        .cancelRegistration()
-                                .openGuestProfileMenu()
-                                        .openRegistrationModel();
 
-          Assert.assertTrue(true,"Войтович");
-        Assert.assertTrue(true,"Світлана");
-        Assert.assertTrue(true,"671234567");
-        Assert.assertTrue(true,"671234567");
-        Assert.assertTrue(true,"671234567");
-        Assert.assertTrue(true,"svitlanawhite@gmail.com");
-        Assert.assertTrue(true,"12345678");
-        Assert.assertTrue(true,"12345678");
-    }
 
     @Test
     public void VerifyCreatingClubAndFindingInformationAboutTest(){
         new HomePage(driver)
                 .openGuestProfileMenu()
                 .openLoginModel()
-                .enterEmail(configProperties.getEmail())
-                .enterPassword(configProperties.getPassword())
+                .enterEmail(configProperties.getAdminEmail())
+                .enterPassword(configProperties.getAdminPassword())
                 .clickLogin()
                 .openUserProfileMenu()
                 .openAddClubModel()
@@ -225,8 +201,7 @@ public class examplesTest extends BaseTestRunner {
         Assert.assertTrue(checkInformationAboutCenterByDescription);
     }
 
-=======
->>>>>>> 228815d0e62429d609e1ea696d0977822692c52c
+
     @AfterMethod
     public void tearDown() {
         if (driver != null) {
