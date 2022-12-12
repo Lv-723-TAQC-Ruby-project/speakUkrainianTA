@@ -38,8 +38,7 @@ public class AdvancedSearchModel extends BasePO{
     public boolean isAdvancedSearchOpen() {
         try {
             wait.visibility(By.xpath("//div[contains(text(), 'Розширений пошук')]"));
-            sleep(3);
-            driver.findElement(By.xpath("//div[contains(text(), 'Розширений пошук')]"));
+            sleep(2);
             return true;
         } catch (Exception e) {
             return false;
