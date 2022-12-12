@@ -34,6 +34,9 @@ public class AddClubModel extends BasePO {
     @FindBy(css = ".anticon-check-circle")
     private WebElement successMessage;
 
+    @FindBy(xpath = "//div[contains(@class, 'ant-form-item-explain-error')]")
+    private WebElement languageErrorMessage;
+
     public AddClubModel(WebDriver driver) {
         super(driver);
     }
@@ -76,6 +79,9 @@ public class AddClubModel extends BasePO {
 
     public boolean isErrorMessageDisplayed() {
         return errorMessage.isDisplayed();
+    }
+    public boolean isErrorLanguageMessageDisplayed() {
+        return languageErrorMessage.isDisplayed();
     }
 
     public boolean successMessageDisplayed() {
