@@ -1,4 +1,4 @@
-package com.ita.edu.speakua.ui.ProfilePO;
+package com.ita.edu.speakua.ui.Pages.ProfilePO;
 
 import com.ita.edu.speakua.ui.BasePO;
 import org.openqa.selenium.By;

@@ -1,6 +1,7 @@
 package com.ita.edu.speakua.ui;
 
-import com.ita.edu.speakua.ui.ProfilePO.EditProfileModel;
+import com.ita.edu.speakua.ui.Pages.ClubsPO.AddClubModel;
+import com.ita.edu.speakua.ui.Pages.ProfilePO.EditProfileModel;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -44,40 +45,7 @@ public class examplesTest extends BaseTestRunner {
     }
 
 
-    @Test
-    public void addVerifyDescriptionClubTest() {
-        AddClubModel addClubModel = new HomePage(driver)
-                .openGuestProfileMenu()
-                .openLoginModel()
-                .enterEmail(configProperties.getAdminEmail())
-                .enterPassword(configProperties.getAdminPassword())
-                .clickLogin()
-                .openUserProfileMenu()
-                .openAddClubModel()
-                .EnterNameClub("Спорт")
-                .selectCategoryByName("Спортивні секції")
-                .enterFromAge("5")
-                .enterToAge("10")
-                .clickNextStep()
-                .enterPhoneNumber("0932584213")
-                .clickNextStep();
 
-        boolean withValidValueUkrainianAndEnglishWords = addClubModel.enterClubDescription("'Education', 'students', 'Школа' 'балету' ")
-                .successMessageDisplayed();
-
-        Assert.assertTrue(withValidValueUkrainianAndEnglishWords, "Error message doesn't display");
-
-        boolean withValidValueNumbers = addClubModel.enterClubDescription("1234567890123456789012345678901234567890")
-                .successMessageDisplayed();
-
-        Assert.assertTrue(withValidValueNumbers, "Error message doesn't display");
-
-        boolean withValidValueSpecialCharacters = addClubModel.enterClubDescription("!#$%&'()*+,-./:;<=>?@[]^_`{}~%^$#)&&^^(_&($%^#@!")
-                .successMessageDisplayed();
-
-        Assert.assertTrue(withValidValueSpecialCharacters, "Error message doesn't display");
-
-    }
 
 
     @Test
@@ -93,9 +61,12 @@ public class examplesTest extends BaseTestRunner {
                 .EnterCenterName("New Center Name")
                 .AddLocation()
                 .AddLocationName("New Location name")
-                .AddLocationAddress("New Location address")
-                .AddLocationCoordinates("New Location coordinates")
+                .ChooseLocationCity("Дніпро")
+               .AddLocationAddress("New Location address")
+                .AddLocationCoordinates("49.9935, 36.2304")
                 .AddLocationPhone("0661111111");
+
+//                .clickAddLocationButton();
 
         Assert.assertEquals(true, true);
     }
