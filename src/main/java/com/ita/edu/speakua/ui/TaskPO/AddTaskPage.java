@@ -1,6 +1,7 @@
 package com.ita.edu.speakua.ui.TaskPO;
 
 import com.ita.edu.speakua.ui.BasePO;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,7 +20,7 @@ public class AddTaskPage extends BasePO {
     @FindBy(xpath = "//div[contains(@class, 'ql-editor ql-blank')]")
     public WebElement taskTitle;
 
-    @FindBy(xpath = "(//div[contains(@class, 'ql-editor ql-blank')])[2]")
+    @FindBy(xpath = "(//div[contains(@class, 'ql-editor ql-blank')])[1]")
     public WebElement taskDescription;
 
     @FindBy(xpath = "//input[@id='challengeId']")
@@ -37,7 +38,7 @@ public class AddTaskPage extends BasePO {
 
     //String date = "2023-1-1";
     public AddTaskPage enterStartDate(String date) {
-        startDate.sendKeys(date);
+        startDate.sendKeys(date, Keys.ENTER);
         return this;
     }
 
