@@ -37,17 +37,17 @@ public class ChallengeTest extends BaseTestRunner {
                 .openChallengePage()
                 .clickAddChallengeButton()
                 .emptyFields();
-        Assert.assertTrue(true, "");
+        Assert.assertEquals("","");
         new AddChallengePage(driver)
-                .enterSequenceNumber("123")
+                .enterSequenceNumber("12345678")
                 .uploadChallengePhoto("C:\\Users\\lovel\\IdeaProjects\\speakUkrainianTA723\\OIP.jpeg")
                 .enterChallengeName("ChallengeTest")
                 .enterTitle("ChallengeTest")
-                .enterChallengeDescription("Challenge")
+                .enterChallengeDescription("Racing in an event like Red Bull Defiance is an emotional rollercoaster of highs and lows,\n but knowing about the biggest challenges you'll have to face beforehand\n gives you the best chance of making it to the finish.")
                 .saveChallengeClick();
 
     }
-    
+
 
 
     @AfterClass
