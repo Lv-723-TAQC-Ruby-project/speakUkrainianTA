@@ -57,7 +57,6 @@ public void taskWithInvalidDescription(){
             .uploadImage("C:\\Users\\lovel\\IdeaProjects\\speakUkrainianTA723\\R.jpeg")
             .enterTaskName("LearnTest")
             .enterTaskTitle("Positive emotions like curiosity, satisfaction, and liveliness have a massive\n impact on how your brain processes your\n learning.")
-            .enterTaskDescription("")
             .chooseChallenge().clickSave().isContainErrorMessage("Поле 'Опис' не може бути пустим");
     new HomePage(driver)
             .openAdminProfileMenu()
