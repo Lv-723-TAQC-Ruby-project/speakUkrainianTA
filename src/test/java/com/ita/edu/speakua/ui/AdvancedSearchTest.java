@@ -14,19 +14,41 @@ public class AdvancedSearchTest extends BaseTestRunner {
         setDriver();
     }
 
+    @BeforeMethod
+    public void goHomePage() {
+        driver.get(configProperties.getBaseWebUrl());
+    }
 
     @Test
     public void checkAdvancedSearch() {
        HomePage Page = new HomePage(driver);
-       boolean check  = Page.openAdvancedSearch().isAdvancedSearchOpen();
+
+       boolean check  = Page
+               .openAdvancedSearch()
+               .isAdvancedSearchOpen();
+
        Assert.assertTrue(check);
-       System.out.println("True");
-       check = Page.openAdvancedSearch().isAdvancedSearchOpen();
+
+       check = Page
+               .openAdvancedSearch()
+               .isAdvancedSearchOpen();
+
        Assert.assertFalse(check);
-       System.out.println("False");
     }
 
+    @Test
+    public void AdvancedSearch() {
+        HomePage Page = new HomePage(driver);
 
+        String radioValue = Page
+                .openAdvancedSearch()
+                .getRadioValueString();
+
+        Assert.assertEquals(radioValue,"Гурток");
+
+        //Not finished
+
+    }
 
     @AfterClass
     public void tearDown() {
