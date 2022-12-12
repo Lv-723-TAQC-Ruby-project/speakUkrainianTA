@@ -34,6 +34,12 @@ public class AddClubModel extends BasePO {
     @FindBy(css = ".anticon-check-circle")
     private WebElement successMessage;
 
+    @FindBy(xpath = "//input[@id='basic_centerId']")
+    private WebElement belongingToCenterInput;
+
+    @FindBy(xpath = "//button[contains(@class, 'ant-btn ant-btn-default flooded-button add')]")
+    private WebElement completeButton;
+
     public AddClubModel(WebDriver driver) {
         super(driver);
     }
@@ -80,5 +86,15 @@ public class AddClubModel extends BasePO {
 
     public boolean successMessageDisplayed() {
         return successMessage.isDisplayed();
+    }
+
+    public AddClubModel enterBelongingToCenter(String nameCenter) {
+        ageToInput.sendKeys(nameCenter);
+        return this;
+    }
+
+    public HomePage finishAddingCenter(){
+        completeButton.click();
+        return new HomePage(driver);
     }
 }

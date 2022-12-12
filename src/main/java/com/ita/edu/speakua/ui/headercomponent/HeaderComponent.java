@@ -46,7 +46,8 @@ public class HeaderComponent extends BasePO {
     }
 
     public UserProfileMenu openUserProfileMenu(){
-        profileMenuButton.click();
+        wait.visibility(profileMenuButton);
+        action.click(profileMenuButton);
         return new UserProfileMenu(driver);
     }
 
