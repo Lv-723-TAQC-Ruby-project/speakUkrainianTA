@@ -152,29 +152,19 @@ public class examplesTest extends BaseTestRunner {
 
     @Test
     public void RegistrationDataRemembered() {
-        new HomePage(driver)
+          boolean dataSaved= new HomePage(driver)
                 .openGuestProfileMenu()
                 .openRegistrationModel()
-                .enterLastName(configProperties.getLastName())
-                .enterFirstName(configProperties.getFirstName())
-                .enterPhone(configProperties.getPhone())
-                .enterEmail(configProperties.getEmail())
-                .enterPassword(configProperties.getPassword())
-                .enterPasswordConfirm(configProperties.getConfirm())
-                        .cancelRegistration()
-                                .openGuestProfileMenu()
-                                        .openRegistrationModel();
-
-          Assert.assertTrue(true,"Войтович");
-        Assert.assertTrue(true,"Світлана");
-        Assert.assertTrue(true,"671234567");
-        Assert.assertTrue(true,"671234567");
-        Assert.assertTrue(true,"671234567");
-        Assert.assertTrue(true,"svitlanawhite@gmail.com");
-        Assert.assertTrue(true,"12345678");
-        Assert.assertTrue(true,"12345678");
+                 .enterLastName("Войтович")
+                .enterFirstName("Світлана")
+                .enterPhone("671234567")
+                .enterEmail("svitlanawhite@gmail.com")
+                .enterPassword("12345678")
+                .enterPasswordConfirm("12345678")
+                .cancelRegistration()
+                .openGuestProfileMenu().openRegistrationModel().allDataSaved();
+       Assert.assertTrue(dataSaved);
     }
-
     @AfterMethod
     public void tearDown() {
         if (driver != null) {
