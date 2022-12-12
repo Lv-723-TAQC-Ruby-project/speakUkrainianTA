@@ -1,6 +1,6 @@
 package com.ita.edu.speakua.ui;
 
-import com.ita.edu.speakua.ui.TaskPO.AddTaskPage;
+import com.ita.edu.speakua.ui.Pages.TaskPO.AddTaskPage;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;

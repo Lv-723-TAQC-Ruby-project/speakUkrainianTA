@@ -1,6 +1,6 @@
 package com.ita.edu.speakua.ui;
 
-import com.ita.edu.speakua.ui.ChallengePО.AddChallengePage;
+import com.ita.edu.speakua.ui.Pages.ChallengePО.AddChallengePage;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
