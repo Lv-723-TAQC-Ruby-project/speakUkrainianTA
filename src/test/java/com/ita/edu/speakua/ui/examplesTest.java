@@ -9,6 +9,10 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.awt.*;
+
+import static java.awt.SystemColor.text;
+
 public class examplesTest extends BaseTestRunner {
 
     @BeforeMethod
@@ -107,6 +111,7 @@ public class examplesTest extends BaseTestRunner {
         Assert.assertEquals(actualeTitle, "IT освіта: курси \"ГРАНД\"");
     }
 
+
     @Test
     public void MessageAboutIncorrectlyEnteredLastNameTest(){
         EditProfileModel editProfileModel= new HomePage(driver)
@@ -119,35 +124,76 @@ public class examplesTest extends BaseTestRunner {
                 .openMyProfileModel()
                 .openEditProfileModel();
         boolean isMassageMore25Characters=editProfileModel.EnterLastName("AfBbCcDdEeFfGgHhIiJjKkLlMmNn")
-                .isOpenMassageErrorContain("Прізвище не може містити більше, ніж 25 символів");
+                .isOpenMassageErrorLastNameContain("Прізвище не може містити більше, ніж 25 символів");
         Assert.assertTrue(isMassageMore25Characters);
         boolean isMassageWithSpecialCharacters=editProfileModel.EnterLastName("!@#$%^&,")
-                .isOpenMassageErrorContain("Прізвище не може містити спеціальні символи");
+                .isOpenMassageErrorLastNameContain("Прізвище не може містити спеціальні символи");
         Assert.assertTrue(isMassageWithSpecialCharacters);
         boolean isMassageWithNumbers=editProfileModel.EnterLastName("1234")
-                .isOpenMassageErrorContain("Прізвище не може містити спеціальні символи");
+                .isOpenMassageErrorLastNameContain("Прізвище не може містити спеціальні символи");
         Assert.assertTrue(isMassageWithNumbers);
         boolean isMassageStartedWithHyphen=editProfileModel.EnterLastName("-Lastname")
-                .isOpenMassageErrorContain("Прізвище повинно починатися і закінчуватися літерою");
+                .isOpenMassageErrorLastNameContain("Прізвище повинно починатися і закінчуватися літерою");
         Assert.assertTrue(isMassageStartedWithHyphen);
         boolean isMassageStartedWithSpace=editProfileModel.EnterLastName(" Lastname")
-                .isOpenMassageErrorContain("Прізвище повинно починатися і закінчуватися літерою");
+                .isOpenMassageErrorLastNameContain("Прізвище повинно починатися і закінчуватися літерою");
         Assert.assertTrue(isMassageStartedWithSpace);
         boolean isMassageStartedWithApostrophe=editProfileModel.EnterLastName("'Lastname")
-                .isOpenMassageErrorContain("Прізвище повинно починатися і закінчуватися літерою");
+                .isOpenMassageErrorLastNameContain("Прізвище повинно починатися і закінчуватися літерою");
         Assert.assertTrue(isMassageStartedWithApostrophe);
         boolean isMassageEndedWithHyphen=editProfileModel.EnterLastName("Lastname-")
-                .isOpenMassageErrorContain("Прізвище повинно починатися і закінчуватися літерою");
+                .isOpenMassageErrorLastNameContain("Прізвище повинно починатися і закінчуватися літерою");
         Assert.assertTrue(isMassageEndedWithHyphen);
         boolean isMassageEndedWithSpace=editProfileModel.EnterLastName("Lastname ")
-                .isOpenMassageErrorContain("Прізвище повинно починатися і закінчуватися літерою");
+                .isOpenMassageErrorLastNameContain("Прізвище повинно починатися і закінчуватися літерою");
         Assert.assertTrue(isMassageEndedWithSpace);
         boolean isMassageEndedWithApostrophe=editProfileModel.EnterLastName("Lastname'")
-                .isOpenMassageErrorContain("Прізвище повинно починатися і закінчуватися літерою");
+                .isOpenMassageErrorLastNameContain("Прізвище повинно починатися і закінчуватися літерою");
         Assert.assertTrue(isMassageEndedWithApostrophe);
         boolean isMassageDeleteData=editProfileModel.DeleteLastName()
-                .isOpenMassageErrorContain("Будь ласка введіть Ваше прізвище");
+                .isOpenMassageErrorLastNameContain("Будь ласка введіть Ваше прізвище");
         Assert.assertTrue(isMassageDeleteData);
+    }
+    @Test
+    public void MessageAboutIncorrectlyEnteredNumberPhoneTest() {
+        EditProfileModel editProfileModel = new HomePage(driver)
+                .openGuestProfileMenu()
+                .openLoginModel()
+                .enterEmail(configProperties.getAdminEmail())
+                .enterPassword(configProperties.getAdminPassword())
+                .clickLogin()
+                .openUserProfileMenu()
+                .openMyProfileModel()
+                .openEditProfileModel();
+        boolean isMassageLessThan13Symbols = editProfileModel.EnterNumberPhone("06895")
+                .isOpenMassageErrorPhoneContain("Телефон не відповідає вказаному формату");
+        Assert.assertTrue(isMassageLessThan13Symbols);
+        boolean isMassageMoreThan13Symbols = editProfileModel.EnterNumberPhone("06593859632586")
+                .isOpenMassageErrorPhoneContain("Телефон не відповідає вказаному формату");
+        Assert.assertTrue(isMassageMoreThan13Symbols);
+        boolean isMassageLetters = editProfileModel.EnterNumberPhone("jngeoлщшогнеп")
+                .isOpenMassageErrorPhoneContain("Телефон не може містити літери\n" + "Телефон не відповідає вказаному формату");
+        Assert.assertTrue(isMassageLetters);
+        boolean isMassageSpecialCharacters = editProfileModel.EnterNumberPhone("!@#$%^&*(_+.:")
+                .isOpenMassageErrorPhoneContain("Телефон не відповідає вказаному формату\n" + "Телефон не може містити спеціальні символи");
+        Assert.assertTrue(isMassageSpecialCharacters);
+        boolean isMassageDeleteData = editProfileModel.DeleteNumberPhone()
+                .isOpenMassageErrorPhoneContain("Будь ласка введіть Ваш номер телефону");
+        Assert.assertTrue(isMassageDeleteData);
+    }
+
+    @Test
+    public void InputAgeChildTest() {
+        ExtendedSearchPage extendedSearchPage = new HomePage(driver)
+                .openExtendedSearch();
+        String textNumber1 = extendedSearchPage.EnterNumberAge("1").getAgeChildField();
+        Assert.assertEquals(textNumber1,"2");
+        String textNumber2 = extendedSearchPage.EnterNumberAge("2").getAgeChildField();
+        Assert.assertEquals(textNumber2,"2");
+        String textNumber18 = extendedSearchPage.EnterNumberAge("18").getAgeChildField();
+        Assert.assertEquals(textNumber18,"18");
+        String textNumber19 = extendedSearchPage.EnterNumberAge("19").getAgeChildField();
+        Assert.assertEquals(textNumber19,"18");
     }
 
     @Test
