@@ -34,17 +34,14 @@ public void addTaskWithoutChallenge(){
             .clickAddTask()
             .taskFieldsEmpty();
    Assert.assertEquals("","");
-   AddTaskPage addTaskPage = new HomePage(driver)
-           .openAdminProfileMenu()
-           .openTasksPage()
-           .clickAddTask()
+    new AddTaskPage(driver)
            .enterStartDate("2021-03-03")
            .uploadImage("C:\\Users\\lovel\\IdeaProjects\\speakUkrainianTA723\\R.jpeg")
            .enterTaskName("LearnTest")
            .enterTaskTitle("Positive emotions like curiosity, satisfaction, and liveliness have a massive\n impact on how your brain processes your\n learning.")
            .enterTaskDescription("One of the key benefits of having fun while learning is that it creates a sense of reward in learning.\n That inherently motivates people.")
-           .clickSave();
-Assert.assertTrue(addTaskPage.isContainErrorMessage(""),"Please,select challenge");
+           .clickSave().isContainErrorMessage("Please,select challenge");
+
 }
 
 
