@@ -1,6 +1,6 @@
-package com.ita.edu.speakua.ui;
+package com.ita.edu.speakua.ui.ClubsPO;
 
-import org.openqa.selenium.By;
+import com.ita.edu.speakua.ui.BasePO;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

@@ -1,5 +1,6 @@
 package com.ita.edu.speakua.ui;
 
+import com.ita.edu.speakua.ui.ClubsPO.AddClubModel;
 import com.ita.edu.speakua.ui.ProfilePO.EditProfileModel;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import org.openqa.selenium.By;
