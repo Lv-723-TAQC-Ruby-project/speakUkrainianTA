@@ -1,6 +1,6 @@
-package com.ita.edu.speakua.ui;
+package com.ita.edu.speakua.ui.Pages.ClubsPO;
 
-import org.openqa.selenium.By;
+import com.ita.edu.speakua.ui.BasePO;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -34,11 +34,8 @@ public class AddClubModel extends BasePO {
     @FindBy(css = ".anticon-check-circle")
     private WebElement successMessage;
 
-    @FindBy(xpath = "//input[@id='basic_centerId']")
-    private WebElement belongingToCenterInput;
-
-    @FindBy(xpath = "//button[contains(@class, 'ant-btn ant-btn-default flooded-button add')]")
-    private WebElement completeButton;
+    @FindBy(xpath = "//div[contains(@class, 'ant-form-item-explain-error')]")
+    private WebElement languageErrorMessage;
 
     public AddClubModel(WebDriver driver) {
         super(driver);
@@ -83,18 +80,11 @@ public class AddClubModel extends BasePO {
     public boolean isErrorMessageDisplayed() {
         return errorMessage.isDisplayed();
     }
+    public boolean isErrorLanguageMessageDisplayed() {
+        return languageErrorMessage.isDisplayed();
+    }
 
     public boolean successMessageDisplayed() {
         return successMessage.isDisplayed();
-    }
-
-    public AddClubModel enterBelongingToCenter(String nameCenter) {
-        ageToInput.sendKeys(nameCenter);
-        return this;
-    }
-
-    public HomePage finishAddingCenter(){
-        completeButton.click();
-        return new HomePage(driver);
     }
 }

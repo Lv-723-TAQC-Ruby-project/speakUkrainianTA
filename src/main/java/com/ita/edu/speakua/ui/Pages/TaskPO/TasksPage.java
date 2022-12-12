@@ -1,4 +1,4 @@
-package com.ita.edu.speakua.ui.TaskPO;
+package com.ita.edu.speakua.ui.Pages.TaskPO;
 
 import com.ita.edu.speakua.ui.BasePO;
 import org.openqa.selenium.WebDriver;
