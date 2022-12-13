@@ -42,7 +42,7 @@ public class AdvancedSearchTest extends BaseTestRunner {
     }
 
     @Test
-    public void activateFiltersCheck() {
+    public void activateClubFiltersCheck() {
 
         SoftAssert softAssert = new SoftAssert();
 
@@ -65,18 +65,24 @@ public class AdvancedSearchTest extends BaseTestRunner {
     }
 
     @Test
-    public void AdvancedSearch() {
+    public void activateCenterFiltersCheck() {
+        SoftAssert softAssert = new SoftAssert();
 
         String radioValue = new HomePage(driver)
                 .openAdvancedSearch()
                 .getRadioValueString();
 
-        Assert.assertEquals(radioValue,"Гурток");
+        softAssert.assertEquals(radioValue,"Гурток");
 
-        new AdvancedSearchModel(driver);
+        AdvancedSearchModel advancedSearchModel = new AdvancedSearchModel(driver).clickRadioCenter();
+        softAssert.assertEquals(radioValue,"Центр");
 
-        //Not finished
+        softAssert.assertTrue(advancedSearchModel.isCityActive(),"Didn't find city dropdown");
+        softAssert.assertTrue(advancedSearchModel.isDistrictActive(),"Didn't find district dropdown");
+        softAssert.assertTrue(advancedSearchModel.isStationActive(),"Didn't find station dropdown");
+        softAssert.assertFalse(advancedSearchModel.isAgeChildActive(),"Did find child age field");
 
+        softAssert.assertAll();
     }
 
     @AfterClass
