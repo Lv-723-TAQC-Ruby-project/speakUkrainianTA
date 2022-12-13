@@ -37,14 +37,15 @@ public class AdvancedSearchTest extends BaseTestRunner {
     }
 
     @Test
-    public void AdvancedSearch() {
-        HomePage Page = new HomePage(driver);
+    public void AdvancedSearch() throws InterruptedException {
 
-        String radioValue = Page
+        String radioValue = new HomePage(driver)
                 .openAdvancedSearch()
                 .getRadioValueString();
 
         Assert.assertEquals(radioValue,"Гурток");
+
+        new AdvancedSearchModel(driver).chooseDropDownCity("Львів");
 
         //Not finished
 
