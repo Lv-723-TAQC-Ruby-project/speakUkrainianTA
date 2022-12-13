@@ -15,8 +15,8 @@ public class ConfigProperties {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
 
+    }
 
     public String getAdminEmail() {
         return properties.getProperty("admin_email");
@@ -27,5 +27,4 @@ public class ConfigProperties {
     public String getBaseWebUrl() {
         return properties.getProperty("base_web_url");
     }
-
 }

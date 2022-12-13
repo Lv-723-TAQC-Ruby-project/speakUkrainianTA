@@ -30,6 +30,31 @@ public class RegisterModel extends BasePO {
     @FindBy(xpath = "//button[contains(@class, 'ant-modal-close')]")
     private WebElement closeButton;
 
+    public WebElement getLastNameInput() {
+        return lastNameInput;
+    }
+
+    public WebElement getFirstNameInput() {
+        return firstNameInput;
+    }
+
+    public WebElement getPhoneInput() {
+        return phoneInput;
+    }
+
+    public WebElement getEmailInput() {
+        return emailInput;
+    }
+
+    public WebElement getPasswordInput() {
+        return passwordInput;
+    }
+
+    public WebElement getPasswordConfirmInput() {
+        return passwordConfirmInput;
+    }
+
+
     public RegisterModel(WebDriver driver) {
         super(driver);
     }
@@ -63,27 +88,7 @@ public class RegisterModel extends BasePO {
         passwordConfirmInput.sendKeys(passwordConfirm);
         return this;
     }
-    public boolean lastNameFilled(){
-        return lastNameInput.getAttribute("")!="";
-    }
-    public boolean firstNameFilled(){
-        return firstNameInput.getAttribute("")!="";
-    }
-   public boolean phoneFilled(){
-        return phoneInput.getAttribute("")!="";
-   }
-   public boolean emailFilled(){
-        return emailInput.getAttribute("")!="";
-   }
-   public boolean passwordFilled(){
-        return passwordInput.getAttribute("")!="";
-   }
-   public boolean confirmPasswordFilled(){
-        return passwordConfirmInput.getAttribute("")!="";
-   }
-   public boolean allDataSaved(){
-        return lastNameFilled()&&firstNameFilled()&&phoneFilled()&&emailFilled()&&passwordFilled()&&confirmPasswordFilled();
-   }
+
     public HomePage clickRegister() {
         registerButton.click();
         sleep(3);

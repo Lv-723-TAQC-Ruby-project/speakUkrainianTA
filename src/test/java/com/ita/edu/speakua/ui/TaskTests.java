@@ -7,6 +7,9 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
+import java.io.File;
 
 public class TaskTests extends BaseTestRunner {
     @BeforeClass
@@ -25,22 +28,22 @@ public class TaskTests extends BaseTestRunner {
     public void goHomePage() {
         driver.get(configProperties.getBaseWebUrl());
     }
-
+    SoftAssert softAssert = new SoftAssert();
+    ClassLoader classLoader = getClass().getClassLoader();
+    File photo = new File(classLoader.getResource("R.jpeg").getFile());
+    String absolutePath = photo.getAbsolutePath();
 @Test
 public void addTaskWithoutChallenge(){
    new HomePage(driver)
             .openAdminProfileMenu()
             .openTasksPage()
             .clickAddTask()
-            .taskFieldsEmpty();
-   Assert.assertEquals("","");
-    new AddTaskPage(driver)
            .enterStartDate("2021-03-03")
-           .uploadImage("C:\\Users\\lovel\\IdeaProjects\\speakUkrainianTA723\\R.jpeg")
+           .uploadImage(absolutePath)
            .enterTaskName("LearnTest")
            .enterTaskTitle("Positive emotions like curiosity, satisfaction, and liveliness have a massive\n impact on how your brain processes your\n learning.")
            .enterTaskDescription("One of the key benefits of having fun while learning is that it creates a sense of reward in learning.\n That inherently motivates people.")
-           .clickSave().isContainErrorMessage("Please,select challenge");
+           .clickSave();
 
 }
 
@@ -50,11 +53,8 @@ public void taskWithInvalidDescription(){
             .openAdminProfileMenu()
             .openTasksPage()
             .clickAddTask()
-            .taskFieldsEmpty();
-    Assert.assertEquals("","");
-    new AddTaskPage(driver)
             .enterStartDate("2023-03-03")
-            .uploadImage("C:\\Users\\lovel\\IdeaProjects\\speakUkrainianTA723\\R.jpeg")
+            .uploadImage(absolutePath)
             .enterTaskName("LearnTest")
             .enterTaskTitle("Positive emotions like curiosity, satisfaction, and liveliness have a massive\n impact on how your brain processes your\n learning.")
             .chooseChallenge().clickSave().isContainErrorMessage("Поле 'Опис' не може бути пустим");
@@ -62,7 +62,7 @@ public void taskWithInvalidDescription(){
             .openAdminProfileMenu()
             .openTasksPage()
             .clickAddTask()
-            .enterStartDate("2023-03-03")
+            .enterStartDate("2021-03-03")
             .uploadImage("C:\\Users\\lovel\\IdeaProjects\\speakUkrainianTA723\\R.jpeg")
             .enterTaskName("LearnTest")
             .enterTaskTitle("Positive emotions like curiosity, satisfaction, and liveliness have a massive\n impact on how your brain processes your\n learning.")
@@ -74,7 +74,7 @@ public void taskWithInvalidDescription(){
             .openTasksPage()
             .clickAddTask()
             .enterStartDate("2023-03-03")
-            .uploadImage("C:\\Users\\lovel\\IdeaProjects\\speakUkrainianTA723\\R.jpeg")
+            .uploadImage(absolutePath)
             .enterTaskName("LearnTest")
             .enterTaskTitle("Positive emotions like curiosity, satisfaction, and liveliness have a massive\n impact on how your brain processes your\n learning.")
             .enterTaskDescription("Positive emotions like curiosity, satis")
