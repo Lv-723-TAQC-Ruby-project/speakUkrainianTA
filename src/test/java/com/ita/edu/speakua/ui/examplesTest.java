@@ -45,9 +45,6 @@ public class examplesTest extends BaseTestRunner {
     }
 
 
-
-
-
     @Test
     public void TestAddCenter() {
         new HomePage(driver)
