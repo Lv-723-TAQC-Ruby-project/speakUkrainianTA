@@ -95,34 +95,34 @@ public class examplesTest extends BaseTestRunner {
                 .openUserProfileMenu()
                 .openMyProfileModel()
                 .openEditProfileModel();
-        boolean isMassageMore25Characters=editProfileModel.EnterLastName("AfBbCcDdEeFfGgHhIiJjKkLlMmNn")
+        boolean isMassageMore25Characters=editProfileModel.enterLastName("AfBbCcDdEeFfGgHhIiJjKkLlMmNn")
                 .isOpenMassageErrorLastNameContain("Прізвище не може містити більше, ніж 25 символів");
         Assert.assertTrue(isMassageMore25Characters);
-        boolean isMassageWithSpecialCharacters=editProfileModel.EnterLastName("!@#$%^&,")
+        boolean isMassageWithSpecialCharacters=editProfileModel.enterLastName("!@#$%^&,")
                 .isOpenMassageErrorLastNameContain("Прізвище не може містити спеціальні символи");
         Assert.assertTrue(isMassageWithSpecialCharacters);
-        boolean isMassageWithNumbers=editProfileModel.EnterLastName("1234")
+        boolean isMassageWithNumbers=editProfileModel.enterLastName("1234")
                 .isOpenMassageErrorLastNameContain("Прізвище не може містити спеціальні символи");
         Assert.assertTrue(isMassageWithNumbers);
-        boolean isMassageStartedWithHyphen=editProfileModel.EnterLastName("-Lastname")
+        boolean isMassageStartedWithHyphen=editProfileModel.enterLastName("-Lastname")
                 .isOpenMassageErrorLastNameContain("Прізвище повинно починатися і закінчуватися літерою");
         Assert.assertTrue(isMassageStartedWithHyphen);
-        boolean isMassageStartedWithSpace=editProfileModel.EnterLastName(" Lastname")
+        boolean isMassageStartedWithSpace=editProfileModel.enterLastName(" Lastname")
                 .isOpenMassageErrorLastNameContain("Прізвище повинно починатися і закінчуватися літерою");
         Assert.assertTrue(isMassageStartedWithSpace);
-        boolean isMassageStartedWithApostrophe=editProfileModel.EnterLastName("'Lastname")
+        boolean isMassageStartedWithApostrophe=editProfileModel.enterLastName("'Lastname")
                 .isOpenMassageErrorLastNameContain("Прізвище повинно починатися і закінчуватися літерою");
         Assert.assertTrue(isMassageStartedWithApostrophe);
-        boolean isMassageEndedWithHyphen=editProfileModel.EnterLastName("Lastname-")
+        boolean isMassageEndedWithHyphen=editProfileModel.enterLastName("Lastname-")
                 .isOpenMassageErrorLastNameContain("Прізвище повинно починатися і закінчуватися літерою");
         Assert.assertTrue(isMassageEndedWithHyphen);
-        boolean isMassageEndedWithSpace=editProfileModel.EnterLastName("Lastname ")
+        boolean isMassageEndedWithSpace=editProfileModel.enterLastName("Lastname ")
                 .isOpenMassageErrorLastNameContain("Прізвище повинно починатися і закінчуватися літерою");
         Assert.assertTrue(isMassageEndedWithSpace);
-        boolean isMassageEndedWithApostrophe=editProfileModel.EnterLastName("Lastname'")
+        boolean isMassageEndedWithApostrophe=editProfileModel.enterLastName("Lastname'")
                 .isOpenMassageErrorLastNameContain("Прізвище повинно починатися і закінчуватися літерою");
         Assert.assertTrue(isMassageEndedWithApostrophe);
-        boolean isMassageDeleteData=editProfileModel.DeleteLastName()
+        boolean isMassageDeleteData=editProfileModel.deleteLastName()
                 .isOpenMassageErrorLastNameContain("Будь ласка введіть Ваше прізвище");
         Assert.assertTrue(isMassageDeleteData);
     }
@@ -137,19 +137,19 @@ public class examplesTest extends BaseTestRunner {
                 .openUserProfileMenu()
                 .openMyProfileModel()
                 .openEditProfileModel();
-        boolean isMassageLessThan13Symbols = editProfileModel.EnterNumberPhone("06895")
+        boolean isMassageLessThan13Symbols = editProfileModel.enterNumberPhone("06895")
                 .isOpenMassageErrorPhoneContain("Телефон не відповідає вказаному формату");
         Assert.assertTrue(isMassageLessThan13Symbols);
-        boolean isMassageMoreThan13Symbols = editProfileModel.EnterNumberPhone("06593859632586")
+        boolean isMassageMoreThan13Symbols = editProfileModel.enterNumberPhone("06593859632586")
                 .isOpenMassageErrorPhoneContain("Телефон не відповідає вказаному формату");
         Assert.assertTrue(isMassageMoreThan13Symbols);
-        boolean isMassageLetters = editProfileModel.EnterNumberPhone("jngeoлщшогнеп")
+        boolean isMassageLetters = editProfileModel.enterNumberPhone("jngeoлщшогнеп")
                 .isOpenMassageErrorPhoneContain("Телефон не може містити літери\n" + "Телефон не відповідає вказаному формату");
         Assert.assertTrue(isMassageLetters);
-        boolean isMassageSpecialCharacters = editProfileModel.EnterNumberPhone("!@#$%^&*(_+.:")
+        boolean isMassageSpecialCharacters = editProfileModel.enterNumberPhone("!@#$%^&*(_+.:")
                 .isOpenMassageErrorPhoneContain("Телефон не відповідає вказаному формату\n" + "Телефон не може містити спеціальні символи");
         Assert.assertTrue(isMassageSpecialCharacters);
-        boolean isMassageDeleteData = editProfileModel.DeleteNumberPhone()
+        boolean isMassageDeleteData = editProfileModel.deleteNumberPhone()
                 .isOpenMassageErrorPhoneContain("Будь ласка введіть Ваш номер телефону");
         Assert.assertTrue(isMassageDeleteData);
     }

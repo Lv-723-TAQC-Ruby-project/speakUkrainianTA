@@ -31,9 +31,10 @@ public class LeavingAnyEmptyFieldInTheChangePasswordPopUp extends BaseTestRunner
                 .openAdminProfileMenu()
                 .openMyProfileModel()
                 .openEditProfileModel()
-                .clickChangePasswordCheckBox();
-
-
+                .clickChangePasswordCheckBox()
+                .enterCurrentPassword(configProperties.getAdminPassword())
+                .enterNewPasswordInTheNewPasswordField("admin1")
+                .clickOnTheSaveChangesButton().openEditProfileModel(); //not completed!!
     }
 
     @AfterMethod

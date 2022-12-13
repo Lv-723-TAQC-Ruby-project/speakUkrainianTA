@@ -8,7 +8,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class EditProfileModel extends BasePO {
-
     @FindBy(xpath = "//input[@id='edit_lastName']")
     private WebElement editLastNameField;
 
@@ -16,10 +15,10 @@ public class EditProfileModel extends BasePO {
     private WebElement editNumberPhoneField;
 
     @FindBy(xpath = "//*[@id=\"edit_currentPassword\"]")
-    private WebElement enterCurrentPasswordField;
+    private WebElement currentPasswordField;
 
     @FindBy(xpath = "//*[@id=\"edit_password\"]")
-    private WebElement getEnterNewPasswordField;
+    private WebElement newPasswordField;
 
     @FindBy(xpath = "//*[@id=\"edit\"]/div[2]/div[10]/button")
     private WebElement saveChangesButton;
@@ -56,20 +55,32 @@ public class EditProfileModel extends BasePO {
         }
     }
 
+    public EditProfileModel enterCurrentPassword(String password) {
+        currentPasswordField.sendKeys(Keys.ENTER);
+        return this;
+    }
+    public EditProfileModel enterNewPasswordInTheNewPasswordField(String newPassword) {
+        newPasswordField.sendKeys(Keys.ENTER);
+        return this;
+    }
+    public MyProfilePage clickOnTheSaveChangesButton() {
+        saveChangesButton.click();
+        return new MyProfilePage(driver);
+    }
 
-    public EditProfileModel EnterLastName(String lastName){
+    public EditProfileModel enterLastName(String lastName){
         editLastNameField.sendKeys(Keys.DELETE);
         sleep(1);
         editLastNameField.sendKeys(lastName);
         sleep(2);
         return this;
     }
-    public EditProfileModel DeleteLastName(){
+    public EditProfileModel deleteLastName(){
         editLastNameField.sendKeys(Keys.DELETE);
         return this;
     }
 
-    public EditProfileModel EnterNumberPhone(String numberPhone ){
+    public EditProfileModel enterNumberPhone(String numberPhone ){
         editNumberPhoneField.sendKeys(Keys.DELETE);
         sleep(1);
        editNumberPhoneField.sendKeys(numberPhone);
@@ -77,7 +88,7 @@ public class EditProfileModel extends BasePO {
         return this;
     }
 
-    public EditProfileModel DeleteNumberPhone(){
+    public EditProfileModel deleteNumberPhone(){
         editNumberPhoneField.sendKeys(Keys.DELETE);
         return this;
     }
