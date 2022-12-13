@@ -16,7 +16,7 @@ public class AddChallengePage extends BasePO {
     private WebElement challengeDescription;
     @FindBy(xpath = "//input[@type='file']")
     private WebElement uploadPhoto;
-    @FindBy(xpath = "//span[contains(text(),'Зберегти')]")
+    @FindBy(xpath = "//button[contains(@class, 'add-contact-type-button')]")
     private WebElement saveButton;
 
     public AddChallengePage enterSequenceNumber(String sequence){
@@ -44,41 +44,23 @@ public class AddChallengePage extends BasePO {
         return new AddChallengePage(driver);
     }
     public boolean sequenceNumberEmpty(){
-      if (sequenceNumber.getAttribute("value")!=""){
-          return false;
-      }
-      return true;
+        return sequenceNumber.getAttribute("value") == "";
     }
 
     public boolean challengeNameEmpty(){
-       if (challengeName.getAttribute("value")!=""){
-           return false;
-       }
-       return true;
+        return challengeName.getAttribute("value") == "";
     }
     public boolean titleEmpty(){
-        if (titleInput.getAttribute("value")!=""){
-            return false;
-        }
-        return true;
+        return titleInput.getAttribute("value") == "";
     }
     public boolean challengeDescriptionEmpty(){
-        if (challengeDescription.getAttribute("value")!=""){
-            return false;
-        }
-        return true;
+        return challengeDescription.getAttribute("value") == "";
     }
     public boolean notLoadedPhoto() {
-           if (uploadPhoto.getAttribute("value")!=""){
-               return false;
-           }
-           return true;
+        return uploadPhoto.getAttribute("value") == "";
     }
 public boolean emptyFields() {
-    if (sequenceNumberEmpty() && challengeNameEmpty() && titleEmpty() && challengeDescriptionEmpty() && notLoadedPhoto()) {
-        return true;
-    }
-    return false;
+    return sequenceNumberEmpty() && challengeNameEmpty() && titleEmpty() && challengeDescriptionEmpty() && notLoadedPhoto();
 }
     public AddChallengePage(WebDriver driver) {super(driver);
     }

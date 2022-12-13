@@ -63,13 +63,34 @@ public class RegisterModel extends BasePO {
         passwordConfirmInput.sendKeys(passwordConfirm);
         return this;
     }
-
+    public boolean lastNameFilled(){
+        return lastNameInput.getAttribute("")!="";
+    }
+    public boolean firstNameFilled(){
+        return firstNameInput.getAttribute("")!="";
+    }
+   public boolean phoneFilled(){
+        return phoneInput.getAttribute("")!="";
+   }
+   public boolean emailFilled(){
+        return emailInput.getAttribute("")!="";
+   }
+   public boolean passwordFilled(){
+        return passwordInput.getAttribute("")!="";
+   }
+   public boolean confirmPasswordFilled(){
+        return passwordConfirmInput.getAttribute("")!="";
+   }
+   public boolean allDataSaved(){
+        return lastNameFilled()&&firstNameFilled()&&phoneFilled()&&emailFilled()&&passwordFilled()&&confirmPasswordFilled();
+   }
     public HomePage clickRegister() {
         registerButton.click();
         sleep(3);
         return new HomePage(driver);
 
     }
+
     public HomePage cancelRegistration() {
         closeButton.click();
         sleep(3);

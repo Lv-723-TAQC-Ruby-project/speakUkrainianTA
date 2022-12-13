@@ -17,12 +17,7 @@ public class ConfigProperties {
         }
     }
 
-    public  String getLastName() {return properties.getProperty("lastName");}
-    public  String getFirstName() {return properties.getProperty("firstName");}
-    public  String getPhone() {return properties.getProperty("phone");}
-    public  String getEmail() {return properties.getProperty("email");}
-    public  String getPassword() {return properties.getProperty("password");}
-    public  String getConfirm() {return properties.getProperty("confirm");}
+
     public String getAdminEmail() {
         return properties.getProperty("admin_email");
     }
