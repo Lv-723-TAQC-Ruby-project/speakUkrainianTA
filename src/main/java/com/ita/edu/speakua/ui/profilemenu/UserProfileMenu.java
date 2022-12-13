@@ -13,7 +13,7 @@ public class UserProfileMenu extends BasePO {
     @FindBy(xpath = "//div[contains(text(), 'Додати гурток')]")
     private WebElement addClubButton;
 
-    @FindBy(xpath = "//div[contains(text(), 'Додати центр')]")
+    @FindBy(xpath = "//div[3]/div[2]/span[1]")
     private WebElement addCenterButton;
 
     @FindBy(xpath = "//div[contains(text(), 'Пошук сертифікатів')]")
@@ -21,7 +21,6 @@ public class UserProfileMenu extends BasePO {
 
     @FindBy(xpath = "//a[contains(text(), 'Мій Профіль')]")
     private WebElement myProfileButton;
-
 
     @FindBy(xpath = "//span[contains(text(), 'Вийти')]")
     private WebElement quitButton;

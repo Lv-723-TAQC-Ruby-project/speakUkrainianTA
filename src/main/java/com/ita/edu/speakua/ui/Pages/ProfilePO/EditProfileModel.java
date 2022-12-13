@@ -15,11 +15,27 @@ public class EditProfileModel extends BasePO {
     @FindBy(xpath = "//input[@id='edit_phone']")
     private WebElement editNumberPhoneField;
 
+    @FindBy(xpath = "//*[@id=\"edit_currentPassword\"]")
+    private WebElement enterCurrentPasswordField;
+
+    @FindBy(xpath = "//*[@id=\"edit_password\"]")
+    private WebElement getEnterNewPasswordField;
+
+    @FindBy(xpath = "//*[@id=\"edit\"]/div[2]/div[10]/button")
+    private WebElement saveChangesButton;
+
     @FindBy(xpath = "//div[@class='ant-form-item-explain-error']")
     private WebElement messageAboutIncorrectlyEnteredLastName;
 
+    @FindBy(xpath = "//div[2]/div[7]/div/input")
+    private  WebElement changePasswordCheckBox;
+
     public EditProfileModel(WebDriver driver) {
         super(driver);
+    }
+    public EditProfileModel clickChangePasswordCheckBox() {
+        changePasswordCheckBox.click();
+        return this;
     }
 
     public boolean isOpenMassageErrorLastNameContain(String name) {
