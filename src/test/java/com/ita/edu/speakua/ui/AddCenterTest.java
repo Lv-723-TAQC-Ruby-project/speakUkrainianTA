@@ -34,9 +34,8 @@ public class AddCenterTest extends BaseTestRunner {
                 .ChooseLocationCity("Дніпро")
                 .AddLocationAddress("New Location address")
                 .AddLocationCoordinates("49.9935, 36.2304")
-                .AddLocationPhone("0661111111");
-
-    //                .clickAddLocationButton();
+                .AddLocationPhone("0661111111")
+                .clickAddLocationButton();
 
         Assert.assertEquals(true, true);
     }

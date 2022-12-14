@@ -56,7 +56,6 @@ public class examplesTest extends BaseTestRunner {
         Assert.assertEquals(actualeTitle, "IT освіта: курси \"ГРАНД\"");
     }
 
-
     @Test
     public void MessageAboutIncorrectlyEnteredLastNameTest(){
         EditProfileModel editProfileModel= new HomePage(driver)
