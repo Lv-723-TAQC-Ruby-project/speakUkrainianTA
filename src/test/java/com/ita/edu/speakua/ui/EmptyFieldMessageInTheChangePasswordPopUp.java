@@ -1,13 +1,15 @@
 package com.ita.edu.speakua.ui;
 
 import com.ita.edu.speakua.ui.Pages.ProfilePO.EditProfileModel;
+import com.ita.edu.speakua.ui.Pages.ProfilePO.MyProfilePage;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class LeavingAnyEmptyFieldInTheChangePasswordPopUp extends BaseTestRunner {
+public class EmptyFieldMessageInTheChangePasswordPopUp extends BaseTestRunner {
 
     @BeforeClass
     public void setUp() {
@@ -26,15 +28,16 @@ public class LeavingAnyEmptyFieldInTheChangePasswordPopUp extends BaseTestRunner
 
 
     @Test
-    public void warningMessageAboutEmptyFieldInTheChangePasswordPopUp() {
+    public void warningMessageAboutEmptyConfirmNewPasswordFieldInTheChangePasswordPopUp() {
         EditProfileModel editProfilePassword = new HomePage(driver)
                 .openAdminProfileMenu()
                 .openMyProfileModel()
                 .openEditProfileModel()
                 .clickChangePasswordCheckBox()
                 .enterCurrentPassword(configProperties.getAdminPassword())
-                .enterNewPasswordInTheNewPasswordField("admin1")
-                .clickOnTheSaveChangesButton().openEditProfileModel(); //not completed!!
+                .enterNewPasswordInTheNewPasswordField("admin1");
+        editProfilePassword.clickOnTheSaveChangesButton();
+        Assert.assertFalse(editProfilePassword.isPresentEmptyConfirmPasswordMessage(), "Будь ласка, підтвердіть пароль");
     }
 
     @AfterMethod
