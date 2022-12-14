@@ -174,6 +174,20 @@ public class examplesTest extends BaseTestRunner {
         Assert.assertTrue(checkInformationAboutCenterByDescription);
     }
 
+    @Test
+    public void VerifyEditingClubAndFindingInformationAboutItTest(){
+        new HomePage(driver)
+                .openGuestProfileMenu()
+                .openLoginModel()
+                .enterEmail(configProperties.getHeadClubEmail())
+                .enterPassword(configProperties.getHeadClubPassword())
+                .clickLogin()
+                .openUserProfileMenu()
+                .openMyProfileModel()
+                .openEditClubModel();
+
+    }
+
 
     @AfterMethod
     public void tearDown() {
