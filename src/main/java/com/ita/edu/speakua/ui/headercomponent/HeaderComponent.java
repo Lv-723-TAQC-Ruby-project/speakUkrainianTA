@@ -1,11 +1,13 @@
 package com.ita.edu.speakua.ui.headercomponent;
 
 import com.ita.edu.speakua.ui.BasePO;
+import com.ita.edu.speakua.ui.BasePageWithHeader;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubsPage;
 import com.ita.edu.speakua.ui.AdvancedSearchModel;
 import com.ita.edu.speakua.ui.profilemenu.AdminProfileMenu;
 import com.ita.edu.speakua.ui.profilemenu.GuestProfileMenu;
 import com.ita.edu.speakua.ui.profilemenu.UserProfileMenu;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,9 +22,32 @@ public class HeaderComponent extends BasePO {
     @FindBy(xpath = "//*[@data-icon='control']")
     private WebElement advancedSearchButton;
 
+    @FindBy(xpath = "//*[@id=\"root\"]/section/section/main/section/div[1]/div[2]/div[2]/span[1]")
+    private WebElement searchButton;
+
+    @FindBy(xpath = "//*[@id=\"rc_select_0\"]")
+    private WebElement searchField;
+
+    @FindBy(xpath = "//div[contains(@class, 'rc-virtual-list-holder-inner')]")
+    private WebElement searchListHolder;
+
 
     public HeaderComponent(WebDriver driver) {
         super(driver);
+    }
+
+    public HeaderComponent clickSearchField() {
+        searchField.click();
+        return this;
+    }
+    public HeaderComponent enterInTheSearchField(String input) {
+        searchField.sendKeys(Keys.ENTER);
+        return this;
+    }
+
+    public HeaderComponent clickSearchButton() {
+        searchButton.click();
+        return this;
     }
 
     public GuestProfileMenu openGuestProfileMenu() {

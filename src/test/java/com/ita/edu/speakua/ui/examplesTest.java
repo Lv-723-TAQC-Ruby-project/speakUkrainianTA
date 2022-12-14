@@ -1,6 +1,5 @@
 package com.ita.edu.speakua.ui;
 
-import com.ita.edu.speakua.ui.Pages.ClubsPO.AddClubModel;
 import com.ita.edu.speakua.ui.Pages.ProfilePO.EditProfileModel;
 import com.ita.edu.speakua.ui.Pages.ProfilePO.MyProfilePage;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
@@ -10,10 +9,6 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.awt.*;
-
-import static java.awt.SystemColor.text;
 
 public class examplesTest extends BaseTestRunner {
 
@@ -47,13 +42,13 @@ public class examplesTest extends BaseTestRunner {
 
     @Test
     public void ClubPageSuccessTest() {
-        String actualeTitle = new HomePage(driver)
+        String actualTitle = new HomePage(driver)
                 .clickClub()
                 .getCards()
                 .get(2).
                 getTitle();
 
-        Assert.assertEquals(actualeTitle, "IT освіта: курси \"ГРАНД\"");
+        Assert.assertEquals(actualTitle, "IT освіта: курси \"ГРАНД\"");
     }
 
     @Test
@@ -130,13 +125,13 @@ public class examplesTest extends BaseTestRunner {
     public void InputAgeChildTest() {
         AdvancedSearchModel advancedSearchModel = new HomePage(driver)
                 .openAdvancedSearch();
-        String textNumber1 = advancedSearchModel.EnterNumberAge("1").getAgeChildField();
+        String textNumber1 = advancedSearchModel.enterNumberAge("1").getAgeChildField();
         Assert.assertEquals(textNumber1,"2");
-        String textNumber2 = advancedSearchModel.EnterNumberAge("2").getAgeChildField();
+        String textNumber2 = advancedSearchModel.enterNumberAge("2").getAgeChildField();
         Assert.assertEquals(textNumber2,"2");
-        String textNumber18 = advancedSearchModel.EnterNumberAge("18").getAgeChildField();
+        String textNumber18 = advancedSearchModel.enterNumberAge("18").getAgeChildField();
         Assert.assertEquals(textNumber18,"18");
-        String textNumber19 = advancedSearchModel.EnterNumberAge("19").getAgeChildField();
+        String textNumber19 = advancedSearchModel.enterNumberAge("19").getAgeChildField();
         Assert.assertEquals(textNumber19,"18");
     }
 
