@@ -1,6 +1,7 @@
 package com.ita.edu.speakua.ui.Pages.ProfilePO;
 
 import com.ita.edu.speakua.ui.BasePO;
+import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,9 +11,6 @@ public class MyProfilePage extends BasePO {
 
     @FindBy(xpath = "//span[text()='Редагувати профіль']")
     private WebElement editProfileButton;
-
-    @FindBy(xpath = "//span[@class='contact-name']")
-    private WebElement fieldNumberPhone;
 
     @FindBy(xpath = "//a[@href='/dev/club/948']")
     private WebElement detailedSecondCenterButton;
@@ -27,22 +25,13 @@ public class MyProfilePage extends BasePO {
         return new EditProfileModel(driver);
     }
 
-    public MyProfilePage clickDetailedSecondCenter(){
+    public ClubPage clickDetailedSecondCenter(){
         wait.visibility(detailedSecondCenterButton);
         action.click(detailedSecondCenterButton);
-        return this;
+        return new ClubPage(driver);
     }
 
-    public String getNumberPhone() {
-        return fieldNumberPhone.getText();
-    }
 
-    public boolean getDescriptionAboutCenter(String name) {
-        try {
-            driver.findElement(By.xpath(String.format("//div[@class='content']", name)));
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
+
+
 }
