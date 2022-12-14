@@ -26,6 +26,12 @@ public class EditProfileModel extends BasePO {
     @FindBy(xpath = "//div[@class='ant-form-item-explain-error']")
     private WebElement messageAboutIncorrectlyEnteredLastName;
 
+    @FindBy(xpath = "//*[@id=\"edit_confirmPassword_help\"]/div")
+    private WebElement emptyConfirmPasswordMessage;
+
+    @FindBy(xpath = "//*[@id=\"edit_password_help\"]/div")
+    private WebElement emptyNewPasswordFieldMessage;
+
     @FindBy(xpath = "//div[2]/div[7]/div/input")
     private  WebElement changePasswordCheckBox;
 
@@ -40,6 +46,15 @@ public class EditProfileModel extends BasePO {
     public boolean isOpenMassageErrorLastNameContain(String name) {
         try {
             driver.findElement(By.xpath(String.format("//div[@class='ant-form-item-explain-error']",  name)));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isPresentEmptyConfirmPasswordMessage() {
+        try {
+            driver.findElement(By.xpath(String.valueOf(emptyConfirmPasswordMessage.isDisplayed())));
             return true;
         } catch (Exception e) {
             return false;
