@@ -39,10 +39,10 @@ public void addTaskWithoutChallenge(){
             .openTasksPage()
             .clickAddTask();
     SoftAssert softAssert = new SoftAssert();
-    softAssert.assertEquals(enterTaskData.getStartDate().getText(), "", "Sequence field is empty");
-    softAssert.assertEquals(enterTaskData.getUploadImage().getText(), "", "Photo is not uploaded");
-    softAssert.assertEquals(enterTaskData.getTaskName().getText(), "", "Challenge name field is empty");
-    softAssert.assertEquals(enterTaskData.getTaskTitle().getText(), "", "Title field is empty");
+    softAssert.assertEquals(enterTaskData.getStartDate().getText(), "", "Start-date field is empty");
+    softAssert.assertEquals(enterTaskData.getUploadImage().getText(), "", "Image is not uploaded");
+    softAssert.assertEquals(enterTaskData.getTaskName().getText(), "", "Task name field is empty");
+    softAssert.assertEquals(enterTaskData.getTaskTitle().getText(), "", "Title for task field is empty");
     softAssert.assertEquals(enterTaskData.getTaskDescription().getText(), "", "Description field is empty");
     softAssert.assertAll();
         new AddTaskPage(driver)
