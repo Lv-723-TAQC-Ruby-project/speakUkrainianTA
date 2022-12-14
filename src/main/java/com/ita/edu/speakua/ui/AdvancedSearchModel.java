@@ -140,7 +140,7 @@ public class AdvancedSearchModel extends BasePO{
         return valueAgeChildField.getAttribute("value");
     }
 
-    public AdvancedSearchModel EnterNumberAge(String ageNumber) {
+    public AdvancedSearchModel enterNumberAge(String ageNumber) {
         inputAgeChildField.sendKeys(ageNumber);
         sleep(2);
         return this;

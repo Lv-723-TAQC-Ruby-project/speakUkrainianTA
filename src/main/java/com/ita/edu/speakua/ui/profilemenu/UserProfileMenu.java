@@ -22,7 +22,6 @@ public class UserProfileMenu extends BasePO {
     @FindBy(xpath = "//a[contains(text(), 'Мій Профіль')]")
     private WebElement myProfileButton;
 
-
     @FindBy(xpath = "//span[contains(text(), 'Вийти')]")
     private WebElement quitButton;
 
