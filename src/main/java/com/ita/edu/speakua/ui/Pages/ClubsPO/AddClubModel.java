@@ -96,9 +96,8 @@ public class AddClubModel extends BasePO {
     }
 
     public boolean isErrorMessageDisplayed(String errorMessage) {
-
+        wait.visibility(xpath(format("//div[text()='%s']", errorMessage)));
         return  driver.findElement(xpath(format("//div[text()='%s']", errorMessage))).isDisplayed();
-
     }
 
     public AddClubModel enterBelongingToCenter(String nameCenter){
@@ -109,5 +108,9 @@ public class AddClubModel extends BasePO {
     public HomePage finishAddingCenter(){
         completeButton.click();
         return new HomePage(driver);
+    }
+
+    public boolean completeButtonEnabled(){
+         return completeButton.isEnabled();
     }
 }

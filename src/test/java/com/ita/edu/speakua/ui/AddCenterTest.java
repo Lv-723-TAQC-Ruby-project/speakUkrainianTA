@@ -31,7 +31,7 @@ public class AddCenterTest extends BaseTestRunner {
                 .EnterCenterName("New Center Name")
                 .AddLocation()
                 .AddLocationName("New Location name")
-                .ChooseLocationCity("Дніпро")
+                .ChooseLocationCity("Затfока")
                 .AddLocationAddress("New Location address")
                 .AddLocationCoordinates("49.9935, 36.2304")
                 .AddLocationPhone("0661111111")
