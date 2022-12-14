@@ -1,8 +1,10 @@
 package com.ita.edu.speakua.ui;
 
 import com.ita.edu.speakua.ui.Pages.ClubsPO.AddClubModel;
+import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubsPage;
 import com.ita.edu.speakua.ui.Pages.ProfilePO.EditProfileModel;
 import com.ita.edu.speakua.ui.Pages.ProfilePO.MyProfilePage;
+import com.ita.edu.speakua.ui.headercomponent.HeaderComponent;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -12,6 +14,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 import static java.awt.SystemColor.text;
 
@@ -164,6 +170,29 @@ public class examplesTest extends BaseTestRunner {
         String textNumber19 = advancedSearchModel.EnterNumberAge("19").getAgeChildField();
         Assert.assertEquals(textNumber19,"18");
     }
+
+    @Test
+    public void sortAdvancedSearchTest() {
+        new HeaderComponent(driver)
+                .openAdvancedSearch();
+       new AdvancedSearchModel(driver)
+                .clickSortAlphabetical()
+                .clickSortAscending();
+        ArrayList<String> obtainedList = new ArrayList<>();
+        List<WebElement> elementList = driver.findElements(By.xpath("//div[contains(@class,'ant-card ant-card-bordered card')]"));
+        for (WebElement we : elementList) {
+            obtainedList.add(we.getText());
+        }
+        ArrayList<String> sortedList = new ArrayList<>();
+        for (String s : obtainedList) {
+            sortedList.add(s);
+            Collections.sort(sortedList);
+            Assert.assertTrue(sortedList.equals(obtainedList));
+//            Assert.assertEquals(sortedAlphabeticallyAscending.getClubTitle(),sortedAlphabeticallyAscending.cardsAlphabetically(),"cards don't sorted");
+        }
+    }
+
+
 
 
 

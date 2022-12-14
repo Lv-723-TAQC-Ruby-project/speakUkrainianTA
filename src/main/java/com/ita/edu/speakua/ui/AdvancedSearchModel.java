@@ -9,11 +9,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AdvancedSearchModel extends BasePO{
     private List<ClubCard> cards;
-
 
     @FindBy(xpath = "//label[.//span[contains(text(),'Центр')]]//span//input[@type='radio']")
     private WebElement radioCenter;
@@ -96,7 +97,7 @@ public class AdvancedSearchModel extends BasePO{
 
     public AdvancedSearchModel EnterNumberAge(String ageNumber) {
         inputAgeChildField.sendKeys(ageNumber);
-        sleep(2);
+        sleep(3);
         return this;
     }
 
@@ -128,12 +129,13 @@ public class AdvancedSearchModel extends BasePO{
         return cards;
     }
 
+    public List<WebElement> getClubTitle(){
+        return cardsBody;
+    }
 
-
-
-
-
-
-
-
+    public List<WebElement> cardsAlphabetically(){
+        List<WebElement> alphabeticalCardsList= new ArrayList<>();
+        alphabeticalCardsList.addAll(cardsBody);
+        return alphabeticalCardsList.stream().sorted().collect(Collectors.toList());
+    }
 }
