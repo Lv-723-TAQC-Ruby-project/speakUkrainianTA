@@ -13,7 +13,7 @@ public class UserProfileMenu extends BasePO {
     @FindBy(xpath = "//div[contains(text(), 'Додати гурток')]")
     private WebElement addClubButton;
 
-    @FindBy(xpath = "//div[3]/div[2]/span[1]")
+    @FindBy(xpath = "//div[contains(text(),'Додати центр')]")
     private WebElement addCenterButton;
 
     @FindBy(xpath = "//div[contains(text(), 'Пошук сертифікатів')]")
