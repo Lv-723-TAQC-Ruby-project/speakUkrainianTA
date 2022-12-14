@@ -181,13 +181,6 @@ public class AdvancedSearchModel extends BasePO{
         return this;
     }
 
-    public List<ClubCard> getCards() {
-        this.cards = new ArrayList<>();
-        for(WebElement cardBody: cardsBody) {
-            this.cards.add(new ClubCard(this.driver, cardBody));
-        }
-        return cards;
-    }
 
     public List<WebElement> getClubTitle(){
         return cardsBody;
@@ -198,6 +191,8 @@ public class AdvancedSearchModel extends BasePO{
         alphabeticalCardsList.addAll(cardsBody);
         return alphabeticalCardsList.stream().sorted().collect(Collectors.toList());
     }
+
+
 
 
 }
