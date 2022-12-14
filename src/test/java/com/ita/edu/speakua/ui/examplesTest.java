@@ -45,33 +45,6 @@ public class examplesTest extends BaseTestRunner {
         Assert.assertTrue(isContainExit);
     }
 
-
-
-
-
-    @Test
-    public void TestAddCenter() {
-        new HomePage(driver)
-                .openGuestProfileMenu()
-                .openLoginModel()
-                .enterEmail(configProperties.getAdminEmail())
-                .enterPassword(configProperties.getAdminPassword())
-                .clickLogin()
-                .openUserProfileMenu()
-                .openAddCenterModel()
-                .EnterCenterName("New Center Name")
-                .AddLocation()
-                .AddLocationName("New Location name")
-                .ChooseLocationCity("Дніпро")
-               .AddLocationAddress("New Location address")
-                .AddLocationCoordinates("49.9935, 36.2304")
-                .AddLocationPhone("0661111111");
-
-//                .clickAddLocationButton();
-
-        Assert.assertEquals(true, true);
-    }
-
     @Test
     public void ClubPageSuccessTest() {
         String actualeTitle = new HomePage(driver)
@@ -82,7 +55,6 @@ public class examplesTest extends BaseTestRunner {
 
         Assert.assertEquals(actualeTitle, "IT освіта: курси \"ГРАНД\"");
     }
-
 
     @Test
     public void MessageAboutIncorrectlyEnteredLastNameTest(){
