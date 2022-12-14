@@ -38,6 +38,9 @@ public class AddClubModel extends BasePO {
     @FindBy(xpath = "//div[contains(@class, 'ant-form-item-explain-error')]")
     private WebElement languageErrorMessage;
 
+    @FindBy(xpath = "//div[contains(@class, 'ant-form-item-explain-error')]")
+    private WebElement inappropriateDescriptionLengthMessage;
+
     @FindBy(xpath = "//input[@id=\"basic_centerId\"][@type='search']")
     private WebElement enterBelongingCenter;
 
@@ -84,15 +87,18 @@ public class AddClubModel extends BasePO {
         return this;
     }
 
-    public boolean isErrorMessageDisplayed() {
-        return errorMessage.isDisplayed();
-    }
-    public boolean isErrorLanguageMessageDisplayed() {
-        return languageErrorMessage.isDisplayed();
-    }
+//    public boolean isErrorMessageDisplayed() {
+//        return errorMessage.isDisplayed();
+//    }
 
     public boolean successMessageDisplayed() {
         return successMessage.isDisplayed();
+    }
+
+    public boolean isErrorMessageDisplayed(String errorMessage) {
+
+        return  driver.findElement(xpath(format("//div[text()='%s']", errorMessage))).isDisplayed();
+
     }
 
     public AddClubModel enterBelongingToCenter(String nameCenter){
