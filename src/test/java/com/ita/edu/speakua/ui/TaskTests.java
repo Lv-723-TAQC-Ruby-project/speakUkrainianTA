@@ -62,10 +62,10 @@ public void taskWithInvalidDescription(){
             .openTasksPage()
             .clickAddTask();
     SoftAssert softAssert = new SoftAssert();
-    softAssert.assertEquals(enterInvalidData.getStartDate().getText(), "", "Sequence field is empty");
-    softAssert.assertEquals(enterInvalidData.getUploadImage().getText(), "", "Photo is not uploaded");
-    softAssert.assertEquals(enterInvalidData.getTaskName().getText(), "", "Challenge name field is empty");
-    softAssert.assertEquals(enterInvalidData.getTaskTitle().getText(), "", "Title field is empty");
+    softAssert.assertEquals(enterInvalidData.getStartDate().getText(), "", "Start-date field is empty");
+    softAssert.assertEquals(enterInvalidData.getUploadImage().getText(), "", "Image is not uploaded");
+    softAssert.assertEquals(enterInvalidData.getTaskName().getText(), "", "Task name field is empty");
+    softAssert.assertEquals(enterInvalidData.getTaskTitle().getText(), "", "Title for task field is empty");
     softAssert.assertEquals(enterInvalidData.getTaskDescription().getText(), "", "Description field is empty");
     softAssert.assertAll();
      new AddTaskPage(driver)
