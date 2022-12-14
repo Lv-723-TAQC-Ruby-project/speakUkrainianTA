@@ -35,6 +35,39 @@ public class AddTaskPage extends BasePO {
 
     @FindBy(xpath = "//div[@class='ant-message']")
     private WebElement errorMessage;
+
+    public WebElement getStartDate() {
+        return startDate;
+    }
+
+    public WebElement getUploadImage() {
+        return uploadImage;
+    }
+
+    public WebElement getTaskName() {
+        return taskName;
+    }
+
+    public WebElement getTaskTitle() {
+        return taskTitle;
+    }
+
+    public WebElement getTaskDescription() {
+        return taskDescription;
+    }
+
+    public WebElement getChooseChallenge() {
+        return chooseChallenge;
+    }
+
+    public WebElement getChallenge() {
+        return challenge;
+    }
+
+    public WebElement getErrorMessage() {
+        return errorMessage;
+    }
+
     public AddTaskPage(WebDriver driver) {
         super(driver);
     }
@@ -65,21 +98,7 @@ public class AddTaskPage extends BasePO {
         this.taskDescription.sendKeys(taskDescription);
         return this;
     }
-    public boolean startDateEmpty(){
-        return startDate.getAttribute("value")=="";
-    }
-    public boolean notLoadedImage(){
-        return uploadImage.getAttribute("value") == "";
-    }
-    public boolean taskNameFieldEmpty(){
-        return taskName.getAttribute("value") == "";
-    }
-    public boolean taskTitleEmpty(){
-        return taskTitle.getAttribute("value") == "";
-    }
-    public boolean taskDescriptionEmpty(){
-        return taskDescription.getAttribute("value") == "";
-    }
+
     public boolean isContainErrorMessage(String name){
         try {
             driver.findElement(By.xpath(String.format("//div[@class='ant-message']",  name)));
@@ -89,9 +108,6 @@ public class AddTaskPage extends BasePO {
         }
     }
 
-    public boolean taskFieldsEmpty(){
-        return taskNameFieldEmpty() && taskTitleEmpty() && taskDescriptionEmpty() && notLoadedImage() && startDateEmpty();
-    }
 
     public AddTaskPage chooseChallenge() {
         chooseChallenge.click();
