@@ -7,6 +7,9 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
+import java.io.File;
 
 public class TaskTests extends BaseTestRunner {
     @BeforeClass
@@ -26,65 +29,83 @@ public class TaskTests extends BaseTestRunner {
         driver.get(configProperties.getBaseWebUrl());
     }
 
+    ClassLoader classLoader = getClass().getClassLoader();
+    File photo = new File(classLoader.getResource("R.jpeg").getFile());
+    String absolutePath = photo.getAbsolutePath();
 @Test
 public void addTaskWithoutChallenge(){
-   new HomePage(driver)
+   AddTaskPage enterTaskData = new HomePage(driver)
             .openAdminProfileMenu()
             .openTasksPage()
-            .clickAddTask()
-            .taskFieldsEmpty();
-   Assert.assertEquals("","");
-    new AddTaskPage(driver)
+            .clickAddTask();
+    SoftAssert softAssert = new SoftAssert();
+    softAssert.assertEquals(enterTaskData.getStartDate().getText(), "", "Start-date field is empty");
+    softAssert.assertEquals(enterTaskData.getUploadImage().getText(), "", "Image is not uploaded");
+    softAssert.assertEquals(enterTaskData.getTaskName().getText(), "", "Task name field is empty");
+    softAssert.assertEquals(enterTaskData.getTaskTitle().getText(), "", "Title for task field is empty");
+    softAssert.assertEquals(enterTaskData.getTaskDescription().getText(), "", "Description field is empty");
+    softAssert.assertAll();
+        new AddTaskPage(driver)
            .enterStartDate("2021-03-03")
-           .uploadImage("C:\\Users\\lovel\\IdeaProjects\\speakUkrainianTA723\\R.jpeg")
+           .uploadImage(absolutePath)
            .enterTaskName("LearnTest")
            .enterTaskTitle("Positive emotions like curiosity, satisfaction, and liveliness have a massive\n impact on how your brain processes your\n learning.")
            .enterTaskDescription("One of the key benefits of having fun while learning is that it creates a sense of reward in learning.\n That inherently motivates people.")
-           .clickSave().isContainErrorMessage("Please,select challenge");
-
+           .clickSave();
+        softAssert.assertTrue(enterTaskData.isContainErrorMessage("Please,select challenge"));
 }
 
 @Test
 public void taskWithInvalidDescription(){
-    new HomePage(driver)
+    AddTaskPage enterInvalidData = new HomePage(driver)
             .openAdminProfileMenu()
             .openTasksPage()
-            .clickAddTask()
-            .taskFieldsEmpty();
-    Assert.assertEquals("","");
-    new AddTaskPage(driver)
+            .clickAddTask();
+    SoftAssert softAssert = new SoftAssert();
+    softAssert.assertEquals(enterInvalidData.getStartDate().getText(), "", "Start-date field is empty");
+    softAssert.assertEquals(enterInvalidData.getUploadImage().getText(), "", "Image is not uploaded");
+    softAssert.assertEquals(enterInvalidData.getTaskName().getText(), "", "Task name field is empty");
+    softAssert.assertEquals(enterInvalidData.getTaskTitle().getText(), "", "Title for task field is empty");
+    softAssert.assertEquals(enterInvalidData.getTaskDescription().getText(), "", "Description field is empty");
+    softAssert.assertAll();
+     new AddTaskPage(driver)
             .enterStartDate("2023-03-03")
-            .uploadImage("C:\\Users\\lovel\\IdeaProjects\\speakUkrainianTA723\\R.jpeg")
+            .uploadImage(absolutePath)
             .enterTaskName("LearnTest")
             .enterTaskTitle("Positive emotions like curiosity, satisfaction, and liveliness have a massive\n impact on how your brain processes your\n learning.")
-            .chooseChallenge().clickSave().isContainErrorMessage("Поле 'Опис' не може бути пустим");
+            .chooseChallenge()
+            .clickSave();
+     softAssert.assertTrue(enterInvalidData.isContainErrorMessage("Поле опис не може бути пустим"));
     new HomePage(driver)
             .openAdminProfileMenu()
             .openTasksPage()
             .clickAddTask()
-            .enterStartDate("2023-03-03")
-            .uploadImage("C:\\Users\\lovel\\IdeaProjects\\speakUkrainianTA723\\R.jpeg")
+            .enterStartDate("2021-03-03")
+            .uploadImage(absolutePath)
             .enterTaskName("LearnTest")
             .enterTaskTitle("Positive emotions like curiosity, satisfaction, and liveliness have a massive\n impact on how your brain processes your\n learning.")
             .enterTaskDescription("ъэы, ผม, Ÿ, ðъэы, ผม, Ÿ, ðъэы, ผม, Ÿ, ðъэы, ผม, Ÿ, ð")
             .chooseChallenge()
-            .clickSave().isContainErrorMessage("Поле 'Опис' може містити тільки українські та англійські літери, цифри та спеціальні символи");
+            .clickSave();
+    softAssert.assertTrue(enterInvalidData.isContainErrorMessage("Поле 'Опис' може містити тільки українські та англійські літери, цифри та спеціальні символи"));
     new HomePage(driver)
             .openAdminProfileMenu()
             .openTasksPage()
             .clickAddTask()
             .enterStartDate("2023-03-03")
-            .uploadImage("C:\\Users\\lovel\\IdeaProjects\\speakUkrainianTA723\\R.jpeg")
+            .uploadImage(absolutePath)
             .enterTaskName("LearnTest")
             .enterTaskTitle("Positive emotions like curiosity, satisfaction, and liveliness have a massive\n impact on how your brain processes your\n learning.")
             .enterTaskDescription("Positive emotions like curiosity, satis")
-            .chooseChallenge().clickSave().isContainErrorMessage("Поле 'Опис' може містити мінімум 40 максимум 3000 символів");
+            .chooseChallenge()
+            .clickSave();
+    softAssert.assertTrue(enterInvalidData.isContainErrorMessage("Поле 'Опис' може містити мінімум 40 максимум 3000 символів"));
     new HomePage(driver)
             .openAdminProfileMenu()
             .openTasksPage()
             .clickAddTask()
             .enterStartDate("2023-03-03")
-            .uploadImage("C:\\Users\\lovel\\IdeaProjects\\speakUkrainianTA723\\R.jpeg")
+            .uploadImage(absolutePath)
             .enterTaskName("LearnTest")
             .enterTaskTitle("Positive emotions like curiosity, satisfaction, and liveliness have a massive\n impact on how your brain processes your\n learning.")
             .enterTaskDescription("Knowing the most effective strategies for how to learn can help you maximize your efforts when you are trying to learn new ideas, concepts, and skills. If you are like many people, your time is limited, so it is important to get the most educational value out of the time you have.\n" +
@@ -111,7 +132,9 @@ public void taskWithInvalidDescription(){
                     "In pruning, certain pathways in the brain are maintained, while others are eliminated. If you want the new information you just learned to stay put, keep practicing and rehearsing it.Another one of the best ways to learn is to focus on learning in more than one way. For example, instead of just listening to a podcast, which involves auditory learning, find a way to rehearse the information both verbally and visually.\n" +
                     "\n" +
                     "This might involve describing what you learned to a friend, taking notes, or drawing a mind map. By learning in more than one way, you’re furth")
-            .chooseChallenge().clickSave().isContainErrorMessage("Поле 'Опис' може містити мінімум 40 максимум 3000 символів");
+            .chooseChallenge()
+            .clickSave();
+    softAssert.assertTrue(enterInvalidData.isContainErrorMessage("Поле 'Опис' може містити мінімум 40 максимум 3000 символів"));
 }
 
 

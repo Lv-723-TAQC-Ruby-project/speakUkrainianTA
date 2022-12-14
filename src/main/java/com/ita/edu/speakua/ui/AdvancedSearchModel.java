@@ -1,20 +1,12 @@
 package com.ita.edu.speakua.ui;
 
-import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubCard;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class AdvancedSearchModel extends BasePO{
-    private List<ClubCard> cards;
+
 
     @FindBy(xpath = "//label[.//span[contains(text(),'Центр')]]//span//input[@type='radio']")
     private WebElement radioCenter;
@@ -24,15 +16,15 @@ public class AdvancedSearchModel extends BasePO{
     @FindBy(xpath = "//label[.//span[@class='ant-radio ant-radio-checked']]//span[not(@class)]")
     private WebElement radioValue;
 
-    @FindBy(xpath = "//input[@id='basic_cityName']")
+    @FindBy(xpath = "//input[@id='basic_cityName']//ancestor::div[contains(@class,'selector')]")
     private WebElement dropDownCity;
-    @FindBy(xpath = "//div[@id='basic_cityName_list']")
+    @FindBy(xpath = "//div[@id='basic_cityName_list']/ancestor::div[not(@class)][1]")
     private WebElement dropDownCityList;
 
-    @FindBy(xpath = "//input[@id='basic_districtName']")
+    @FindBy(xpath = "//input[@id='basic_districtName']//ancestor::div[contains(@class,'selector')]")
     private WebElement dropDownDistrict;
 
-    @FindBy(xpath = "//input[@id='basic_stationName']")
+    @FindBy(xpath = "//input[@id='basic_stationName']//ancestor::div[contains(@class,'selector')]")
     private WebElement dropDownStation;
 
     @FindBy(xpath = "//input[@class='ant-input-number-input']")
@@ -41,32 +33,81 @@ public class AdvancedSearchModel extends BasePO{
     @FindBy(xpath = "//span[@id='basic_age']")
     private WebElement valueAgeChildField;
 
-    @FindBy(xpath = "//span[text()='за алфавітом']")
-    private WebElement sortAlphabetical;
-    @FindBy(xpath = "//span[@aria-label='arrow-up']")
-    private WebElement sortDescending;
-    @FindBy(xpath = "//span[@aria-label='arrow-down']")
-    private WebElement sortAscending;
-    @FindBy(xpath = "//span[text()='за рейтингом']")
-    private WebElement sortByRating;
-    @FindBy(xpath = "//div[contains(@class,'ant-card ant-card-bordered card')]")
-    protected List<WebElement> cardsBody;
-
+    @FindBy(xpath = "//div[@id='basic_isOnline']//span[.//input]")
+    private WebElement checkBoxRemote;
 
     public AdvancedSearchModel(WebDriver driver) {
         super(driver);
     }
 
-    public AdvancedSearchModel chooseDropDownCity(String city) {
+    public AdvancedSearchModel chooseCity(String city) {
 
         wait.visibility(dropDownCity);
         dropDownCity.click();
 
         wait.visibility(dropDownCityList);
-        dropDownCityList.findElement(By.xpath(String.format("//div[text() = '%s']", city))).click();
 
+//        for(){
+//            dropDownCityList.findElement(By.xpath(String.format("//div[contains(text(), '%s')]", city))).click();
+//            break;
+//        }
         return this;
     }
+
+    public boolean isCityActive() {
+        try {
+            wait.visibility(dropDownCity);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isDistrictActive() {
+        try {
+            wait.visibility(dropDownDistrict);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isStationActive() {
+        try {
+            wait.visibility(dropDownStation);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isAgeChildActive() {
+        try {
+            wait.visibility(inputAgeChildField);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isRemoteActive() {
+        try {
+            wait.visibility(checkBoxRemote);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isCategoryActive() {
+        try {
+            wait.visibility(By.xpath("//span[contains(text(), '')]"));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 
     public AdvancedSearchModel clickRadioCenter() {
         radioCenter.click();
@@ -77,10 +118,14 @@ public class AdvancedSearchModel extends BasePO{
         return this;
     }
 
+    public AdvancedSearchModel clickRemote() {
+        checkBoxRemote.click();
+        return this;
+    }
+
     public boolean isAdvancedSearchOpen() {
         try {
             wait.visibility(By.xpath("//div[contains(text(), 'Розширений пошук')]"));
-            sleep(2);
             return true;
         } catch (Exception e) {
             return false;
@@ -95,47 +140,9 @@ public class AdvancedSearchModel extends BasePO{
         return valueAgeChildField.getAttribute("value");
     }
 
-    public AdvancedSearchModel EnterNumberAge(String ageNumber) {
+    public AdvancedSearchModel enterNumberAge(String ageNumber) {
         inputAgeChildField.sendKeys(ageNumber);
-        sleep(3);
+        sleep(2);
         return this;
-    }
-
-    public AdvancedSearchModel clickSortAlphabetical() {
-        sortAlphabetical.click();
-        return this;
-    }
-
-    public AdvancedSearchModel clickSortDescending() {
-        sortDescending.click();
-        return this;
-    }
-
-    public AdvancedSearchModel clickSortAscending() {
-        sortAscending.click();
-        return this;
-    }
-
-    public AdvancedSearchModel clickSortByRating() {
-        sortByRating.click();
-        return this;
-    }
-
-    public List<ClubCard> getCards() {
-        this.cards = new ArrayList<>();
-        for(WebElement cardBody: cardsBody) {
-            this.cards.add(new ClubCard(this.driver, cardBody));
-        }
-        return cards;
-    }
-
-    public List<WebElement> getClubTitle(){
-        return cardsBody;
-    }
-
-    public List<WebElement> cardsAlphabetically(){
-        List<WebElement> alphabeticalCardsList= new ArrayList<>();
-        alphabeticalCardsList.addAll(cardsBody);
-        return alphabeticalCardsList.stream().sorted().collect(Collectors.toList());
     }
 }

@@ -1,10 +1,13 @@
 package com.ita.edu.speakua.ui;
 
+
 import com.ita.edu.speakua.ui.Pages.ClubsPO.AddClubModel;
-import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubsPage;
+import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubPage;
+
 import com.ita.edu.speakua.ui.Pages.ProfilePO.EditProfileModel;
 import com.ita.edu.speakua.ui.Pages.ProfilePO.MyProfilePage;
 import com.ita.edu.speakua.ui.headercomponent.HeaderComponent;
+import com.ita.edu.speakua.ui.profilemenu.UserProfileMenu;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -12,14 +15,6 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
-import static java.awt.SystemColor.text;
 
 public class examplesTest extends BaseTestRunner {
 
@@ -51,41 +46,16 @@ public class examplesTest extends BaseTestRunner {
         Assert.assertTrue(isContainExit);
     }
 
-
-    @Test
-    public void TestAddCenter() {
-        new HomePage(driver)
-                .openGuestProfileMenu()
-                .openLoginModel()
-                .enterEmail(configProperties.getAdminEmail())
-                .enterPassword(configProperties.getAdminPassword())
-                .clickLogin()
-                .openUserProfileMenu()
-                .openAddCenterModel()
-                .EnterCenterName("New Center Name")
-                .AddLocation()
-                .AddLocationName("New Location name")
-                .ChooseLocationCity("Дніпро")
-               .AddLocationAddress("New Location address")
-                .AddLocationCoordinates("49.9935, 36.2304")
-                .AddLocationPhone("0661111111");
-
-//                .clickAddLocationButton();
-
-        Assert.assertEquals(true, true);
-    }
-
     @Test
     public void ClubPageSuccessTest() {
-        String actualeTitle = new HomePage(driver)
+        String actualTitle = new HomePage(driver)
                 .clickClub()
                 .getCards()
                 .get(2).
                 getTitle();
 
-        Assert.assertEquals(actualeTitle, "IT освіта: курси \"ГРАНД\"");
+        Assert.assertEquals(actualTitle, "IT освіта: курси \"ГРАНД\"");
     }
-
 
     @Test
     public void MessageAboutIncorrectlyEnteredLastNameTest(){
@@ -98,34 +68,34 @@ public class examplesTest extends BaseTestRunner {
                 .openUserProfileMenu()
                 .openMyProfileModel()
                 .openEditProfileModel();
-        boolean isMassageMore25Characters=editProfileModel.EnterLastName("AfBbCcDdEeFfGgHhIiJjKkLlMmNn")
+        boolean isMassageMore25Characters=editProfileModel.enterLastName("AfBbCcDdEeFfGgHhIiJjKkLlMmNn")
                 .isOpenMassageErrorLastNameContain("Прізвище не може містити більше, ніж 25 символів");
         Assert.assertTrue(isMassageMore25Characters);
-        boolean isMassageWithSpecialCharacters=editProfileModel.EnterLastName("!@#$%^&,")
+        boolean isMassageWithSpecialCharacters=editProfileModel.enterLastName("!@#$%^&,")
                 .isOpenMassageErrorLastNameContain("Прізвище не може містити спеціальні символи");
         Assert.assertTrue(isMassageWithSpecialCharacters);
-        boolean isMassageWithNumbers=editProfileModel.EnterLastName("1234")
+        boolean isMassageWithNumbers=editProfileModel.enterLastName("1234")
                 .isOpenMassageErrorLastNameContain("Прізвище не може містити спеціальні символи");
         Assert.assertTrue(isMassageWithNumbers);
-        boolean isMassageStartedWithHyphen=editProfileModel.EnterLastName("-Lastname")
+        boolean isMassageStartedWithHyphen=editProfileModel.enterLastName("-Lastname")
                 .isOpenMassageErrorLastNameContain("Прізвище повинно починатися і закінчуватися літерою");
         Assert.assertTrue(isMassageStartedWithHyphen);
-        boolean isMassageStartedWithSpace=editProfileModel.EnterLastName(" Lastname")
+        boolean isMassageStartedWithSpace=editProfileModel.enterLastName(" Lastname")
                 .isOpenMassageErrorLastNameContain("Прізвище повинно починатися і закінчуватися літерою");
         Assert.assertTrue(isMassageStartedWithSpace);
-        boolean isMassageStartedWithApostrophe=editProfileModel.EnterLastName("'Lastname")
+        boolean isMassageStartedWithApostrophe=editProfileModel.enterLastName("'Lastname")
                 .isOpenMassageErrorLastNameContain("Прізвище повинно починатися і закінчуватися літерою");
         Assert.assertTrue(isMassageStartedWithApostrophe);
-        boolean isMassageEndedWithHyphen=editProfileModel.EnterLastName("Lastname-")
+        boolean isMassageEndedWithHyphen=editProfileModel.enterLastName("Lastname-")
                 .isOpenMassageErrorLastNameContain("Прізвище повинно починатися і закінчуватися літерою");
         Assert.assertTrue(isMassageEndedWithHyphen);
-        boolean isMassageEndedWithSpace=editProfileModel.EnterLastName("Lastname ")
+        boolean isMassageEndedWithSpace=editProfileModel.enterLastName("Lastname ")
                 .isOpenMassageErrorLastNameContain("Прізвище повинно починатися і закінчуватися літерою");
         Assert.assertTrue(isMassageEndedWithSpace);
-        boolean isMassageEndedWithApostrophe=editProfileModel.EnterLastName("Lastname'")
+        boolean isMassageEndedWithApostrophe=editProfileModel.enterLastName("Lastname'")
                 .isOpenMassageErrorLastNameContain("Прізвище повинно починатися і закінчуватися літерою");
         Assert.assertTrue(isMassageEndedWithApostrophe);
-        boolean isMassageDeleteData=editProfileModel.DeleteLastName()
+        boolean isMassageDeleteData=editProfileModel.deleteLastName()
                 .isOpenMassageErrorLastNameContain("Будь ласка введіть Ваше прізвище");
         Assert.assertTrue(isMassageDeleteData);
     }
@@ -140,19 +110,19 @@ public class examplesTest extends BaseTestRunner {
                 .openUserProfileMenu()
                 .openMyProfileModel()
                 .openEditProfileModel();
-        boolean isMassageLessThan13Symbols = editProfileModel.EnterNumberPhone("06895")
+        boolean isMassageLessThan13Symbols = editProfileModel.enterNumberPhone("06895")
                 .isOpenMassageErrorPhoneContain("Телефон не відповідає вказаному формату");
         Assert.assertTrue(isMassageLessThan13Symbols);
-        boolean isMassageMoreThan13Symbols = editProfileModel.EnterNumberPhone("06593859632586")
+        boolean isMassageMoreThan13Symbols = editProfileModel.enterNumberPhone("06593859632586")
                 .isOpenMassageErrorPhoneContain("Телефон не відповідає вказаному формату");
         Assert.assertTrue(isMassageMoreThan13Symbols);
-        boolean isMassageLetters = editProfileModel.EnterNumberPhone("jngeoлщшогнеп")
+        boolean isMassageLetters = editProfileModel.enterNumberPhone("jngeoлщшогнеп")
                 .isOpenMassageErrorPhoneContain("Телефон не може містити літери\n" + "Телефон не відповідає вказаному формату");
         Assert.assertTrue(isMassageLetters);
-        boolean isMassageSpecialCharacters = editProfileModel.EnterNumberPhone("!@#$%^&*(_+.:")
+        boolean isMassageSpecialCharacters = editProfileModel.enterNumberPhone("!@#$%^&*(_+.:")
                 .isOpenMassageErrorPhoneContain("Телефон не відповідає вказаному формату\n" + "Телефон не може містити спеціальні символи");
         Assert.assertTrue(isMassageSpecialCharacters);
-        boolean isMassageDeleteData = editProfileModel.DeleteNumberPhone()
+        boolean isMassageDeleteData = editProfileModel.deleteNumberPhone()
                 .isOpenMassageErrorPhoneContain("Будь ласка введіть Ваш номер телефону");
         Assert.assertTrue(isMassageDeleteData);
     }
@@ -161,38 +131,15 @@ public class examplesTest extends BaseTestRunner {
     public void InputAgeChildTest() {
         AdvancedSearchModel advancedSearchModel = new HomePage(driver)
                 .openAdvancedSearch();
-        String textNumber1 = advancedSearchModel.EnterNumberAge("1").getAgeChildField();
+        String textNumber1 = advancedSearchModel.enterNumberAge("1").getAgeChildField();
         Assert.assertEquals(textNumber1,"2");
-        String textNumber2 = advancedSearchModel.EnterNumberAge("2").getAgeChildField();
+        String textNumber2 = advancedSearchModel.enterNumberAge("2").getAgeChildField();
         Assert.assertEquals(textNumber2,"2");
-        String textNumber18 = advancedSearchModel.EnterNumberAge("18").getAgeChildField();
+        String textNumber18 = advancedSearchModel.enterNumberAge("18").getAgeChildField();
         Assert.assertEquals(textNumber18,"18");
-        String textNumber19 = advancedSearchModel.EnterNumberAge("19").getAgeChildField();
+        String textNumber19 = advancedSearchModel.enterNumberAge("19").getAgeChildField();
         Assert.assertEquals(textNumber19,"18");
     }
-
-    @Test
-    public void sortAdvancedSearchTest() {
-        new HeaderComponent(driver)
-                .openAdvancedSearch();
-       new AdvancedSearchModel(driver)
-                .clickSortAlphabetical()
-                .clickSortAscending();
-        ArrayList<String> obtainedList = new ArrayList<>();
-        List<WebElement> elementList = driver.findElements(By.xpath("//div[contains(@class,'ant-card ant-card-bordered card')]"));
-        for (WebElement we : elementList) {
-            obtainedList.add(we.getText());
-        }
-        ArrayList<String> sortedList = new ArrayList<>();
-        for (String s : obtainedList) {
-            sortedList.add(s);
-            Collections.sort(sortedList);
-            Assert.assertTrue(sortedList.equals(obtainedList));
-//            Assert.assertEquals(sortedAlphabeticallyAscending.getClubTitle(),sortedAlphabeticallyAscending.cardsAlphabetically(),"cards don't sorted");
-        }
-    }
-
-
 
 
 
@@ -201,8 +148,8 @@ public class examplesTest extends BaseTestRunner {
         new HomePage(driver)
                 .openGuestProfileMenu()
                 .openLoginModel()
-                .enterEmail(configProperties.getAdminEmail())
-                .enterPassword(configProperties.getAdminPassword())
+                .enterEmail(configProperties.getHeadClubEmail())
+                .enterPassword(configProperties.getHeadClubPassword())
                 .clickLogin()
                 .openUserProfileMenu()
                 .openAddClubModel()
@@ -216,13 +163,13 @@ public class examplesTest extends BaseTestRunner {
                 .clickNextStep()
                 .enterClubDescription("Відділення образотворчого та декоративного мистецтва відкрите з моменту заснування Студії.У 2005р. відбулась перша виставка робіт учасників Студії у Львівському обласному палаці мистецтв.")
                 .finishAddingCenter();
-        String checkInformationAboutCenterByNumber= new HomePage(driver)
+        String checkInformationAboutCenterByNumber= new HeaderComponent(driver)
                 .openUserProfileMenu()
                 .openMyProfileModel()
                 .clickDetailedSecondCenter()
                 .getNumberPhone();
         Assert.assertEquals(checkInformationAboutCenterByNumber, "+380934444444");
-        boolean checkInformationAboutCenterByDescription = new MyProfilePage(driver)
+        boolean checkInformationAboutCenterByDescription = new ClubPage(driver)
                 .getDescriptionAboutCenter("Відділення образотворчого та декоративного мистецтва відкрите з моменту заснування Студії.У 2005р. відбулась перша виставка робіт учасників Студії у Львівському обласному палаці мистецтв.");
         Assert.assertTrue(checkInformationAboutCenterByDescription);
     }

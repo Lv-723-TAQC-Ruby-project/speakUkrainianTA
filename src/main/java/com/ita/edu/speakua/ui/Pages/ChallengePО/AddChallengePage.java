@@ -4,6 +4,9 @@ import com.ita.edu.speakua.ui.BasePO;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class AddChallengePage extends BasePO {
     @FindBy(xpath =  "//input[@id='sortNumber']")
@@ -18,6 +21,32 @@ public class AddChallengePage extends BasePO {
     private WebElement uploadPhoto;
     @FindBy(xpath = "//button[contains(@class, 'add-contact-type-button')]")
     private WebElement saveButton;
+    @FindBy(xpath = "//div[contains(@class,'ant-message')]")
+    private WebElement successMessage;
+
+    public WebElement getSequenceNumber() {
+        return sequenceNumber;
+    }
+
+    public WebElement getChallengeName() {
+        return challengeName;
+    }
+
+    public WebElement getTitleInput() {
+        return titleInput;
+    }
+
+    public WebElement getChallengeDescription() {
+        return challengeDescription;
+    }
+
+    public WebElement getUploadPhoto() {
+        return uploadPhoto;
+    }
+
+    public WebElement getSaveButton() {
+        return saveButton;
+    }
 
     public AddChallengePage enterSequenceNumber(String sequence){
         sequenceNumber.sendKeys(sequence);
@@ -35,6 +64,7 @@ public class AddChallengePage extends BasePO {
         challengeDescription.sendKeys(description);
         return this;
     }
+
     public AddChallengePage uploadChallengePhoto(String path){
         uploadPhoto.sendKeys(path);
         return this;
@@ -43,25 +73,10 @@ public class AddChallengePage extends BasePO {
         saveButton.click();
         return new AddChallengePage(driver);
     }
-    public boolean sequenceNumberEmpty(){
-        return sequenceNumber.getAttribute("value") == "";
+    public boolean successMessage(){
+        return successMessage.isDisplayed();
     }
 
-    public boolean challengeNameEmpty(){
-        return challengeName.getAttribute("value") == "";
-    }
-    public boolean titleEmpty(){
-        return titleInput.getAttribute("value") == "";
-    }
-    public boolean challengeDescriptionEmpty(){
-        return challengeDescription.getAttribute("value") == "";
-    }
-    public boolean notLoadedPhoto() {
-        return uploadPhoto.getAttribute("value") == "";
-    }
-public boolean emptyFields() {
-    return sequenceNumberEmpty() && challengeNameEmpty() && titleEmpty() && challengeDescriptionEmpty() && notLoadedPhoto();
-}
     public AddChallengePage(WebDriver driver) {super(driver);
     }
 }

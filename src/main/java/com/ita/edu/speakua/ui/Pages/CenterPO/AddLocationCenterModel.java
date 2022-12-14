@@ -2,11 +2,17 @@ package com.ita.edu.speakua.ui.Pages.CenterPO;
 
 import com.ita.edu.speakua.ui.BasePO;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.devtools.v106.indexeddb.model.Key;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class AddLocationCenterModel extends BasePO {
@@ -35,6 +41,9 @@ public class AddLocationCenterModel extends BasePO {
     @FindBy(xpath = "//button[@class='ant-btn ant-btn-default flooded-button add-club-content-next']")
     private WebElement addLocationButton;
 
+    @FindBy(xpath = "//div[@class='ant-select-item-option-content']")
+    private WebElement city;
+
     public AddLocationCenterModel(WebDriver driver) {
         super(driver);
     }
@@ -59,18 +68,24 @@ public class AddLocationCenterModel extends BasePO {
         return this;
     }
 
+
     public AddLocationCenterModel ChooseLocationCity(String cityName) {
         chooseCityName.click();
-        String xpathString = "//div[@class='ant-select-item-option-content'][contains(text(),'" + cityName + "')]";
-
-//        WebElement city = driver.findElement(By.xpath(xpathString));
-//        city.click();
-
-        List<WebElement> myElements = driver.findElements(By.xpath("//div[@class='ant-select-item-option-content']"));
-        for(WebElement e : myElements) {
-            if(e.getText().equals(cityName)) {
-                e.click();
+        List<String> cities = new ArrayList<>();
+        while (true) {
+            WebElement cityWebElement = driver.findElement(By.xpath("//div[contains(@class, 'ant-select-item-option-active')]"));
+            String city = cityWebElement.getAttribute("title");
+            System.out.println(city);
+            if (cities.size() > 2 && cities.get(0).equals(city)) {
+                System.out.println("There is no such city as " + cityName);
+                break;
             }
+            cities.add(city);
+            if (cityName.equals(city)) {
+                cityWebElement.click();
+                break;
+            }
+            chooseCityName.sendKeys(Keys.ARROW_DOWN);
         }
 
         return this;

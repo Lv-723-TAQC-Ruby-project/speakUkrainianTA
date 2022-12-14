@@ -22,7 +22,6 @@ public class UserProfileMenu extends BasePO {
     @FindBy(xpath = "//a[contains(text(), 'Мій Профіль')]")
     private WebElement myProfileButton;
 
-
     @FindBy(xpath = "//span[contains(text(), 'Вийти')]")
     private WebElement quitButton;
 
@@ -41,8 +40,8 @@ public class UserProfileMenu extends BasePO {
     }
 
     public MyProfilePage openMyProfileModel() {
-        myProfileButton.click();
-        sleep(3);
+        wait.visibility(myProfileButton);
+        action.click(myProfileButton);
         return new MyProfilePage(driver);
     }
 

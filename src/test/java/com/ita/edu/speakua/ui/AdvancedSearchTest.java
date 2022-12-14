@@ -6,6 +6,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 public class AdvancedSearchTest extends BaseTestRunner {
 
@@ -20,35 +21,68 @@ public class AdvancedSearchTest extends BaseTestRunner {
     }
 
     @Test
-    public void checkAdvancedSearch() {
-       HomePage Page = new HomePage(driver);
+    public void openCheck() {
+        SoftAssert softAssert = new SoftAssert();
 
-       boolean check  = Page
+        HomePage Page = new HomePage(driver);
+
+        boolean check  = Page
                .openAdvancedSearch()
                .isAdvancedSearchOpen();
 
-       Assert.assertTrue(check);
+        softAssert.assertTrue(check);
 
-       check = Page
+        check = Page
                .openAdvancedSearch()
                .isAdvancedSearchOpen();
 
-       Assert.assertFalse(check);
+        softAssert.assertFalse(check);
+
+        softAssert.assertAll();
     }
 
     @Test
-    public void AdvancedSearch() throws InterruptedException {
+    public void activateClubFiltersCheck() {
+
+        SoftAssert softAssert = new SoftAssert();
 
         String radioValue = new HomePage(driver)
                 .openAdvancedSearch()
                 .getRadioValueString();
 
-        Assert.assertEquals(radioValue,"Гурток");
+        softAssert.assertEquals(radioValue,"Гурток");
 
-        new AdvancedSearchModel(driver).chooseDropDownCity("Львів");
+        AdvancedSearchModel advancedSearchModel = new AdvancedSearchModel(driver);
 
-        //Not finished
+        softAssert.assertTrue(advancedSearchModel.isCityActive(),"Didn't find city dropdown");
+        softAssert.assertTrue(advancedSearchModel.isDistrictActive(),"Didn't find district dropdown");
+        softAssert.assertTrue(advancedSearchModel.isStationActive(),"Didn't find station dropdown");
+        softAssert.assertTrue(advancedSearchModel.isRemoteActive(),"Didn't find remote checkbox");
+        softAssert.assertTrue(advancedSearchModel.isCategoryActive(),"Didn't find category checkboxes");
+        softAssert.assertTrue(advancedSearchModel.isAgeChildActive(),"Didn't find child age field");
 
+        softAssert.assertAll();
+    }
+
+    @Test
+    public void activateCenterFiltersCheck() {
+        SoftAssert softAssert = new SoftAssert();
+
+        String radioValue = new HomePage(driver)
+                .openAdvancedSearch()
+                .getRadioValueString();
+
+        softAssert.assertEquals(radioValue,"Гурток");
+
+        AdvancedSearchModel advancedSearchModel = new AdvancedSearchModel(driver).clickRadioCenter();
+        softAssert.assertEquals(radioValue,"Центр");
+
+        softAssert.assertTrue(advancedSearchModel.isCityActive(),"Didn't find city dropdown");
+        softAssert.assertTrue(advancedSearchModel.isDistrictActive(),"Didn't find district dropdown");
+        softAssert.assertTrue(advancedSearchModel.isStationActive(),"Didn't find station dropdown");
+        softAssert.assertFalse(advancedSearchModel.isAgeChildActive(),"Did find child age field");
+
+        softAssert.assertAll();
     }
 
     @AfterClass
