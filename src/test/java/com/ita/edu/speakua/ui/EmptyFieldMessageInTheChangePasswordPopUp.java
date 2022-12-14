@@ -1,7 +1,6 @@
 package com.ita.edu.speakua.ui;
 
 import com.ita.edu.speakua.ui.Pages.ProfilePO.EditProfileModel;
-import com.ita.edu.speakua.ui.Pages.ProfilePO.MyProfilePage;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -28,7 +27,7 @@ public class EmptyFieldMessageInTheChangePasswordPopUp extends BaseTestRunner {
 
 
     @Test
-    public void warningMessageAboutEmptyConfirmNewPasswordFieldInTheChangePasswordPopUp() {
+    public void warningMessageAboutConfirmPasswordEmptyFieldInTheChangePasswordPopUp() {
         EditProfileModel editProfilePassword = new HomePage(driver)
                 .openAdminProfileMenu()
                 .openMyProfileModel()
@@ -39,6 +38,33 @@ public class EmptyFieldMessageInTheChangePasswordPopUp extends BaseTestRunner {
         editProfilePassword.clickOnTheSaveChangesButton();
         Assert.assertFalse(editProfilePassword.isPresentEmptyConfirmPasswordMessage(), "Будь ласка, підтвердіть пароль");
     }
+
+    @Test
+    public void warningMessageAboutNewPasswordEmptyFieldInTheChangePasswordPopUp() {
+        EditProfileModel editProfilePassword = new HomePage(driver)
+                .openAdminProfileMenu()
+                .openMyProfileModel()
+                .openEditProfileModel()
+                .clickChangePasswordCheckBox()
+                .enterCurrentPassword(configProperties.getAdminPassword())
+                .enterConfirmPassword("adminn");
+        editProfilePassword.clickOnTheSaveChangesButton();
+        Assert.assertFalse(editProfilePassword.isPresentEmptyNewPasswordFieldMessage(), "Будь ласка, введіть новий пароль");
+    }
+
+    @Test
+    public void warningMessageAboutCurrentPasswordEmptyFieldInTheChangePasswordPopUp() {
+        EditProfileModel editProfilePassword = new HomePage(driver)
+                .openAdminProfileMenu()
+                .openMyProfileModel()
+                .openEditProfileModel()
+                .clickChangePasswordCheckBox()
+                .enterNewPasswordInTheNewPasswordField("adminn")
+                .enterConfirmPassword("adminn");
+        editProfilePassword.clickOnTheSaveChangesButton();
+        Assert.assertFalse(editProfilePassword.isPresentEmptyCurrentPasswordMessage(), "Введіть старий пароль");
+    }
+
 
     @AfterMethod
     public void tearDown() {

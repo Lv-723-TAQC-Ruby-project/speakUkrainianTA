@@ -26,11 +26,13 @@ public class EditProfileModel extends BasePO {
     @FindBy(xpath = "//div[@class='ant-form-item-explain-error']")
     private WebElement messageAboutIncorrectlyEnteredLastName;
 
-    @FindBy(xpath = "//*[@id=\"edit_confirmPassword_help\"]/div")
-    private WebElement emptyConfirmPasswordMessage;
+    @FindBy(xpath = "//*[@id=\"edit_currentPassword_help\"]/div")
+    private WebElement emptyCurrentPasswordFieldMessage;
 
     @FindBy(xpath = "//*[@id=\"edit_password_help\"]/div")
     private WebElement emptyNewPasswordFieldMessage;
+    @FindBy(xpath = "//*[@id=\"edit_confirmPassword_help\"]/div")
+    private WebElement emptyConfirmPasswordMessage;
 
     @FindBy(xpath = "//div[2]/div[7]/div/input")
     private  WebElement changePasswordCheckBox;
@@ -60,6 +62,23 @@ public class EditProfileModel extends BasePO {
             return false;
         }
     }
+    public boolean isPresentEmptyCurrentPasswordMessage() {
+        try {
+            driver.findElement(By.xpath(String.valueOf(emptyCurrentPasswordFieldMessage.isDisplayed())));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isPresentEmptyNewPasswordFieldMessage() {
+        try {
+            driver.findElement(By.xpath(String.valueOf(emptyNewPasswordFieldMessage.isDisplayed())));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
     public boolean isOpenMassageErrorPhoneContain(String name) {
         try {
@@ -76,6 +95,10 @@ public class EditProfileModel extends BasePO {
     }
     public EditProfileModel enterNewPasswordInTheNewPasswordField(String newPassword) {
         newPasswordField.sendKeys(Keys.ENTER);
+        return this;
+    }
+    public EditProfileModel enterConfirmPassword(String password) {
+        currentPasswordField.sendKeys(Keys.ENTER);
         return this;
     }
     public MyProfilePage clickOnTheSaveChangesButton() {
