@@ -27,4 +27,9 @@ public class ConfigProperties {
     public String getBaseWebUrl() {
         return properties.getProperty("base_web_url");
     }
+    public String getHeadClubEmail() {
+        return properties.getProperty("head_club_email");
+    }
+    public String getHeadClubPassword() { return properties.getProperty("head_club_password");
+    }
 }

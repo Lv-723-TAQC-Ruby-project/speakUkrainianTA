@@ -1,7 +1,13 @@
 package com.ita.edu.speakua.ui;
 
+
+import com.ita.edu.speakua.ui.Pages.ClubsPO.AddClubModel;
+import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubPage;
+
 import com.ita.edu.speakua.ui.Pages.ProfilePO.EditProfileModel;
 import com.ita.edu.speakua.ui.Pages.ProfilePO.MyProfilePage;
+import com.ita.edu.speakua.ui.headercomponent.HeaderComponent;
+import com.ita.edu.speakua.ui.profilemenu.UserProfileMenu;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -142,8 +148,8 @@ public class examplesTest extends BaseTestRunner {
         new HomePage(driver)
                 .openGuestProfileMenu()
                 .openLoginModel()
-                .enterEmail(configProperties.getAdminEmail())
-                .enterPassword(configProperties.getAdminPassword())
+                .enterEmail(configProperties.getHeadClubEmail())
+                .enterPassword(configProperties.getHeadClubPassword())
                 .clickLogin()
                 .openUserProfileMenu()
                 .openAddClubModel()
@@ -157,13 +163,13 @@ public class examplesTest extends BaseTestRunner {
                 .clickNextStep()
                 .enterClubDescription("Відділення образотворчого та декоративного мистецтва відкрите з моменту заснування Студії.У 2005р. відбулась перша виставка робіт учасників Студії у Львівському обласному палаці мистецтв.")
                 .finishAddingCenter();
-        String checkInformationAboutCenterByNumber= new HomePage(driver)
+        String checkInformationAboutCenterByNumber= new HeaderComponent(driver)
                 .openUserProfileMenu()
                 .openMyProfileModel()
                 .clickDetailedSecondCenter()
                 .getNumberPhone();
         Assert.assertEquals(checkInformationAboutCenterByNumber, "+380934444444");
-        boolean checkInformationAboutCenterByDescription = new MyProfilePage(driver)
+        boolean checkInformationAboutCenterByDescription = new ClubPage(driver)
                 .getDescriptionAboutCenter("Відділення образотворчого та декоративного мистецтва відкрите з моменту заснування Студії.У 2005р. відбулась перша виставка робіт учасників Студії у Львівському обласному палаці мистецтв.");
         Assert.assertTrue(checkInformationAboutCenterByDescription);
     }
