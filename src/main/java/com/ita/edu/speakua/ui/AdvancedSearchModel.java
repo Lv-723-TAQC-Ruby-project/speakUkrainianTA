@@ -182,7 +182,7 @@ public class AdvancedSearchModel extends BasePO{
     }
 
 
-    public List<WebElement> getClubTitle(){
+    public List<WebElement> getClub(){
         return cardsBody;
     }
 
