@@ -10,7 +10,7 @@ public class AddCenterModel extends BasePO {
     @FindBy(xpath = "//input[@id= 'basic_name']")
     private WebElement nameCenterInput;
 
-    @FindBy(xpath = "//button[@class='ant-btn ant-btn-default add-location-btn']")
+    @FindBy(xpath = "//span[contains(text(),'Додати локацію')]")
     private WebElement addCenterLocation;
 
     @FindBy(xpath = "//button[@class='ant-btn ant-btn-default next-btn']")
@@ -20,12 +20,12 @@ public class AddCenterModel extends BasePO {
         super(driver);
     }
 
-    public AddCenterModel EnterCenterName(String nameCenter) {
+    public AddCenterModel enterCenterName(String nameCenter) {
         nameCenterInput.sendKeys(nameCenter);
         return this;
     }
 
-    public AddLocationCenterModel AddLocation() {
+    public AddLocationCenterModel addLocation() {
         addCenterLocation.click();
         return new AddLocationCenterModel(driver);
     }
