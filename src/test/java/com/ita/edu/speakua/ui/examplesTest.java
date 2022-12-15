@@ -155,15 +155,15 @@ public class examplesTest extends BaseTestRunner {
         ArrayList<String> obtainedList = new ArrayList<>();
         List<WebElement> elementList = driver.findElements(By.xpath("//div[contains(@class,'ant-card ant-card-bordered card')]"));
         for (WebElement we : elementList) {
-            try {
-                WebElement button = driver.findElement(By.xpath("//div[contains(@class,'ant-card ant-card-bordered card')]"));
-                button.click();
-            }
-            catch(org.openqa.selenium.StaleElementReferenceException ex)
-            {
-                WebElement button = driver.findElement(By.xpath("//div[contains(@class,'ant-card ant-card-bordered card')]"));
-                button.click();
-            }
+//            try {
+//                WebElement button = driver.findElement(By.xpath("//div[contains(@class,'ant-card ant-card-bordered card')]"));
+//                button.click();
+//            }
+//            catch(org.openqa.selenium.StaleElementReferenceException ex)
+//            {
+//                WebElement button = driver.findElement(By.xpath("//div[contains(@class,'ant-card ant-card-bordered card')]"));
+//                button.click();
+//            }
             obtainedList.add(we.getText());
         }
         ArrayList<String> sortedList = new ArrayList<>();
