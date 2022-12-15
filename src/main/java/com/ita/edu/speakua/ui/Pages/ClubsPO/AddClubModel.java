@@ -42,7 +42,7 @@ public class AddClubModel extends BasePO {
     private WebElement inappropriateDescriptionLengthMessage;
 
     @FindBy(xpath = "//input[@id=\"basic_centerId\"][@type='search']")
-    private WebElement enterBelongingCenter;
+    private WebElement enterBelongingCenterInput;
 
     @FindBy(xpath = "//*[text()= 'Завершити']")
     private WebElement completeButton;
@@ -101,7 +101,7 @@ public class AddClubModel extends BasePO {
     }
 
     public AddClubModel enterBelongingToCenter(String nameCenter){
-        enterBelongingCenter.sendKeys(nameCenter);
+        enterBelongingCenterInput.sendKeys(nameCenter);
         return this;
     }
 

@@ -8,12 +8,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class MyProfilePage extends BasePO {
 
     @FindBy(xpath = "//span[text()='Редагувати профіль']")
     private WebElement editProfileButton;
 
-    @FindBy(xpath = "//a[@href='/dev/club/948']")
+    @FindBy(xpath = "//a[text()='Детальніше']")
     private WebElement detailedSecondCenterButton;
 
     @FindBy(xpath = "//span[@class='ant-dropdown-menu-title-content']//div[text()='Редагувати гурток']")
@@ -21,6 +23,9 @@ public class MyProfilePage extends BasePO {
 
     @FindBy(xpath = "//div[@class='update-club-dropdown']")
     private WebElement menuClubButton;
+
+    @FindBy(xpath = ".//div[@class='title']")
+    protected List<WebElement> titleClubs;
 
 
     public MyProfilePage(WebDriver driver) {
@@ -45,6 +50,8 @@ public class MyProfilePage extends BasePO {
         action.click(editButton);
         return new EditClubModel(driver);
     }
+
+
 
 
 
