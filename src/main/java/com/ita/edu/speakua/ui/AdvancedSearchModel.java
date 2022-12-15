@@ -171,6 +171,7 @@ public class AdvancedSearchModel extends BasePO{
 
     public AdvancedSearchModel clickSortAlphabetical() {
         sortAlphabetical.click();
+        sleep(2);
         return this;
     }
 
@@ -181,6 +182,7 @@ public class AdvancedSearchModel extends BasePO{
 
     public AdvancedSearchModel clickSortAscending() {
         sortAscending.click();
+        sleep(2);
         return this;
     }
 
@@ -190,7 +192,7 @@ public class AdvancedSearchModel extends BasePO{
     }
 
 
-    public List<WebElement> getClubTitle(){
+    public List<WebElement> getClub(){
         return cardsBody;
     }
 
