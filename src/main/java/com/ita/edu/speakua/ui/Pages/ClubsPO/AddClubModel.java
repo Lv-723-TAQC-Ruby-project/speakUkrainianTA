@@ -87,10 +87,6 @@ public class AddClubModel extends BasePO {
         return this;
     }
 
-//    public boolean isErrorMessageDisplayed() {
-//        return errorMessage.isDisplayed();
-//    }
-
     public boolean successMessageDisplayed() {
         return successMessage.isDisplayed();
     }
