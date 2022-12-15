@@ -32,7 +32,8 @@ public class ClubsSortingTest extends BaseTestRunner {
    /* @Test
     public void searchByNameOfClub() {
         ClubCard searchedClubByNameAndLocation = new HomePage(driver)
-                .
+                .clickLocationButton()
+                .chooseCity("Київ");
     }*/
 
     @AfterClass

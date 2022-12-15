@@ -2,7 +2,11 @@ package com.ita.edu.speakua.ui;
 
 import com.ita.edu.speakua.ui.headercomponent.HeaderComponent;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.*;
+
+import java.util.List;
 
 public class SearchTest extends BaseTestRunner {
     @BeforeClass
@@ -17,26 +21,40 @@ public class SearchTest extends BaseTestRunner {
 
     @Test
     public void oneSymbolEnteredInTheField() {
-        HeaderComponent search = new HomePage(driver)
+        List<WebElement> searchListInitialState = new HomePage(driver)
+                .clickSearchField()
+                .getComponentsOfTheSearchList();
+        List<WebElement> searchListAfterInputtingData = new HomePage(driver)
                 .clickSearchField()
                 .enterInTheSearchField("j")
-                .clickSearchField();
+                .getComponentsOfTheSearchList();
+        String initial = searchListInitialState.get(0).getText();
+        String afterAllActions = searchListAfterInputtingData.get(0).getText();
+        Assert.assertEquals(initial, afterAllActions);
     }
 
     @Test
-    public void oneHundredFifteenSymbolsEnteredInTheSearchField() {
-        HeaderComponent search = new HomePage(driver)
+    public void fiftySymbolsEnteredInTheSearchField() {
+        List<WebElement> searchListInitialState = new HomePage(driver)
                 .clickSearchField()
-                .enterInTheSearchField("dfgrhyujskdlkjnmhbnjmknhyFGTJVBYJK545fds5e5r5t5g5ggggggggggdiejdhntgf574639201///////85dkeidjhytgfrbhgtfdreswqabhgytfrdes3456&^%$#@!&*(jgdswtumbczsfg")
-                .clickSearchButton();
+                .getComponentsOfTheSearchList();
+        List<WebElement> searchListAfterInputtingData = new HomePage(driver)
+                .clickSearchField()
+                .enterInTheSearchField("лпротирпавпнргошлщдзждлшогрнпеаквс65789ш/*длорпІВ")
+                .getComponentsOfTheSearchList();
+        String initial = searchListInitialState.get(0).getText();
+        String afterAllActions = searchListAfterInputtingData.get(0).getText();
+        Assert.assertEquals(initial, afterAllActions);
     }
 
     @Test
-    public void moreThanOneHundredFifteenSymbolsEnteredInTheSearchField() {
-        HeaderComponent search = new HomePage(driver)
+    public void moreThanFiftySymbolsEnteredInTheSearchField() {
+        String inputData = "лпротирпавпнргошлщдзждлшогрнпеаквс65789ш/*длорпІВ1234567890";
+        String cutInputData = new HomePage(driver)
                 .clickSearchField()
-                .enterInTheSearchField("123456789dfgrhyujskdlkjnmhbnjmknhyFGTJVBYJK545fds5e5r5t5g5ggggggggggdiejdhntgf574639201///////85dkeidjhytgfrbhgtfdreswqabhgytfrdes3456&^%$#@!&*(jgdswtumbczsfg")
-                .clickSearchButton();
+                .enterInTheSearchField(inputData)
+                .getSearchFieldInput();
+        Assert.assertEquals(cutInputData.length(), 50);
     }
 
     @AfterClass
