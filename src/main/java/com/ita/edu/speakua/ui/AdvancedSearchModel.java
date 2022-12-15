@@ -22,6 +22,10 @@ public class AdvancedSearchModel extends BasePO{
 
     @FindBy(xpath = "//input[@id='basic_cityName']//ancestor::div[contains(@class,'selector')]")
     private WebElement dropDownCity;
+
+    @FindBy(xpath = "//*[@id=\"basic_cityName\"]")
+    private WebElement cityInputField;
+
     @FindBy(xpath = "//div[@id='basic_cityName_list']/ancestor::div[not(@class)][1]")
     private WebElement dropDownCityList;
 
@@ -42,12 +46,16 @@ public class AdvancedSearchModel extends BasePO{
 
     @FindBy(xpath = "//span[text()='за алфавітом']")
     private WebElement sortAlphabetical;
+
     @FindBy(xpath = "//span[@aria-label='arrow-up']")
     private WebElement sortDescending;
+
     @FindBy(xpath = "//span[@aria-label='arrow-down']")
     private WebElement sortAscending;
+
     @FindBy(xpath = "//span[text()='за рейтингом']")
     private WebElement sortByRating;
+
     @FindBy(xpath = "//div[contains(@class,'ant-card ant-card-bordered card')]")
     protected List<WebElement> cardsBody;
 
@@ -192,7 +200,10 @@ public class AdvancedSearchModel extends BasePO{
         return alphabeticalCardsList.stream().sorted().collect(Collectors.toList());
     }
 
-
+    public AdvancedSearchModel clearCityField() {
+        cityInputField.isEnabled();
+        return this;
+    }
 
 
 }
