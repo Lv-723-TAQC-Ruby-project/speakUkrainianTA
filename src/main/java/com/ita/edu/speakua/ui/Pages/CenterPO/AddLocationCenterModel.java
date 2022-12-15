@@ -69,27 +69,47 @@ public class AddLocationCenterModel extends BasePO {
     }
 
 
-    public AddLocationCenterModel ChooseLocationCity(String cityName) {
-        chooseCityName.click();
-        List<String> cities = new ArrayList<>();
+    private AddLocationCenterModel selectLocation(WebElement webElement, String locationName) {
+        webElement.click();
+        List<String> locations = new ArrayList<>();
         while (true) {
-            WebElement cityWebElement = driver.findElement(By.xpath("//div[contains(@class, 'ant-select-item-option-active')]"));
-            String city = cityWebElement.getAttribute("title");
-            System.out.println(city);
-            if (cities.size() > 2 && cities.get(0).equals(city)) {
-                System.out.println("There is no such city as " + cityName);
+            if (driver.findElements(By.xpath("//div[contains(@class, 'ant-select-item-option-active')]")).isEmpty()) {
+                System.out.println("There is no list to check for " + locationName);
                 break;
             }
-            cities.add(city);
-            if (cityName.equals(city)) {
-                cityWebElement.click();
+            WebElement locationWebElement = driver.findElement(By.xpath("//div[contains(@class, 'ant-select-item-option-active')]"));
+            String location = locationWebElement.getAttribute("title");
+            System.out.println(location + " " + locationName);
+            if (locations.size() > 2 && locations.get(0).equals(location)) {
+                System.out.println("There is no such location as " + locationName);
                 break;
             }
-            chooseCityName.sendKeys(Keys.ARROW_DOWN);
+            locations.add(location);
+            if (locationName.equals(location)) {
+                System.out.println("Location " + locationName + " is found and clicked");
+                locationWebElement.click();
+                break;
+            }
+            webElement.sendKeys(Keys.ARROW_DOWN);
         }
 
         return this;
     }
+
+    public AddLocationCenterModel ChooseLocationCity(String cityName) {
+        selectLocation(chooseCityName, cityName);
+        return this;
+    }
+    public AddLocationCenterModel ChooseLocationStation(String stationName) {
+        selectLocation(chooseStationName, stationName);
+        return this;
+    }
+    public AddLocationCenterModel ChooseLocationDistrict(String districtName) {
+        selectLocation(chooseDistrictName, districtName);
+        return this;
+    }
+
+
 
     public AddCenterModel clickAddLocationButton() {
         addLocationButton.click();
