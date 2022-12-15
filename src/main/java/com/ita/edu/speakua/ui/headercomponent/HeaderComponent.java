@@ -1,16 +1,18 @@
 package com.ita.edu.speakua.ui.headercomponent;
 
 import com.ita.edu.speakua.ui.BasePO;
-import com.ita.edu.speakua.ui.BasePageWithHeader;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubsPage;
 import com.ita.edu.speakua.ui.AdvancedSearchModel;
 import com.ita.edu.speakua.ui.profilemenu.AdminProfileMenu;
 import com.ita.edu.speakua.ui.profilemenu.GuestProfileMenu;
 import com.ita.edu.speakua.ui.profilemenu.UserProfileMenu;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
 
 public class HeaderComponent extends BasePO {
     @FindBy(xpath = "//div[contains(@class, 'user-profile')]")
@@ -31,9 +33,25 @@ public class HeaderComponent extends BasePO {
     @FindBy(xpath = "//div[contains(@class, 'rc-virtual-list-holder-inner')]")
     private WebElement searchListHolder;
 
+    @FindBy(xpath = "//*[@id=\"root\"]/section/header/div[3]/div[1]")
+    private WebElement locationButton;
+
+    @FindBy(xpath = "//ul[contains(@class, 'ant-dropdown-menu ant-dropdown-menu-root ant-dropdown-menu-vertical ant-dropdown-menu-light')]")
+    private WebElement locationDropDownMenu;
+
 
     public HeaderComponent(WebDriver driver) {
         super(driver);
+    }
+
+    public HeaderComponent clickLocationButton() {
+        locationButton.click();
+        return this;
+    }
+
+    public HeaderComponent chooseCity(String city) {
+        locationDropDownMenu.getAttribute(city);
+        return this;
     }
 
     public HeaderComponent clickSearchField() {
@@ -43,6 +61,16 @@ public class HeaderComponent extends BasePO {
     public HeaderComponent enterInTheSearchField(String input) {
         searchField.sendKeys(Keys.ENTER);
         return this;
+    }
+
+    public String getSearchFieldInput() {
+        String text = searchField.getText();
+        return text;
+    }
+
+    public List<WebElement> getComponentsOfTheSearchList() {
+        List<WebElement> currentItems = searchListHolder.findElements(By.tagName("div"));
+        return currentItems;
     }
 
     public HeaderComponent clickSearchButton() {

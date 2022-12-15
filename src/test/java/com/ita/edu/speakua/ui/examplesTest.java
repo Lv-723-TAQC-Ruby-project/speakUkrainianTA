@@ -16,6 +16,10 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class examplesTest extends BaseTestRunner {
 
     @BeforeMethod
@@ -139,6 +143,36 @@ public class examplesTest extends BaseTestRunner {
         Assert.assertEquals(textNumber18,"18");
         String textNumber19 = advancedSearchModel.enterNumberAge("19").getAgeChildField();
         Assert.assertEquals(textNumber19,"18");
+    }
+
+    @Test
+    public void sortAdvancedSearchTest() {
+        new HeaderComponent(driver)
+                .openAdvancedSearch();
+        new AdvancedSearchModel(driver)
+                .clickSortAlphabetical()
+                .clickSortAscending();
+        ArrayList<String> obtainedList = new ArrayList<>();
+        List<WebElement> elementList = driver.findElements(By.xpath("//div[contains(@class,'ant-card ant-card-bordered card')]"));
+        for (WebElement we : elementList) {
+//            try {
+//                WebElement button = driver.findElement(By.xpath("//div[contains(@class,'ant-card ant-card-bordered card')]"));
+//                button.click();
+//            }
+//            catch(org.openqa.selenium.StaleElementReferenceException ex)
+//            {
+//                WebElement button = driver.findElement(By.xpath("//div[contains(@class,'ant-card ant-card-bordered card')]"));
+//                button.click();
+//            }
+            obtainedList.add(we.getText());
+        }
+        ArrayList<String> sortedList = new ArrayList<>();
+        for (String s : obtainedList) {
+            sortedList.add(s);
+            Collections.sort(sortedList);
+            Assert.assertTrue(sortedList.equals(obtainedList));
+//            Assert.assertEquals(sortedAlphabeticallyAscending.getClubTitle(),sortedAlphabeticallyAscending.cardsAlphabetically(),"cards don't sorted");
+        }
     }
 
 
