@@ -38,7 +38,7 @@ public class GuestProfileMenu extends BasePO {
 
     public boolean isContain(String name) {
         try {
-            driver.findElement(By.xpath(String.format("//span[contains(text(), '%s')]",  name)));
+            driver.findElement(By.xpath(String.format("//span[contains(text(), '%s')]", name)));
             return true;
         } catch (Exception e) {
             return false;

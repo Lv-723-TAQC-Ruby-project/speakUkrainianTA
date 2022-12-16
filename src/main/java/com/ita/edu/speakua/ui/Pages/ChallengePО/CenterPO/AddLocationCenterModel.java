@@ -44,48 +44,66 @@ public class AddLocationCenterModel extends BasePO {
         super(driver);
     }
 
-    public AddLocationCenterModel AddLocationName(String locationName) {
+    public AddLocationCenterModel addLocationName(String locationName) {
         nameLocation.sendKeys(locationName);
         return this;
     }
 
-    public AddLocationCenterModel AddLocationAddress(String locationAddress) {
+    public AddLocationCenterModel addLocationAddress(String locationAddress) {
         addressLocation.sendKeys(locationAddress);
         return this;
     }
 
-    public AddLocationCenterModel AddLocationCoordinates(String locationCoordinates) {
+    public AddLocationCenterModel addLocationCoordinates(String locationCoordinates) {
         coordinatesLocation.sendKeys(locationCoordinates);
         return this;
     }
 
-    public AddLocationCenterModel AddLocationPhone(String locationPhone) {
+    public AddLocationCenterModel addLocationPhone(String locationPhone) {
         phoneLocation.sendKeys(locationPhone);
         return this;
     }
 
 
-    public AddLocationCenterModel ChooseLocationCity(String cityName) {
-        chooseCityName.click();
-        List<String> cities = new ArrayList<>();
+    private AddLocationCenterModel selectLocation(WebElement webElement, String locationName) {
+        webElement.click();
+        List<String> locations = new ArrayList<>();
         while (true) {
-            WebElement cityWebElement = driver.findElement(By.xpath("//div[contains(@class, 'ant-select-item-option-active')]"));
-            String city = cityWebElement.getAttribute("title");
-            System.out.println(city);
-            if (cities.size() > 2 && cities.get(0).equals(city)) {
-                System.out.println("There is no such city as " + cityName);
+            if (driver.findElements(By.xpath("//div[contains(@class, 'ant-select-item-option-active') and contains(@aria-selected, 'false')]")).isEmpty()) {
+                System.out.println("There is no list to check for " + locationName);
                 break;
             }
-            cities.add(city);
-            if (cityName.equals(city)) {
-                cityWebElement.click();
+            WebElement locationWebElement = driver.findElement(By.xpath("//div[contains(@class, 'ant-select-item-option-active') and contains(@aria-selected, 'false')]"));
+            String location = locationWebElement.getAttribute("title");
+            if (locations.size() > 2 && locations.get(0).equals(location)) {
+                System.out.println("There is no such location as " + locationName);
                 break;
             }
-            chooseCityName.sendKeys(Keys.ARROW_DOWN);
+            locations.add(location);
+            if (locationName.equals(location)) {
+                locationWebElement.click();
+                break;
+            }
+            webElement.sendKeys(Keys.ARROW_DOWN);
         }
-
         return this;
     }
+
+    public AddLocationCenterModel chooseLocationCity(String cityName) {
+        selectLocation(chooseCityName, cityName);
+        return this;
+    }
+
+    public AddLocationCenterModel chooseLocationStation(String stationName) {
+        selectLocation(chooseStationName, stationName);
+        return this;
+    }
+
+    public AddLocationCenterModel chooseLocationDistrict(String districtName) {
+        selectLocation(chooseDistrictName, districtName);
+        return this;
+    }
+
 
     public AddCenterModel clickAddLocationButton() {
         addLocationButton.click();

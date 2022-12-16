@@ -1,8 +1,8 @@
 package com.ita.edu.speakua.ui.Pages.TaskPO;
 
 import com.ita.edu.speakua.ui.BasePO;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -36,6 +36,10 @@ public class AddTaskPage extends BasePO {
     @FindBy(xpath = "//div[@class='ant-message']")
     private WebElement errorMessage;
 
+    public AddTaskPage(WebDriver driver) {
+        super(driver);
+    }
+
     public WebElement getStartDate() {
         return startDate;
     }
@@ -68,10 +72,6 @@ public class AddTaskPage extends BasePO {
         return errorMessage;
     }
 
-    public AddTaskPage(WebDriver driver) {
-        super(driver);
-    }
-
     //String date = "2023-1-1";
     public AddTaskPage enterStartDate(String date) {
         startDate.sendKeys(date, Keys.ENTER);
@@ -99,9 +99,9 @@ public class AddTaskPage extends BasePO {
         return this;
     }
 
-    public boolean isContainErrorMessage(String name){
+    public boolean isContainErrorMessage(String name) {
         try {
-            driver.findElement(By.xpath(String.format("//div[@class='ant-message']",  name)));
+            driver.findElement(By.xpath(String.format("//div[@class='ant-message']", name)));
             return true;
         } catch (Exception e) {
             return false;

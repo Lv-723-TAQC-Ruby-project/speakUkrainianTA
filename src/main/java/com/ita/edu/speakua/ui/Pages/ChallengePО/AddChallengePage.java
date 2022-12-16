@@ -4,18 +4,15 @@ import com.ita.edu.speakua.ui.BasePO;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class AddChallengePage extends BasePO {
-    @FindBy(xpath =  "//input[@id='sortNumber']")
+    @FindBy(xpath = "//input[@id='sortNumber']")
     private WebElement sequenceNumber;
-    @FindBy(xpath =  "//input[@id='name']")
+    @FindBy(xpath = "//input[@id='name']")
     private WebElement challengeName;
-    @FindBy(xpath =  "//input[@id='title']")
+    @FindBy(xpath = "//input[@id='title']")
     private WebElement titleInput;
-    @FindBy(xpath =  "//div[@class='ql-editor ql-blank']")
+    @FindBy(xpath = "//div[@class='ql-editor ql-blank']")
     private WebElement challengeDescription;
     @FindBy(xpath = "//input[@type='file']")
     private WebElement uploadPhoto;
@@ -23,6 +20,10 @@ public class AddChallengePage extends BasePO {
     private WebElement saveButton;
     @FindBy(xpath = "//div[contains(@class,'ant-message')]")
     private WebElement successMessage;
+
+    public AddChallengePage(WebDriver driver) {
+        super(driver);
+    }
 
     public WebElement getSequenceNumber() {
         return sequenceNumber;
@@ -48,35 +49,37 @@ public class AddChallengePage extends BasePO {
         return saveButton;
     }
 
-    public AddChallengePage enterSequenceNumber(String sequence){
+    public AddChallengePage enterSequenceNumber(String sequence) {
         sequenceNumber.sendKeys(sequence);
         return this;
     }
-    public AddChallengePage enterChallengeName(String name){
+
+    public AddChallengePage enterChallengeName(String name) {
         challengeName.sendKeys(name);
         return this;
     }
-    public AddChallengePage enterTitle(String title){
+
+    public AddChallengePage enterTitle(String title) {
         titleInput.sendKeys(title);
         return this;
     }
-    public AddChallengePage enterChallengeDescription(String description){
+
+    public AddChallengePage enterChallengeDescription(String description) {
         challengeDescription.sendKeys(description);
         return this;
     }
 
-    public AddChallengePage uploadChallengePhoto(String path){
+    public AddChallengePage uploadChallengePhoto(String path) {
         uploadPhoto.sendKeys(path);
         return this;
     }
-    public AddChallengePage saveChallengeClick(){
+
+    public AddChallengePage saveChallengeClick() {
         saveButton.click();
         return new AddChallengePage(driver);
     }
-    public boolean successMessage(){
-        return successMessage.isDisplayed();
-    }
 
-    public AddChallengePage(WebDriver driver) {super(driver);
+    public boolean successMessage() {
+        return successMessage.isDisplayed();
     }
 }

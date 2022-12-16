@@ -1,7 +1,8 @@
 package com.ita.edu.speakua.ui.profilemenu;
 
-import com.ita.edu.speakua.ui.Pages.ChallengePО.CenterPO.AddCenterModel;
+
 import com.ita.edu.speakua.ui.BasePO;
+import com.ita.edu.speakua.ui.Pages.ChallengePО.CenterPO.AddCenterModel;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.AddClubModel;
 import com.ita.edu.speakua.ui.Pages.ProfilePO.MyProfilePage;
 import org.openqa.selenium.WebDriver;

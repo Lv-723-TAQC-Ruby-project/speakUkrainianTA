@@ -42,7 +42,7 @@ public class AddClubModel extends BasePO {
     private WebElement inappropriateDescriptionLengthMessage;
 
     @FindBy(xpath = "//input[@id=\"basic_centerId\"][@type='search']")
-    private WebElement enterBelongingCenter;
+    private WebElement enterBelongingCenterInput;
 
     @FindBy(xpath = "//*[text()= 'Завершити']")
     private WebElement completeButton;
@@ -87,30 +87,26 @@ public class AddClubModel extends BasePO {
         return this;
     }
 
-//    public boolean isErrorMessageDisplayed() {
-//        return errorMessage.isDisplayed();
-//    }
-
     public boolean successMessageDisplayed() {
         return successMessage.isDisplayed();
     }
 
     public boolean isErrorMessageDisplayed(String errorMessage) {
         wait.visibility(xpath(format("//div[text()='%s']", errorMessage)));
-        return  driver.findElement(xpath(format("//div[text()='%s']", errorMessage))).isDisplayed();
+        return driver.findElement(xpath(format("//div[text()='%s']", errorMessage))).isDisplayed();
     }
 
-    public AddClubModel enterBelongingToCenter(String nameCenter){
-        enterBelongingCenter.sendKeys(nameCenter);
+    public AddClubModel enterBelongingToCenter(String nameCenter) {
+        enterBelongingCenterInput.sendKeys(nameCenter);
         return this;
     }
 
-    public HomePage finishAddingCenter(){
+    public HomePage finishAddingCenter() {
         completeButton.click();
         return new HomePage(driver);
     }
 
-    public boolean completeButtonEnabled(){
-         return completeButton.isEnabled();
+    public boolean completeButtonEnabled() {
+        return completeButton.isEnabled();
     }
 }

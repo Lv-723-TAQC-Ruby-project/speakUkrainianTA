@@ -10,9 +10,11 @@ public class ClubPage extends BasePageWithHeader {
 
     @FindBy(xpath = "//span[@class='contact-name']")
     private WebElement fieldNumberPhone;
+
     public ClubPage(WebDriver driver) {
         super(driver);
     }
+
     public boolean getDescriptionAboutCenter(String name) {
         try {
             driver.findElement(By.xpath(String.format("//div[@class='content']", name)));
@@ -21,6 +23,7 @@ public class ClubPage extends BasePageWithHeader {
             return false;
         }
     }
+
     public String getNumberPhone() {
         return fieldNumberPhone.getText();
     }
