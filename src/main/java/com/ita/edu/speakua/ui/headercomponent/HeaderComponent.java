@@ -63,14 +63,14 @@ public class HeaderComponent extends BasePO {
         return this;
     }
 
-    public String getSearchFieldInput() {
-        String text = searchField.getText();
+    public String getSearchFieldInputValue() {
+        String text = searchField.getAttribute("value");
         return text;
     }
 
     public List<WebElement> getComponentsOfTheSearchList() {
-        List<WebElement> currentItems = searchListHolder.findElements(By.tagName("div"));
-        return currentItems;
+        wait.visibility(searchListHolder);
+        return searchListHolder.findElements(By.tagName("div"));
     }
 
     public HeaderComponent clickSearchButton() {

@@ -1,6 +1,7 @@
 package com.ita.edu.speakua.ui;
 
 import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubCard;
+import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubsPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -56,7 +57,7 @@ public class AdvancedSearchModel extends BasePO{
     @FindBy(xpath = "//span[text()='за рейтингом']")
     private WebElement sortByRating;
 
-    @FindBy(xpath = "//div[contains(@class,'ant-card ant-card-bordered card')]")
+    @FindBy(xpath = "//div[contains(@class,'ant-card-body')]")
     protected List<WebElement> cardsBody;
 
     public AdvancedSearchModel(WebDriver driver) {
@@ -191,8 +192,12 @@ public class AdvancedSearchModel extends BasePO{
         return this;
     }
 
+    public ClubsPage clickSortByRatingReturnClubs() {
+        sortByRating.click();
+        return new ClubsPage(driver);
+    }
 
-    public List<WebElement> getClub(){
+    public List<WebElement> getClubs(){
         return cardsBody;
     }
 

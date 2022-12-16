@@ -27,4 +27,8 @@ public class ClubsPage extends BasePageWithHeader {
         }
         return cards;
     }
+
+    public ClubCard getCard(int id) {
+        return getCards().get(id);
+    }
 }

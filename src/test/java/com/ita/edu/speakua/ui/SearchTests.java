@@ -1,6 +1,5 @@
 package com.ita.edu.speakua.ui;
 
-import com.ita.edu.speakua.ui.headercomponent.HeaderComponent;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -8,7 +7,7 @@ import org.testng.annotations.*;
 
 import java.util.List;
 
-public class SearchTest extends BaseTestRunner {
+public class SearchTests extends BaseTestRunner {
     @BeforeClass
     public void setUp() {
         setDriver();
@@ -28,9 +27,9 @@ public class SearchTest extends BaseTestRunner {
                 .clickSearchField()
                 .enterInTheSearchField("j")
                 .getComponentsOfTheSearchList();
-        String initial = searchListInitialState.get(0).getText();
-        String afterAllActions = searchListAfterInputtingData.get(0).getText();
-        Assert.assertEquals(initial, afterAllActions);
+        String initial = searchListInitialState.get(1).getText();
+        String afterAllActions = searchListAfterInputtingData.get(1).getText();
+        Assert.assertNotEquals(initial, afterAllActions);
     }
 
     @Test
@@ -44,7 +43,7 @@ public class SearchTest extends BaseTestRunner {
                 .getComponentsOfTheSearchList();
         String initial = searchListInitialState.get(0).getText();
         String afterAllActions = searchListAfterInputtingData.get(0).getText();
-        Assert.assertEquals(initial, afterAllActions);
+        Assert.assertNotEquals(initial, afterAllActions);
     }
 
     @Test
@@ -53,8 +52,8 @@ public class SearchTest extends BaseTestRunner {
         String cutInputData = new HomePage(driver)
                 .clickSearchField()
                 .enterInTheSearchField(inputData)
-                .getSearchFieldInput();
-        Assert.assertEquals(cutInputData.length(), 50);
+                .getSearchFieldInputValue();
+        Assert.assertEquals(cutInputData, "лпротирпавпнргошлщдзждлшогрнпеаквс65789ш/*длорпІВ");
     }
 
     @AfterClass

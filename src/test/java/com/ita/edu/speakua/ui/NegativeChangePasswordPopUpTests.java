@@ -5,7 +5,7 @@ import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-public class EmptyFieldMessageInTheChangePasswordPopUp extends BaseTestRunner {
+public class NegativeChangePasswordPopUpTests extends BaseTestRunner {
 
     @BeforeClass
     public void setUp() {
