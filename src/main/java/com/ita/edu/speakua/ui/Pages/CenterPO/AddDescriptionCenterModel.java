@@ -20,7 +20,6 @@ public class AddDescriptionCenterModel extends BasePO {
     private WebElement nextButton;
 
 
-
     public AddDescriptionCenterModel(WebDriver driver) {
         super(driver);
     }
@@ -44,6 +43,7 @@ public class AddDescriptionCenterModel extends BasePO {
         addDescription.sendKeys(description);
         return this;
     }
+
     public ChooseClubCenterModel clickNextStep() {
         nextButton.click();
         return new ChooseClubCenterModel(driver);

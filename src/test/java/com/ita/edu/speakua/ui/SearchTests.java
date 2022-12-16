@@ -25,7 +25,7 @@ public class SearchTests extends BaseTestRunner {
                 .getComponentsOfTheSearchList();
         List<WebElement> searchListAfterInputtingData = new HomePage(driver)
                 .clickSearchField()
-                .enterInTheSearchField("j")
+                .enterTextInTheSearchField("j")
                 .getComponentsOfTheSearchList();
         String initial = searchListInitialState.get(1).getText();
         String afterAllActions = searchListAfterInputtingData.get(1).getText();
@@ -39,7 +39,7 @@ public class SearchTests extends BaseTestRunner {
                 .getComponentsOfTheSearchList();
         List<WebElement> searchListAfterInputtingData = new HomePage(driver)
                 .clickSearchField()
-                .enterInTheSearchField("лпротирпавпнргошлщдзждлшогрнпеаквс65789ш/*длорпІВ")
+                .enterTextInTheSearchField("лпротирпавпнргошлщдзждлшогрнпеаквс65789ш/*длорпІВ")
                 .getComponentsOfTheSearchList();
         String initial = searchListInitialState.get(0).getText();
         String afterAllActions = searchListAfterInputtingData.get(0).getText();
@@ -51,9 +51,9 @@ public class SearchTests extends BaseTestRunner {
         String inputData = "лпротирпавпнргошлщдзждлшогрнпеаквс65789ш/*длорпІВ1234567890";
         String cutInputData = new HomePage(driver)
                 .clickSearchField()
-                .enterInTheSearchField(inputData)
+                .enterTextInTheSearchField(inputData)
                 .getSearchFieldInputValue();
-        Assert.assertEquals(cutInputData, "лпротирпавпнргошлщдзждлшогрнпеаквс65789ш/*длорпІВ");
+        Assert.assertEquals(cutInputData, "лпротирпавпнргошлщдзждлшогрнпеаквс65789ш/*длорпІВ1");
     }
 
     @AfterClass

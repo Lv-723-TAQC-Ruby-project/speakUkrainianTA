@@ -16,6 +16,10 @@ public class AdminProfileMenu extends UserProfileMenu {
     @FindBy(xpath = "//a[contains(text(), 'Завдання')]")
     private WebElement tasksButton;
 
+    public AdminProfileMenu(WebDriver driver) {
+        super(driver);
+    }
+
     public TasksPage openTasksPage() {
 
         wait.visibility(contentButton);
@@ -39,9 +43,5 @@ public class AdminProfileMenu extends UserProfileMenu {
         wait.visibility(challengesButton);
         action.click(challengesButton);
         return new ChallengePage(driver);
-    }
-
-    public AdminProfileMenu(WebDriver driver) {
-        super(driver);
     }
 }

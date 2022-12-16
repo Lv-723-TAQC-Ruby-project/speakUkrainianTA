@@ -2,12 +2,10 @@ package com.ita.edu.speakua.ui.headercomponent;
 
 import com.ita.edu.speakua.ui.BasePO;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubsPage;
-import com.ita.edu.speakua.ui.Pages.ClubsPO.AdvancedSearchComponent;
 import com.ita.edu.speakua.ui.profilemenu.AdminProfileMenu;
 import com.ita.edu.speakua.ui.profilemenu.GuestProfileMenu;
 import com.ita.edu.speakua.ui.profilemenu.UserProfileMenu;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -27,7 +25,7 @@ public class HeaderComponent extends BasePO {
     @FindBy(xpath = "//*[@id=\"root\"]/section/section/main/section/div[1]/div[2]/div[2]/span[1]")
     private WebElement searchButton;
 
-    @FindBy(xpath = "//*[@id='rc_select_0']")
+    @FindBy(xpath = "//div[@class='search']//input")
     private WebElement searchField;
 
     @FindBy(xpath = "//div[contains(@class, 'rc-virtual-list-holder-inner')]")
@@ -58,8 +56,9 @@ public class HeaderComponent extends BasePO {
         searchField.click();
         return this;
     }
-    public HeaderComponent enterInTheSearchField(String input) {
-        searchField.sendKeys(Keys.ENTER);
+
+    public HeaderComponent enterTextInTheSearchField(String input) {
+        searchField.sendKeys(input);
         return this;
     }
 
@@ -82,23 +81,24 @@ public class HeaderComponent extends BasePO {
         profileMenuButton.click();
         return new GuestProfileMenu(driver);
     }
+
     public AdminProfileMenu openAdminProfileMenu() {
         profileMenuButton.click();
         return new AdminProfileMenu(driver);
     }
 
-    public ClubsPage clickClub(){
+    public ClubsPage clickClub() {
         clubButton.click();
         sleep(3);
         return new ClubsPage(this.driver);
     }
 
-    public ClubsPage openAdvancedSearch(){
+    public ClubsPage openAdvancedSearch() {
         advancedSearchButton.click();
         return new ClubsPage(driver);
     }
 
-    public UserProfileMenu openUserProfileMenu(){
+    public UserProfileMenu openUserProfileMenu() {
         wait.visibility(profileMenuButton);
         action.click(profileMenuButton);
         return new UserProfileMenu(driver);

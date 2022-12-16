@@ -18,12 +18,12 @@ public class ChooseClubCenterModel extends BasePO {
         super(driver);
     }
 
-    public ChooseClubCenterModel chooseClub(){
+    public ChooseClubCenterModel chooseClub() {
         club.click();
         return this;
     }
 
-    public ChooseClubCenterModel finishAddCenter(){
+    public ChooseClubCenterModel finishAddCenter() {
         finishButton.click();
         return this;
     }

@@ -93,20 +93,20 @@ public class AddClubModel extends BasePO {
 
     public boolean isErrorMessageDisplayed(String errorMessage) {
         wait.visibility(xpath(format("//div[text()='%s']", errorMessage)));
-        return  driver.findElement(xpath(format("//div[text()='%s']", errorMessage))).isDisplayed();
+        return driver.findElement(xpath(format("//div[text()='%s']", errorMessage))).isDisplayed();
     }
 
-    public AddClubModel enterBelongingToCenter(String nameCenter){
+    public AddClubModel enterBelongingToCenter(String nameCenter) {
         enterBelongingCenterInput.sendKeys(nameCenter);
         return this;
     }
 
-    public HomePage finishAddingCenter(){
+    public HomePage finishAddingCenter() {
         completeButton.click();
         return new HomePage(driver);
     }
 
-    public boolean completeButtonEnabled(){
-         return completeButton.isEnabled();
+    public boolean completeButtonEnabled() {
+        return completeButton.isEnabled();
     }
 }

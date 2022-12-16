@@ -93,10 +93,12 @@ public class AddLocationCenterModel extends BasePO {
         selectLocation(chooseCityName, cityName);
         return this;
     }
+
     public AddLocationCenterModel chooseLocationStation(String stationName) {
         selectLocation(chooseStationName, stationName);
         return this;
     }
+
     public AddLocationCenterModel chooseLocationDistrict(String districtName) {
         selectLocation(chooseDistrictName, districtName);
         return this;

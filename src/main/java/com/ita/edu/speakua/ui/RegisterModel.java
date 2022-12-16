@@ -30,6 +30,10 @@ public class RegisterModel extends BasePO {
     @FindBy(xpath = "//button[contains(@class, 'ant-modal-close')]")
     private WebElement closeButton;
 
+    public RegisterModel(WebDriver driver) {
+        super(driver);
+    }
+
     public WebElement getLastNameInput() {
         return lastNameInput;
     }
@@ -52,11 +56,6 @@ public class RegisterModel extends BasePO {
 
     public WebElement getPasswordConfirmInput() {
         return passwordConfirmInput;
-    }
-
-
-    public RegisterModel(WebDriver driver) {
-        super(driver);
     }
 
     public RegisterModel enterLastName(String lastName) {

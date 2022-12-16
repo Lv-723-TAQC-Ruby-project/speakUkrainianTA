@@ -28,7 +28,6 @@ public class AddContactsCenterModel extends BasePO {
     private WebElement nextButton;
 
 
-
     public AddContactsCenterModel(WebDriver driver) {
         super(driver);
     }
@@ -42,14 +41,17 @@ public class AddContactsCenterModel extends BasePO {
         contactWebSite.sendKeys(webSite);
         return this;
     }
+
     public AddContactsCenterModel centerContactsEmail(String email) {
         contactEmail.sendKeys(email);
         return this;
     }
+
     public AddContactsCenterModel centerContactsSkype(String skype) {
         contactSkype.sendKeys(skype);
         return this;
     }
+
     public AddContactsCenterModel centerContactsWhatsApp(String whatsApp) {
         contactWhatsApp.sendKeys(whatsApp);
         return this;
@@ -60,7 +62,7 @@ public class AddContactsCenterModel extends BasePO {
         return this;
     }
 
-    public AddDescriptionCenterModel clickNextStep(){
+    public AddDescriptionCenterModel clickNextStep() {
         nextButton.click();
         return new AddDescriptionCenterModel(driver);
     }

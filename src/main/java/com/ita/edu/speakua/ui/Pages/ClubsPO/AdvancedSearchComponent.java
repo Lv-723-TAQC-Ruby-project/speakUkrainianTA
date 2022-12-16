@@ -11,53 +11,39 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class AdvancedSearchComponent extends BasePO {
+    @FindBy(xpath = "//div[contains(@class,'ant-card-body')]")
+    protected List<WebElement> cardsBody;
     private List<ClubCard> cards;
     @FindBy(xpath = "//label[.//span[contains(text(),'Центр')]]//span//input[@type='radio']")
     private WebElement radioCenter;
     @FindBy(xpath = "//label[.//span[contains(text(),'Гурток')]]//span//input[@type='radio']")
     private WebElement radioClub;
-
     @FindBy(xpath = "//label[.//span[@class='ant-radio ant-radio-checked']]//span[not(@class)]")
     private WebElement radioValue;
-
     @FindBy(xpath = "//input[@id='basic_cityName']//ancestor::div[contains(@class,'selector')]")
     private WebElement dropDownCity;
-
     @FindBy(xpath = "//*[@id=\"basic_cityName\"]")
     private WebElement cityInputField;
-
     @FindBy(xpath = "//div[@id='basic_cityName_list']/ancestor::div[not(@class)][1]")
     private WebElement dropDownCityList;
-
     @FindBy(xpath = "//input[@id='basic_districtName']//ancestor::div[contains(@class,'selector')]")
     private WebElement dropDownDistrict;
-
     @FindBy(xpath = "//input[@id='basic_stationName']//ancestor::div[contains(@class,'selector')]")
     private WebElement dropDownStation;
-
     @FindBy(xpath = "//input[@class='ant-input-number-input']")
     private WebElement inputAgeChildField;
-
     @FindBy(xpath = "//span[@id='basic_age']")
     private WebElement valueAgeChildField;
-
     @FindBy(xpath = "//div[@id='basic_isOnline']//span[.//input]")
     private WebElement checkBoxRemote;
-
     @FindBy(xpath = "//span[text()='за алфавітом']")
     private WebElement sortAlphabetical;
-
     @FindBy(xpath = "//span[@aria-label='arrow-up']")
     private WebElement sortDescending;
-
     @FindBy(xpath = "//span[@aria-label='arrow-down']")
     private WebElement sortAscending;
-
     @FindBy(xpath = "//span[text()='за рейтингом']")
     private WebElement sortByRating;
-
-    @FindBy(xpath = "//div[contains(@class,'ant-card-body')]")
-    protected List<WebElement> cardsBody;
 
 
     public AdvancedSearchComponent(WebDriver driver) {
@@ -137,6 +123,7 @@ public class AdvancedSearchComponent extends BasePO {
         radioCenter.click();
         return this;
     }
+
     public AdvancedSearchComponent clickRadioClub() {
         radioClub.click();
         return this;
@@ -160,7 +147,7 @@ public class AdvancedSearchComponent extends BasePO {
         return radioValue.getText();
     }
 
-    public String getAgeChildField(){
+    public String getAgeChildField() {
         return valueAgeChildField.getAttribute("value");
     }
 
@@ -197,12 +184,12 @@ public class AdvancedSearchComponent extends BasePO {
         return new ClubsPage(driver);
     }
 
-    public List<WebElement> getClubs(){
+    public List<WebElement> getClubs() {
         return cardsBody;
     }
 
-    public List<WebElement> cardsAlphabetically(){
-        List<WebElement> alphabeticalCardsList= new ArrayList<>();
+    public List<WebElement> cardsAlphabetically() {
+        List<WebElement> alphabeticalCardsList = new ArrayList<>();
         alphabeticalCardsList.addAll(cardsBody);
         return alphabeticalCardsList.stream().sorted().collect(Collectors.toList());
     }
