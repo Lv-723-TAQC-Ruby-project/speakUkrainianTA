@@ -1,7 +1,7 @@
 package com.ita.edu.speakua.ui;
 
+import com.ita.edu.speakua.ui.Pages.ClubsPO.AdvancedSearchComponent;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -28,12 +28,14 @@ public class AdvancedSearchTest extends BaseTestRunner {
 
         boolean check  = Page
                .openAdvancedSearch()
+                .getAdvancedSearchComponent()
                .isAdvancedSearchOpen();
 
         softAssert.assertTrue(check);
 
         check = Page
                .openAdvancedSearch()
+                .getAdvancedSearchComponent()
                .isAdvancedSearchOpen();
 
         softAssert.assertFalse(check);
@@ -48,18 +50,19 @@ public class AdvancedSearchTest extends BaseTestRunner {
 
         String radioValue = new HomePage(driver)
                 .openAdvancedSearch()
+                .getAdvancedSearchComponent()
                 .getRadioValueString();
 
         softAssert.assertEquals(radioValue,"Гурток");
 
-        AdvancedSearchModel advancedSearchModel = new AdvancedSearchModel(driver);
+        AdvancedSearchComponent advancedSearchComponent = new AdvancedSearchComponent(driver);
 
-        softAssert.assertTrue(advancedSearchModel.isCityActive(),"Didn't find city dropdown");
-        softAssert.assertTrue(advancedSearchModel.isDistrictActive(),"Didn't find district dropdown");
-        softAssert.assertTrue(advancedSearchModel.isStationActive(),"Didn't find station dropdown");
-        softAssert.assertTrue(advancedSearchModel.isRemoteActive(),"Didn't find remote checkbox");
-        softAssert.assertTrue(advancedSearchModel.isCategoryActive(),"Didn't find category checkboxes");
-        softAssert.assertTrue(advancedSearchModel.isAgeChildActive(),"Didn't find child age field");
+        softAssert.assertTrue(advancedSearchComponent.isCityActive(),"Didn't find city dropdown");
+        softAssert.assertTrue(advancedSearchComponent.isDistrictActive(),"Didn't find district dropdown");
+        softAssert.assertTrue(advancedSearchComponent.isStationActive(),"Didn't find station dropdown");
+        softAssert.assertTrue(advancedSearchComponent.isRemoteActive(),"Didn't find remote checkbox");
+        softAssert.assertTrue(advancedSearchComponent.isCategoryActive(),"Didn't find category checkboxes");
+        softAssert.assertTrue(advancedSearchComponent.isAgeChildActive(),"Didn't find child age field");
 
         softAssert.assertAll();
     }
@@ -70,17 +73,18 @@ public class AdvancedSearchTest extends BaseTestRunner {
 
         String radioValue = new HomePage(driver)
                 .openAdvancedSearch()
+                .getAdvancedSearchComponent()
                 .getRadioValueString();
 
         softAssert.assertEquals(radioValue,"Гурток");
 
-        AdvancedSearchModel advancedSearchModel = new AdvancedSearchModel(driver).clickRadioCenter();
+        AdvancedSearchComponent advancedSearchComponent = new AdvancedSearchComponent(driver).clickRadioCenter();
         softAssert.assertEquals(radioValue,"Центр");
 
-        softAssert.assertTrue(advancedSearchModel.isCityActive(),"Didn't find city dropdown");
-        softAssert.assertTrue(advancedSearchModel.isDistrictActive(),"Didn't find district dropdown");
-        softAssert.assertTrue(advancedSearchModel.isStationActive(),"Didn't find station dropdown");
-        softAssert.assertFalse(advancedSearchModel.isAgeChildActive(),"Did find child age field");
+        softAssert.assertTrue(advancedSearchComponent.isCityActive(),"Didn't find city dropdown");
+        softAssert.assertTrue(advancedSearchComponent.isDistrictActive(),"Didn't find district dropdown");
+        softAssert.assertTrue(advancedSearchComponent.isStationActive(),"Didn't find station dropdown");
+        softAssert.assertFalse(advancedSearchComponent.isAgeChildActive(),"Did find child age field");
 
         softAssert.assertAll();
     }

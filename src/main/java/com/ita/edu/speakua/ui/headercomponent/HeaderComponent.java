@@ -2,7 +2,7 @@ package com.ita.edu.speakua.ui.headercomponent;
 
 import com.ita.edu.speakua.ui.BasePO;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubsPage;
-import com.ita.edu.speakua.ui.AdvancedSearchModel;
+import com.ita.edu.speakua.ui.Pages.ClubsPO.AdvancedSearchComponent;
 import com.ita.edu.speakua.ui.profilemenu.AdminProfileMenu;
 import com.ita.edu.speakua.ui.profilemenu.GuestProfileMenu;
 import com.ita.edu.speakua.ui.profilemenu.UserProfileMenu;
@@ -27,7 +27,7 @@ public class HeaderComponent extends BasePO {
     @FindBy(xpath = "//*[@id=\"root\"]/section/section/main/section/div[1]/div[2]/div[2]/span[1]")
     private WebElement searchButton;
 
-    @FindBy(xpath = "//*[@id=\"rc_select_0\"]")
+    @FindBy(xpath = "//*[@id='rc_select_0']")
     private WebElement searchField;
 
     @FindBy(xpath = "//div[contains(@class, 'rc-virtual-list-holder-inner')]")
@@ -93,9 +93,9 @@ public class HeaderComponent extends BasePO {
         return new ClubsPage(this.driver);
     }
 
-    public AdvancedSearchModel openAdvancedSearch(){
+    public ClubsPage openAdvancedSearch(){
         advancedSearchButton.click();
-        return new AdvancedSearchModel(driver);
+        return new ClubsPage(driver);
     }
 
     public UserProfileMenu openUserProfileMenu(){

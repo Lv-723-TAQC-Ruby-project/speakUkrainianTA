@@ -1,7 +1,6 @@
-package com.ita.edu.speakua.ui;
+package com.ita.edu.speakua.ui.Pages.ClubsPO;
 
-import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubCard;
-import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubsPage;
+import com.ita.edu.speakua.ui.BasePO;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class AdvancedSearchModel extends BasePO{
+public class AdvancedSearchComponent extends BasePO {
     private List<ClubCard> cards;
     @FindBy(xpath = "//label[.//span[contains(text(),'Центр')]]//span//input[@type='radio']")
     private WebElement radioCenter;
@@ -60,11 +59,12 @@ public class AdvancedSearchModel extends BasePO{
     @FindBy(xpath = "//div[contains(@class,'ant-card-body')]")
     protected List<WebElement> cardsBody;
 
-    public AdvancedSearchModel(WebDriver driver) {
+
+    public AdvancedSearchComponent(WebDriver driver) {
         super(driver);
     }
 
-    public AdvancedSearchModel chooseCity(String city) {
+    public AdvancedSearchComponent chooseCity(String city) {
 
         wait.visibility(dropDownCity);
         dropDownCity.click();
@@ -133,16 +133,16 @@ public class AdvancedSearchModel extends BasePO{
     }
 
 
-    public AdvancedSearchModel clickRadioCenter() {
+    public AdvancedSearchComponent clickRadioCenter() {
         radioCenter.click();
         return this;
     }
-    public AdvancedSearchModel clickRadioClub() {
+    public AdvancedSearchComponent clickRadioClub() {
         radioClub.click();
         return this;
     }
 
-    public AdvancedSearchModel clickRemote() {
+    public AdvancedSearchComponent clickRemote() {
         checkBoxRemote.click();
         return this;
     }
@@ -164,30 +164,30 @@ public class AdvancedSearchModel extends BasePO{
         return valueAgeChildField.getAttribute("value");
     }
 
-    public AdvancedSearchModel enterNumberAge(String ageNumber) {
+    public AdvancedSearchComponent enterNumberAge(String ageNumber) {
         inputAgeChildField.sendKeys(ageNumber);
         sleep(2);
         return this;
     }
 
-    public AdvancedSearchModel clickSortAlphabetical() {
+    public AdvancedSearchComponent clickSortAlphabetical() {
         sortAlphabetical.click();
         sleep(2);
         return this;
     }
 
-    public AdvancedSearchModel clickSortDescending() {
+    public AdvancedSearchComponent clickSortDescending() {
         sortDescending.click();
         return this;
     }
 
-    public AdvancedSearchModel clickSortAscending() {
+    public AdvancedSearchComponent clickSortAscending() {
         sortAscending.click();
         sleep(2);
         return this;
     }
 
-    public AdvancedSearchModel clickSortByRating() {
+    public AdvancedSearchComponent clickSortByRating() {
         sortByRating.click();
         return this;
     }
@@ -207,7 +207,7 @@ public class AdvancedSearchModel extends BasePO{
         return alphabeticalCardsList.stream().sorted().collect(Collectors.toList());
     }
 
-    public AdvancedSearchModel clearCityField() {
+    public AdvancedSearchComponent clearCityField() {
         cityInputField.isEnabled();
         return this;
     }

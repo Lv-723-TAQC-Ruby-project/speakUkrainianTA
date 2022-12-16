@@ -25,6 +25,7 @@ public class ClubsSortingTest extends BaseTestRunner {
     public void verifyThatTheClubsCanBeSortedByRating() {
         int ratingChecking = new HomePage(driver)
                 .openAdvancedSearch()
+                .getAdvancedSearchComponent()
                 .clearCityField()
                 .clickSortByRatingReturnClubs()
                 .getCard(0)
