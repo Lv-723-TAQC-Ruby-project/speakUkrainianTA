@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -194,7 +195,17 @@ public class AdvancedSearchModel extends BasePO{
         return alphabeticalCardsList.stream().sorted().collect(Collectors.toList());
     }
 
-
-
-
+   public List<ClubCard> getCards() {
+       ArrayList<String> obtainedList = new ArrayList<>();
+       List<WebElement> elementList = driver.findElements(By.xpath("//div[contains(@class,'ant-card ant-card-bordered card')]"));
+       for (WebElement we : elementList) {
+           obtainedList.add(we.getText());
+       }
+       ArrayList<String> sortedList = new ArrayList<>();
+       for (String s : obtainedList) {
+           sortedList.add(s);
+           Collections.sort(sortedList);
+       }
+       return cards;
+   }
 }

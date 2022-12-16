@@ -1,18 +1,14 @@
-package com.ita.edu.speakua.ui.Pages.CenterPO;
+package com.ita.edu.speakua.ui.Pages.ChallengePО.CenterPO;
 
 import com.ita.edu.speakua.ui.BasePO;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.devtools.v106.indexeddb.model.Key;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 public class AddLocationCenterModel extends BasePO {

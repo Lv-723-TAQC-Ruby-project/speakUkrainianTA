@@ -11,6 +11,7 @@ import com.ita.edu.speakua.ui.profilemenu.UserProfileMenu;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -148,31 +149,19 @@ public class examplesTest extends BaseTestRunner {
     @Test
     public void sortAdvancedSearchTest() {
         new HeaderComponent(driver)
-                .openAdvancedSearch();
-        new AdvancedSearchModel(driver)
+                .openAdvancedSearch()
                 .clickSortAlphabetical()
                 .clickSortAscending();
-        ArrayList<String> obtainedList = new ArrayList<>();
-        List<WebElement> elementList = driver.findElements(By.xpath("//div[contains(@class,'ant-card ant-card-bordered card')]"));
-        for (WebElement we : elementList) {
-//            try {
-//                WebElement button = driver.findElement(By.xpath("//div[contains(@class,'ant-card ant-card-bordered card')]"));
-//                button.click();
-//            }
-//            catch(org.openqa.selenium.StaleElementReferenceException ex)
-//            {
-//                WebElement button = driver.findElement(By.xpath("//div[contains(@class,'ant-card ant-card-bordered card')]"));
-//                button.click();
-//            }
-            obtainedList.add(we.getText());
+        WebElement element = driver.findElement(By.xpath("//div[@class='name']"));
+        Select se = new Select(element);
+        List<String> originalList = new ArrayList();
+        for (WebElement e : se.getOptions()) {
+            originalList.add(e.getText());
         }
-        ArrayList<String> sortedList = new ArrayList<>();
-        for (String s : obtainedList) {
-            sortedList.add(s);
-            Collections.sort(sortedList);
-            Assert.assertTrue(sortedList.equals(obtainedList));
+        List<String> tempList= originalList;
+        Collections.sort(tempList);
+        Assert.assertEquals(tempList, originalList);
 //            Assert.assertEquals(sortedAlphabeticallyAscending.getClubTitle(),sortedAlphabeticallyAscending.cardsAlphabetically(),"cards don't sorted");
-        }
     }
 
 
