@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ClubsPage extends BasePageWithHeader {
 
@@ -15,7 +16,6 @@ public class ClubsPage extends BasePageWithHeader {
     protected List<WebElement> cardsBody;
     private List<ClubCard> cards;
     private AdvancedSearchComponent advancedSearchComponent;
-
     public ClubsPage(WebDriver driver) {
         super(driver);
     }
@@ -28,12 +28,20 @@ public class ClubsPage extends BasePageWithHeader {
         return cards;
     }
 
-    public ClubCard getCard(int id) {
-        return getCards().get(id);
+    public ClubCard getCard(int id) { return getCards().get(id); }
+
+    public ClubCard getCardByName(String name){
+        for (ClubCard card: getCards()) {
+            if (Objects.equals(card.getTitleInMyProfile(), name)){
+                return card;
+            }
+        }
+        return null;
     }
 
     public AdvancedSearchComponent getAdvancedSearchComponent() {
         advancedSearchComponent = new AdvancedSearchComponent(driver);
         return advancedSearchComponent;
     }
+
 }

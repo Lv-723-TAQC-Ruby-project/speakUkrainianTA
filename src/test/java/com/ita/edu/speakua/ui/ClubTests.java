@@ -1,7 +1,9 @@
 package com.ita.edu.speakua.ui;
 
 import com.ita.edu.speakua.ui.Pages.ClubsPO.AddClubModel;
+import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubPage;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -80,6 +82,47 @@ public class ClubTests extends BaseTestRunner {
         softAssert.assertTrue(addClubModel.enterClubDescription("!#$%&'()*+,-./:;<=>?@[]^_`{}~%^$#)&&^^(_&($%^#@!").successMessageDisplayed());
         addClubModel.finishAddingCenter();
         softAssert.assertTrue(addClubModel.completeButtonEnabled());
+    }
+
+    @Test
+    public void VerifyCreatingClubAndFindingInformationAboutItTest() {
+        new HomePage(driver)
+                .openUserProfileMenu()
+                .openAddClubModel()
+                .EnterNameClub("Малявки")
+                .selectCategoryByName("Спортивні секції")
+                .enterFromAge("8")
+                .enterToAge("16")
+                .enterBelongingToCenter("Курси програмування IT-stat")
+                .clickNextStep()
+                .enterPhoneNumber("0934444444")
+                .clickNextStep()
+                .enterClubDescription("Відділення образотворчого та декоративного мистецтва відкрите з моменту заснування Студії.У 2005р. відбулась перша виставка робіт учасників Студії у Львівському обласному палаці мистецтв.")
+                .finishAddingCenter();
+        new HomePage(driver)
+                .openUserProfileMenu()
+                .openMyProfileModel()
+                .getClubsPage()
+                .getCardByName("Малявки")
+                .getDetailInformation();
+        String checkInformationAboutCenterByNumber = new ClubPage(driver)
+                .getNumberPhone();
+        Assert.assertEquals(checkInformationAboutCenterByNumber, "+380934444444");
+        boolean checkInformationAboutCenterByDescription = new ClubPage(driver).getDescriptionAboutCenter("Відділення образотворчого та декоративного мистецтва відкрите з моменту заснування Студії.У 2005р. відбулась перша виставка робіт учасників Студії у Львівському обласному палаці мистецтв.");
+        Assert.assertTrue(checkInformationAboutCenterByDescription);
+    }
+
+    @Test
+    public void VerifyEditingClubAndFindingInformationAboutItTest() {
+        new HomePage(driver)
+                .openGuestProfileMenu()
+                .openLoginModel()
+                .enterEmail(configProperties.getAdminEmail())
+                .enterPassword(configProperties.getAdminPassword())
+                .clickLogin()
+                .openUserProfileMenu()
+                .openMyProfileModel();
+
     }
 
     @AfterClass
