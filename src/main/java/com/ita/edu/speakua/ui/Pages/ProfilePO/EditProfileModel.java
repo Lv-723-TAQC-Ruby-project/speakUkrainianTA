@@ -113,9 +113,7 @@ public class EditProfileModel extends BasePO {
 
     public EditProfileModel enterLastName(String lastName) {
         editLastNameField.sendKeys(Keys.DELETE);
-        sleep(1);
         editLastNameField.sendKeys(lastName);
-        sleep(2);
         return this;
     }
 
@@ -126,9 +124,8 @@ public class EditProfileModel extends BasePO {
 
     public EditProfileModel enterNumberPhone(String numberPhone) {
         editNumberPhoneField.sendKeys(Keys.DELETE);
-        sleep(1);
+        wait.visibility(editNumberPhoneField);
         editNumberPhoneField.sendKeys(numberPhone);
-        sleep(2);
         return this;
     }
 
