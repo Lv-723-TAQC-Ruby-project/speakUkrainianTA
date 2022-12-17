@@ -1,12 +1,20 @@
 package com.ita.edu.speakua.ui;
 
 import com.ita.edu.speakua.ui.Pages.ClubsPO.AdvancedSearchComponent;
+import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubCard;
+import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubsPage;
+import com.ita.edu.speakua.ui.headercomponent.HeaderComponent;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class AdvancedSearchTest extends BaseTestRunner {
 
@@ -88,6 +96,43 @@ public class AdvancedSearchTest extends BaseTestRunner {
 
         softAssert.assertAll();
     }
+
+    @Test
+    public void sortAlphabeticallySuccessTest() {
+        boolean openSearch = new HeaderComponent(driver)
+                .openAdvancedSearch()
+                .getAdvancedSearchComponent()
+                .isAdvancedSearchOpen();
+        Assert.assertTrue(openSearch);
+        ClubsPage sortAlphabeticallyAscending = new AdvancedSearchComponent(driver)
+                .clickRadioCenter()
+                .clickSortAlphabetical()
+                .clickSortAscending()
+                .getClubPage();
+        List<ClubCard> cards = sortAlphabeticallyAscending.getCards();
+        ArrayList<String> listTitle = new ArrayList<>();
+        for (ClubCard card : cards) {
+            listTitle.add(card.getTitleOfCenter());
+        }
+        ArrayList<String> sortedList = new ArrayList<>(listTitle);
+        Collections.sort(sortedList);
+        Assert.assertEquals(listTitle, sortedList, "Cards don't sort");
+
+
+        ClubsPage sortAlphabeticallyDescending = new AdvancedSearchComponent(driver)
+                .clickSortDescending()
+                .getClubPage();
+        List<ClubCard> cardsDesceninng = sortAlphabeticallyDescending.getCards();
+        ArrayList<String> listTitleDesceninng = new ArrayList<>();
+        for (ClubCard card : cardsDesceninng) {
+            listTitleDesceninng.add(card.getTitleOfCenter());
+        }
+        ArrayList<String> sortedListDesk = new ArrayList<>(listTitleDesceninng);
+        sortedListDesk.sort(Collections.reverseOrder());
+        Assert.assertEquals(listTitleDesceninng, sortedListDesk, "Cards don't sort");
+
+    }
+
 
     @AfterClass
     public void tearDown() {

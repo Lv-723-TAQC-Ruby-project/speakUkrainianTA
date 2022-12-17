@@ -158,8 +158,9 @@ public class AdvancedSearchComponent extends BasePO {
     }
 
     public AdvancedSearchComponent clickSortAlphabetical() {
-        sortAlphabetical.click();
-        sleep(2);
+        wait.visibility(sortAlphabetical);
+        action.click(sortAlphabetical);
+        sleep(3);
         return this;
     }
 
@@ -169,8 +170,9 @@ public class AdvancedSearchComponent extends BasePO {
     }
 
     public AdvancedSearchComponent clickSortAscending() {
-        sortAscending.click();
-        sleep(2);
+        wait.visibility(sortAscending);
+        action.click(sortAscending);
+        sleep(3);
         return this;
     }
 
@@ -197,6 +199,10 @@ public class AdvancedSearchComponent extends BasePO {
     public AdvancedSearchComponent clearCityField() {
         cityInputField.isEnabled();
         return this;
+    }
+
+    public ClubsPage getClubPage(){
+        return new ClubsPage(driver);
     }
 
 

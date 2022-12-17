@@ -115,11 +115,10 @@ public class examplesTest extends BaseTestRunner {
         ArrayList<String> listTitle = new ArrayList<>();
         for (ClubCard card : cards) {
             listTitle.add(card.getTitle());
-//            Assert.assertEquals(sortedAlphabeticallyAscending.getClubTitle(),sortedAlphabeticallyAscending.cardsAlphabetically(),"cards don't sorted");
         }
         ArrayList<String> sortedList = new ArrayList<>(listTitle);
         Collections.sort(sortedList);
-        Assert.assertEquals(sortedList, sortedList);
+        Assert.assertEquals(listTitle, sortedList);
 
 //        ArrayList<String> obtainedList = new ArrayList<>();
 //        List<WebElement> elementList = driver.findElements(By.xpath("//div[contains(@class,'ant-card ant-card-bordered card')]"));
@@ -143,9 +142,6 @@ public class examplesTest extends BaseTestRunner {
 ////            Assert.assertEquals(sortedAlphabeticallyAscending.getClubTitle(),sortedAlphabeticallyAscending.cardsAlphabetically(),"cards don't sorted");
 //        }
     }
-
-
-
 
 
     @AfterMethod
