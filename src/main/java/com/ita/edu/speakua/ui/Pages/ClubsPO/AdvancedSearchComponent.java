@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -153,13 +154,12 @@ public class AdvancedSearchComponent extends BasePO {
 
     public AdvancedSearchComponent enterNumberAge(String ageNumber) {
         inputAgeChildField.sendKeys(ageNumber);
-        sleep(2);
+        wait.visibility(inputAgeChildField);
         return this;
     }
 
     public AdvancedSearchComponent clickSortAlphabetical() {
         sortAlphabetical.click();
-        sleep(2);
         return this;
     }
 
@@ -170,7 +170,6 @@ public class AdvancedSearchComponent extends BasePO {
 
     public AdvancedSearchComponent clickSortAscending() {
         sortAscending.click();
-        sleep(2);
         return this;
     }
 
@@ -197,6 +196,9 @@ public class AdvancedSearchComponent extends BasePO {
     public AdvancedSearchComponent clearCityField() {
         cityInputField.isEnabled();
         return this;
+    }
+    public ClubsPage getClubPage(){
+        return new ClubsPage(driver);
     }
 
 

@@ -14,6 +14,12 @@ public class ClubCard extends BasePO {
     protected WebElement cardBody;
     @FindBy(xpath = ".//div[@class='title']")
     protected WebElement title;
+
+    @FindBy(xpath = "//div[@class='center-name']")
+    protected WebElement titleOfCenter;
+
+    @FindBy(xpath = "//div[@class='title-name']")
+    protected WebElement titleCardInMyProfile;
     @FindBy(xpath = "//ul[@class='ant-rate ant-rate-disabled rating'")
     private WebElement ratingStars;
     @FindBy(xpath = "//li[@class='ant-rate-star ant-rate-star-full'")
@@ -22,6 +28,14 @@ public class ClubCard extends BasePO {
     private WebElement emptyRatingStar;
     @FindBy(xpath = "//div[@class='ant-card-body'")
     private WebElement clubCard;
+
+    @FindBy(xpath = "//a[text()='Детальніше']")
+    private WebElement detailButton;
+
+    @FindBy(xpath = "//span[@class='ant-dropdown-menu-title-content']//div[text()='Редагувати гурток']")
+    private WebElement editClubButton;
+    @FindBy(xpath = "//div[@class='update-club-dropdown']")
+    private WebElement menuClubButton;
 
     public ClubCard(WebDriver driver) {
         super(driver);
@@ -39,8 +53,28 @@ public class ClubCard extends BasePO {
     }
 
     public String getTitle() {
+        wait.visibility(title);
         return this.title.getText();
     }
 
+    public String getTitleOfCenter() {
+        return this.titleOfCenter.getText();
+    }
+    public String getTitleInMyProfile() {
+        wait.visibility(titleCardInMyProfile);
+        return this.titleCardInMyProfile.getText();
+    }
+    public ClubPage getDetailInformation() {
+        wait.visibility(detailButton);
+        action.click(detailButton);
+        return new ClubPage(driver);
+    }
 
+    public EditClubModel openEditClubModel() {
+        wait.visibility(menuClubButton);
+        action.click(menuClubButton);
+        wait.visibility(editClubButton);
+        action.click(editClubButton);
+        return new EditClubModel(driver);
+    }
 }
