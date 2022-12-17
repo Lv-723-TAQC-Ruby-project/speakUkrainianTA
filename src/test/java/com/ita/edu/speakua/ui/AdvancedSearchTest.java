@@ -120,6 +120,8 @@ public class AdvancedSearchTest extends BaseTestRunner {
 
 
         ClubsPage sortAlphabeticallyDescending = new AdvancedSearchComponent(driver)
+                .clickRadioCenter()
+                .clickSortAlphabetical()
                 .clickSortDescending()
                 .getClubPage();
         List<ClubCard> cardsDesceninng = sortAlphabeticallyDescending.getCards();
