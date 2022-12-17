@@ -20,13 +20,16 @@ public class ClubCard extends BasePO {
 
     @FindBy(xpath = "//div[@class='title-name']")
     protected WebElement titleCardInMyProfile;
-    @FindBy(xpath = "//ul[@class='ant-rate ant-rate-disabled rating'")
+
+    @FindBy(xpath = "//ul[@class='ant-rate ant-rate-disabled'")
     private WebElement ratingStars;
+
     @FindBy(xpath = "//li[@class='ant-rate-star ant-rate-star-full'")
     private WebElement fullRatingStar;
+
     @FindBy(xpath = "//li[@class='ant-rate-star ant-rate-star-zero'")
     private WebElement emptyRatingStar;
-    @FindBy(xpath = "//div[@class='ant-card-body'")
+    @FindBy(xpath = "//div[@class='ant-card ant-card-bordered card'")
     private WebElement clubCard;
 
     @FindBy(xpath = "//a[text()='Детальніше']")

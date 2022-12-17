@@ -3,7 +3,9 @@ package com.ita.edu.speakua.ui;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubCard;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubsPage;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -22,15 +24,27 @@ public class ClubsSortingTest extends BaseTestRunner {
     }
 
     @Test
-    public void verifyThatTheClubsCanBeSortedByRating() {
-        int ratingChecking = new HomePage(driver)
+    public void verifyThatTheClubsCanBeSortedByRatingAsc() {
+        int rating = new HomePage(driver)
                 .openAdvancedSearch()
                 .getAdvancedSearchComponent()
-                .clearCityField()
                 .clickSortByRatingReturnClubs()
                 .getCard(0)
                 .getRatingStars();
-        //not completed
+        Assert.assertEquals(rating, 0);
+    }
+
+    @Test
+    public void verifyThatTheClubsCanBeSortedByRatingDsc() {
+        int rating = new HomePage(driver)
+                .openAdvancedSearch()
+                .getAdvancedSearchComponent()
+                .clickSortDescending()
+                .getClubPage()
+                .getCards()
+                .get(0)
+                .getRatingStars();
+        Assert.assertEquals(rating, 5);
     }
 
 
