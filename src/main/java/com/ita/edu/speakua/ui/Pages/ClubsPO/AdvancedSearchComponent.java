@@ -183,9 +183,7 @@ public class AdvancedSearchComponent extends BasePO {
         sortByRating.click();
         return new ClubsPage(driver);
     }
-
-
-
+    
     public AdvancedSearchComponent clearCityField() {
         cityInputField.isEnabled();
         return this;
