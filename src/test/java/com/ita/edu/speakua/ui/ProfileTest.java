@@ -12,17 +12,22 @@ public class ProfileTest extends BaseTestRunner {
     @BeforeClass
     public void setUp() {
         setDriver();
+        new HomePage(driver)
+                .openGuestProfileMenu()
+                .openLoginModel()
+                .enterEmail(configProperties.getAdminEmail())
+                .enterPassword(configProperties.getAdminPassword())
+                .clickLogin();
     }
 
     @BeforeMethod
     public void goHomePage() {
-        driver.get(configProperties.getBaseWebUrl());
-    }
+        driver.get(configProperties.getBaseWebUrl());}
 
     @Test
     public void MessageAboutIncorrectlyEnteredLastNameTest() {
         SoftAssert softAssert = new SoftAssert();
-        EditProfileModel editProfileModel = new HomePage(driver).openGuestProfileMenu().openLoginModel().enterEmail(configProperties.getAdminEmail()).enterPassword(configProperties.getAdminPassword()).clickLogin().openUserProfileMenu().openMyProfileModel().openEditProfileModel();
+        EditProfileModel editProfileModel = new HomePage(driver).openUserProfileMenu().openMyProfileModel().openEditProfileModel();
         boolean isMassageMore25Characters = editProfileModel.enterLastName("AfBbCcDdEeFfGgHhIiJjKkLlMmNn").isOpenMassageErrorLastNameContain("Прізвище не може містити більше, ніж 25 символів");
         softAssert.assertTrue(isMassageMore25Characters, "the message more 25 characters check failed");
         boolean isMassageWithSpecialCharacters = editProfileModel.enterLastName("!@#$%^&,").isOpenMassageErrorLastNameContain("Прізвище не може містити спеціальні символи");
@@ -49,7 +54,7 @@ public class ProfileTest extends BaseTestRunner {
     @Test
     public void MessageAboutIncorrectlyEnteredNumberPhoneTest() {
         SoftAssert softAssert = new SoftAssert();
-        EditProfileModel editProfileModel = new HomePage(driver).openGuestProfileMenu().openLoginModel().enterEmail(configProperties.getAdminEmail()).enterPassword(configProperties.getAdminPassword()).clickLogin().openUserProfileMenu().openMyProfileModel().openEditProfileModel();
+        EditProfileModel editProfileModel = new HomePage(driver).openUserProfileMenu().openMyProfileModel().openEditProfileModel();
         boolean isMassageLessThan13Symbols = editProfileModel.enterNumberPhone("06895").isOpenMassageErrorPhoneContain("Телефон не відповідає вказаному формату");
         softAssert.assertTrue(isMassageLessThan13Symbols, "the message less than 13 symbols check failed");
         boolean isMassageMoreThan13Symbols = editProfileModel.enterNumberPhone("06593859632586").isOpenMassageErrorPhoneContain("Телефон не відповідає вказаному формату");
