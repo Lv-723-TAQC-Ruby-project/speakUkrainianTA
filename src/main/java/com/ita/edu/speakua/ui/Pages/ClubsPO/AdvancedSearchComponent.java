@@ -154,6 +154,7 @@ public class AdvancedSearchComponent extends BasePO {
     }
 
     public AdvancedSearchComponent enterNumberAge(String ageNumber) {
+        wait.visibility(inputAgeChildField);
         inputAgeChildField.sendKeys(ageNumber);
         wait.visibility(inputAgeChildField);
         return this;
