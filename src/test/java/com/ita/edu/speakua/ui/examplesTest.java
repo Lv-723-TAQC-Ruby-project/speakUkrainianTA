@@ -53,12 +53,6 @@ public class examplesTest extends BaseTestRunner {
         Assert.assertEquals(actualTitle, "IT освіта: курси \"ГРАНД\"");
     }
 
-
-
-
-
-
-
     @AfterMethod
     public void tearDown() {
         if (driver != null) {
