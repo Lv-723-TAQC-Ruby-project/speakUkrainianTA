@@ -3,8 +3,6 @@ package com.ita.edu.speakua.ui;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubCard;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubsPage;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -47,14 +45,21 @@ public class ClubsSortingTest extends BaseTestRunner {
         Assert.assertEquals(rating, 5);
     }
 
-
-
-   /* @Test
+    @Test
     public void searchByNameOfClub() {
-        ClubCard searchedClubByNameAndLocation = new HomePage(driver)
+        String expectedTitle = new HomePage(driver)
                 .clickLocationButton()
-                .chooseCity("Київ");
-    }*/
+                .clickCityInTheLocationSection(0)
+                .getCard(0)
+                .getTitle();
+        String actualResult = new HomePage(driver)
+                .enterTextInTheSearchField(expectedTitle)
+                .clickSearchButton()
+                .getCards()
+                .get(0)
+                .getTitle();
+        Assert.assertEquals(actualResult, expectedTitle);
+    }
 
     @AfterClass
     public void tearDown() {

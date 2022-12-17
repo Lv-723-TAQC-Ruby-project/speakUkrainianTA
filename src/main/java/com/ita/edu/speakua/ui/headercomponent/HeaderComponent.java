@@ -6,7 +6,6 @@ import com.ita.edu.speakua.ui.profilemenu.AdminProfileMenu;
 import com.ita.edu.speakua.ui.profilemenu.GuestProfileMenu;
 import com.ita.edu.speakua.ui.profilemenu.UserProfileMenu;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,7 +22,7 @@ public class HeaderComponent extends BasePO {
     @FindBy(xpath = "//*[@data-icon='control']")
     private WebElement advancedSearchButton;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/section/section/main/section/div[1]/div[2]/div[2]/span[1]")
+    @FindBy(xpath = "//*[@data-icon='search']")
     private WebElement searchButton;
 
     @FindBy(xpath = "//div[@class='search']//input")
@@ -48,9 +47,13 @@ public class HeaderComponent extends BasePO {
         return this;
     }
 
-    public HeaderComponent chooseCity(String city) {
-        locationDropDownMenu.getAttribute(city);
-        return this;
+    public List<WebElement> getCitiesListFromLocationDropDownMenu() {
+        return locationDropDownMenu.findElements(By.tagName("li"));
+    }
+
+    public ClubsPage clickCityInTheLocationSection(int id) {
+        getCitiesListFromLocationDropDownMenu().get(id).click();
+        return new ClubsPage(driver);
     }
 
     public HeaderComponent clickSearchField() {
@@ -79,9 +82,9 @@ public class HeaderComponent extends BasePO {
         return searchListHolder.findElements(By.tagName("div"));
     }
 
-    public HeaderComponent clickSearchButton() {
+    public ClubsPage clickSearchButton() {
         searchButton.click();
-        return this;
+        return new ClubsPage(driver);
     }
 
     public GuestProfileMenu openGuestProfileMenu() {
