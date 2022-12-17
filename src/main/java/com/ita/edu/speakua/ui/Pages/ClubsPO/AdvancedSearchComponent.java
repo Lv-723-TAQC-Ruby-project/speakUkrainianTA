@@ -159,19 +159,20 @@ public class AdvancedSearchComponent extends BasePO {
     }
 
     public AdvancedSearchComponent clickSortAlphabetical() {
-        sortAlphabetical.click();
-        sleep(2);
+        wait.visibility(sortAlphabetical);
+        action.click(sortAlphabetical);
         return this;
     }
 
     public AdvancedSearchComponent clickSortDescending() {
-        sortDescending.click();
+        wait.visibility(sortDescending);
+        action.click(sortDescending);
         return this;
     }
 
     public AdvancedSearchComponent clickSortAscending() {
-        sortAscending.click();
-        sleep(2);
+        wait.visibility(sortAscending);
+        action.click(sortAscending);
         return this;
     }
 

@@ -15,7 +15,7 @@ public class ClubCard extends BasePO {
     @FindBy(xpath = ".//div[@class='title']")
     protected WebElement title;
 
-    @FindBy(xpath = "//div[@class='center-name']")
+    @FindBy(xpath = ".//div[@class='center-name']")
     protected WebElement titleOfCenter;
 
     @FindBy(xpath = "//div[@class='title-name']")
@@ -53,7 +53,6 @@ public class ClubCard extends BasePO {
     }
 
     public String getTitle() {
-        wait.visibility(title);
         return this.title.getText();
     }
 
