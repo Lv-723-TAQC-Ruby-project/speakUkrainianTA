@@ -6,6 +6,7 @@ import com.ita.edu.speakua.ui.profilemenu.AdminProfileMenu;
 import com.ita.edu.speakua.ui.profilemenu.GuestProfileMenu;
 import com.ita.edu.speakua.ui.profilemenu.UserProfileMenu;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -59,6 +60,12 @@ public class HeaderComponent extends BasePO {
 
     public HeaderComponent enterTextInTheSearchField(String input) {
         searchField.sendKeys(input);
+        return this;
+    }
+
+    public HeaderComponent enterTextInTheSearchFieldAndWait(String input, int timeToWait) {
+        searchField.sendKeys(input);
+        sleep(timeToWait);
         return this;
     }
 

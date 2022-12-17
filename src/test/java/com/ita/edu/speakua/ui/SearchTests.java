@@ -18,31 +18,31 @@ public class SearchTests extends BaseTestRunner {
         driver.get(configProperties.getBaseWebUrl());
     }
 
-    @Test
+    @Test(invocationCount = 5)
     public void oneSymbolEnteredInTheField() {
         List<WebElement> searchListInitialState = new HomePage(driver)
                 .clickSearchField()
                 .getComponentsOfTheSearchList();
         List<WebElement> searchListAfterInputtingData = new HomePage(driver)
                 .clickSearchField()
-                .enterTextInTheSearchField("j")
+                .enterTextInTheSearchFieldAndWait("з", 10)
                 .getComponentsOfTheSearchList();
-        String initial = searchListInitialState.get(1).getText();
-        String afterAllActions = searchListAfterInputtingData.get(1).getText();
+        String initial = searchListInitialState.get(3).getText();
+        String afterAllActions = searchListAfterInputtingData.get(3).getText();
         Assert.assertNotEquals(initial, afterAllActions);
     }
 
-    @Test
+    @Test(invocationCount = 10)
     public void fiftySymbolsEnteredInTheSearchField() {
         List<WebElement> searchListInitialState = new HomePage(driver)
                 .clickSearchField()
                 .getComponentsOfTheSearchList();
         List<WebElement> searchListAfterInputtingData = new HomePage(driver)
                 .clickSearchField()
-                .enterTextInTheSearchField("лпротирпавпнргошлщдзждлшогрнпеаквс65789ш/*длорпІВ")
+                .enterTextInTheSearchFieldAndWait("лпротирпавпнргошлщдзждлшогрнпеаквс65789ш/*длорпІВ", 1)
                 .getComponentsOfTheSearchList();
-        String initial = searchListInitialState.get(0).getText();
-        String afterAllActions = searchListAfterInputtingData.get(0).getText();
+        String initial = searchListInitialState.get(1).getAttribute("title");
+        String afterAllActions = searchListAfterInputtingData.get(1).getAttribute("title");
         Assert.assertNotEquals(initial, afterAllActions);
     }
 
