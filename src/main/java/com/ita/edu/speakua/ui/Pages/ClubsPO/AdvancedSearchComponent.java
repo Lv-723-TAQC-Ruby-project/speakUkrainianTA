@@ -149,18 +149,18 @@ public class AdvancedSearchComponent extends BasePO {
     }
 
     public String getAgeChildField() {
-        wait.visibility(valueAgeChildField);
         return valueAgeChildField.getAttribute("value");
     }
 
     public AdvancedSearchComponent enterNumberAge(String ageNumber) {
-        wait.visibility(inputAgeChildField);
         inputAgeChildField.sendKeys(ageNumber);
+        sleep(2);
         return this;
     }
 
     public AdvancedSearchComponent clickSortAlphabetical() {
         sortAlphabetical.click();
+        sleep(2);
         return this;
     }
 
@@ -171,6 +171,7 @@ public class AdvancedSearchComponent extends BasePO {
 
     public AdvancedSearchComponent clickSortAscending() {
         sortAscending.click();
+        sleep(2);
         return this;
     }
 
@@ -183,10 +184,23 @@ public class AdvancedSearchComponent extends BasePO {
         sortByRating.click();
         return new ClubsPage(driver);
     }
-    
+
+    public List<WebElement> getClubs() {
+        return cardsBody;
+    }
+
+    public List<WebElement> cardsAlphabetically() {
+        List<WebElement> alphabeticalCardsList = new ArrayList<>();
+        alphabeticalCardsList.addAll(cardsBody);
+        return alphabeticalCardsList.stream().sorted().collect(Collectors.toList());
+    }
+
     public AdvancedSearchComponent clearCityField() {
         cityInputField.isEnabled();
         return this;
+    }
+    public ClubsPage getClubPage(){
+        return new ClubsPage(driver);
     }
 
 
