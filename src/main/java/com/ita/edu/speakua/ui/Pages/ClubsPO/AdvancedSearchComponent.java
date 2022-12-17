@@ -43,6 +43,8 @@ public class AdvancedSearchComponent extends BasePO {
     private WebElement sortDescending;
     @FindBy(xpath = "//span[@aria-label='arrow-down']")
     private WebElement sortAscending;
+    @FindBy(xpath="//span[(@class='ant-select-clear')]" )
+    private WebElement clearCity;
     @FindBy(xpath = "//span[text()='за рейтингом']")
     private WebElement sortByRating;
 
@@ -193,9 +195,13 @@ public class AdvancedSearchComponent extends BasePO {
         return alphabeticalCardsList.stream().sorted().collect(Collectors.toList());
     }
 
-    public AdvancedSearchComponent clearCityField() {
+   /* public AdvancedSearchComponent clearCityField() {
         cityInputField.isEnabled();
         return this;
+    }*/
+    public AdvancedSearchComponent clearCityField() {
+        wait.visibility(clearCity);
+        return new AdvancedSearchComponent(driver);
     }
     public ClubsPage getClubPage(){
         return new ClubsPage(driver);

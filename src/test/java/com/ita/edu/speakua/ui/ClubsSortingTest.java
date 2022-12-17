@@ -28,6 +28,7 @@ public class ClubsSortingTest extends BaseTestRunner {
         int rating = new HomePage(driver)
                 .openAdvancedSearch()
                 .getAdvancedSearchComponent()
+                .clearCityField()
                 .clickSortByRatingReturnClubs()
                 .getCard(0)
                 .getRatingStars();
@@ -39,6 +40,7 @@ public class ClubsSortingTest extends BaseTestRunner {
         int rating = new HomePage(driver)
                 .openAdvancedSearch()
                 .getAdvancedSearchComponent()
+                .clearCityField()
                 .clickSortDescending()
                 .getClubPage()
                 .getCards()

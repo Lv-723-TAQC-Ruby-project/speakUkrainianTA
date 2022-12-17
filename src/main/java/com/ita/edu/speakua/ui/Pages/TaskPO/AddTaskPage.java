@@ -60,14 +60,6 @@ public class AddTaskPage extends BasePO {
         return taskDescription;
     }
 
-    public WebElement getChooseChallenge() {
-        return chooseChallenge;
-    }
-
-    public WebElement getChallenge() {
-        return challenge;
-    }
-
     public WebElement getErrorMessage() {
         return errorMessage;
     }

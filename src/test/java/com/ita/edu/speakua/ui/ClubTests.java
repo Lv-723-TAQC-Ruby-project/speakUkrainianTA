@@ -112,7 +112,7 @@ public class ClubTests extends BaseTestRunner {
         Assert.assertTrue(checkInformationAboutCenterByDescription);
     }
 
-    @Test
+ /*   @Test
     public void VerifyEditingClubAndFindingInformationAboutItTest() {
         new HomePage(driver)
                 .openGuestProfileMenu()
@@ -123,7 +123,7 @@ public class ClubTests extends BaseTestRunner {
                 .openUserProfileMenu()
                 .openMyProfileModel();
 
-    }
+    }*/
 
     @AfterClass
     public void tearDown() {
