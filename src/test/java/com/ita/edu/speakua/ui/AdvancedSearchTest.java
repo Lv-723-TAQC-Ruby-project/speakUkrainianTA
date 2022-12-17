@@ -1,12 +1,20 @@
 package com.ita.edu.speakua.ui;
 
 import com.ita.edu.speakua.ui.Pages.ClubsPO.AdvancedSearchComponent;
+import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubCard;
+import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubsPage;
+import com.ita.edu.speakua.ui.headercomponent.HeaderComponent;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class AdvancedSearchTest extends BaseTestRunner {
 
@@ -87,6 +95,36 @@ public class AdvancedSearchTest extends BaseTestRunner {
         softAssert.assertFalse(advancedSearchComponent.isAgeChildActive(),"Did find child age field");
 
         softAssert.assertAll();
+    }
+
+    @Test
+    public void InputAgeChildTest() {
+        SoftAssert softAssert = new SoftAssert();
+        AdvancedSearchComponent advancedSearchComponent = new HomePage(driver).openAdvancedSearch().getAdvancedSearchComponent();
+        String textNumber1 = advancedSearchComponent.enterNumberAge("1").getAgeChildField();
+        softAssert.assertEquals(textNumber1, "2", "check failed with number 1");
+        String textNumber2 = advancedSearchComponent.enterNumberAge("2").getAgeChildField();
+        softAssert.assertEquals(textNumber2, "2", "check failed with number 2");
+        String textNumber18 = advancedSearchComponent.enterNumberAge("18").getAgeChildField();
+        softAssert.assertEquals(textNumber18, "18", "check failed with number 18");
+        String textNumber19 = advancedSearchComponent.enterNumberAge("19").getAgeChildField();
+        softAssert.assertEquals(textNumber19, "18", "check failed with number 19");
+        softAssert.assertAll();
+    }
+
+    @Test
+    public void sortAdvancedSearchTest() {
+        ClubsPage clubsPage = new HeaderComponent(driver).openAdvancedSearch();
+        clubsPage
+                .getAdvancedSearchComponent().clickSortAlphabetical().clickSortAscending();
+        List<ClubCard> cards = clubsPage.getCards();
+        ArrayList<String> listTitle = new ArrayList<>();
+        for (ClubCard card : cards) {
+            listTitle.add(card.getTitle());
+        }
+        ArrayList<String> sortedList = new ArrayList<>(listTitle);
+        Collections.sort(sortedList);
+        Assert.assertEquals(listTitle, sortedList);
     }
 
     @AfterClass

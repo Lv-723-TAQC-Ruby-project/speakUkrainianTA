@@ -28,7 +28,8 @@ public class MyProfilePage extends BasePO {
     }
 
     public EditProfileModel openEditProfileModel() {
-        editProfileButton.click();
+        wait.visibility(editProfileButton);
+        action.click(editProfileButton);
         return new EditProfileModel(driver);
     }
 
