@@ -44,7 +44,7 @@ public class ClubsSortingTest extends BaseTestRunner {
     }
 
     @Test
-    public void searchByNameOfClub() {
+    public void searchByNameOfClubAttachedToTheLocation() {
         String expectedTitle = new HomePage(driver)
                 .clickLocationButton()
                 .clickCityInTheLocationSection(0)
