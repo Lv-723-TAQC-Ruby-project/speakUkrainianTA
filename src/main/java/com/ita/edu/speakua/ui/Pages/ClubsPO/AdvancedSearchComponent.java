@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,7 +22,7 @@ public class AdvancedSearchComponent extends BasePO {
     private WebElement radioValue;
     @FindBy(xpath = "//input[@id='basic_cityName']//ancestor::div[contains(@class,'selector')]")
     private WebElement dropDownCity;
-    @FindBy(xpath = "//*[@id=\"basic_cityName\"]")
+    @FindBy(xpath = "//*[@id='basic_cityName']")
     private WebElement cityInputField;
     @FindBy(xpath = "//div[@id='basic_cityName_list']/ancestor::div[not(@class)][1]")
     private WebElement dropDownCityList;

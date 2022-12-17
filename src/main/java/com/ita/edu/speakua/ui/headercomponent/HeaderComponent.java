@@ -31,7 +31,7 @@ public class HeaderComponent extends BasePO {
     @FindBy(xpath = "//div[contains(@class, 'rc-virtual-list-holder-inner')]")
     private WebElement searchListHolder;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/section/header/div[3]/div[1]")
+    @FindBy(xpath = "//*[@id='root']/section/header/div[3]/div[1]")
     private WebElement locationButton;
 
     @FindBy(xpath = "//ul[contains(@class, 'ant-dropdown-menu ant-dropdown-menu-root ant-dropdown-menu-vertical ant-dropdown-menu-light')]")
