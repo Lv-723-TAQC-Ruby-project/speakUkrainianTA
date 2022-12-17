@@ -153,6 +153,7 @@ public class AdvancedSearchComponent extends BasePO {
     }
 
     public AdvancedSearchComponent enterNumberAge(String ageNumber) {
+        wait.visibility(inputAgeChildField);
         inputAgeChildField.sendKeys(ageNumber);
         sleep(2);
         return this;
@@ -165,8 +166,7 @@ public class AdvancedSearchComponent extends BasePO {
     }
 
     public AdvancedSearchComponent clickSortDescending() {
-        wait.visibility(sortDescending);
-        action.click(sortDescending);
+        sortDescending.click();
         return this;
     }
 

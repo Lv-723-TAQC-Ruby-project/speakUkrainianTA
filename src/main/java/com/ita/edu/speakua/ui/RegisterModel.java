@@ -1,5 +1,6 @@
 package com.ita.edu.speakua.ui;
 
+import com.ita.edu.speakua.ui.headercomponent.HeaderComponent;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

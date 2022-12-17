@@ -1,4 +1,4 @@
-package com.ita.edu.speakua.ui.Pages.ChallengePО.CenterPO;
+package com.ita.edu.speakua.ui.Pages.CenterPO;
 
 import com.ita.edu.speakua.ui.BasePO;
 import org.openqa.selenium.By;

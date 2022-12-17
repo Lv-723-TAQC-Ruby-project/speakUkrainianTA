@@ -112,25 +112,28 @@ public class EditProfileModel extends BasePO {
     }
 
     public EditProfileModel enterLastName(String lastName) {
-        editLastNameField.sendKeys(Keys.DELETE);
+        editLastNameField.clear();
+        wait.visibility(editLastNameField);
         editLastNameField.sendKeys(lastName);
         return this;
     }
 
     public EditProfileModel deleteLastName() {
-        editLastNameField.sendKeys(Keys.DELETE);
+        editLastNameField.clear();
+        wait.visibility(editLastNameField);
         return this;
     }
 
     public EditProfileModel enterNumberPhone(String numberPhone) {
-        editNumberPhoneField.sendKeys(Keys.DELETE);
+        editNumberPhoneField.clear();
         wait.visibility(editNumberPhoneField);
         editNumberPhoneField.sendKeys(numberPhone);
         return this;
     }
 
     public EditProfileModel deleteNumberPhone() {
-        editNumberPhoneField.sendKeys(Keys.DELETE);
+        editNumberPhoneField.clear();
+        wait.visibility(editNumberPhoneField);
         return this;
     }
 }

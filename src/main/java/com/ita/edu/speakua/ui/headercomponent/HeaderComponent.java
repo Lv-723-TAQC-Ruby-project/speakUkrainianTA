@@ -22,7 +22,7 @@ public class HeaderComponent extends BasePO {
     @FindBy(xpath = "//*[@data-icon='control']")
     private WebElement advancedSearchButton;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/section/section/main/section/div[1]/div[2]/div[2]/span[1]")
+    @FindBy(xpath = "//*[@data-icon='search']")
     private WebElement searchButton;
 
     @FindBy(xpath = "//div[@class='search']//input")
@@ -31,7 +31,7 @@ public class HeaderComponent extends BasePO {
     @FindBy(xpath = "//div[contains(@class, 'rc-virtual-list-holder-inner')]")
     private WebElement searchListHolder;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/section/header/div[3]/div[1]")
+    @FindBy(xpath = "//*[@id='root']/section/header/div[3]/div[1]")
     private WebElement locationButton;
 
     @FindBy(xpath = "//ul[contains(@class, 'ant-dropdown-menu ant-dropdown-menu-root ant-dropdown-menu-vertical ant-dropdown-menu-light')]")
@@ -47,9 +47,13 @@ public class HeaderComponent extends BasePO {
         return this;
     }
 
-    public HeaderComponent chooseCity(String city) {
-        locationDropDownMenu.getAttribute(city);
-        return this;
+    public List<WebElement> getCitiesListFromLocationDropDownMenu() {
+        return locationDropDownMenu.findElements(By.tagName("li"));
+    }
+
+    public ClubsPage clickCityInTheLocationSection(int id) {
+        getCitiesListFromLocationDropDownMenu().get(id).click();
+        return new ClubsPage(driver);
     }
 
     public HeaderComponent clickSearchField() {
@@ -59,6 +63,12 @@ public class HeaderComponent extends BasePO {
 
     public HeaderComponent enterTextInTheSearchField(String input) {
         searchField.sendKeys(input);
+        return this;
+    }
+
+    public HeaderComponent enterTextInTheSearchFieldAndWait(String input, int timeToWait) {
+        searchField.sendKeys(input);
+        sleep(timeToWait);
         return this;
     }
 
@@ -72,9 +82,9 @@ public class HeaderComponent extends BasePO {
         return searchListHolder.findElements(By.tagName("div"));
     }
 
-    public HeaderComponent clickSearchButton() {
+    public ClubsPage clickSearchButton() {
         searchButton.click();
-        return this;
+        return new ClubsPage(driver);
     }
 
     public GuestProfileMenu openGuestProfileMenu() {

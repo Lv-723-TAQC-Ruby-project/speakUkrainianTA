@@ -28,8 +28,8 @@ public class LoginModel extends BasePO {
     }
 
     public HomePage clickLogin() {
-        wait.visibility(loginButton);
-        action.click(loginButton);
+    loginButton.click();
+
         return new HomePage(driver);
     }
 
