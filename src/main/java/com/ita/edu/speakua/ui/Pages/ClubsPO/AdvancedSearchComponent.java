@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,7 +23,7 @@ public class AdvancedSearchComponent extends BasePO {
     private WebElement radioValue;
     @FindBy(xpath = "//input[@id='basic_cityName']//ancestor::div[contains(@class,'selector')]")
     private WebElement dropDownCity;
-    @FindBy(xpath = "//*[@id='basic_cityName']")
+    @FindBy(xpath = "//*[@id=\"basic_cityName\"]")
     private WebElement cityInputField;
     @FindBy(xpath = "//div[@id='basic_cityName_list']/ancestor::div[not(@class)][1]")
     private WebElement dropDownCityList;
@@ -42,8 +43,6 @@ public class AdvancedSearchComponent extends BasePO {
     private WebElement sortDescending;
     @FindBy(xpath = "//span[@aria-label='arrow-down']")
     private WebElement sortAscending;
-    @FindBy(xpath="//span[(@class='ant-select-clear')]" )
-    private WebElement clearCity;
     @FindBy(xpath = "//span[text()='за рейтингом']")
     private WebElement sortByRating;
 
@@ -154,13 +153,15 @@ public class AdvancedSearchComponent extends BasePO {
     }
 
     public AdvancedSearchComponent enterNumberAge(String ageNumber) {
-        inputAgeChildField.sendKeys(ageNumber);
         wait.visibility(inputAgeChildField);
+        inputAgeChildField.sendKeys(ageNumber);
+        sleep(2);
         return this;
     }
 
     public AdvancedSearchComponent clickSortAlphabetical() {
-        sortAlphabetical.click();
+        wait.visibility(sortAlphabetical);
+        action.click(sortAlphabetical);
         return this;
     }
 
@@ -170,7 +171,8 @@ public class AdvancedSearchComponent extends BasePO {
     }
 
     public AdvancedSearchComponent clickSortAscending() {
-        sortAscending.click();
+        wait.visibility(sortAscending);
+        action.click(sortAscending);
         return this;
     }
 
@@ -194,13 +196,9 @@ public class AdvancedSearchComponent extends BasePO {
         return alphabeticalCardsList.stream().sorted().collect(Collectors.toList());
     }
 
-   /* public AdvancedSearchComponent clearCityField() {
+    public AdvancedSearchComponent clearCityField() {
         cityInputField.isEnabled();
         return this;
-    }*/
-    public AdvancedSearchComponent clearCityField() {
-        wait.visibility(clearCity);
-        return new AdvancedSearchComponent(driver);
     }
     public ClubsPage getClubPage(){
         return new ClubsPage(driver);
