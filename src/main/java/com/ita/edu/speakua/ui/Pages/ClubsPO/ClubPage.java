@@ -25,6 +25,7 @@ public class ClubPage extends BasePageWithHeader {
     }
 
     public String getNumberPhone() {
+        wait.visibility(fieldNumberPhone);
         return fieldNumberPhone.getText();
     }
 }
