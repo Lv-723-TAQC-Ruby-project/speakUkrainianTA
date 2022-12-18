@@ -39,9 +39,9 @@ public class AdvancedSearchComponent extends BasePO {
     private WebElement checkBoxRemote;
     @FindBy(xpath = "//span[text()='за алфавітом']")
     private WebElement sortAlphabetical;
-    @FindBy(xpath = "//span[@aria-label='arrow-up']")
+    @FindBy(xpath = "//span[@class='anticon anticon-arrow-down control-sort-arrow']")
     private WebElement sortDescending;
-    @FindBy(xpath = "//span[@aria-label='arrow-down']")
+    @FindBy(xpath = "//span[@class='anticon anticon-arrow-up control-sort-arrow']")
     private WebElement sortAscending;
     @FindBy(xpath = "//span[text()='за рейтингом']")
     private WebElement sortByRating;
@@ -122,6 +122,7 @@ public class AdvancedSearchComponent extends BasePO {
 
     public AdvancedSearchComponent clickRadioCenter() {
         radioCenter.click();
+        sleep(3);
         return this;
     }
 
@@ -162,17 +163,20 @@ public class AdvancedSearchComponent extends BasePO {
     public AdvancedSearchComponent clickSortAlphabetical() {
         wait.visibility(sortAlphabetical);
         action.click(sortAlphabetical);
+        sleep(3);
         return this;
     }
 
     public AdvancedSearchComponent clickSortDescending() {
         sortDescending.click();
+        sleep(3);
         return this;
     }
 
     public AdvancedSearchComponent clickSortAscending() {
         wait.visibility(sortAscending);
         action.click(sortAscending);
+        sleep(3);
         return this;
     }
 

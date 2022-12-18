@@ -11,8 +11,6 @@ import java.util.concurrent.TimeUnit;
 
 public class MyProfilePage extends BasePO {
 
-    private ClubsPage clubsPage;
-
     @FindBy(xpath = ".//div[@class='title']")
     protected List<WebElement> titleClubs;
     @FindBy(xpath = "//span[text()='Редагувати профіль']")
@@ -30,8 +28,7 @@ public class MyProfilePage extends BasePO {
     }
 
     public ClubsPage getClubsPage() {
-        clubsPage = new ClubsPage(driver);
-        return clubsPage;
+        return new ClubsPage(driver);
     }
 
 
