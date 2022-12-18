@@ -2,7 +2,7 @@ package com.ita.edu.speakua.ui.Pages.ClubsPO;
 
 import com.ita.edu.speakua.ui.BasePO;
 import com.ita.edu.speakua.ui.HomePage;
-import com.ita.edu.speakua.ui.Pages.CenterPO.AddLocationModel;
+import com.ita.edu.speakua.ui.Pages.CenterPO.AddLocationModal;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import static java.lang.String.format;
 import static org.openqa.selenium.By.xpath;
 
-public class AddClubModel extends BasePO {
+public class AddClubModal extends BasePO {
 
     @FindBy(xpath = "//input[@id= 'basic_name']")
     private WebElement nameClubInput;
@@ -51,46 +51,46 @@ public class AddClubModel extends BasePO {
     @FindBy(xpath = "//*[text()= 'Завершити']")
     private WebElement completeButton;
 
-    public AddClubModel(WebDriver driver) {
+    public AddClubModal(WebDriver driver) {
         super(driver);
     }
 
-    public AddClubModel selectCategoryByName(String categoryName) {
+    public AddClubModal selectCategoryByName(String categoryName) {
         driver.findElement(xpath(format("//span[text()='%s']//parent::label//input", categoryName))).click();
         return this;
     }
 
-    public AddClubModel EnterNameClub(String nameClub) {
+    public AddClubModal EnterNameClub(String nameClub) {
         nameClubInput.sendKeys(nameClub);
         return this;
     }
 
-    public AddClubModel enterFromAge(String ageFrom) {
+    public AddClubModal enterFromAge(String ageFrom) {
         ageFromInput.sendKeys(ageFrom);
         return this;
     }
 
-    public AddClubModel enterToAge(String ageTo) {
+    public AddClubModal enterToAge(String ageTo) {
         ageToInput.sendKeys(ageTo);
         return this;
     }
 
-    public AddLocationModel clickAddLocationButton() {
+    public AddLocationModal clickAddLocationButton() {
         addLocationButton.click();
-        return new AddLocationModel(driver);
+        return new AddLocationModal(driver);
     }
 
-    public AddClubModel enterPhoneNumber(String phoneNumber) {
+    public AddClubModal enterPhoneNumber(String phoneNumber) {
         phoneNumberInput.sendKeys(phoneNumber);
         return this;
     }
 
-    public AddClubModel clickNextStep() {
+    public AddClubModal clickNextStep() {
         nextStepButton.click();
-        return new AddClubModel(driver);
+        return new AddClubModal(driver);
     }
 
-    public AddClubModel enterClubDescription(String clubDescription) {
+    public AddClubModal enterClubDescription(String clubDescription) {
         clubDescriptionInput.clear();
         clubDescriptionInput.sendKeys(clubDescription);
         return this;
@@ -105,7 +105,7 @@ public class AddClubModel extends BasePO {
         return driver.findElement(xpath(format("//div[text()='%s']", errorMessage))).isDisplayed();
     }
 
-    public AddClubModel enterBelongingToCenter(String nameCenter) {
+    public AddClubModal enterBelongingToCenter(String nameCenter) {
         enterBelongingCenterInput.sendKeys(nameCenter);
         return this;
     }

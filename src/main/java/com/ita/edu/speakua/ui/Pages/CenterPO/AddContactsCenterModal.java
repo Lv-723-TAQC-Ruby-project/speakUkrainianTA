@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class AddContactsCenterModel extends BasePO {
+public class AddContactsCenterModal extends BasePO {
 
     @FindBy(xpath = "//input[@id='contacts_contactFacebook']")
     private WebElement contactFacebook;
@@ -29,16 +29,16 @@ public class AddContactsCenterModel extends BasePO {
     private WebElement nextButton;
 
 
-    public AddContactsCenterModel(WebDriver driver) {
+    public AddContactsCenterModal(WebDriver driver) {
         super(driver);
     }
 
-    public AddContactsCenterModel centerContactsFacebook(String facebook) {
+    public AddContactsCenterModal centerContactsFacebook(String facebook) {
         contactFacebook.sendKeys(facebook);
         return this;
     }
 
-    public AddContactsCenterModel centerContactsWebSite(String webSite) {
+    public AddContactsCenterModal centerContactsWebSite(String webSite) {
         contactWebSite.sendKeys(webSite);
         return this;
     }
@@ -53,29 +53,29 @@ public class AddContactsCenterModel extends BasePO {
     }
 
 
-    public AddContactsCenterModel centerContactsEmail(String email) {
+    public AddContactsCenterModal centerContactsEmail(String email) {
         contactEmail.sendKeys(email);
         return this;
     }
 
-    public AddContactsCenterModel centerContactsSkype(String skype) {
+    public AddContactsCenterModal centerContactsSkype(String skype) {
         contactSkype.sendKeys(skype);
         return this;
     }
 
-    public AddContactsCenterModel centerContactsWhatsApp(String whatsApp) {
+    public AddContactsCenterModal centerContactsWhatsApp(String whatsApp) {
         contactWhatsApp.sendKeys(whatsApp);
         return this;
     }
 
-    public AddContactsCenterModel centerContactsTelephone(String telephone) {
+    public AddContactsCenterModal centerContactsTelephone(String telephone) {
         contactTelephone.sendKeys(telephone);
         return this;
     }
 
-    public AddDescriptionCenterModel clickNextStep() {
+    public AddDescriptionCenterModal clickNextStep() {
         nextButton.click();
-        return new AddDescriptionCenterModel(driver);
+        return new AddDescriptionCenterModal(driver);
     }
 
 }

@@ -1,6 +1,6 @@
 package com.ita.edu.speakua.ui;
 
-import com.ita.edu.speakua.ui.Pages.ProfilePO.EditProfileModel;
+import com.ita.edu.speakua.ui.Pages.ProfilePO.EditProfileModal;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -25,7 +25,7 @@ public class NegativeChangePasswordPopUpTests extends BaseTestRunner {
 
     @Test
     public void warningMessageAboutConfirmPasswordEmptyFieldInTheChangePasswordPopUp() {
-        EditProfileModel editProfilePassword = new HomePage(driver)
+        EditProfileModal editProfilePassword = new HomePage(driver)
                 .openAdminProfileMenu()
                 .openMyProfileModel()
                 .openEditProfileModel()
@@ -38,7 +38,7 @@ public class NegativeChangePasswordPopUpTests extends BaseTestRunner {
 
     @Test
     public void warningMessageAboutNewPasswordEmptyFieldInTheChangePasswordPopUp() {
-        EditProfileModel editProfilePassword = new HomePage(driver)
+        EditProfileModal editProfilePassword = new HomePage(driver)
                 .openAdminProfileMenu()
                 .openMyProfileModel()
                 .openEditProfileModel()
@@ -51,7 +51,7 @@ public class NegativeChangePasswordPopUpTests extends BaseTestRunner {
 
     @Test
     public void warningMessageAboutCurrentPasswordEmptyFieldInTheChangePasswordPopUp() {
-        EditProfileModel editProfilePassword = new HomePage(driver)
+        EditProfileModal editProfilePassword = new HomePage(driver)
                 .openAdminProfileMenu()
                 .openMyProfileModel()
                 .openEditProfileModel()

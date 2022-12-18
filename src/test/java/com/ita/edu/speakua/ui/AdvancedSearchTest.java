@@ -87,12 +87,33 @@ public class AdvancedSearchTest extends BaseTestRunner {
         softAssert.assertEquals(radioValue,"Гурток");
 
         AdvancedSearchComponent advancedSearchComponent = new AdvancedSearchComponent(driver).clickRadioCenter();
+
         softAssert.assertEquals(radioValue,"Центр");
 
         softAssert.assertTrue(advancedSearchComponent.isCityActive(),"Didn't find city dropdown");
         softAssert.assertTrue(advancedSearchComponent.isDistrictActive(),"Didn't find district dropdown");
         softAssert.assertTrue(advancedSearchComponent.isStationActive(),"Didn't find station dropdown");
+
         softAssert.assertFalse(advancedSearchComponent.isAgeChildActive(),"Did find child age field");
+
+        softAssert.assertAll();
+    }
+
+    @Test
+    public void formatListCheck() {
+        SoftAssert softAssert = new SoftAssert();
+
+        String radioValue = new HomePage(driver)
+                .openAdvancedSearch()
+                .getAdvancedSearchComponent()
+                .getRadioValueString();
+
+        softAssert.assertEquals(radioValue,"Гурток");
+
+        AdvancedSearchComponent advancedSearchComponent = new AdvancedSearchComponent(driver).clickRadioCenter();
+
+        softAssert.assertEquals(radioValue,"Центр");
+
 
         softAssert.assertAll();
     }

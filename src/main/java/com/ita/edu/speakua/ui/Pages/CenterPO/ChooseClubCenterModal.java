@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class ChooseClubCenterModel extends BasePO {
+public class ChooseClubCenterModal extends BasePO {
 
 
     @FindBy(xpath = "//div[@class='form-fields']/div[1]/div[1]/label/span[@class='ant-checkbox']")
@@ -15,11 +15,11 @@ public class ChooseClubCenterModel extends BasePO {
     @FindBy(xpath = "//button[@class='finish-btn']")
     WebElement finishButton;
 
-    public ChooseClubCenterModel(WebDriver driver) {
+    public ChooseClubCenterModal(WebDriver driver) {
         super(driver);
     }
 
-    public ChooseClubCenterModel chooseClub() {
+    public ChooseClubCenterModal chooseClub() {
         club.click();
         return this;
     }
