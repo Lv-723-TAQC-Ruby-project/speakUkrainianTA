@@ -1,12 +1,11 @@
 package com.ita.edu.speakua.ui.Pages.ChallengePО;
 
-import com.ita.edu.speakua.ui.BasePO;
-import com.ita.edu.speakua.ui.headercomponent.HeaderComponent;
+import com.ita.edu.speakua.ui.BasePageWithHeader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class AddChallengePage extends BasePO {
+public class AddChallengePage extends BasePageWithHeader {
     @FindBy(xpath = "//input[@id='sortNumber']")
     private WebElement sequenceNumber;
     @FindBy(xpath = "//input[@id='name']")

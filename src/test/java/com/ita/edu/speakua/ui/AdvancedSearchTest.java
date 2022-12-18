@@ -35,16 +35,16 @@ public class AdvancedSearchTest extends BaseTestRunner {
         HomePage Page = new HomePage(driver);
 
         boolean check  = Page
-               .openAdvancedSearch()
+                .openAdvancedSearch()
                 .getAdvancedSearchComponent()
-               .isAdvancedSearchOpen();
+                .isAdvancedSearchOpen();
 
         softAssert.assertTrue(check);
 
         check = Page
-               .openAdvancedSearch()
+                .openAdvancedSearch()
                 .getAdvancedSearchComponent()
-               .isAdvancedSearchOpen();
+                .isAdvancedSearchOpen();
 
         softAssert.assertFalse(check);
 
@@ -87,12 +87,42 @@ public class AdvancedSearchTest extends BaseTestRunner {
         softAssert.assertEquals(radioValue,"Гурток");
 
         AdvancedSearchComponent advancedSearchComponent = new AdvancedSearchComponent(driver).clickRadioCenter();
+
+        radioValue = advancedSearchComponent.getRadioValueString();
+
         softAssert.assertEquals(radioValue,"Центр");
 
         softAssert.assertTrue(advancedSearchComponent.isCityActive(),"Didn't find city dropdown");
         softAssert.assertTrue(advancedSearchComponent.isDistrictActive(),"Didn't find district dropdown");
         softAssert.assertTrue(advancedSearchComponent.isStationActive(),"Didn't find station dropdown");
+
         softAssert.assertFalse(advancedSearchComponent.isAgeChildActive(),"Did find child age field");
+
+        softAssert.assertAll();
+    }
+
+    @Test
+    public void formatListCheck() {
+        SoftAssert softAssert = new SoftAssert();
+
+        String radioValue = new HomePage(driver)
+                .openAdvancedSearch()
+                .getAdvancedSearchComponent()
+                .getRadioValueString();
+
+        softAssert.assertEquals(radioValue,"Гурток");
+
+        AdvancedSearchComponent advancedSearchComponent = new AdvancedSearchComponent(driver).clickRadioCenter();
+
+        radioValue = advancedSearchComponent.getRadioValueString();
+
+        softAssert.assertEquals(radioValue,"Центр");
+
+        boolean contentView= advancedSearchComponent
+                .clickControlViewList()
+                .controlViewDisplay();
+
+        softAssert.assertTrue(contentView,"Content is not displayed as a list");
 
         softAssert.assertAll();
     }
@@ -145,8 +175,8 @@ public class AdvancedSearchTest extends BaseTestRunner {
         AdvancedSearchComponent advancedSearchComponent = new HomePage(driver).openAdvancedSearch().getAdvancedSearchComponent();
         String textNumber1 = advancedSearchComponent.enterNumberAge("1").getAgeChildField();
         softAssert.assertEquals(textNumber1, "2", "check failed with number 1");
-//        String textNumber2 = advancedSearchComponent.enterNumberAge("2").getAgeChildField();
-//        softAssert.assertEquals(textNumber2, "2", "check failed with number 2");
+        String textNumber2 = advancedSearchComponent.enterNumberAge("2").getAgeChildField();
+        softAssert.assertEquals(textNumber2, "2", "check failed with number 2");
         String textNumber18 = advancedSearchComponent.enterNumberAge("18").getAgeChildField();
         softAssert.assertEquals(textNumber18, "18", "check failed with number 18");
         String textNumber19 = advancedSearchComponent.enterNumberAge("19").getAgeChildField();
@@ -184,10 +214,10 @@ public class AdvancedSearchTest extends BaseTestRunner {
         ClubsPage clubsPageAscRating = new HeaderComponent(driver).openAdvancedSearch();
         clubsPageAscRating
                 .getAdvancedSearchComponent().clickSortByRating().clickSortAscending();
-        List<ClubCard> cardsAscRating = clubsPageAsc.getCards();
+        List<ClubCard> cardsAscRating = clubsPageAscRating.getCards();
         ArrayList<String> listTitleAscRating = new ArrayList<>();
         for (ClubCard card : cardsAscRating) {
-            listTitleAsc.add(card.getTitle());
+            listTitleAscRating.add(card.getTitle());
         }
         ArrayList<String> sortedListAscRating = new ArrayList<>(listTitleAscRating);
         Collections.sort(sortedListAscRating);
@@ -196,10 +226,10 @@ public class AdvancedSearchTest extends BaseTestRunner {
         ClubsPage clubsPageDescRating = new HeaderComponent(driver).openAdvancedSearch();
         clubsPageDescRating
                 .getAdvancedSearchComponent().clickSortByRating().clickSortDescending();
-        List<ClubCard> cardsDescRating = clubsPageAsc.getCards();
+        List<ClubCard> cardsDescRating = clubsPageDescRating.getCards();
         ArrayList<String> listTitleDescRating = new ArrayList<>();
         for (ClubCard card : cardsDescRating) {
-            listTitleAsc.add(card.getTitle());
+            listTitleDescRating.add(card.getTitle());
         }
         ArrayList<String> sortedListDescRating = new ArrayList<>(listTitleDescRating);
         Collections.sort(sortedListDescRating, Collections.reverseOrder());
