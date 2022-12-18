@@ -22,6 +22,9 @@ public class MyProfilePage extends BasePageWithHeader {
     @FindBy(xpath = "//li[@class='ant-dropdown-menu-item ant-dropdown-menu-item-active ant-dropdown-menu-item-only-child']//div[contains(text(),'Додати центр')]")
     private WebElement addCenterButton;
 
+    @FindBy(xpath = "//*[@id=\"root\"]/section/section/main/section/main/div[3]/div[2]/div/section/ul/li[8]/a")
+    private WebElement lastElementOfListOfCentersButton;
+
 
     public MyProfilePage(WebDriver driver) {
         super(driver);
@@ -40,6 +43,13 @@ public class MyProfilePage extends BasePageWithHeader {
         addButton.click();
         addCenterButton.click();
         return new AddCenterModal(driver);
+    }
+
+    public MyProfilePage clickLastElementOfTheListOfCenters(){
+        wait.visibility(lastElementOfListOfCentersButton);
+        action.click(lastElementOfListOfCentersButton);
+        sleep(3);
+        return this;
     }
 
 

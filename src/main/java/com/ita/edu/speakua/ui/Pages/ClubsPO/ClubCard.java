@@ -69,6 +69,7 @@ public class ClubCard extends BasePO {
     public ClubPage getDetailInformation() {
         wait.visibility(detailButton);
         action.click(detailButton);
+        sleep(3);
         return new ClubPage(driver);
     }
 

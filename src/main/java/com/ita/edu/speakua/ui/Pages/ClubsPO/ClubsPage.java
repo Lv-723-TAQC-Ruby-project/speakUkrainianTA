@@ -33,7 +33,6 @@ public class ClubsPage extends BasePageWithHeader {
     public ClubCard getCardByName(String name){
         for (ClubCard card: getCards()) {
             if (Objects.equals(card.getTitleInMyProfile(), name)){
-                System.out.println(card);
                 return card;
             }
         }

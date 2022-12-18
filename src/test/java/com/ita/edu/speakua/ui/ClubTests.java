@@ -89,7 +89,7 @@ public class ClubTests extends BaseTestRunner {
         new HomePage(driver)
                 .openUserProfileMenu()
                 .openAddClubModel()
-                .EnterNameClub("Малявки")
+                .EnterNameClub("Малявки18.12.2022(22.00)")
                 .selectCategoryByName("Спортивні секції")
                 .enterFromAge("8")
                 .enterToAge("16")
@@ -102,8 +102,9 @@ public class ClubTests extends BaseTestRunner {
         new HomePage(driver)
                 .openUserProfileMenu()
                 .openMyProfileModel()
+                .clickLastElementOfTheListOfCenters()
                 .getClubsPage()
-                .getCardByName("Малявки")
+                .getCardByName("Малявки18.12.2022(22.00)")
                 .getDetailInformation();
         String checkInformationAboutCenterByNumber = new ClubPage(driver)
                 .getNumberPhone();
@@ -112,18 +113,38 @@ public class ClubTests extends BaseTestRunner {
         Assert.assertTrue(checkInformationAboutCenterByDescription);
     }
 
- /*   @Test
+    @Test
     public void VerifyEditingClubAndFindingInformationAboutItTest() {
         new HomePage(driver)
-                .openGuestProfileMenu()
-                .openLoginModel()
-                .enterEmail(configProperties.getAdminEmail())
-                .enterPassword(configProperties.getAdminPassword())
-                .clickLogin()
                 .openUserProfileMenu()
-                .openMyProfileModel();
+                .openMyProfileModel()
+                .clickLastElementOfTheListOfCenters()
+                .getClubsPage()
+                .getCardByName("Малявки18.12.2022(22.00)")
+                .openEditClubModel()
+                .openAddressAndContactsSection()
+                .enterPhoneNumber("0672222222")
+                .clickSaveInContactSectionButton()
+                .openDescriptionSection()
+                .enterClubDescription("Тестовий гурток для додавання центру Тестовий гурток для додавання центру")
+                .clickSaveInDescriptionSectionButton()
+                .clickLastElementOfTheListOfCenters()
+                .getClubsPage()
+                .getCardByName("Малявки18.12.2022(22.00)")
+                .getDetailInformation();
+        String checkInformationAboutCenterByNumber = new ClubPage(driver)
+                .getNumberPhone();
+        Assert.assertEquals(checkInformationAboutCenterByNumber, "0672222222");
+        boolean checkInformationAboutCenterByDescription = new ClubPage(driver).getDescriptionAboutCenter("Тестовий гурток для додавання центру Тестовий гурток для додавання центру");
+        Assert.assertTrue(checkInformationAboutCenterByDescription);
 
-    }*/
+
+
+
+
+
+
+    }
 
     @AfterClass
     public void tearDown() {
