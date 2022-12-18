@@ -1,11 +1,10 @@
 package com.ita.edu.speakua.ui;
 
-import com.ita.edu.speakua.ui.headercomponent.HeaderComponent;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class RegisterModel extends BasePO {
+public class RegisterModal extends BasePO {
 
     @FindBy(xpath = "//input[@id='lastName']")
     private WebElement lastNameInput;
@@ -31,7 +30,7 @@ public class RegisterModel extends BasePO {
     @FindBy(xpath = "//button[contains(@class, 'ant-modal-close')]")
     private WebElement closeButton;
 
-    public RegisterModel(WebDriver driver) {
+    public RegisterModal(WebDriver driver) {
         super(driver);
     }
 
@@ -59,32 +58,32 @@ public class RegisterModel extends BasePO {
         return passwordConfirmInput;
     }
 
-    public RegisterModel enterLastName(String lastName) {
+    public RegisterModal enterLastName(String lastName) {
         lastNameInput.sendKeys(lastName);
         return this;
     }
 
-    public RegisterModel enterFirstName(String firstName) {
+    public RegisterModal enterFirstName(String firstName) {
         firstNameInput.sendKeys(firstName);
         return this;
     }
 
-    public RegisterModel enterPhone(String phone) {
+    public RegisterModal enterPhone(String phone) {
         phoneInput.sendKeys(phone);
         return this;
     }
 
-    public RegisterModel enterEmail(String email) {
+    public RegisterModal enterEmail(String email) {
         emailInput.sendKeys(email);
         return this;
     }
 
-    public RegisterModel enterPassword(String password) {
+    public RegisterModal enterPassword(String password) {
         passwordInput.sendKeys(password);
         return this;
     }
 
-    public RegisterModel enterPasswordConfirm(String passwordConfirm) {
+    public RegisterModal enterPasswordConfirm(String passwordConfirm) {
         passwordConfirmInput.sendKeys(passwordConfirm);
         return this;
     }

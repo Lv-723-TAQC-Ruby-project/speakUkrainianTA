@@ -1,14 +1,13 @@
 package com.ita.edu.speakua.ui.Pages.ProfilePO;
 
 import com.ita.edu.speakua.ui.BasePO;
-import com.ita.edu.speakua.ui.Pages.CenterPO.AddCenterModel;
+import com.ita.edu.speakua.ui.Pages.CenterPO.AddCenterModal;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class MyProfilePage extends BasePO {
 
@@ -30,10 +29,10 @@ public class MyProfilePage extends BasePO {
         super(driver);
     }
 
-    public EditProfileModel openEditProfileModel() {
+    public EditProfileModal openEditProfileModel() {
         wait.visibility(editProfileButton);
         action.click(editProfileButton);
-        return new EditProfileModel(driver);
+        return new EditProfileModal(driver);
     }
 
     public ClubsPage getClubsPage() {
@@ -41,10 +40,10 @@ public class MyProfilePage extends BasePO {
         return clubsPage;
     }
 
-    public AddCenterModel addCenterModel() {
+    public AddCenterModal addCenterModel() {
         addButton.click();
         addCenterButton.click();
-        return new AddCenterModel(driver);
+        return new AddCenterModal(driver);
     }
 
 

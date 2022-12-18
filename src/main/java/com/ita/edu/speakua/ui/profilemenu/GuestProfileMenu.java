@@ -1,8 +1,8 @@
 package com.ita.edu.speakua.ui.profilemenu;
 
 import com.ita.edu.speakua.ui.BasePO;
-import com.ita.edu.speakua.ui.LoginModel;
-import com.ita.edu.speakua.ui.RegisterModel;
+import com.ita.edu.speakua.ui.LoginModal;
+import com.ita.edu.speakua.ui.RegisterModal;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,15 +24,15 @@ public class GuestProfileMenu extends BasePO {
         super(driver);
     }
 
-    public LoginModel openLoginModel() {
+    public LoginModal openLoginModel() {
         new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.visibilityOf(loginButton));
         loginButton.click();
-        return new LoginModel(driver);
+        return new LoginModal(driver);
     }
 
-    public RegisterModel openRegistrationModel() {
+    public RegisterModal openRegistrationModel() {
         registrationButton.click();
-        return new RegisterModel(driver);
+        return new RegisterModal(driver);
     }
 
 
