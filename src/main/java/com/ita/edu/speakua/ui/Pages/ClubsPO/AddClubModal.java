@@ -22,7 +22,7 @@ public class AddClubModal extends BasePO {
     private WebElement ageToInput;
 
     @FindBy(xpath = "//span[@class='add-club-location']")
-    WebElement addLocationButton;
+    private WebElement addLocationButton;
 
     @FindBy(xpath = "//input[@id= 'basic_contactТелефон']")
     private WebElement phoneNumberInput;
