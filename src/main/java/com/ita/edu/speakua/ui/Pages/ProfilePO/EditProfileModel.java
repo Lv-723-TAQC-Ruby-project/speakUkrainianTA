@@ -46,7 +46,7 @@ public class EditProfileModel extends BasePO {
         return this;
     }
 
-    public boolean isOpenMassageErrorLastNameContain(String name) {
+    public boolean isOpenMessageErrorLastNameContain(String name) {
         try {
             driver.findElement(By.xpath(String.format("//div[@class='ant-form-item-explain-error']", name)));
             return true;
@@ -82,7 +82,7 @@ public class EditProfileModel extends BasePO {
         }
     }
 
-    public boolean isOpenMassageErrorPhoneContain(String name) {
+    public boolean isOpenMessageErrorPhoneContain(String name) {
         try {
             driver.findElement(By.xpath(String.format("//div[@class='ant-form-item-explain-error']", name)));
             return true;
