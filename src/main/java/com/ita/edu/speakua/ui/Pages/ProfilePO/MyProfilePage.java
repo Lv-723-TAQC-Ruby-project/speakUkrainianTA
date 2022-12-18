@@ -11,8 +11,6 @@ import java.util.List;
 
 public class MyProfilePage extends BasePageWithHeader {
 
-    private ClubsPage clubsPage;
-
     @FindBy(xpath = ".//div[@class='title']")
     protected List<WebElement> titleClubs;
     @FindBy(xpath = "//span[text()='Редагувати профіль']")
@@ -36,10 +34,8 @@ public class MyProfilePage extends BasePageWithHeader {
     }
 
     public ClubsPage getClubsPage() {
-        clubsPage = new ClubsPage(driver);
-        return clubsPage;
+        return new ClubsPage(driver);
     }
-
     public AddCenterModal addCenterModel() {
         addButton.click();
         addCenterButton.click();
