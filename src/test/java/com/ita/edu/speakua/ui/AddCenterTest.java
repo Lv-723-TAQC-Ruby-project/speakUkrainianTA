@@ -27,6 +27,15 @@ public class AddCenterTest extends BaseTestRunner {
     }
 
     @Test
+    public void checkIfErrorAppearsAfterEmptyFields() {
+        boolean message = new HomePage(driver)
+                .openUserProfileMenu()
+                .openAddCenterModel()
+                .clickNextStep()
+                .isMessageErrorCenterWithoutName();
+        Assert.assertTrue(message, "Error message 'Некоректна назва центру’ doesn't appear under 'Назва центру' field with empty 'Назва центру' field");
+    }
+    @Test
     public void addCenterTest() {
         new HomePage(driver)
                 .openUserProfileMenu()
