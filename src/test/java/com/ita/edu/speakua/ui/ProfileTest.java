@@ -1,6 +1,6 @@
 package com.ita.edu.speakua.ui;
 
-import com.ita.edu.speakua.ui.Pages.ProfilePO.EditProfileModel;
+import com.ita.edu.speakua.ui.Pages.ProfilePO.EditProfileModal;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
