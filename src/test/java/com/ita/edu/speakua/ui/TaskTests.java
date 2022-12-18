@@ -69,7 +69,7 @@ public void taskWithInvalidDescription(){
     softAssert.assertEquals(enterInvalidData.getTaskDescription().getText(), "", "Description field is empty");
     softAssert.assertAll();
      new AddTaskPage(driver)
-            .enterStartDate("2023-03-03")
+            .enterStartDate("2021-03-03")
             .uploadImage(absolutePath)
             .enterTaskName("LearnTest")
             .enterTaskTitle("Positive emotions like curiosity, satisfaction, and liveliness have a massive\n impact on how your brain processes your\n learning.")
