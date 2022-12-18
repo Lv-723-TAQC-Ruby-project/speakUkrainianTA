@@ -89,11 +89,13 @@ public class HeaderComponent extends BasePO {
 
     public GuestProfileMenu openGuestProfileMenu() {
         profileMenuButton.click();
+        sleep(3);
         return new GuestProfileMenu(driver);
     }
 
     public AdminProfileMenu openAdminProfileMenu() {
         profileMenuButton.click();
+        sleep(3);
         return new AdminProfileMenu(driver);
     }
 

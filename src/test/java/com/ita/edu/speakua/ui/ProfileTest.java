@@ -68,6 +68,8 @@ public class ProfileTest extends BaseTestRunner {
         softAssert.assertAll();
     }
 
+
+
     @AfterClass
     public void tearDown() {
         if (driver != null) {

@@ -96,8 +96,8 @@ public class RegisterModal extends BasePO {
     }
 
     public HomePage cancelRegistration() {
-        closeButton.click();
-        sleep(3);
+        wait.visibility(closeButton);
+        action.click(closeButton);
         return new HomePage(driver);
 
     }
