@@ -29,7 +29,7 @@ public class ClubCard extends BasePO {
 
     @FindBy(xpath = ".//li[@class='ant-rate-star ant-rate-star-zero'")
     private WebElement emptyRatingStar;
-    @FindBy(xpath = ".//div[@class='ant-card ant-card-bordered card'")
+    @FindBy(xpath = ".//div[@class='ant-card ant-card-bordered card']")
     private WebElement clubCard;
 
     @FindBy(xpath = ".//a[text()='Детальніше']")
@@ -51,7 +51,7 @@ public class ClubCard extends BasePO {
     }
 
     public int getRatingStars() {
-        List<WebElement> fullStars = clubCard.findElements(By.xpath("//li[@class='ant-rate-star ant-rate-star-full'"));
+        List<WebElement> fullStars = clubCard.findElements(By.xpath("//li[@class='ant-rate-star ant-rate-star-full']"));
         return fullStars.size();
     }
 
