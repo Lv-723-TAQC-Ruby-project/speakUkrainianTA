@@ -237,19 +237,6 @@ public class AdvancedSearchTest extends BaseTestRunner {
         softAssert.assertAll();
     }
 
-
-    @Test
-    public void test() {
-        SoftAssert softAssert = new SoftAssert();
-
-        new HomePage(driver)
-                .openAdvancedSearch()
-                .getAdvancedSearchComponent();
-
-        System.out.println(new ClubsPage(driver)
-                .getCardByName("Jerome IT School"));
-    }
-
     @AfterClass
     public void tearDown() {
         if (driver != null) {
