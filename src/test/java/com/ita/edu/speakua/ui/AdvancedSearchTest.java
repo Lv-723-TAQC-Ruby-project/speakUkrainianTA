@@ -185,7 +185,7 @@ public class AdvancedSearchTest extends BaseTestRunner {
     }
 
     @Test
-    public void sortAdvancedSearchTest() {
+    public void sortAdvancedSearchByAlphabeticallyAndRatingTest() {
         SoftAssert softAssert = new SoftAssert();
         ClubsPage clubsPageAsc = new HeaderComponent(driver).openAdvancedSearch();
         clubsPageAsc
@@ -215,11 +215,11 @@ public class AdvancedSearchTest extends BaseTestRunner {
         clubsPageAscRating
                 .getAdvancedSearchComponent().clickSortByRating().clickSortAscending();
         List<ClubCard> cardsAscRating = clubsPageAscRating.getCards();
-        ArrayList<String> listTitleAscRating = new ArrayList<>();
+        ArrayList<Integer> listTitleAscRating = new ArrayList<>();
         for (ClubCard card : cardsAscRating) {
-            listTitleAscRating.add(card.getTitle());
+            listTitleAscRating.add(card.getRatingStars());
         }
-        ArrayList<String> sortedListAscRating = new ArrayList<>(listTitleAscRating);
+        ArrayList<Integer> sortedListAscRating = new ArrayList<>(listTitleAscRating);
         Collections.sort(sortedListAscRating);
         softAssert.assertEquals(listTitleAscRating, sortedListAscRating, "Sorting clubs rating in ascending order failed");
 
@@ -227,11 +227,11 @@ public class AdvancedSearchTest extends BaseTestRunner {
         clubsPageDescRating
                 .getAdvancedSearchComponent().clickSortByRating().clickSortDescending();
         List<ClubCard> cardsDescRating = clubsPageDescRating.getCards();
-        ArrayList<String> listTitleDescRating = new ArrayList<>();
+        ArrayList<Integer> listTitleDescRating = new ArrayList<>();
         for (ClubCard card : cardsDescRating) {
-            listTitleDescRating.add(card.getTitle());
+            listTitleDescRating.add(card.getRatingStars());
         }
-        ArrayList<String> sortedListDescRating = new ArrayList<>(listTitleDescRating);
+        ArrayList<Integer> sortedListDescRating = new ArrayList<>(listTitleDescRating);
         Collections.sort(sortedListDescRating, Collections.reverseOrder());
         softAssert.assertEquals(listTitleDescRating, sortedListDescRating, "Sorting clubs rating in descending order failed");
         softAssert.assertAll();
