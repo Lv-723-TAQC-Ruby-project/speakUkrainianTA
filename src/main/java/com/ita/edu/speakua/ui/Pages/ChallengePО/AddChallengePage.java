@@ -5,6 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.io.File;
+import java.util.Random;
+
 public class AddChallengePage extends BasePageWithHeader {
     @FindBy(xpath = "//input[@id='sortNumber']")
     private WebElement sequenceNumber;
@@ -41,13 +44,16 @@ public class AddChallengePage extends BasePageWithHeader {
         return challengeDescription;
     }
 
-    public WebElement getUploadPhoto() {
+    public WebElement getUploadPhoto()
+    {
         return uploadPhoto;
     }
 
 
     public AddChallengePage enterSequenceNumber(String sequence) {
-        sequenceNumber.sendKeys(sequence);
+        Random random = new Random();
+        int number = random.nextInt(100);
+        sequenceNumber.sendKeys(sequence+number);
         return this;
     }
 
@@ -66,8 +72,11 @@ public class AddChallengePage extends BasePageWithHeader {
         return this;
     }
 
-    public AddChallengePage uploadChallengePhoto(String path) {
-        uploadPhoto.sendKeys(path);
+    public AddChallengePage uploadChallengePhoto(String image) {
+        ClassLoader classLoader = getClass().getClassLoader();
+        File photo = new File(classLoader.getResource(image).getFile());
+        String absolutePath = photo.getAbsolutePath();
+        uploadPhoto.sendKeys(absolutePath);
         return this;
     }
 

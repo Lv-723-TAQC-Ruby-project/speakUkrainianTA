@@ -29,9 +29,7 @@ public class TaskTests extends BaseTestRunner {
         driver.get(configProperties.getBaseWebUrl());
     }
 
-    ClassLoader classLoader = getClass().getClassLoader();
-    File photo = new File(classLoader.getResource("R.jpeg").getFile());
-    String absolutePath = photo.getAbsolutePath();
+
 @Test
 public void addTaskWithoutChallenge(){
    AddTaskPage enterTaskData = new HomePage(driver)
@@ -47,7 +45,7 @@ public void addTaskWithoutChallenge(){
     softAssert.assertAll();
         new AddTaskPage(driver)
            .enterStartDate("2021-03-03")
-           .uploadImage(absolutePath)
+           .uploadImage("R.jpeg")
            .enterTaskName("LearnTest")
            .enterTaskTitle("Positive emotions like curiosity, satisfaction, and liveliness have a massive\n impact on how your brain processes your\n learning.")
            .enterTaskDescription("One of the key benefits of having fun while learning is that it creates a sense of reward in learning.\n That inherently motivates people.")
@@ -70,7 +68,7 @@ public void taskWithInvalidDescription(){
     softAssert.assertAll();
      new AddTaskPage(driver)
             .enterStartDate("2021-03-03")
-            .uploadImage(absolutePath)
+            .uploadImage("R.jpeg")
             .enterTaskName("LearnTest")
             .enterTaskTitle("Positive emotions like curiosity, satisfaction, and liveliness have a massive\n impact on how your brain processes your\n learning.")
             .chooseChallenge()
@@ -81,7 +79,7 @@ public void taskWithInvalidDescription(){
             .openTasksPage()
             .clickAddTask()
             .enterStartDate("2021-03-03")
-            .uploadImage(absolutePath)
+            .uploadImage("R.jpeg")
             .enterTaskName("LearnTest")
             .enterTaskTitle("Positive emotions like curiosity, satisfaction, and liveliness have a massive\n impact on how your brain processes your\n learning.")
             .enterTaskDescription("ъэы, ผม, Ÿ, ðъэы, ผม, Ÿ, ðъэы, ผม, Ÿ, ðъэы, ผม, Ÿ, ð")
@@ -93,7 +91,7 @@ public void taskWithInvalidDescription(){
             .openTasksPage()
             .clickAddTask()
             .enterStartDate("2023-03-03")
-            .uploadImage(absolutePath)
+            .uploadImage("R.jpeg")
             .enterTaskName("LearnTest")
             .enterTaskTitle("Positive emotions like curiosity, satisfaction, and liveliness have a massive\n impact on how your brain processes your\n learning.")
             .enterTaskDescription("Positive emotions like curiosity, satis")
@@ -105,7 +103,7 @@ public void taskWithInvalidDescription(){
             .openTasksPage()
             .clickAddTask()
             .enterStartDate("2023-03-03")
-            .uploadImage(absolutePath)
+            .uploadImage("R.jpeg")
             .enterTaskName("LearnTest")
             .enterTaskTitle("Positive emotions like curiosity, satisfaction, and liveliness have a massive\n impact on how your brain processes your\n learning.")
             .enterTaskDescription("Knowing the most effective strategies for how to learn can help you maximize your efforts when you are trying to learn new ideas, concepts, and skills. If you are like many people, your time is limited, so it is important to get the most educational value out of the time you have.\n" +

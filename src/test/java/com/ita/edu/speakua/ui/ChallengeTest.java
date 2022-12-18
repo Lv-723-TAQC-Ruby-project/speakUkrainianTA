@@ -34,11 +34,8 @@ public class ChallengeTest extends BaseTestRunner {
 
 
 
-   ClassLoader classLoader = getClass().getClassLoader();
-   File photo = new File(classLoader.getResource("OIP.jpeg").getFile());
-   String absolutePath = photo.getAbsolutePath();
-   Random random = new Random();
-   int sequence = random.nextInt(100);
+
+
     @Test//(invocationCount = 10)
     public void addChallenge() {
         AddChallengePage addChallengePage = new HomePage(driver)
@@ -53,8 +50,8 @@ public class ChallengeTest extends BaseTestRunner {
         softAssert.assertEquals(addChallengePage.getChallengeDescription().getText(), "", "Description field is empty");
         softAssert.assertAll();
          boolean dataFilled= new AddChallengePage(driver)
-                .enterSequenceNumber("347" + sequence)
-                .uploadChallengePhoto(absolutePath)
+                .enterSequenceNumber("215")
+                .uploadChallengePhoto("OIP.jpeg")
                 .enterChallengeName("ChallengeTest")
                 .enterTitle("ChallengeTest")
                 .enterChallengeDescription("Racing in an event like Red Bull Defiance is an emotional rollercoaster of highs and lows,\n but knowing about the biggest challenges you'll have to face beforehand\n gives you the best chance of making it to the finish.")
