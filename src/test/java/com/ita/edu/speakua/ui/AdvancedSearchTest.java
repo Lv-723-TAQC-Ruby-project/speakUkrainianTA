@@ -180,10 +180,10 @@ public class AdvancedSearchTest extends BaseTestRunner {
         ClubsPage clubsPageAscRating = new HeaderComponent(driver).openAdvancedSearch();
         clubsPageAscRating
                 .getAdvancedSearchComponent().clickSortByRating().clickSortAscending();
-        List<ClubCard> cardsAscRating = clubsPageAsc.getCards();
+        List<ClubCard> cardsAscRating = clubsPageAscRating.getCards();
         ArrayList<String> listTitleAscRating = new ArrayList<>();
         for (ClubCard card : cardsAscRating) {
-            listTitleAsc.add(card.getTitle());
+            listTitleAscRating.add(card.getTitle());
         }
         ArrayList<String> sortedListAscRating = new ArrayList<>(listTitleAscRating);
         Collections.sort(sortedListAscRating);
@@ -192,10 +192,10 @@ public class AdvancedSearchTest extends BaseTestRunner {
         ClubsPage clubsPageDescRating = new HeaderComponent(driver).openAdvancedSearch();
         clubsPageDescRating
                 .getAdvancedSearchComponent().clickSortByRating().clickSortDescending();
-        List<ClubCard> cardsDescRating = clubsPageAsc.getCards();
+        List<ClubCard> cardsDescRating = clubsPageDescRating.getCards();
         ArrayList<String> listTitleDescRating = new ArrayList<>();
         for (ClubCard card : cardsDescRating) {
-            listTitleAsc.add(card.getTitle());
+            listTitleDescRating.add(card.getTitle());
         }
         ArrayList<String> sortedListDescRating = new ArrayList<>(listTitleDescRating);
         Collections.sort(sortedListDescRating, Collections.reverseOrder());
