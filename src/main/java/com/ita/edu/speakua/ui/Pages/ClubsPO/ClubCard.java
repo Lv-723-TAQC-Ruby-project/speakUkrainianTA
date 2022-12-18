@@ -18,26 +18,26 @@ public class ClubCard extends BasePO {
     @FindBy(xpath = ".//div[@class='center-name']")
     protected WebElement titleOfCenter;
 
-    @FindBy(xpath = "//div[@class='title-name']")
+    @FindBy(xpath = ".//div[@class='title-name']")
     protected WebElement titleCardInMyProfile;
 
-    @FindBy(xpath = "//ul[@class='ant-rate ant-rate-disabled'")
+    @FindBy(xpath = ".//ul[@class='ant-rate ant-rate-disabled'")
     private WebElement ratingStars;
 
-    @FindBy(xpath = "//li[@class='ant-rate-star ant-rate-star-full'")
+    @FindBy(xpath = ".//li[@class='ant-rate-star ant-rate-star-full'")
     private WebElement fullRatingStar;
 
-    @FindBy(xpath = "//li[@class='ant-rate-star ant-rate-star-zero'")
+    @FindBy(xpath = ".//li[@class='ant-rate-star ant-rate-star-zero'")
     private WebElement emptyRatingStar;
-    @FindBy(xpath = "//div[@class='ant-card ant-card-bordered card'")
+    @FindBy(xpath = ".//div[@class='ant-card ant-card-bordered card'")
     private WebElement clubCard;
 
-    @FindBy(xpath = "//a[text()='Детальніше']")
+    @FindBy(xpath = ".//a[text()='Детальніше']")
     private WebElement detailButton;
 
-    @FindBy(xpath = "//span[@class='ant-dropdown-menu-title-content']//div[text()='Редагувати гурток']")
+    @FindBy(xpath = ".//span[@class='ant-dropdown-menu-title-content']//div[text()='Редагувати гурток']")
     private WebElement editClubButton;
-    @FindBy(xpath = "//div[@class='update-club-dropdown']")
+    @FindBy(xpath = ".//div[@class='update-club-dropdown']")
     private WebElement menuClubButton;
 
     public ClubCard(WebDriver driver) {
@@ -72,11 +72,11 @@ public class ClubCard extends BasePO {
         return new ClubPage(driver);
     }
 
-    public EditClubModel openEditClubModel() {
+    public EditClubModal openEditClubModel() {
         wait.visibility(menuClubButton);
         action.click(menuClubButton);
         wait.visibility(editClubButton);
         action.click(editClubButton);
-        return new EditClubModel(driver);
+        return new EditClubModal(driver);
     }
 }

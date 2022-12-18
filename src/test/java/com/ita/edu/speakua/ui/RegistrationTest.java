@@ -14,7 +14,7 @@ public class RegistrationTest extends BaseTestRunner {
     @Test
     public void RegistrationDataRemembered() {
         SoftAssert softAssert = new SoftAssert();
-        RegisterModel dataSaved= new HomePage(driver)
+        RegisterModal dataSaved= new HomePage(driver)
                 .openGuestProfileMenu()
                 .openRegistrationModel()
                 .enterLastName("Войтович")

@@ -12,6 +12,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class AdvancedSearchComponent extends BasePO {
+
+    @FindBy(xpath = "//input[@value='LIST']//ancestor::label")
+    private WebElement controlViewList;
+
+    @FindBy(xpath = "//input[@value='BLOCK']//ancestor::label")
+    private WebElement controlViewBlock;
+
     @FindBy(xpath = "//div[contains(@class,'ant-card-body')]")
     protected List<WebElement> cardsBody;
     private List<ClubCard> cards;
@@ -39,9 +46,9 @@ public class AdvancedSearchComponent extends BasePO {
     private WebElement checkBoxRemote;
     @FindBy(xpath = "//span[text()='за алфавітом']")
     private WebElement sortAlphabetical;
-    @FindBy(xpath = "//span[@aria-label='arrow-up']")
+    @FindBy(xpath = "//span[@class='anticon anticon-arrow-down control-sort-arrow']")
     private WebElement sortDescending;
-    @FindBy(xpath = "//span[@aria-label='arrow-down']")
+    @FindBy(xpath = "//span[@class='anticon anticon-arrow-up control-sort-arrow']")
     private WebElement sortAscending;
     @FindBy(xpath = "//span[text()='за рейтингом']")
     private WebElement sortByRating;
@@ -63,6 +70,26 @@ public class AdvancedSearchComponent extends BasePO {
 //            break;
 //        }
         return this;
+    }
+
+    public AdvancedSearchComponent clickControlViewList() {
+        controlViewList.click();
+        return this;
+    }
+
+    public AdvancedSearchComponent clickControlViewBlock() {
+        controlViewBlock.click();
+        return this;
+    }
+
+    public boolean controlViewDisplay() {
+        // Returns TRUE if the view is marked as LIST
+        // Returns FALSE if the view is marked as BLOCK
+
+        int firstCard = cardsBody.get(0).getLocation().getY();
+        int secondCard = cardsBody.get(1).getLocation().getY();
+
+        return firstCard < secondCard;
     }
 
     public boolean isCityActive() {
@@ -166,7 +193,9 @@ public class AdvancedSearchComponent extends BasePO {
     }
 
     public AdvancedSearchComponent clickSortDescending() {
-        sortDescending.click();
+        wait.visibility(sortDescending);
+        action.click(sortDescending);
+        sleep(3);
         return this;
     }
 
