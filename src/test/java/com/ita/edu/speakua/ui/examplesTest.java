@@ -1,14 +1,6 @@
 package com.ita.edu.speakua.ui;
 
 
-import com.ita.edu.speakua.ui.Pages.ClubsPO.AdvancedSearchComponent;
-import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubCard;
-import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubPage;
-
-import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubsPage;
-import com.ita.edu.speakua.ui.Pages.ProfilePO.EditProfileModel;
-import com.ita.edu.speakua.ui.Pages.ProfilePO.MyProfilePage;
-import com.ita.edu.speakua.ui.headercomponent.HeaderComponent;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -16,10 +8,6 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class examplesTest extends BaseTestRunner {
 

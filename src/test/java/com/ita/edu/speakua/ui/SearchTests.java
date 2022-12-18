@@ -18,7 +18,7 @@ public class SearchTests extends BaseTestRunner {
         driver.get(configProperties.getBaseWebUrl());
     }
 
-    @Test(invocationCount = 5)
+    @Test
     public void oneSymbolEnteredInTheField() {
         List<WebElement> searchListInitialState = new HomePage(driver)
                 .clickSearchField()
@@ -39,7 +39,7 @@ public class SearchTests extends BaseTestRunner {
                 .getComponentsOfTheSearchList();
         List<WebElement> searchListAfterInputtingData = new HomePage(driver)
                 .clickSearchField()
-                .enterTextInTheSearchFieldAndWait("лпротирпавпнргошлщдзждлшогрнпеаквс65789ш/*длорпІВ", 1)
+                .enterTextInTheSearchFieldAndWait("лпротирпавпнргошлщдзждлшогрнпеаквс65789ш/*длорпІВ1", 1)
                 .getComponentsOfTheSearchList();
         String initial = searchListInitialState.get(1).getAttribute("title");
         String afterAllActions = searchListAfterInputtingData.get(1).getAttribute("title");

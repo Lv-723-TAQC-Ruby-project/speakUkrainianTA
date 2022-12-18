@@ -35,16 +35,16 @@ public class AdvancedSearchTest extends BaseTestRunner {
         HomePage Page = new HomePage(driver);
 
         boolean check  = Page
-               .openAdvancedSearch()
+                .openAdvancedSearch()
                 .getAdvancedSearchComponent()
-               .isAdvancedSearchOpen();
+                .isAdvancedSearchOpen();
 
         softAssert.assertTrue(check);
 
         check = Page
-               .openAdvancedSearch()
+                .openAdvancedSearch()
                 .getAdvancedSearchComponent()
-               .isAdvancedSearchOpen();
+                .isAdvancedSearchOpen();
 
         softAssert.assertFalse(check);
 
@@ -87,12 +87,42 @@ public class AdvancedSearchTest extends BaseTestRunner {
         softAssert.assertEquals(radioValue,"Гурток");
 
         AdvancedSearchComponent advancedSearchComponent = new AdvancedSearchComponent(driver).clickRadioCenter();
+
+        radioValue = advancedSearchComponent.getRadioValueString();
+
         softAssert.assertEquals(radioValue,"Центр");
 
         softAssert.assertTrue(advancedSearchComponent.isCityActive(),"Didn't find city dropdown");
         softAssert.assertTrue(advancedSearchComponent.isDistrictActive(),"Didn't find district dropdown");
         softAssert.assertTrue(advancedSearchComponent.isStationActive(),"Didn't find station dropdown");
+
         softAssert.assertFalse(advancedSearchComponent.isAgeChildActive(),"Did find child age field");
+
+        softAssert.assertAll();
+    }
+
+    @Test
+    public void formatListCheck() {
+        SoftAssert softAssert = new SoftAssert();
+
+        String radioValue = new HomePage(driver)
+                .openAdvancedSearch()
+                .getAdvancedSearchComponent()
+                .getRadioValueString();
+
+        softAssert.assertEquals(radioValue,"Гурток");
+
+        AdvancedSearchComponent advancedSearchComponent = new AdvancedSearchComponent(driver).clickRadioCenter();
+
+        radioValue = advancedSearchComponent.getRadioValueString();
+
+        softAssert.assertEquals(radioValue,"Центр");
+
+        boolean contentView= advancedSearchComponent
+                .clickControlViewList()
+                .controlViewDisplay();
+
+        softAssert.assertTrue(contentView,"Content is not displayed as a list");
 
         softAssert.assertAll();
     }
@@ -115,23 +145,27 @@ public class AdvancedSearchTest extends BaseTestRunner {
             listTitle.add(card.getTitleOfCenter());
         }
         ArrayList<String> sortedList = new ArrayList<>(listTitle);
-        Collections.sort(sortedList);
-        Assert.assertEquals(listTitle, sortedList, "Cards don't sort");
+        Collections.sort(sortedList,Collections.reverseOrder());
+        Assert.assertEquals(listTitle, sortedList, "Cards didn't sort");
 
-
+        boolean openSearchh = new HeaderComponent(driver)
+                .openAdvancedSearch()
+                .getAdvancedSearchComponent()
+                .isAdvancedSearchOpen();
+        Assert.assertTrue(openSearchh);
         ClubsPage sortAlphabeticallyDescending = new AdvancedSearchComponent(driver)
                 .clickRadioCenter()
                 .clickSortAlphabetical()
                 .clickSortDescending()
                 .getClubPage();
         List<ClubCard> cardsDesceninng = sortAlphabeticallyDescending.getCards();
-        ArrayList<String> listTitleDesceninng = new ArrayList<>();
+        ArrayList<String> listTitleDescending = new ArrayList<>();
         for (ClubCard card : cardsDesceninng) {
-            listTitleDesceninng.add(card.getTitleOfCenter());
+            listTitleDescending.add(card.getTitleOfCenter());
         }
-        ArrayList<String> sortedListDesk = new ArrayList<>(listTitleDesceninng);
-        sortedListDesk.sort(Collections.reverseOrder());
-        Assert.assertEquals(listTitleDesceninng, sortedListDesk, "Cards don't sort");
+        ArrayList<String> sortedListDesk = new ArrayList<>(listTitleDescending);
+        Collections.sort(sortedListDesk, Collections.reverseOrder());
+        Assert.assertEquals(listTitleDescending, sortedListDesk, "Cards didn't sort");
 
     }
 

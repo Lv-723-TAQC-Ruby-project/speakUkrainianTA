@@ -72,11 +72,11 @@ public class ClubCard extends BasePO {
         return new ClubPage(driver);
     }
 
-    public EditClubModel openEditClubModel() {
+    public EditClubModal openEditClubModel() {
         wait.visibility(menuClubButton);
         action.click(menuClubButton);
         wait.visibility(editClubButton);
         action.click(editClubButton);
-        return new EditClubModel(driver);
+        return new EditClubModal(driver);
     }
 }

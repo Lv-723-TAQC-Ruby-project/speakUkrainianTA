@@ -39,9 +39,9 @@ public class AdvancedSearchComponent extends BasePO {
     private WebElement checkBoxRemote;
     @FindBy(xpath = "//span[text()='за алфавітом']")
     private WebElement sortAlphabetical;
-    @FindBy(xpath = "//span[@aria-label='arrow-down']")
+    @FindBy(xpath = "//span[@class='anticon anticon-arrow-down control-sort-arrow']")
     private WebElement sortDescending;
-    @FindBy(xpath = "//span[@aria-label='arrow-up']")
+    @FindBy(xpath = "//span[@class='anticon anticon-arrow-up control-sort-arrow']")
     private WebElement sortAscending;
     @FindBy(xpath = "//span[text()='за рейтингом']")
     private WebElement sortByRating;
@@ -168,6 +168,7 @@ public class AdvancedSearchComponent extends BasePO {
     public AdvancedSearchComponent clickSortDescending() {
         wait.visibility(sortDescending);
         action.click(sortDescending);
+        sleep(3);
         return this;
     }
 
@@ -178,8 +179,7 @@ public class AdvancedSearchComponent extends BasePO {
     }
 
     public AdvancedSearchComponent clickSortByRating() {
-        wait.visibility(sortByRating);
-        action.click(sortByRating);
+        sortByRating.click();
         return this;
     }
 
@@ -188,6 +188,15 @@ public class AdvancedSearchComponent extends BasePO {
         return new ClubsPage(driver);
     }
 
+    public List<WebElement> getClubs() {
+        return cardsBody;
+    }
+
+    public List<WebElement> cardsAlphabetically() {
+        List<WebElement> alphabeticalCardsList = new ArrayList<>();
+        alphabeticalCardsList.addAll(cardsBody);
+        return alphabeticalCardsList.stream().sorted().collect(Collectors.toList());
+    }
 
     public AdvancedSearchComponent clearCityField() {
         cityInputField.isEnabled();

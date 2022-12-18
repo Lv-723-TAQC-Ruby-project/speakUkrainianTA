@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.io.File;
 
-public class AddDescriptionCenterModel extends BasePO {
+public class AddDescriptionCenterModal extends BasePO {
     @FindBy(xpath = "//input[@id='basic_urlLogo']")
     private WebElement addLogo;
 
@@ -20,32 +20,32 @@ public class AddDescriptionCenterModel extends BasePO {
     private WebElement nextButton;
 
 
-    public AddDescriptionCenterModel(WebDriver driver) {
+    public AddDescriptionCenterModal(WebDriver driver) {
         super(driver);
     }
 
 
-    public AddDescriptionCenterModel addLogo(String logo) {
+    public AddDescriptionCenterModal addLogo(String logo) {
         File file = new File(getClass().getClassLoader().getResource(logo).getFile());
         String imagePath = file.getAbsolutePath();
         addLogo.sendKeys(imagePath);
         return this;
     }
 
-    public AddDescriptionCenterModel addPhoto(String photo) {
+    public AddDescriptionCenterModal addPhoto(String photo) {
         File file = new File(getClass().getClassLoader().getResource(photo).getFile());
         String imagePath = file.getAbsolutePath();
         addPhoto.sendKeys(imagePath);
         return this;
     }
 
-    public AddDescriptionCenterModel addDescription(String description) {
+    public AddDescriptionCenterModal addDescription(String description) {
         addDescription.sendKeys(description);
         return this;
     }
 
-    public ChooseClubCenterModel clickNextStep() {
+    public ChooseClubCenterModal clickNextStep() {
         nextButton.click();
-        return new ChooseClubCenterModel(driver);
+        return new ChooseClubCenterModal(driver);
     }
 }
