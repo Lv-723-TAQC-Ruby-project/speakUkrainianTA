@@ -39,43 +39,16 @@ public class AdvancedSearchComponent extends BasePO {
     private WebElement checkBoxRemote;
     @FindBy(xpath = "//span[text()='за алфавітом']")
     private WebElement sortAlphabetical;
-
-    @FindBy(xpath = "//span[@aria-label='arrow-down']")
+    @FindBy(xpath = "//span[@class='anticon anticon-arrow-down control-sort-arrow']")
     private WebElement sortDescending;
-    @FindBy(xpath = "//span[@aria-label='arrow-up']")
+    @FindBy(xpath = "//span[@class='anticon anticon-arrow-up control-sort-arrow']")
     private WebElement sortAscending;
     @FindBy(xpath = "//span[text()='за рейтингом']")
     private WebElement sortByRating;
 
-    @FindBy(xpath = "//input[@value='LIST']//ancestor::label")
-    private WebElement controlViewList;
-
-    @FindBy(xpath = "//input[@value='BLOCK']//ancestor::label")
-    private WebElement controlViewBlock;
-
 
     public AdvancedSearchComponent(WebDriver driver) {
         super(driver);
-    }
-
-    public AdvancedSearchComponent clickControlViewList() {
-        controlViewList.click();
-        return this;
-    }
-
-    public AdvancedSearchComponent clickControlViewBlock() {
-        controlViewBlock.click();
-        return this;
-    }
-
-    public boolean controlViewDisplay() {
-        // Returns TRUE if the view is marked as LIST
-        // Returns FALSE if the view is marked as BLOCK
-
-        int firstCard = cardsBody.get(0).getLocation().getY();
-        int secondCard = cardsBody.get(1).getLocation().getY();
-
-        return firstCard < secondCard;
     }
 
     public AdvancedSearchComponent chooseCity(String city) {
@@ -139,13 +112,12 @@ public class AdvancedSearchComponent extends BasePO {
 
     public boolean isCategoryActive() {
         try {
-            wait.visibility(By.xpath("//span[contains(text(), 'Категорії')]"));
+            wait.visibility(By.xpath("//span[contains(text(), '')]"));
             return true;
         } catch (Exception e) {
             return false;
         }
     }
-
 
 
     public AdvancedSearchComponent clickRadioCenter() {
@@ -166,17 +138,8 @@ public class AdvancedSearchComponent extends BasePO {
     public boolean isAdvancedSearchOpen() {
         try {
             wait.visibility(By.xpath("//div[contains(text(), 'Розширений пошук')]"));
-
-            int advancedSearchMenu = driver.findElement(By.xpath("//aside[contains(@class, 'club-list-side')]")).getLocation().getX();
-            int contentList = driver.findElement(By.xpath("//div[contains(@class,'content-clubs-list')]")).getLocation().getX();
-
-            if (!(advancedSearchMenu < contentList)) {
-                throw new Exception("Advanced search menu does not display properly");
-            }
-
             return true;
         } catch (Exception e) {
-            System.out.println(e);
             return false;
         }
     }
@@ -205,6 +168,7 @@ public class AdvancedSearchComponent extends BasePO {
     public AdvancedSearchComponent clickSortDescending() {
         wait.visibility(sortDescending);
         action.click(sortDescending);
+        sleep(3);
         return this;
     }
 
@@ -215,8 +179,7 @@ public class AdvancedSearchComponent extends BasePO {
     }
 
     public AdvancedSearchComponent clickSortByRating() {
-        wait.visibility(sortByRating);
-        action.click(sortByRating);
+        sortByRating.click();
         return this;
     }
 
@@ -225,6 +188,15 @@ public class AdvancedSearchComponent extends BasePO {
         return new ClubsPage(driver);
     }
 
+    public List<WebElement> getClubs() {
+        return cardsBody;
+    }
+
+    public List<WebElement> cardsAlphabetically() {
+        List<WebElement> alphabeticalCardsList = new ArrayList<>();
+        alphabeticalCardsList.addAll(cardsBody);
+        return alphabeticalCardsList.stream().sorted().collect(Collectors.toList());
+    }
 
     public AdvancedSearchComponent clearCityField() {
         cityInputField.isEnabled();
