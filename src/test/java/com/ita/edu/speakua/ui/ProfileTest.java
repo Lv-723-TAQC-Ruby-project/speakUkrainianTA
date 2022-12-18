@@ -53,7 +53,7 @@ public class ProfileTest extends BaseTestRunner {
     @Test
     public void MessageAboutIncorrectlyEnteredFirstNameTest() {
         SoftAssert softAssert = new SoftAssert();
-        EditProfileModel editProfileModel = new HomePage(driver).openUserProfileMenu().openMyProfileModel().openEditProfileModel();
+        EditProfileModal editProfileModel = new HomePage(driver).openUserProfileMenu().openMyProfileModel().openEditProfileModel();
         boolean isMessageMore25Characters = editProfileModel.enterFirstName("AfBbCcDdEeFfGgHhIiJjKkLlMmNn").isOpenMessageErrorFirstNameContain("Ім'я не може містити більше, ніж 25 символів");
         softAssert.assertTrue(isMessageMore25Characters, "the message more 25 characters in first name field check failed");
         boolean isMessageWithSpecialCharacters = editProfileModel.enterFirstName("!@#$%^&,").isOpenMessageErrorFirstNameContain("Ім'я не може містити спеціальні символи");
