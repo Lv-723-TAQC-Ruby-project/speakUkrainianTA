@@ -35,6 +35,9 @@ public class AddCenterTest extends BaseTestRunner {
                 .isMessageErrorCenterWithoutName();
         Assert.assertTrue(message, "Error message 'Некоректна назва центру’ doesn't appear under 'Назва центру' field with empty 'Назва центру' field");
     }
+
+
+
     @Test
     public void addCenterTest() {
         new HomePage(driver)

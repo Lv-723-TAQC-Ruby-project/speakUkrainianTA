@@ -11,6 +11,9 @@ public class EditProfileModel extends BasePO {
     @FindBy(xpath = "//input[@id='edit_lastName']")
     private WebElement editLastNameField;
 
+    @FindBy(xpath = "//input[@id='edit_firstName']")
+    private WebElement editFirstNameField;
+
     @FindBy(xpath = "//input[@id='edit_phone']")
     private WebElement editNumberPhoneField;
 
@@ -47,6 +50,15 @@ public class EditProfileModel extends BasePO {
     }
 
     public boolean isOpenMassageErrorLastNameContain(String name) {
+        try {
+            driver.findElement(By.xpath(String.format("//div[@class='ant-form-item-explain-error']", name)));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isOpenMessageErrorFirstNameContain(String name) {
         try {
             driver.findElement(By.xpath(String.format("//div[@class='ant-form-item-explain-error']", name)));
             return true;
@@ -117,10 +129,24 @@ public class EditProfileModel extends BasePO {
         editLastNameField.sendKeys(lastName);
         return this;
     }
+    public EditProfileModel enterFirstName(String firstName) {
+        editFirstNameField.clear();
+        wait.visibility(editFirstNameField);
+        editFirstNameField.sendKeys(firstName);
+        return this;
+    }
+
+
 
     public EditProfileModel deleteLastName() {
         editLastNameField.clear();
         wait.visibility(editLastNameField);
+        return this;
+    }
+
+    public EditProfileModel deleteFirstName() {
+        editFirstNameField.clear();
+        wait.visibility(editFirstNameField);
         return this;
     }
 
