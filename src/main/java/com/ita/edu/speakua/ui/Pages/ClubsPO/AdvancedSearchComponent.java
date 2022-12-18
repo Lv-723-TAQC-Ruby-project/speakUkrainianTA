@@ -120,6 +120,7 @@ public class AdvancedSearchComponent extends BasePO {
     }
 
 
+
     public AdvancedSearchComponent clickRadioCenter() {
         radioCenter.click();
         return this;

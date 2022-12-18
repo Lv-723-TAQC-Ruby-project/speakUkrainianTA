@@ -34,9 +34,9 @@ public class AddCenterModel extends BasePO {
         return this;
     }
 
-    public AddLocationCenterModel addLocation() {
+    public AddLocationModel addLocation() {
         addCenterLocation.click();
-        return new AddLocationCenterModel(driver);
+        return new AddLocationModel(driver);
     }
 
     public AddCenterModel selectCenterLocation() {

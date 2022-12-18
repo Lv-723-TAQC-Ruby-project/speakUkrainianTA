@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class AddLocationCenterModel extends BasePO {
+public class AddLocationModel extends BasePO {
 
     @FindBy(xpath = "//input[@id='name']")
     private WebElement nameLocation;
@@ -40,32 +40,32 @@ public class AddLocationCenterModel extends BasePO {
     @FindBy(xpath = "//div[@class='ant-select-item-option-content']")
     private WebElement city;
 
-    public AddLocationCenterModel(WebDriver driver) {
+    public AddLocationModel(WebDriver driver) {
         super(driver);
     }
 
-    public AddLocationCenterModel addLocationName(String locationName) {
+    public AddLocationModel addLocationName(String locationName) {
         nameLocation.sendKeys(locationName);
         return this;
     }
 
-    public AddLocationCenterModel addLocationAddress(String locationAddress) {
+    public AddLocationModel addLocationAddress(String locationAddress) {
         addressLocation.sendKeys(locationAddress);
         return this;
     }
 
-    public AddLocationCenterModel addLocationCoordinates(String locationCoordinates) {
+    public AddLocationModel addLocationCoordinates(String locationCoordinates) {
         coordinatesLocation.sendKeys(locationCoordinates);
         return this;
     }
 
-    public AddLocationCenterModel addLocationPhone(String locationPhone) {
+    public AddLocationModel addLocationPhone(String locationPhone) {
         phoneLocation.sendKeys(locationPhone);
         return this;
     }
 
 
-    private AddLocationCenterModel selectLocation(WebElement webElement, String locationName) {
+    private AddLocationModel selectLocation(WebElement webElement, String locationName) {
         webElement.click();
         List<String> locations = new ArrayList<>();
         while (true) {
@@ -89,17 +89,17 @@ public class AddLocationCenterModel extends BasePO {
         return this;
     }
 
-    public AddLocationCenterModel chooseLocationCity(String cityName) {
+    public AddLocationModel chooseLocationCity(String cityName) {
         selectLocation(chooseCityName, cityName);
         return this;
     }
 
-    public AddLocationCenterModel chooseLocationStation(String stationName) {
+    public AddLocationModel chooseLocationStation(String stationName) {
         selectLocation(chooseStationName, stationName);
         return this;
     }
 
-    public AddLocationCenterModel chooseLocationDistrict(String districtName) {
+    public AddLocationModel chooseLocationDistrict(String districtName) {
         selectLocation(chooseDistrictName, districtName);
         return this;
     }

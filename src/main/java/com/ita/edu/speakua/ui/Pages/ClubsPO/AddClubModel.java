@@ -2,6 +2,7 @@ package com.ita.edu.speakua.ui.Pages.ClubsPO;
 
 import com.ita.edu.speakua.ui.BasePO;
 import com.ita.edu.speakua.ui.HomePage;
+import com.ita.edu.speakua.ui.Pages.CenterPO.AddLocationModel;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,6 +20,9 @@ public class AddClubModel extends BasePO {
 
     @FindBy(xpath = "//input[@id= 'basic_ageTo']")
     private WebElement ageToInput;
+
+    @FindBy(xpath = "//span[@class='add-club-location']")
+    WebElement addLocationButton;
 
     @FindBy(xpath = "//input[@id= 'basic_contactТелефон']")
     private WebElement phoneNumberInput;
@@ -69,6 +73,11 @@ public class AddClubModel extends BasePO {
     public AddClubModel enterToAge(String ageTo) {
         ageToInput.sendKeys(ageTo);
         return this;
+    }
+
+    public AddLocationModel clickAddLocationButton() {
+        addLocationButton.click();
+        return new AddLocationModel(driver);
     }
 
     public AddClubModel enterPhoneNumber(String phoneNumber) {

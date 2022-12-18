@@ -1,6 +1,7 @@
 package com.ita.edu.speakua.ui.Pages.CenterPO;
 
 import com.ita.edu.speakua.ui.BasePO;
+import com.ita.edu.speakua.ui.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,8 +24,8 @@ public class ChooseClubCenterModel extends BasePO {
         return this;
     }
 
-    public ChooseClubCenterModel finishAddCenter() {
+    public HomePage finishAddCenter() {
         finishButton.click();
-        return this;
+        return new HomePage(driver);
     }
 }
