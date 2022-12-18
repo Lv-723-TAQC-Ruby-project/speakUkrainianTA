@@ -172,7 +172,7 @@ public class AdvancedSearchComponent extends BasePO {
 
             if (!(advancedSearchMenu < contentList)) {
                 throw new Exception("Advanced search menu does not display properly");
-            };
+            }
 
             return true;
         } catch (Exception e) {
