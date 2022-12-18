@@ -39,6 +39,7 @@ public class AdvancedSearchComponent extends BasePO {
     private WebElement checkBoxRemote;
     @FindBy(xpath = "//span[text()='за алфавітом']")
     private WebElement sortAlphabetical;
+
     @FindBy(xpath = "//span[@aria-label='arrow-down']")
     private WebElement sortDescending;
     @FindBy(xpath = "//span[@aria-label='arrow-up']")
@@ -46,9 +47,35 @@ public class AdvancedSearchComponent extends BasePO {
     @FindBy(xpath = "//span[text()='за рейтингом']")
     private WebElement sortByRating;
 
+    @FindBy(xpath = "//input[@value='LIST']//ancestor::label")
+    private WebElement controlViewList;
+
+    @FindBy(xpath = "//input[@value='BLOCK']//ancestor::label")
+    private WebElement controlViewBlock;
+
 
     public AdvancedSearchComponent(WebDriver driver) {
         super(driver);
+    }
+
+    public AdvancedSearchComponent clickControlViewList() {
+        controlViewList.click();
+        return this;
+    }
+
+    public AdvancedSearchComponent clickControlViewBlock() {
+        controlViewBlock.click();
+        return this;
+    }
+
+    public boolean controlViewDisplay() {
+        // Returns TRUE if the view is marked as LIST
+        // Returns FALSE if the view is marked as BLOCK
+
+        int firstCard = cardsBody.get(0).getLocation().getY();
+        int secondCard = cardsBody.get(1).getLocation().getY();
+
+        return firstCard < secondCard;
     }
 
     public AdvancedSearchComponent chooseCity(String city) {
@@ -112,7 +139,7 @@ public class AdvancedSearchComponent extends BasePO {
 
     public boolean isCategoryActive() {
         try {
-            wait.visibility(By.xpath("//span[contains(text(), '')]"));
+            wait.visibility(By.xpath("//span[contains(text(), 'Категорії')]"));
             return true;
         } catch (Exception e) {
             return false;
@@ -139,8 +166,17 @@ public class AdvancedSearchComponent extends BasePO {
     public boolean isAdvancedSearchOpen() {
         try {
             wait.visibility(By.xpath("//div[contains(text(), 'Розширений пошук')]"));
+
+            int advancedSearchMenu = driver.findElement(By.xpath("//aside[contains(@class, 'club-list-side')]")).getLocation().getX();
+            int contentList = driver.findElement(By.xpath("//div[contains(@class,'content-clubs-list')]")).getLocation().getX();
+
+            if (!(advancedSearchMenu < contentList)) {
+                throw new Exception("Advanced search menu does not display properly");
+            }
+
             return true;
         } catch (Exception e) {
+            System.out.println(e);
             return false;
         }
     }

@@ -1,6 +1,6 @@
 package com.ita.edu.speakua.ui.Pages.ProfilePO;
 
-import com.ita.edu.speakua.ui.BasePO;
+import com.ita.edu.speakua.ui.BasePageWithHeader;
 import com.ita.edu.speakua.ui.Pages.CenterPO.AddCenterModal;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.*;
 import org.openqa.selenium.WebDriver;
@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class MyProfilePage extends BasePO {
+public class MyProfilePage extends BasePageWithHeader {
 
     private ClubsPage clubsPage;
 

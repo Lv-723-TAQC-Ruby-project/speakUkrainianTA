@@ -1,13 +1,13 @@
 package com.ita.edu.speakua.ui.Pages.TaskPO;
 
-import com.ita.edu.speakua.ui.BasePO;
+import com.ita.edu.speakua.ui.BasePageWithHeader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class AddTaskPage extends BasePO {
+public class AddTaskPage extends BasePageWithHeader {
 
     @FindBy(xpath = "//input[@id='startDate']")
     public WebElement startDate;

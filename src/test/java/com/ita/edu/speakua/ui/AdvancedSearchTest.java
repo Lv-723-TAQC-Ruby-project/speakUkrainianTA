@@ -35,16 +35,16 @@ public class AdvancedSearchTest extends BaseTestRunner {
         HomePage Page = new HomePage(driver);
 
         boolean check  = Page
-               .openAdvancedSearch()
+                .openAdvancedSearch()
                 .getAdvancedSearchComponent()
-               .isAdvancedSearchOpen();
+                .isAdvancedSearchOpen();
 
         softAssert.assertTrue(check);
 
         check = Page
-               .openAdvancedSearch()
+                .openAdvancedSearch()
                 .getAdvancedSearchComponent()
-               .isAdvancedSearchOpen();
+                .isAdvancedSearchOpen();
 
         softAssert.assertFalse(check);
 
@@ -88,6 +88,8 @@ public class AdvancedSearchTest extends BaseTestRunner {
 
         AdvancedSearchComponent advancedSearchComponent = new AdvancedSearchComponent(driver).clickRadioCenter();
 
+        radioValue = advancedSearchComponent.getRadioValueString();
+
         softAssert.assertEquals(radioValue,"Центр");
 
         softAssert.assertTrue(advancedSearchComponent.isCityActive(),"Didn't find city dropdown");
@@ -112,8 +114,15 @@ public class AdvancedSearchTest extends BaseTestRunner {
 
         AdvancedSearchComponent advancedSearchComponent = new AdvancedSearchComponent(driver).clickRadioCenter();
 
+        radioValue = advancedSearchComponent.getRadioValueString();
+
         softAssert.assertEquals(radioValue,"Центр");
 
+        boolean contentView= advancedSearchComponent
+                .clickControlViewList()
+                .controlViewDisplay();
+
+        softAssert.assertTrue(contentView,"Content is not displayed as a list");
 
         softAssert.assertAll();
     }
