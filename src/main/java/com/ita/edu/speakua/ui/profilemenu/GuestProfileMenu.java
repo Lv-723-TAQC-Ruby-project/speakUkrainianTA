@@ -32,6 +32,7 @@ public class GuestProfileMenu extends BasePO {
 
     public RegisterModal openRegistrationModel() {
         registrationButton.click();
+        sleep(3);
         return new RegisterModal(driver);
     }
 

@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.io.File;
+
 public class AddTaskPage extends BasePageWithHeader {
 
     @FindBy(xpath = "//input[@id='startDate']")
@@ -71,8 +73,11 @@ public class AddTaskPage extends BasePageWithHeader {
     }
 
     //String filePath = "C:\\Users\\User\\Desktop\\world-cup.jpg";
-    public AddTaskPage uploadImage(String filePath) {
-        uploadImage.sendKeys(filePath);
+    public AddTaskPage uploadImage(String image) {
+        ClassLoader classLoader = getClass().getClassLoader();
+        File photo = new File(classLoader.getResource(image).getFile());
+        String absolutePath = photo.getAbsolutePath();
+        uploadImage.sendKeys(absolutePath);
         return this;
     }
 
