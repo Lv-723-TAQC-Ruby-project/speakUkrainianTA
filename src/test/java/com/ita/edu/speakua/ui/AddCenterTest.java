@@ -37,7 +37,6 @@ public class AddCenterTest extends BaseTestRunner {
     }
 
 
-
     @Test
     public void addCenterTest() {
         new HomePage(driver)
@@ -68,15 +67,14 @@ public class AddCenterTest extends BaseTestRunner {
         Assert.assertEquals(driver.getTitle(), "Навчай українською");
     }
 
-//    @Test
-//    public void CheckCenter() {
-//        new HomePage(driver)
-//                .openAdvancedSearch()
-//                .getAdvancedSearchComponent()
-//                .clickRadioCenter()
-//                .chooseCity("Харків")
-//                .;
-//    }
+    @Test
+    public void CheckCenter() {
+        new HomePage(driver)
+                .openAdvancedSearch()
+                .getAdvancedSearchComponent()
+                .clickRadioCenter()
+                .chooseCity("Харків");
+    }
 
     @AfterClass
     public void tearDown() {
