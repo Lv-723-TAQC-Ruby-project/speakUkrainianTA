@@ -112,6 +112,7 @@ public class AddClubModal extends BasePO {
 
     public HomePage finishAddingCenter() {
         completeButton.click();
+        sleep(2);
         return new HomePage(driver);
     }
 

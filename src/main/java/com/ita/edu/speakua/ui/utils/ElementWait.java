@@ -31,4 +31,19 @@ public class ElementWait {
     public void visibility(WebElement element) {
         visibility(element, TIMEOUT.getSeconds());
     }
+
+    public void clickable(By locator) {
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+
+    public void clickable(WebElement element, long seconds) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    public void clickable(WebElement element) {
+        clickable(element, TIMEOUT.getSeconds());
+    }
+
 }

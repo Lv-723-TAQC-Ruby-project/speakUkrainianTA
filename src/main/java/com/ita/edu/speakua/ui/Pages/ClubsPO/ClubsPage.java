@@ -31,7 +31,9 @@ public class ClubsPage extends BasePageWithHeader {
     public ClubCard getCard(int id) { return getCards().get(id); }
 
     public ClubCard getCardByName(String name){
+        sleep(5);
         for (ClubCard card: getCards()) {
+            System.out.println(card.getTitleInMyProfile());
             if (Objects.equals(card.getTitleInMyProfile(), name)){
                 return card;
             }
