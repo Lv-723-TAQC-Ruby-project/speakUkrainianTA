@@ -1,6 +1,7 @@
 package com.ita.edu.speakua.ui.Pages.CenterPO;
 
 import com.ita.edu.speakua.ui.BasePO;
+import com.ita.edu.speakua.ui.Pages.ClubsPO.AddClubModal;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -36,6 +37,10 @@ public class AddLocationModal extends BasePO {
 
     @FindBy(xpath = "//button[@class='ant-btn ant-btn-default flooded-button add-club-content-next']")
     private WebElement addLocationButton;
+
+    @FindBy(xpath = "//div[@class='add-club-content-footer add-club-add-location-button']//button[@type='submit']")
+    private WebElement addLocationButtonToClub;
+
 
     @FindBy(xpath = "//div[@class='ant-select-item-option-content']")
     private WebElement city;
@@ -109,5 +114,12 @@ public class AddLocationModal extends BasePO {
         addLocationButton.click();
         return new AddCenterModal(driver);
     }
+
+    public AddClubModal clickAddLocationButtonToClub() {
+        addLocationButtonToClub.click();
+        return new AddClubModal(driver);
+    }
+
+
 
 }

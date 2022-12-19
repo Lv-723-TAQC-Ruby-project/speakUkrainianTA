@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.io.File;
+import java.sql.Timestamp;
 
 public class AddCenterTest extends BaseTestRunner {
     @BeforeClass
@@ -39,10 +40,11 @@ public class AddCenterTest extends BaseTestRunner {
 
     @Test
     public void addCenterTest() {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         new HomePage(driver)
                 .openUserProfileMenu()
                 .openAddCenterModel()
-                .enterCenterName("New Center Name")
+                .enterCenterName("New Center Name " + timestamp)
                 .addLocation()
                 .addLocationName("New Location name")
                 .chooseLocationCity("Харків")
@@ -67,14 +69,6 @@ public class AddCenterTest extends BaseTestRunner {
         Assert.assertEquals(driver.getTitle(), "Навчай українською");
     }
 
-    @Test
-    public void CheckCenter() {
-        new HomePage(driver)
-                .openAdvancedSearch()
-                .getAdvancedSearchComponent()
-                .clickRadioCenter()
-                .chooseCity("Харків");
-    }
 
     @AfterClass
     public void tearDown() {
