@@ -1,5 +1,6 @@
 package com.ita.edu.speakua.ui;
 
+import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubsPage;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -32,17 +33,18 @@ public class SearchTests extends BaseTestRunner {
         Assert.assertNotEquals(initial, afterAllActions);
     }
 
-    @Test(invocationCount = 5)
+    @Test
     public void fiftySymbolsEnteredInTheSearchField() {
-        List<WebElement> searchListInitialState = new HomePage(driver)
+        new HomePage(driver).clickClub();
+        String initial = new HomePage(driver)
                 .clickSearchField()
-                .getComponentsOfTheSearchList();
-        List<WebElement> searchListAfterInputtingData = new HomePage(driver)
+                .getComponentsOfTheSearchList()
+                .get(1)
+                .getText();
+        String afterAllActions = new HomePage(driver)
                 .clickSearchField()
-                .enterTextInTheSearchFieldAndWait("лпротирпавпнргошлщдзждлшогрнпеаквс65789ш/*длорпІВ1", 1)
-                .getComponentsOfTheSearchList();
-        String initial = searchListInitialState.get(1).getAttribute("title");
-        String afterAllActions = searchListAfterInputtingData.get(1).getAttribute("title");
+                .enterTextInTheSearchFieldAndWait("лпротирпавпнргошлщдзждлшогрнпеаквс65789ш/*длорпІВ1", 3)
+                .getComponentsOfTheSearchList().get(1).getAttribute("title");
         Assert.assertNotEquals(initial, afterAllActions);
     }
 
