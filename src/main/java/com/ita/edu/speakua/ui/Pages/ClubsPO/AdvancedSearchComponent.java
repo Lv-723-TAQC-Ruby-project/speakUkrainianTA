@@ -50,9 +50,9 @@ public class AdvancedSearchComponent extends BasePO {
     private WebElement checkBoxRemote;
     @FindBy(xpath = "//span[text()='за алфавітом']")
     private WebElement sortAlphabetical;
-    @FindBy(xpath = "//span[@class='anticon anticon-arrow-down control-sort-arrow']")
-    private WebElement sortDescending;
     @FindBy(xpath = "//span[@class='anticon anticon-arrow-up control-sort-arrow']")
+    private WebElement sortDescending;
+    @FindBy(xpath = "//span[@class='anticon anticon-arrow-down control-sort-arrow']")
     private WebElement sortAscending;
     @FindBy(xpath = "//span[text()='за рейтингом']")
     private WebElement sortByRating;
@@ -230,7 +230,7 @@ public class AdvancedSearchComponent extends BasePO {
     }
 
     public AdvancedSearchComponent clearCityField() {
-        cityInputField.findElement(By.xpath("//span[@class='ant-select-arrow'")).click();
+        cityInputField.findElement(By.xpath("//span[@class='ant-select-arrow']")).click();
         return this;
     }
 
@@ -239,6 +239,7 @@ public class AdvancedSearchComponent extends BasePO {
         return this;
     }
     public ClubsPage getClubPage(){
+        sleep(2);
         return new ClubsPage(driver);
     }
 
