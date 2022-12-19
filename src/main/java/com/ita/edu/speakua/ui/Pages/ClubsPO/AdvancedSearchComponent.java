@@ -30,8 +30,12 @@ public class AdvancedSearchComponent extends BasePO {
     private WebElement radioValue;
     @FindBy(xpath = "//input[@id='basic_cityName']//ancestor::div[contains(@class,'selector')]")
     private WebElement dropDownCity;
-    @FindBy(xpath = "//*[@id=\"basic_cityName\"]")
+    @FindBy(xpath = "//*[@id='basic_cityName']")
     private WebElement cityInputField;
+
+    @FindBy(xpath = "//span[(@class='ant-select-clear')]")
+    private WebElement clearCity;
+
     @FindBy(xpath = "//div[@id='basic_cityName_list']/ancestor::div[not(@class)][1]")
     private WebElement dropDownCityList;
     @FindBy(xpath = "//input[@id='basic_districtName']//ancestor::div[contains(@class,'selector')]")
@@ -226,7 +230,12 @@ public class AdvancedSearchComponent extends BasePO {
     }
 
     public AdvancedSearchComponent clearCityField() {
-        cityInputField.isEnabled();
+        cityInputField.findElement(By.xpath("//span[@class='ant-select-arrow'")).click();
+        return this;
+    }
+
+    public AdvancedSearchComponent clearCityFieldClick() {
+        clearCity.click();
         return this;
     }
     public ClubsPage getClubPage(){

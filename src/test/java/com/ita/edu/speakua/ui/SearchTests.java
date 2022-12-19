@@ -32,7 +32,7 @@ public class SearchTests extends BaseTestRunner {
         Assert.assertNotEquals(initial, afterAllActions);
     }
 
-    @Test(invocationCount = 10)
+    @Test(invocationCount = 5)
     public void fiftySymbolsEnteredInTheSearchField() {
         List<WebElement> searchListInitialState = new HomePage(driver)
                 .clickSearchField()
