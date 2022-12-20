@@ -2,6 +2,7 @@ package com.ita.edu.speakua.ui;
 
 import com.ita.edu.speakua.ui.Pages.TaskPO.AddTaskPage;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -30,7 +31,7 @@ public class TaskTests extends BaseTestRunner {
         driver.get(configProperties.getBaseWebUrl());
     }
 
-
+@Description("Add Task Without Challenge")
 @Test
 public void addTaskWithoutChallenge(){
    AddTaskPage enterTaskData = new HomePage(driver)
@@ -53,7 +54,7 @@ public void addTaskWithoutChallenge(){
            .clickSave();
         softAssert.assertTrue(enterTaskData.isContainErrorMessage("Please,select challenge"));
 }
-
+@Description("Add Task with Invalid Description")
 @Test
 public void taskWithInvalidDescription(){
     AddTaskPage enterInvalidData = new HomePage(driver)

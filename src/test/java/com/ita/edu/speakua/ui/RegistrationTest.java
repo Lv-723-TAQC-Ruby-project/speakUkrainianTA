@@ -1,6 +1,7 @@
 package com.ita.edu.speakua.ui;
 
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
+import io.qameta.allure.Description;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -12,6 +13,7 @@ public class RegistrationTest extends BaseTestRunner {
     public void setUp(ITestContext context) {
         setDriver(context);
     }
+    @Description("Registration data is remembered after exit")
     @Test
     public void RegistrationDataRemembered() {
 

@@ -1,6 +1,7 @@
 package com.ita.edu.speakua.ui.Pages.TaskPO;
 
 import com.ita.edu.speakua.ui.BasePageWithHeader;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -80,17 +81,17 @@ public class AddTaskPage extends BasePageWithHeader {
         uploadImage.sendKeys(absolutePath);
         return this;
     }
-
+ @Step
     public AddTaskPage enterTaskName(String taskName) {
         this.taskName.sendKeys(taskName);
         return this;
     }
-
+    @Step
     public AddTaskPage enterTaskTitle(String taskTitle) {
         this.taskTitle.sendKeys(taskTitle);
         return this;
     }
-
+    @Step
     public AddTaskPage enterTaskDescription(String taskDescription) {
         this.taskDescription.sendKeys(taskDescription);
         return this;
@@ -105,13 +106,13 @@ public class AddTaskPage extends BasePageWithHeader {
         }
     }
 
-
+    @Step
     public AddTaskPage chooseChallenge() {
         chooseChallenge.click();
         challenge.click();
         return this;
     }
-
+    @Step
     public AddTaskPage clickSave() {
         saveButton.click();
         sleep(3);
