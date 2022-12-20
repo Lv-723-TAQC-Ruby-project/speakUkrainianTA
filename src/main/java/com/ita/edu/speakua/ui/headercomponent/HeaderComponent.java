@@ -5,6 +5,7 @@ import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubsPage;
 import com.ita.edu.speakua.ui.profilemenu.AdminProfileMenu;
 import com.ita.edu.speakua.ui.profilemenu.GuestProfileMenu;
 import com.ita.edu.speakua.ui.profilemenu.UserProfileMenu;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -93,6 +94,7 @@ public class HeaderComponent extends BasePO {
         return new GuestProfileMenu(driver);
     }
 
+    @Step("open profile Menu")
     public AdminProfileMenu openAdminProfileMenu() {
         profileMenuButton.click();
         sleep(3);

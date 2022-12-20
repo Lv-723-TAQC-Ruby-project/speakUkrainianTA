@@ -2,8 +2,13 @@ package com.ita.edu.speakua.ui;
 
 import com.ita.edu.speakua.ui.utils.ElementActions;
 import com.ita.edu.speakua.ui.utils.ElementWait;
+import io.qameta.allure.Attachment;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+
+import java.sql.Driver;
 
 public abstract class BasePO {
     protected WebDriver driver;
@@ -23,5 +28,10 @@ public abstract class BasePO {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Attachment(value = "Page screenshot", type = "image/png")
+    public byte[] saveScreenshot() {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 }

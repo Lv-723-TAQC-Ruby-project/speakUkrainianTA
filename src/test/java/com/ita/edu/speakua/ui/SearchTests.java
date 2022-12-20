@@ -4,14 +4,15 @@ import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubsPage;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.ITestContext;
 import org.testng.annotations.*;
 
 import java.util.List;
 
 public class SearchTests extends BaseTestRunner {
     @BeforeClass
-    public void setUp() {
-        setDriver();
+    public void setUp(ITestContext context) {
+        setDriver(context);
     }
 
     @BeforeMethod

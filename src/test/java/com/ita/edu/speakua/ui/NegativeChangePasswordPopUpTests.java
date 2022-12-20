@@ -3,13 +3,14 @@ package com.ita.edu.speakua.ui;
 import com.ita.edu.speakua.ui.Pages.ProfilePO.EditProfileModal;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import org.testng.Assert;
+import org.testng.ITestContext;
 import org.testng.annotations.*;
 
 public class NegativeChangePasswordPopUpTests extends BaseTestRunner {
 
     @BeforeClass
-    public void setUp() {
-        setDriver();
+    public void setUp(ITestContext context) {
+        setDriver(context);
         new HomePage(driver)
                 .openGuestProfileMenu()
                 .openLoginModel()
