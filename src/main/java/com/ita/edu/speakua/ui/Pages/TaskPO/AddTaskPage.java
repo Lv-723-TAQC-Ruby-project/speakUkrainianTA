@@ -105,6 +105,14 @@ public class AddTaskPage extends BasePageWithHeader {
             return false;
         }
     }
+        public boolean successMessage(String names) {
+            try {
+                driver.findElement(By.xpath(String.format("//div[@class='ant-message']", names)));
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+    }
 
     @Step
     public AddTaskPage chooseChallenge() {
