@@ -96,19 +96,21 @@ public class HeaderComponent extends BasePO {
         return new ClubsPage(driver);
     }
 
+    @Step("Open profile menu")
     public GuestProfileMenu openGuestProfileMenu() {
         profileMenuButton.click();
         sleep(3);
         return new GuestProfileMenu(driver);
     }
 
-    @Step("open profile Menu")
+    @Step("Open profile Menu")
     public AdminProfileMenu openAdminProfileMenu() {
         profileMenuButton.click();
         sleep(3);
         return new AdminProfileMenu(driver);
     }
 
+    @Step("Click Club in header")
     public ClubsPage clickClub() {
         clubButton.click();
         sleep(3);
