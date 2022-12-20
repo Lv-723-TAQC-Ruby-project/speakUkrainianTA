@@ -6,6 +6,7 @@ import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubsPage;
 import com.ita.edu.speakua.ui.headercomponent.HeaderComponent;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import org.testng.Assert;
+import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -19,8 +20,8 @@ import java.util.List;
 public class AdvancedSearchTest extends BaseTestRunner {
 
     @BeforeClass
-    public void setUp() {
-        setDriver();
+    public void setUp(ITestContext context) {
+        setDriver(context);
     }
 
     @BeforeMethod

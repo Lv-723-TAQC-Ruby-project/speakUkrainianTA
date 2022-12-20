@@ -1,6 +1,7 @@
 package com.ita.edu.speakua.ui.Pages.ChallengePО;
 
 import com.ita.edu.speakua.ui.BasePageWithHeader;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -49,29 +50,29 @@ public class AddChallengePage extends BasePageWithHeader {
         return uploadPhoto;
     }
 
-
+    @Step
     public AddChallengePage enterSequenceNumber(String sequence) {
         Random random = new Random();
         int number = random.nextInt(100);
         sequenceNumber.sendKeys(sequence+number);
         return this;
     }
-
+    @Step
     public AddChallengePage enterChallengeName(String name) {
         challengeName.sendKeys(name);
         return this;
     }
-
+    @Step
     public AddChallengePage enterTitle(String title) {
         titleInput.sendKeys(title);
         return this;
     }
-
+    @Step
     public AddChallengePage enterChallengeDescription(String description) {
         challengeDescription.sendKeys(description);
         return this;
     }
-
+    @Step
     public AddChallengePage uploadChallengePhoto(String image) {
         ClassLoader classLoader = getClass().getClassLoader();
         File photo = new File(classLoader.getResource(image).getFile());
@@ -79,7 +80,7 @@ public class AddChallengePage extends BasePageWithHeader {
         uploadPhoto.sendKeys(absolutePath);
         return this;
     }
-
+    @Step(" Click save btn")
     public AddChallengePage saveChallengeClick() {
         saveButton.click();
         return new AddChallengePage(driver);

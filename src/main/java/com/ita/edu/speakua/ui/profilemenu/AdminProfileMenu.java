@@ -2,6 +2,7 @@ package com.ita.edu.speakua.ui.profilemenu;
 
 import com.ita.edu.speakua.ui.Pages.ChallengePО.ChallengePage;
 import com.ita.edu.speakua.ui.Pages.TaskPO.TasksPage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -33,15 +34,32 @@ public class AdminProfileMenu extends UserProfileMenu {
 
         return new TasksPage(driver);
     }
-
+    @Step("open Challenge")
     public ChallengePage openChallengePage() {
 
-        wait.visibility(contentButton);
-        action.click(contentButton);
-        wait.visibility(challengeButton);
-        action.click(challengeButton);
+//        wait.visibility(contentButton);
+//        action.click(contentButton);
+//        wait.visibility(challengeButton);
+//        action.click(challengeButton);
+        openContentSubMenu();
+        openChallengeSubMenu();
+
         wait.visibility(challengesButton);
         action.click(challengesButton);
         return new ChallengePage(driver);
     }
+    @Step("open Content Sub Menu")
+    public AdminProfileMenu openContentSubMenu() {
+        wait.visibility(contentButton);
+        action.click(contentButton);
+        return this;
+    }
+
+    @Step("open Challenge Sub Menu")
+    public AdminProfileMenu openChallengeSubMenu() {
+        wait.visibility(challengeButton);
+        action.click(challengeButton);
+        return this;
+    }
+
 }
