@@ -81,8 +81,8 @@ public class ClubTests extends BaseTestRunner {
         softAssert.assertTrue(addClubModal.enterClubDescription("'Education', 'students', 'Школа' 'балету'").successMessageDisplayed());
         softAssert.assertTrue(addClubModal.enterClubDescription("1234567890123456789012345678901234567890").successMessageDisplayed());
         softAssert.assertTrue(addClubModal.enterClubDescription("!#$%&'()*+,-./:;<=>?@[]^_`{}~%^$#)&&^^(_&($%^#@!").successMessageDisplayed());
-        addClubModal.finishAddingCenter();
         softAssert.assertTrue(addClubModal.completeButtonEnabled());
+        softAssert.assertAll();
     }
 
     @Test
