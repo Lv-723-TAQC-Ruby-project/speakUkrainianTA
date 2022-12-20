@@ -45,6 +45,7 @@ public class EditProfileModal extends BasePO {
         super(driver);
     }
 
+    @Step("Click Change password check box")
     public EditProfileModal clickChangePasswordCheckBox() {
         changePasswordCheckBox.click();
         return this;
@@ -104,21 +105,25 @@ public class EditProfileModal extends BasePO {
         }
     }
 
+    @Step("Enter current password")
     public EditProfileModal enterCurrentPassword(String password) {
         currentPasswordField.sendKeys(Keys.ENTER);
         return this;
     }
 
+    @Step("Enter new password")
     public EditProfileModal enterNewPasswordInTheNewPasswordField(String newPassword) {
         newPasswordField.sendKeys(Keys.ENTER);
         return this;
     }
 
+    @Step("Enter new password in the Confirm new password field")
     public EditProfileModal enterConfirmPassword(String password) {
         currentPasswordField.sendKeys(Keys.ENTER);
         return this;
     }
 
+    @Step("Click Save changes button")
     public MyProfilePage clickOnTheSaveChangesButton() {
         saveChangesButton.click();
         return new MyProfilePage(driver);

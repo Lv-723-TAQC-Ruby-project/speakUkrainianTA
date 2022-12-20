@@ -115,6 +115,7 @@ public class HeaderComponent extends BasePO {
         return new ClubsPage(this.driver);
     }
 
+    @Step("Click Advanced search button")
     public ClubsPage openAdvancedSearch() {
         advancedSearchButton.click();
         return new ClubsPage(driver);

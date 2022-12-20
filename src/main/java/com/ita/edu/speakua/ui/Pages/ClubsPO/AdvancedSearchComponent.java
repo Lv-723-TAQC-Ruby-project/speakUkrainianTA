@@ -1,6 +1,7 @@
 package com.ita.edu.speakua.ui.Pages.ClubsPO;
 
 import com.ita.edu.speakua.ui.BasePO;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -196,6 +197,7 @@ public class AdvancedSearchComponent extends BasePO {
         return this;
     }
 
+    @Step("Click sort DSC")
     public AdvancedSearchComponent clickSortDescending() {
         wait.visibility(sortDescending);
         action.click(sortDescending);
@@ -203,12 +205,14 @@ public class AdvancedSearchComponent extends BasePO {
         return this;
     }
 
+    @Step("Click sort ASC")
     public AdvancedSearchComponent clickSortAscending() {
         wait.visibility(sortAscending);
         action.click(sortAscending);
         return this;
     }
 
+    @Step("Click Sort by Rating")
     public AdvancedSearchComponent clickSortByRating() {
         sortByRating.click();
         return this;
@@ -234,6 +238,7 @@ public class AdvancedSearchComponent extends BasePO {
         return this;
     }
 
+    @Step("Clear city field")
     public AdvancedSearchComponent clearCityFieldClick() {
         clearCity.click();
         return this;
