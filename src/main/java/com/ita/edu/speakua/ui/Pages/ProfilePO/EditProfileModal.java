@@ -147,8 +147,8 @@ public class EditProfileModal extends BasePO {
     }
     @Step("delete first name")
     public EditProfileModal deleteFirstName() {
-        editFirstNameField.clear();
-        wait.visibility(editFirstNameField);
+        editFirstNameField.sendKeys(Keys.CONTROL + "a");
+        editFirstNameField.sendKeys(Keys.DELETE);
         return this;
     }
 
