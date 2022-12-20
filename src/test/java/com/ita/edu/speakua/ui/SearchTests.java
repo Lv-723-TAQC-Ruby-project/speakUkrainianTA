@@ -1,7 +1,7 @@
 package com.ita.edu.speakua.ui;
 
-import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubsPage;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
+import io.qameta.allure.Description;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.ITestContext;
@@ -21,6 +21,7 @@ public class SearchTests extends BaseTestRunner {
     }
 
     @Test
+    @Description("Test if website started search after entering one symbol in search field")
     public void oneSymbolEnteredInTheField() {
         List<WebElement> searchListInitialState = new HomePage(driver)
                 .clickSearchField()
@@ -35,6 +36,7 @@ public class SearchTests extends BaseTestRunner {
     }
 
     @Test
+    @Description("Test if website started search after entering fifty symbols in search field")
     public void fiftySymbolsEnteredInTheSearchField() {
         new HomePage(driver).clickClub();
         String initial = new HomePage(driver)
@@ -50,6 +52,7 @@ public class SearchTests extends BaseTestRunner {
     }
 
     @Test
+    @Description("Test if website started search after entering more than fifty symbols in search field")
     public void moreThanFiftySymbolsEnteredInTheSearchField() {
         String inputData = "лпротирпавпнргошлщдзждлшогрнпеаквс65789ш/*длорпІВ1234567890";
         String cutInputData = new HomePage(driver)

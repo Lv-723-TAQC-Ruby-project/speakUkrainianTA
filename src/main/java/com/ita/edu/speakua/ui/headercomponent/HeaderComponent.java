@@ -43,6 +43,7 @@ public class HeaderComponent extends BasePO {
         super(driver);
     }
 
+    @Step("Click location button in header")
     public HeaderComponent clickLocationButton() {
         locationButton.click();
         return this;
@@ -52,37 +53,44 @@ public class HeaderComponent extends BasePO {
         return locationDropDownMenu.findElements(By.tagName("li"));
     }
 
+    @Step("Click city")
     public ClubsPage clickCityInTheLocationSection(int id) {
         getCitiesListFromLocationDropDownMenu().get(id).click();
         return new ClubsPage(driver);
     }
 
+    @Step("Click on the search field")
     public HeaderComponent clickSearchField() {
         searchField.click();
         return this;
     }
 
+    @Step("Enter text in search field")
     public HeaderComponent enterTextInTheSearchField(String input) {
         searchField.sendKeys(input);
         return this;
     }
 
+    @Step("Enter text in search field")
     public HeaderComponent enterTextInTheSearchFieldAndWait(String input, int timeToWait) {
         searchField.sendKeys(input);
         sleep(timeToWait);
         return this;
     }
 
+    @Step("Get value from search field")
     public String getSearchFieldInputValue() {
         String text = searchField.getAttribute("value");
         return text;
     }
 
+    @Step("Get component of the search list result")
     public List<WebElement> getComponentsOfTheSearchList() {
         wait.visibility(searchListHolder);
         return searchListHolder.findElements(By.tagName("div"));
     }
 
+    @Step("Click search button")
     public ClubsPage clickSearchButton() {
         searchButton.click();
         return new ClubsPage(driver);

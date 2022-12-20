@@ -2,6 +2,7 @@ package com.ita.edu.speakua.ui;
 
 import com.ita.edu.speakua.ui.Pages.ProfilePO.EditProfileModal;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
@@ -25,6 +26,7 @@ public class NegativeChangePasswordPopUpTests extends BaseTestRunner {
 
 
     @Test
+    @Description("Test if warning message 'Будь ласка, підтвердіть пароль' appears when is required to")
     public void warningMessageAboutConfirmPasswordEmptyFieldInTheChangePasswordPopUp() {
         EditProfileModal editProfilePassword = new HomePage(driver)
                 .openAdminProfileMenu()
@@ -38,6 +40,7 @@ public class NegativeChangePasswordPopUpTests extends BaseTestRunner {
     }
 
     @Test
+    @Description("Test if warning message 'Будь ласка, введіть новий пароль' appears when is required to")
     public void warningMessageAboutNewPasswordEmptyFieldInTheChangePasswordPopUp() {
         EditProfileModal editProfilePassword = new HomePage(driver)
                 .openAdminProfileMenu()
@@ -51,6 +54,7 @@ public class NegativeChangePasswordPopUpTests extends BaseTestRunner {
     }
 
     @Test
+    @Description("Test if warning message 'Введіть старий пароль' appears when is required to")
     public void warningMessageAboutCurrentPasswordEmptyFieldInTheChangePasswordPopUp() {
         EditProfileModal editProfilePassword = new HomePage(driver)
                 .openAdminProfileMenu()

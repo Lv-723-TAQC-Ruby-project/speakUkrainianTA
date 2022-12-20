@@ -1,6 +1,7 @@
 package com.ita.edu.speakua.ui;
 
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -21,6 +22,7 @@ public class ClubsSortingTest extends BaseTestRunner {
     }
 
     @Test
+    @Description("Test sorting clubs by rating in ASC order")
     public void verifyThatTheClubsCanBeSortedByRatingAsc() {
         int rating = new HomePage(driver)
                 .openAdvancedSearch()
@@ -36,6 +38,7 @@ public class ClubsSortingTest extends BaseTestRunner {
     }
 
     @Test
+    @Description("Test sorting clubs by rating in DSC order")
     public void verifyThatTheClubsCanBeSortedByRatingDsc() {
         int rating = new HomePage(driver)
                 .openAdvancedSearch()
@@ -48,22 +51,6 @@ public class ClubsSortingTest extends BaseTestRunner {
                 .get(0)
                 .getRatingStars();
         Assert.assertEquals(rating, 5);
-    }
-
-    @Test
-    public void searchByNameOfClubAttachedToTheLocation() {
-        String expectedTitle = new HomePage(driver)
-                .clickLocationButton()
-                .clickCityInTheLocationSection(0)
-                .getCard(0)
-                .getTitle();
-        String actualResult = new HomePage(driver)
-                .enterTextInTheSearchField(expectedTitle)
-                .clickSearchButton()
-                .getCards()
-                .get(0)
-                .getTitle();
-        Assert.assertEquals(actualResult, expectedTitle);
     }
 
     @AfterClass
