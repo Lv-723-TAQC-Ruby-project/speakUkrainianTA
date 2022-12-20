@@ -2,6 +2,7 @@ package com.ita.edu.speakua.ui;
 
 import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubPage;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -27,7 +28,7 @@ public class AddLocationToClubTest extends BaseTestRunner {
     public void goHomePage() {
         driver.get(configProperties.getBaseWebUrl());
     }
-
+    @Description("Add center to club")
     @Test
     public void addCenterTest() {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
