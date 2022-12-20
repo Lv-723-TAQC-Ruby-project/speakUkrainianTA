@@ -1,6 +1,7 @@
 package com.ita.edu.speakua.ui.Pages.CenterPO;
 
 import com.ita.edu.speakua.ui.BasePO;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,26 +25,26 @@ public class AddDescriptionCenterModal extends BasePO {
         super(driver);
     }
 
-
+    @Step("add logo")
     public AddDescriptionCenterModal addLogo(String logo) {
         File file = new File(getClass().getClassLoader().getResource(logo).getFile());
         String imagePath = file.getAbsolutePath();
         addLogo.sendKeys(imagePath);
         return this;
     }
-
+    @Step("add photo")
     public AddDescriptionCenterModal addPhoto(String photo) {
         File file = new File(getClass().getClassLoader().getResource(photo).getFile());
         String imagePath = file.getAbsolutePath();
         addPhoto.sendKeys(imagePath);
         return this;
     }
-
+    @Step("add description")
     public AddDescriptionCenterModal addDescription(String description) {
         addDescription.sendKeys(description);
         return this;
     }
-
+    @Step("click next step")
     public ChooseClubCenterModal clickNextStep() {
         nextButton.click();
         return new ChooseClubCenterModal(driver);
