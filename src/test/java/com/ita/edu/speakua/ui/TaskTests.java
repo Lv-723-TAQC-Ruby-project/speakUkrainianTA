@@ -53,6 +53,7 @@ public void addTaskWithoutChallenge(){
            .enterTaskDescription("One of the key benefits of having fun while learning is that it creates a sense of reward in learning.\n That inherently motivates people.")
            .clickSave();
         softAssert.assertTrue(enterTaskData.isContainErrorMessage("Please,select challenge"));
+    softAssert.assertAll();
 }
 @Description("Add Task with Invalid Description")
 @Test
@@ -135,7 +136,8 @@ public void taskWithInvalidDescription(){
             .chooseChallenge()
             .clickSave();
     softAssert.assertTrue(enterInvalidData.isContainErrorMessage("Поле 'Опис' може містити мінімум 40 максимум 3000 символів"));
-}
+    softAssert.assertAll();
+    }
 
 
 
@@ -220,8 +222,9 @@ public void taskWithInvalidDescription(){
                 .chooseChallenge()
                 .clickSave();
         softAssert.assertTrue(enterInvalidTitle.isContainErrorMessage("Поле 'Заголовок' може містити мінімум 40 максимум 3000 символів"));
+        softAssert.assertAll();
     }
-
+@Test
     public void addInvalidTaskName(){
         AddTaskPage enterInvalidTitle = new HomePage(driver)
                 .openAdminProfileMenu()
@@ -278,6 +281,42 @@ public void taskWithInvalidDescription(){
                 .chooseChallenge()
                 .clickSave();
         softAssert.assertTrue(enterInvalidTitle.isContainErrorMessage("Поле 'Назва' може містити мінімум 5 максимум 50 символів"));
+        softAssert.assertAll();
+    }
+    @Test
+    public void addTaskWithInvalidDate(){
+      AddTaskPage enterInvalidDate = new HomePage(driver)
+                .openAdminProfileMenu()
+                .openTasksPage()
+                .clickAddTask();
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(enterInvalidDate.getStartDate().getText(), "", "Start-date field is empty");
+        softAssert.assertEquals(enterInvalidDate.getUploadImage().getText(), "", "Image is not uploaded");
+        softAssert.assertEquals(enterInvalidDate.getTaskName().getText(), "", "Task name field is empty");
+        softAssert.assertEquals(enterInvalidDate.getTaskTitle().getText(), "", "Title for task field is empty");
+        softAssert.assertEquals(enterInvalidDate.getTaskDescription().getText(), "", "Description field is empty");
+        softAssert.assertAll();
+        new AddTaskPage(driver)
+                .uploadImage("R.jpeg")
+                .enterTaskName("2018 FIFA World Cup")
+                .enterTaskTitle("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams")
+                .enterTaskDescription("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams have competed. The trophy has been won by eight national teams. Brazil have won five times, and they are the only team to have played in every tournament. The other World Cup winners are Germany and Italy, with four titles each; Argentina, France, and inaugural winner Uruguay, with two titles each; and England and Spain, with one title each.")
+                .chooseChallenge()
+                .clickSave();
+        softAssert.assertTrue(enterInvalidDate.isContainErrorMessage("Дата початку не може бути відсутня"));
+        new HomePage(driver)
+                .openAdminProfileMenu()
+                .openTasksPage()
+                .clickAddTask()
+                .enterStartDate("2018-03-03")
+                .uploadImage("R.jpeg")
+                .enterTaskName("As of the 2018 FIFA World Cup, twenty-one final tournaments hav")
+                .enterTaskTitle("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams")
+                .enterTaskDescription("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams have competed. The trophy has been won by eight national teams. Brazil have won five times, and they are the only team to have played in every tournament. The other World Cup winners are Germany and Italy, with four titles each; Argentina, France, and inaugural winner Uruguay, with two titles each; and England and Spain, with one title each.")
+                .chooseChallenge()
+                .clickSave();
+        softAssert.assertTrue(enterInvalidDate.isContainErrorMessage("Дата початку має бути в майбутньому"));
+        softAssert.assertAll();
     }
 
 
