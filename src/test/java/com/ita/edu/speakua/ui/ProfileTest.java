@@ -52,7 +52,7 @@ public class ProfileTest extends BaseTestRunner {
         softAssert.assertTrue(isMessageDeleteData, "the message delete data check failed" );
         softAssert.assertAll();
     }
-    @Description("check if message about incorrectly entered fields for first name")
+    @Description("check if message about incorrectly entered fields for first name appears")
     @Test
     public void MessageAboutIncorrectlyEnteredFirstNameTest() {
         SoftAssert softAssert = new SoftAssert();
