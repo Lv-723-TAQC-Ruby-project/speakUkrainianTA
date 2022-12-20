@@ -1,6 +1,7 @@
 package com.ita.edu.speakua.ui.Pages.ProfilePO;
 
 import com.ita.edu.speakua.ui.BasePO;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -57,7 +58,7 @@ public class EditProfileModal extends BasePO {
             return false;
         }
     }
-
+    @Step("check if error message for first name field contains required string")
     public boolean isOpenMessageErrorFirstNameContain(String name) {
         try {
             driver.findElement(By.xpath(String.format("//div[@class='ant-form-item-explain-error']", name)));
@@ -129,6 +130,7 @@ public class EditProfileModal extends BasePO {
         editLastNameField.sendKeys(lastName);
         return this;
     }
+    @Step("enter first name")
     public EditProfileModal enterFirstName(String firstName) {
         editFirstNameField.clear();
         wait.visibility(editFirstNameField);
@@ -143,7 +145,7 @@ public class EditProfileModal extends BasePO {
         wait.visibility(editLastNameField);
         return this;
     }
-
+    @Step("delete first name")
     public EditProfileModal deleteFirstName() {
         editFirstNameField.clear();
         wait.visibility(editFirstNameField);

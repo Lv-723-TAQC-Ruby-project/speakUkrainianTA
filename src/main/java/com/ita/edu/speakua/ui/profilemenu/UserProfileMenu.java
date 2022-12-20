@@ -40,7 +40,7 @@ public class UserProfileMenu extends BasePO {
         addCenterButton.click();
         return new AddCenterModal(driver);
     }
-
+    @Step("open my profile modal")
      public MyProfilePage openMyProfileModel() {
         wait.visibility(myProfileButton);
         action.click(myProfileButton);
