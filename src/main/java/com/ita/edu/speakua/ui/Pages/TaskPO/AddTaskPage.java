@@ -66,14 +66,12 @@ public class AddTaskPage extends BasePageWithHeader {
     public WebElement getErrorMessage() {
         return errorMessage;
     }
-
-    //String date = "2023-1-1";
+    @Step
     public AddTaskPage enterStartDate(String date) {
         startDate.sendKeys(date, Keys.ENTER);
         return this;
     }
-
-    //String filePath = "C:\\Users\\User\\Desktop\\world-cup.jpg";
+    @Step
     public AddTaskPage uploadImage(String image) {
         ClassLoader classLoader = getClass().getClassLoader();
         File photo = new File(classLoader.getResource(image).getFile());
