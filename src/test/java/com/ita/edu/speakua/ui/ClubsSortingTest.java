@@ -45,6 +45,7 @@ public class ClubsSortingTest extends BaseTestRunner {
                 .getAdvancedSearchComponent()
                 .clearCityFieldClick()
                 .clickSortByRating()
+                .clickSortAscending()
                 .clickSortDescending()
                 .getClubPage()
                 .getCards()
