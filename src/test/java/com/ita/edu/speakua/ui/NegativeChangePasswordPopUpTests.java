@@ -30,7 +30,7 @@ public class NegativeChangePasswordPopUpTests extends BaseTestRunner {
     public void warningMessageAboutConfirmPasswordEmptyFieldInTheChangePasswordPopUp() {
         EditProfileModal editProfilePassword = new HomePage(driver)
                 .openAdminProfileMenu()
-                .openMyProfileModel()
+                .openMyProfileModal()
                 .openEditProfileModel()
                 .clickChangePasswordCheckBox()
                 .enterCurrentPassword(configProperties.getAdminPassword())
@@ -44,7 +44,7 @@ public class NegativeChangePasswordPopUpTests extends BaseTestRunner {
     public void warningMessageAboutNewPasswordEmptyFieldInTheChangePasswordPopUp() {
         EditProfileModal editProfilePassword = new HomePage(driver)
                 .openAdminProfileMenu()
-                .openMyProfileModel()
+                .openMyProfileModal()
                 .openEditProfileModel()
                 .clickChangePasswordCheckBox()
                 .enterCurrentPassword(configProperties.getAdminPassword())
@@ -58,7 +58,7 @@ public class NegativeChangePasswordPopUpTests extends BaseTestRunner {
     public void warningMessageAboutCurrentPasswordEmptyFieldInTheChangePasswordPopUp() {
         EditProfileModal editProfilePassword = new HomePage(driver)
                 .openAdminProfileMenu()
-                .openMyProfileModel()
+                .openMyProfileModal()
                 .openEditProfileModel()
                 .clickChangePasswordCheckBox()
                 .enterNewPasswordInTheNewPasswordField("adminn")

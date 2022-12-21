@@ -45,16 +45,16 @@ public class ChallengeTest extends BaseTestRunner {
         softAssert.assertEquals(addChallengePage.getChallengeDescription().getText(), "", "Description field is empty");
         softAssert.assertAll();
         softAssert = new SoftAssert();
-        boolean dataFilled = new AddChallengePage(driver)
+        AddChallengePage dataFilled = new AddChallengePage(driver)
                 .enterSequenceNumber("215")
                 .uploadChallengePhoto("OIP.jpeg")
                 .enterChallengeName("ChallengeTest")
                 .enterTitle("ChallengeTest")
                 .enterChallengeDescription("Racing in an event like Red Bull Defiance is an emotional rollercoaster of highs and lows,\n but knowing about the biggest challenges you'll have to face beforehand\n gives you the best chance of making it to the finish.")
-                .saveChallengeClick()
-                .successMessage();
+                .saveChallengeClick();
 
-        softAssert.assertTrue(dataFilled);
+
+        softAssert.assertTrue(dataFilled.successMessage("Челендж додано успішно"));
         softAssert.assertAll();
     }
 

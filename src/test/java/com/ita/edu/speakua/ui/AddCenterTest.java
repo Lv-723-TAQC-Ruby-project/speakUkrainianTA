@@ -9,7 +9,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.io.File;
 import java.sql.Timestamp;
 
 public class AddCenterTest extends BaseTestRunner {
@@ -33,7 +32,7 @@ public class AddCenterTest extends BaseTestRunner {
     public void checkIfErrorAppearsAfterEmptyFields() {
         boolean message = new HomePage(driver)
                 .openUserProfileMenu()
-                .openAddCenterModel()
+                .openAddCenterModal()
                 .clickNextStep()
                 .isMessageErrorCenterWithoutName();
         Assert.assertTrue(message, "Error message 'Некоректна назва центру’ doesn't appear under 'Назва центру' field with empty 'Назва центру' field");
@@ -46,7 +45,7 @@ public class AddCenterTest extends BaseTestRunner {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         new HomePage(driver)
                 .openUserProfileMenu()
-                .openAddCenterModel()
+                .openAddCenterModal()
                 .enterCenterName("New Center Name " + timestamp)
                 .addLocation()
                 .addLocationName("New Location name")

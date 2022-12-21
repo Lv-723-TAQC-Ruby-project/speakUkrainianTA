@@ -35,7 +35,7 @@ public class AddLocationToClubTest extends BaseTestRunner {
         String clubName = "New Club to test add location " + timestamp;
         new HomePage(driver)
                 .openUserProfileMenu()
-                .openAddClubModel()
+                .openAddClubModal()
                 .EnterNameClub(clubName)
                 .selectCategoryByName("Спортивні секції")
                 .enterFromAge("5")
@@ -56,7 +56,7 @@ public class AddLocationToClubTest extends BaseTestRunner {
                 .finishAddingCenter();
         new HomePage(driver)
                 .openUserProfileMenu()
-                .openMyProfileModel()
+                .openMyProfileModal()
                 .clickLastElementOfTheListOfCenters()
                 .getClubsPage()
                 .getCardByName(clubName)

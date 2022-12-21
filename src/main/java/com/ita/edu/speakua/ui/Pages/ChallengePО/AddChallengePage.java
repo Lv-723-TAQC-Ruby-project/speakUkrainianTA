@@ -2,6 +2,7 @@ package com.ita.edu.speakua.ui.Pages.ChallengePО;
 
 import com.ita.edu.speakua.ui.BasePageWithHeader;
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,8 +23,8 @@ public class AddChallengePage extends BasePageWithHeader {
     private WebElement uploadPhoto;
     @FindBy(xpath = "//button[contains(@class, 'add-contact-type-button')]")
     private WebElement saveButton;
-    @FindBy(xpath = "//div[contains(@class,'ant-message')]")
-    private WebElement successMessage;
+  //  @FindBy(xpath = "//div[contains(@class,'ant-message')]")
+  //  private WebElement successMessage;
 
     public AddChallengePage(WebDriver driver) {
         super(driver);
@@ -86,7 +87,12 @@ public class AddChallengePage extends BasePageWithHeader {
         return new AddChallengePage(driver);
     }
 
-    public boolean successMessage() {
-        return successMessage.isDisplayed();
+    public boolean successMessage(String name) {
+        try {
+            driver.findElement(By.xpath(String.format("//div[@class='ant-message']", name)));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

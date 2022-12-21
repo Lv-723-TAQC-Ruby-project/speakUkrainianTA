@@ -31,17 +31,18 @@ public class UserProfileMenu extends BasePO {
         super(driver);
     }
 
-    public AddClubModal openAddClubModel() {
+    @Step("Open add club modal")
+    public AddClubModal openAddClubModal() {
         addClubButton.click();
         return new AddClubModal(driver);
     }
     @Step("open add center modal")
-    public AddCenterModal openAddCenterModel() {
+    public AddCenterModal openAddCenterModal() {
         addCenterButton.click();
         return new AddCenterModal(driver);
     }
     @Step("open my profile modal")
-     public MyProfilePage openMyProfileModel() {
+     public MyProfilePage openMyProfileModal() {
         wait.visibility(myProfileButton);
         action.click(myProfileButton);
         return new MyProfilePage(driver);

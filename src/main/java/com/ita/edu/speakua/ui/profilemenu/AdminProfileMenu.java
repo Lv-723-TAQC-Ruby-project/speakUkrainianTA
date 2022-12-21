@@ -23,17 +23,14 @@ public class AdminProfileMenu extends UserProfileMenu {
 
     public TasksPage openTasksPage() {
 
-        wait.visibility(contentButton);
-        action.click(contentButton);
-
-        wait.visibility(challengeButton);
-        action.click(challengeButton);
-
+        openContentSubMenu();
+        openChallengeSubMenu();
         wait.visibility(tasksButton);
         action.click(tasksButton);
 
         return new TasksPage(driver);
     }
+
     @Step("open Challenge")
     public ChallengePage openChallengePage() {
 

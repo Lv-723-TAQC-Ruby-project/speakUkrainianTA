@@ -103,7 +103,7 @@ public class HeaderComponent extends BasePO {
         return new GuestProfileMenu(driver);
     }
 
-    @Step("Open profile Menu")
+    @Step("Open Admin profile Menu")
     public AdminProfileMenu openAdminProfileMenu() {
         profileMenuButton.click();
         sleep(3);
@@ -122,7 +122,7 @@ public class HeaderComponent extends BasePO {
         advancedSearchButton.click();
         return new ClubsPage(driver);
     }
-    @Step("open profile menu")
+    @Step("Open profile menu")
     public UserProfileMenu openUserProfileMenu() {
         wait.visibility(profileMenuButton);
         action.click(profileMenuButton);
