@@ -3,6 +3,7 @@ package com.ita.edu.speakua.ui;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.AddClubModal;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubPage;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -29,6 +30,8 @@ public class ClubTests extends BaseTestRunner {
         driver.get(configProperties.getBaseWebUrl());
     }
 
+
+    @Description("Verify description of club")
     @Test
     public void addVerifyDescriptionClubTest() {
         AddClubModal addClubModal = new HomePage(driver)
@@ -76,7 +79,6 @@ public class ClubTests extends BaseTestRunner {
                 "Вибір лише за вами, батьки....").isErrorMessageDisplayed("Опис гуртка може містити від 40 до 1500 символів."));
         //TUA-178
         softAssert.assertTrue(addClubModal.enterClubDescription("ё ы э ъ").isErrorMessageDisplayed("Опис гуртка не може містити російські літери"));
-        softAssert.assertTrue(addClubModal.enterClubDescription("ё ы э ъ").isErrorMessageDisplayed("Некоректний опис гуртка"));
         //TUA-173
         softAssert.assertTrue(addClubModal.enterClubDescription("'Education', 'students', 'Школа' 'балету'").successMessageDisplayed());
         softAssert.assertTrue(addClubModal.enterClubDescription("1234567890123456789012345678901234567890").successMessageDisplayed());
@@ -138,11 +140,6 @@ public class ClubTests extends BaseTestRunner {
         Assert.assertEquals(checkInformationAboutCenterByNumber, "0672222222");
         boolean checkInformationAboutCenterByDescription = new ClubPage(driver).getDescriptionAboutCenter("Тестовий гурток для додавання центру Тестовий гурток для додавання центру");
         Assert.assertTrue(checkInformationAboutCenterByDescription);
-
-
-
-
-
 
 
     }

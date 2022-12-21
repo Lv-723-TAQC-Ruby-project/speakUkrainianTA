@@ -31,6 +31,7 @@ public class UserProfileMenu extends BasePO {
         super(driver);
     }
 
+    @Step("Open add club modal")
     public AddClubModal openAddClubModal() {
         addClubButton.click();
         return new AddClubModal(driver);
