@@ -20,7 +20,7 @@ public class AdminProfileMenu extends UserProfileMenu {
     public AdminProfileMenu(WebDriver driver) {
         super(driver);
     }
-
+@Step("open Task")
     public TasksPage openTasksPage() {
 
         openContentSubMenu();
