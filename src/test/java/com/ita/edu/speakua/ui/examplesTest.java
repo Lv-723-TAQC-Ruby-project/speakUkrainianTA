@@ -5,6 +5,7 @@ import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -12,8 +13,8 @@ import org.testng.annotations.Test;
 public class examplesTest extends BaseTestRunner {
 
     @BeforeMethod
-    public void setUp() {
-        setDriver();
+    public void setUp(ITestContext context) {
+        setDriver(context);
     }
 
     @Test

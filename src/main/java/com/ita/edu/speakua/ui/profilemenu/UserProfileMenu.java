@@ -5,6 +5,7 @@ import com.ita.edu.speakua.ui.BasePO;
 import com.ita.edu.speakua.ui.Pages.CenterPO.AddCenterModal;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.AddClubModal;
 import com.ita.edu.speakua.ui.Pages.ProfilePO.MyProfilePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,17 +31,18 @@ public class UserProfileMenu extends BasePO {
         super(driver);
     }
 
-    public AddClubModal openAddClubModel() {
+    @Step("Open add club modal")
+    public AddClubModal openAddClubModal() {
         addClubButton.click();
         return new AddClubModal(driver);
     }
-
-    public AddCenterModal openAddCenterModel() {
+    @Step("open add center modal")
+    public AddCenterModal openAddCenterModal() {
         addCenterButton.click();
         return new AddCenterModal(driver);
     }
-
-     public MyProfilePage openMyProfileModel() {
+    @Step("open my profile modal")
+     public MyProfilePage openMyProfileModal() {
         wait.visibility(myProfileButton);
         action.click(myProfileButton);
         return new MyProfilePage(driver);

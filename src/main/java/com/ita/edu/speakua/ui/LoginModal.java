@@ -28,6 +28,7 @@ public class LoginModal extends BasePO {
     }
 
     public HomePage clickLogin() {
+        saveScreenshot();
         loginButton.click();
         sleep(2);
         return new HomePage(driver);

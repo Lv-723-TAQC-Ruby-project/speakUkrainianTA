@@ -1,5 +1,6 @@
 package com.ita.edu.speakua.ui;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -57,32 +58,32 @@ public class RegisterModal extends BasePO {
     public WebElement getPasswordConfirmInput() {
         return passwordConfirmInput;
     }
-
+@Step
     public RegisterModal enterLastName(String lastName) {
         lastNameInput.sendKeys(lastName);
         return this;
     }
-
+@Step
     public RegisterModal enterFirstName(String firstName) {
         firstNameInput.sendKeys(firstName);
         return this;
     }
-
+@Step
     public RegisterModal enterPhone(String phone) {
         phoneInput.sendKeys(phone);
         return this;
     }
-
+@Step
     public RegisterModal enterEmail(String email) {
         emailInput.sendKeys(email);
         return this;
     }
-
+@Step
     public RegisterModal enterPassword(String password) {
         passwordInput.sendKeys(password);
         return this;
     }
-
+@Step
     public RegisterModal enterPasswordConfirm(String passwordConfirm) {
         passwordConfirmInput.sendKeys(passwordConfirm);
         return this;
@@ -94,7 +95,7 @@ public class RegisterModal extends BasePO {
         return new HomePage(driver);
 
     }
-
+@Step("Click cancel btn")
     public HomePage cancelRegistration() {
         wait.visibility(closeButton);
         action.click(closeButton);

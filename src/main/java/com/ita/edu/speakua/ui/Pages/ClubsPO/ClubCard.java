@@ -21,14 +21,15 @@ public class ClubCard extends BasePO {
     @FindBy(xpath = ".//div[@class='title-name']")
     protected WebElement titleCardInMyProfile;
 
-    @FindBy(xpath = ".//ul[@class='ant-rate ant-rate-disabled'")
+    @FindBy(xpath = ".//ul[@class='ant-rate ant-rate-disabled']")
     private WebElement ratingStars;
 
-    @FindBy(xpath = ".//li[@class='ant-rate-star ant-rate-star-full'")
-    private WebElement fullRatingStar;
+    @FindBy(xpath = ".//li[@class='ant-rate-star ant-rate-star-full']")
+    private List<WebElement> fullRatingStars;
 
-    @FindBy(xpath = ".//li[@class='ant-rate-star ant-rate-star-zero'")
-    private WebElement emptyRatingStar;
+    @FindBy(xpath = ".//li[@class='ant-rate-star ant-rate-star-zero']")
+    private List<WebElement> emptyRatingStar;
+
     @FindBy(xpath = ".//div[@class='ant-card ant-card-bordered card']")
     private WebElement clubCard;
 
@@ -51,8 +52,7 @@ public class ClubCard extends BasePO {
     }
 
     public int getRatingStars() {
-        List<WebElement> fullStars = clubCard.findElements(By.xpath("//li[@class='ant-rate-star ant-rate-star-full']"));
-        return fullStars.size();
+        return fullRatingStars.size();
     }
 
     public String getTitle() {

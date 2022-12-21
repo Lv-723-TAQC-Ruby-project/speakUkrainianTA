@@ -1,18 +1,20 @@
 package com.ita.edu.speakua.ui;
 
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
+import io.qameta.allure.Description;
 import org.testng.Assert;
+import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.io.File;
+import java.sql.Timestamp;
 
 public class AddCenterTest extends BaseTestRunner {
     @BeforeClass
-    public void setUp() {
-        setDriver();
+    public void setUp(ITestContext context) {
+        setDriver(context);
         new HomePage(driver)
                 .openGuestProfileMenu()
                 .openLoginModel()
@@ -25,24 +27,26 @@ public class AddCenterTest extends BaseTestRunner {
     public void goHomePage() {
         driver.get(configProperties.getBaseWebUrl());
     }
-
+    @Description("Check if error appears  when add new center with empty fields")
     @Test
     public void checkIfErrorAppearsAfterEmptyFields() {
         boolean message = new HomePage(driver)
                 .openUserProfileMenu()
-                .openAddCenterModel()
+                .openAddCenterModal()
                 .clickNextStep()
                 .isMessageErrorCenterWithoutName();
         Assert.assertTrue(message, "Error message 'Некоректна назва центру’ doesn't appear under 'Назва центру' field with empty 'Назва центру' field");
     }
 
 
+    @Description("Add center")
     @Test
     public void addCenterTest() {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         new HomePage(driver)
                 .openUserProfileMenu()
-                .openAddCenterModel()
-                .enterCenterName("New Center Name")
+                .openAddCenterModal()
+                .enterCenterName("New Center Name " + timestamp)
                 .addLocation()
                 .addLocationName("New Location name")
                 .chooseLocationCity("Харків")
@@ -67,14 +71,6 @@ public class AddCenterTest extends BaseTestRunner {
         Assert.assertEquals(driver.getTitle(), "Навчай українською");
     }
 
-    @Test
-    public void CheckCenter() {
-        new HomePage(driver)
-                .openAdvancedSearch()
-                .getAdvancedSearchComponent()
-                .clickRadioCenter()
-                .chooseCity("Харків");
-    }
 
     @AfterClass
     public void tearDown() {

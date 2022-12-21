@@ -1,6 +1,7 @@
 package com.ita.edu.speakua.ui.Pages.CenterPO;
 
 import com.ita.edu.speakua.ui.BasePO;
+import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,19 +29,19 @@ public class AddCenterModal extends BasePO {
     public AddCenterModal(WebDriver driver) {
         super(driver);
     }
-
+    @Step("send center name")
     public AddCenterModal enterCenterName(String nameCenter) {
         nameCenterInput.sendKeys(nameCenter);
         return this;
     }
 
-
+    @Step("add center location")
     public AddLocationModal addLocation() {
         addCenterLocation.click();
         return new AddLocationModal(driver);
     }
 
-
+    @Step("select center location")
     public AddCenterModal selectCenterLocation() {
         scroll.click();
         scroll.click();
@@ -48,7 +49,7 @@ public class AddCenterModal extends BasePO {
         newLocation.click();
         return this;
     }
-
+    @Step("click next step button")
     public AddContactsCenterModal clickNextStep() {
         wait.visibility(nextStepButton);
         nextStepButton.click();

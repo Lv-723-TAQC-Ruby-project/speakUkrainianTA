@@ -1,6 +1,7 @@
 package com.ita.edu.speakua.ui.Pages.ChallengePО;
 
 import com.ita.edu.speakua.ui.BasePageWithHeader;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,6 +16,7 @@ public class ChallengePage extends BasePageWithHeader {
         super(driver);
     }
 
+    @Step("click Add Challenge Button")
     public AddChallengePage clickAddChallengeButton() {
         wait.visibility(addChallengeButton);
         addChallengeButton.click();

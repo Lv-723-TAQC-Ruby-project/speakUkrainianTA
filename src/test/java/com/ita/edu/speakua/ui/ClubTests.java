@@ -13,8 +13,8 @@ import org.testng.asserts.SoftAssert;
 public class ClubTests extends BaseTestRunner {
 
     @BeforeClass
-    public void setUp() {
-        setDriver();
+    public void setUp(ITestContext context) {
+        setDriver(context);
         new HomePage(driver)
                 .openGuestProfileMenu()
                 .openLoginModel()
@@ -32,7 +32,7 @@ public class ClubTests extends BaseTestRunner {
     public void addVerifyDescriptionClubTest() {
         AddClubModal addClubModal = new HomePage(driver)
                 .openUserProfileMenu()
-                .openAddClubModel()
+                .openAddClubModal()
                 .EnterNameClub("Спорт")
                 .selectCategoryByName("Спортивні секції")
                 .enterFromAge("5")
@@ -88,8 +88,8 @@ public class ClubTests extends BaseTestRunner {
     public void VerifyCreatingClubAndFindingInformationAboutItTest() {
         new HomePage(driver)
                 .openUserProfileMenu()
-                .openAddClubModel()
-                .EnterNameClub("МалявкиТест21.12.2022")
+                .openAddClubModal()
+                .EnterNameClub("Малявки18.12.2022(22.00)")
                 .selectCategoryByName("Спортивні секції")
                 .enterFromAge("8")
                 .enterToAge("16")
@@ -101,10 +101,10 @@ public class ClubTests extends BaseTestRunner {
                 .finishAddingCenter();
         new HomePage(driver)
                 .openUserProfileMenu()
-                .openMyProfileModel()
+                .openMyProfileModal()
                 .clickLastElementOfTheListOfCenters()
                 .getClubsPage()
-                .getCardByName("МалявкиТест21.12.2022")
+                .getCardByName("Малявки18.12.2022(22.00)")
                 .getDetailInformation();
         String checkInformationAboutCenterByNumber = new ClubPage(driver)
                 .getNumberPhone();
@@ -117,24 +117,24 @@ public class ClubTests extends BaseTestRunner {
     public void VerifyEditingClubAndFindingInformationAboutItTest() {
         new HomePage(driver)
                 .openUserProfileMenu()
-                .openMyProfileModel()
+                .openMyProfileModal()
                 .clickLastElementOfTheListOfCenters()
                 .getClubsPage()
-                .getCardByName("МалявкиТест21.12.2022")
+                .getCardByName("Малявки18.12.2022(22.00)")
                 .openEditClubModel()
                 .openAddressAndContactsSection()
-                .enterLoginOfSkype("test.test")
+                .enterPhoneNumber("0672222222")
                 .clickSaveInContactSectionButton()
                 .openDescriptionSection()
                 .enterClubDescription("Тестовий гурток для додавання центру Тестовий гурток для додавання центру")
                 .clickSaveInDescriptionSectionButton()
                 .clickLastElementOfTheListOfCenters()
                 .getClubsPage()
-                .getCardByName("МалявкиТест21.12.2022")
+                .getCardByName("Малявки18.12.2022(22.00)")
                 .getDetailInformation();
-        String checkInformationAboutCenterByLoginSkype = new ClubPage(driver)
-                .getLoginOfSkype();
-        Assert.assertEquals(checkInformationAboutCenterByLoginSkype, "test.test");
+        String checkInformationAboutCenterByNumber = new ClubPage(driver)
+                .getNumberPhone();
+        Assert.assertEquals(checkInformationAboutCenterByNumber, "0672222222");
         boolean checkInformationAboutCenterByDescription = new ClubPage(driver).getDescriptionAboutCenter("Тестовий гурток для додавання центру Тестовий гурток для додавання центру");
         Assert.assertTrue(checkInformationAboutCenterByDescription);
 

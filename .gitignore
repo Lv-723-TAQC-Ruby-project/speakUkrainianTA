@@ -29,3 +29,5 @@ target
 
 # project
 src/test/resources/config.properties
+
+allure-results

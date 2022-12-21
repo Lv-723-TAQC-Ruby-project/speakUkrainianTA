@@ -1,6 +1,7 @@
 package com.ita.edu.speakua.ui.Pages.ProfilePO;
 
 import com.ita.edu.speakua.ui.BasePO;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -44,6 +45,7 @@ public class EditProfileModal extends BasePO {
         super(driver);
     }
 
+    @Step("Click Change password check box")
     public EditProfileModal clickChangePasswordCheckBox() {
         changePasswordCheckBox.click();
         return this;
@@ -57,7 +59,7 @@ public class EditProfileModal extends BasePO {
             return false;
         }
     }
-
+    @Step("check if error message for first name field contains required string")
     public boolean isOpenMessageErrorFirstNameContain(String name) {
         try {
             driver.findElement(By.xpath(String.format("//div[@class='ant-form-item-explain-error']", name)));
@@ -103,21 +105,25 @@ public class EditProfileModal extends BasePO {
         }
     }
 
+    @Step("Enter current password")
     public EditProfileModal enterCurrentPassword(String password) {
         currentPasswordField.sendKeys(Keys.ENTER);
         return this;
     }
 
+    @Step("Enter new password")
     public EditProfileModal enterNewPasswordInTheNewPasswordField(String newPassword) {
         newPasswordField.sendKeys(Keys.ENTER);
         return this;
     }
 
+    @Step("Enter new password in the Confirm new password field")
     public EditProfileModal enterConfirmPassword(String password) {
         currentPasswordField.sendKeys(Keys.ENTER);
         return this;
     }
 
+    @Step("Click Save changes button")
     public MyProfilePage clickOnTheSaveChangesButton() {
         saveChangesButton.click();
         return new MyProfilePage(driver);
@@ -129,6 +135,7 @@ public class EditProfileModal extends BasePO {
         editLastNameField.sendKeys(lastName);
         return this;
     }
+    @Step("enter first name")
     public EditProfileModal enterFirstName(String firstName) {
         editFirstNameField.clear();
         wait.visibility(editFirstNameField);
@@ -143,10 +150,10 @@ public class EditProfileModal extends BasePO {
         wait.visibility(editLastNameField);
         return this;
     }
-
+    @Step("delete first name")
     public EditProfileModal deleteFirstName() {
-        editFirstNameField.clear();
-        wait.visibility(editFirstNameField);
+        editFirstNameField.sendKeys(Keys.CONTROL + "a");
+        editFirstNameField.sendKeys(Keys.DELETE);
         return this;
     }
 

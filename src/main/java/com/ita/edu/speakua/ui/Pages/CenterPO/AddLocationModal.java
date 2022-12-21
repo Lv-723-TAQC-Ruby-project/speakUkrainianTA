@@ -1,6 +1,8 @@
 package com.ita.edu.speakua.ui.Pages.CenterPO;
 
 import com.ita.edu.speakua.ui.BasePO;
+import com.ita.edu.speakua.ui.Pages.ClubsPO.AddClubModal;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -37,28 +39,32 @@ public class AddLocationModal extends BasePO {
     @FindBy(xpath = "//button[@class='ant-btn ant-btn-default flooded-button add-club-content-next']")
     private WebElement addLocationButton;
 
+    @FindBy(xpath = "//div[@class='add-club-content-footer add-club-add-location-button']//button[@type='submit']")
+    private WebElement addLocationButtonToClub;
+
+
     @FindBy(xpath = "//div[@class='ant-select-item-option-content']")
     private WebElement city;
 
     public AddLocationModal(WebDriver driver) {
         super(driver);
     }
-
+    @Step("add location name")
     public AddLocationModal addLocationName(String locationName) {
         nameLocation.sendKeys(locationName);
         return this;
     }
-
+    @Step("add location address")
     public AddLocationModal addLocationAddress(String locationAddress) {
         addressLocation.sendKeys(locationAddress);
         return this;
     }
-
+    @Step("add location coordinates")
     public AddLocationModal addLocationCoordinates(String locationCoordinates) {
         coordinatesLocation.sendKeys(locationCoordinates);
         return this;
     }
-
+    @Step("add location phone")
     public AddLocationModal addLocationPhone(String locationPhone) {
         phoneLocation.sendKeys(locationPhone);
         return this;
@@ -88,26 +94,33 @@ public class AddLocationModal extends BasePO {
         }
         return this;
     }
-
+    @Step("choose location city")
     public AddLocationModal chooseLocationCity(String cityName) {
         selectLocation(chooseCityName, cityName);
         return this;
     }
-
+    @Step("choose location station")
     public AddLocationModal chooseLocationStation(String stationName) {
         selectLocation(chooseStationName, stationName);
         return this;
     }
-
+    @Step("choose location district")
     public AddLocationModal chooseLocationDistrict(String districtName) {
         selectLocation(chooseDistrictName, districtName);
         return this;
     }
 
-
+    @Step("click add location button")
     public AddCenterModal clickAddLocationButton() {
         addLocationButton.click();
         return new AddCenterModal(driver);
     }
+    @Step("click add location button")
+    public AddClubModal clickAddLocationButtonToClub() {
+        addLocationButtonToClub.click();
+        return new AddClubModal(driver);
+    }
+
+
 
 }

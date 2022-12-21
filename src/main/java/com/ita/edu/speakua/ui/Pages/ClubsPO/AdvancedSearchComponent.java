@@ -1,6 +1,7 @@
 package com.ita.edu.speakua.ui.Pages.ClubsPO;
 
 import com.ita.edu.speakua.ui.BasePO;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -30,8 +31,12 @@ public class AdvancedSearchComponent extends BasePO {
     private WebElement radioValue;
     @FindBy(xpath = "//input[@id='basic_cityName']//ancestor::div[contains(@class,'selector')]")
     private WebElement dropDownCity;
-    @FindBy(xpath = "//*[@id=\"basic_cityName\"]")
+    @FindBy(xpath = "//*[@id='basic_cityName']")
     private WebElement cityInputField;
+
+    @FindBy(xpath = "//span[(@class='ant-select-clear')]")
+    private WebElement clearCity;
+
     @FindBy(xpath = "//div[@id='basic_cityName_list']/ancestor::div[not(@class)][1]")
     private WebElement dropDownCityList;
     @FindBy(xpath = "//input[@id='basic_districtName']//ancestor::div[contains(@class,'selector')]")
@@ -46,9 +51,9 @@ public class AdvancedSearchComponent extends BasePO {
     private WebElement checkBoxRemote;
     @FindBy(xpath = "//span[text()='за алфавітом']")
     private WebElement sortAlphabetical;
-    @FindBy(xpath = "//span[@class='anticon anticon-arrow-down control-sort-arrow']")
-    private WebElement sortDescending;
     @FindBy(xpath = "//span[@class='anticon anticon-arrow-up control-sort-arrow']")
+    private WebElement sortDescending;
+    @FindBy(xpath = "//span[@class='anticon anticon-arrow-down control-sort-arrow']")
     private WebElement sortAscending;
     @FindBy(xpath = "//span[text()='за рейтингом']")
     private WebElement sortByRating;
@@ -192,6 +197,7 @@ public class AdvancedSearchComponent extends BasePO {
         return this;
     }
 
+    @Step("Click sort DSC")
     public AdvancedSearchComponent clickSortDescending() {
         wait.visibility(sortDescending);
         action.click(sortDescending);
@@ -199,12 +205,14 @@ public class AdvancedSearchComponent extends BasePO {
         return this;
     }
 
+    @Step("Click sort ASC")
     public AdvancedSearchComponent clickSortAscending() {
         wait.visibility(sortAscending);
         action.click(sortAscending);
         return this;
     }
 
+    @Step("Click Sort by Rating")
     public AdvancedSearchComponent clickSortByRating() {
         sortByRating.click();
         return this;
@@ -226,10 +234,17 @@ public class AdvancedSearchComponent extends BasePO {
     }
 
     public AdvancedSearchComponent clearCityField() {
-        cityInputField.isEnabled();
+        cityInputField.findElement(By.xpath("//span[@class='ant-select-arrow']")).click();
+        return this;
+    }
+
+    @Step("Clear city field")
+    public AdvancedSearchComponent clearCityFieldClick() {
+        clearCity.click();
         return this;
     }
     public ClubsPage getClubPage(){
+        sleep(2);
         return new ClubsPage(driver);
     }
 

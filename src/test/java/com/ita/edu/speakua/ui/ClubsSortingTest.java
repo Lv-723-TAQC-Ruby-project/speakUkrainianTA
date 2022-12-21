@@ -1,7 +1,9 @@
 package com.ita.edu.speakua.ui;
 
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
+import io.qameta.allure.Description;
 import org.testng.Assert;
+import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -10,8 +12,8 @@ import org.testng.annotations.Test;
 public class ClubsSortingTest extends BaseTestRunner {
 
     @BeforeClass
-    public void setUp() {
-        setDriver();
+    public void setUp(ITestContext context) {
+        setDriver(context);
     }
 
     @BeforeMethod
@@ -20,45 +22,36 @@ public class ClubsSortingTest extends BaseTestRunner {
     }
 
     @Test
+    @Description("Test sorting clubs by rating in ASC order")
     public void verifyThatTheClubsCanBeSortedByRatingAsc() {
         int rating = new HomePage(driver)
                 .openAdvancedSearch()
                 .getAdvancedSearchComponent()
-                .clearCityField()
-                .clickSortByRatingReturnClubs()
-                .getCard(0)
+                .clearCityFieldClick()
+                .clickSortByRating()
+                .clickSortAscending()
+                .getClubPage()
+                .getCards()
+                .get(0)
                 .getRatingStars();
         Assert.assertEquals(rating, 0);
     }
 
     @Test
+    @Description("Test sorting clubs by rating in DSC order")
     public void verifyThatTheClubsCanBeSortedByRatingDsc() {
         int rating = new HomePage(driver)
                 .openAdvancedSearch()
                 .getAdvancedSearchComponent()
-                .clearCityField()
+                .clearCityFieldClick()
+                .clickSortByRating()
+                .clickSortAscending()
                 .clickSortDescending()
                 .getClubPage()
                 .getCards()
                 .get(0)
                 .getRatingStars();
         Assert.assertEquals(rating, 5);
-    }
-
-    @Test
-    public void searchByNameOfClubAttachedToTheLocation() {
-        String expectedTitle = new HomePage(driver)
-                .clickLocationButton()
-                .clickCityInTheLocationSection(0)
-                .getCard(0)
-                .getTitle();
-        String actualResult = new HomePage(driver)
-                .enterTextInTheSearchField(expectedTitle)
-                .clickSearchButton()
-                .getCards()
-                .get(0)
-                .getTitle();
-        Assert.assertEquals(actualResult, expectedTitle);
     }
 
     @AfterClass

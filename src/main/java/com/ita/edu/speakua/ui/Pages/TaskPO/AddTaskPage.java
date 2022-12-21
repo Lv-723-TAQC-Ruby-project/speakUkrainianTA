@@ -1,6 +1,7 @@
 package com.ita.edu.speakua.ui.Pages.TaskPO;
 
 import com.ita.edu.speakua.ui.BasePageWithHeader;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -65,14 +66,12 @@ public class AddTaskPage extends BasePageWithHeader {
     public WebElement getErrorMessage() {
         return errorMessage;
     }
-
-    //String date = "2023-1-1";
+    @Step
     public AddTaskPage enterStartDate(String date) {
         startDate.sendKeys(date, Keys.ENTER);
         return this;
     }
-
-    //String filePath = "C:\\Users\\User\\Desktop\\world-cup.jpg";
+    @Step
     public AddTaskPage uploadImage(String image) {
         ClassLoader classLoader = getClass().getClassLoader();
         File photo = new File(classLoader.getResource(image).getFile());
@@ -80,17 +79,17 @@ public class AddTaskPage extends BasePageWithHeader {
         uploadImage.sendKeys(absolutePath);
         return this;
     }
-
+ @Step
     public AddTaskPage enterTaskName(String taskName) {
         this.taskName.sendKeys(taskName);
         return this;
     }
-
+    @Step
     public AddTaskPage enterTaskTitle(String taskTitle) {
         this.taskTitle.sendKeys(taskTitle);
         return this;
     }
-
+    @Step
     public AddTaskPage enterTaskDescription(String taskDescription) {
         this.taskDescription.sendKeys(taskDescription);
         return this;
@@ -104,14 +103,22 @@ public class AddTaskPage extends BasePageWithHeader {
             return false;
         }
     }
+        public boolean successMessage(String names) {
+            try {
+                driver.findElement(By.xpath(String.format("//div[@class='ant-message']", names)));
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+    }
 
-
+    @Step
     public AddTaskPage chooseChallenge() {
         chooseChallenge.click();
         challenge.click();
         return this;
     }
-
+    @Step
     public AddTaskPage clickSave() {
         saveButton.click();
         sleep(3);

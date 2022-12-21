@@ -3,6 +3,7 @@ package com.ita.edu.speakua.ui.Pages.ClubsPO;
 import com.ita.edu.speakua.ui.BasePO;
 import com.ita.edu.speakua.ui.HomePage;
 import com.ita.edu.speakua.ui.Pages.CenterPO.AddLocationModal;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -55,21 +56,25 @@ public class AddClubModal extends BasePO {
         super(driver);
     }
 
+    @Step("Select category by name")
     public AddClubModal selectCategoryByName(String categoryName) {
         driver.findElement(xpath(format("//span[text()='%s']//parent::label//input", categoryName))).click();
         return this;
     }
 
+    @Step("Enter name of club")
     public AddClubModal EnterNameClub(String nameClub) {
         nameClubInput.sendKeys(nameClub);
         return this;
     }
 
+    @Step("Enter from age")
     public AddClubModal enterFromAge(String ageFrom) {
         ageFromInput.sendKeys(ageFrom);
         return this;
     }
 
+    @Step("Enter to age")
     public AddClubModal enterToAge(String ageTo) {
         ageToInput.sendKeys(ageTo);
         return this;
@@ -80,11 +85,13 @@ public class AddClubModal extends BasePO {
         return new AddLocationModal(driver);
     }
 
+    @Step("Enter phone number")
     public AddClubModal enterPhoneNumber(String phoneNumber) {
         phoneNumberInput.sendKeys(phoneNumber);
         return this;
     }
 
+    @Step("Click next step button")
     public AddClubModal clickNextStep() {
         nextStepButton.click();
         return new AddClubModal(driver);

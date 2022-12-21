@@ -2,6 +2,8 @@ package com.ita.edu.speakua.ui;
 
 import com.ita.edu.speakua.ui.Pages.ProfilePO.EditProfileModal;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
+import io.qameta.allure.Description;
+import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -10,8 +12,8 @@ import org.testng.asserts.SoftAssert;
 
 public class ProfileTest extends BaseTestRunner {
     @BeforeClass
-    public void setUp() {
-        setDriver();
+    public void setUp(ITestContext context) {
+        setDriver(context);
         new HomePage(driver)
                 .openGuestProfileMenu()
                 .openLoginModel()
@@ -27,7 +29,7 @@ public class ProfileTest extends BaseTestRunner {
     @Test
     public void MessageAboutIncorrectlyEnteredLastNameTest() {
         SoftAssert softAssert = new SoftAssert();
-        EditProfileModal editProfileModel = new HomePage(driver).openUserProfileMenu().openMyProfileModel().openEditProfileModel();
+        EditProfileModal editProfileModel = new HomePage(driver).openUserProfileMenu().openMyProfileModal().openEditProfileModel();
         boolean isMessageMore25Characters = editProfileModel.enterLastName("AfBbCcDdEeFfGgHhIiJjKkLlMmNn").isOpenMessageErrorLastNameContain("Прізвище не може містити більше, ніж 25 символів");
         softAssert.assertTrue(isMessageMore25Characters, "the message more 25 characters check failed");
         boolean isMessageWithSpecialCharacters = editProfileModel.enterLastName("!@#$%^&,").isOpenMessageErrorLastNameContain("Прізвище не може містити спеціальні символи");
@@ -50,11 +52,37 @@ public class ProfileTest extends BaseTestRunner {
         softAssert.assertTrue(isMessageDeleteData, "the message delete data check failed" );
         softAssert.assertAll();
     }
-
+    @Description("check if message about incorrectly entered fields for first name appears")
+    @Test
+    public void MessageAboutIncorrectlyEnteredFirstNameTest() {
+        SoftAssert softAssert = new SoftAssert();
+        EditProfileModal editProfileModel = new HomePage(driver).openUserProfileMenu().openMyProfileModal().openEditProfileModel();
+        boolean isMessageMore25Characters = editProfileModel.enterFirstName("AfBbCcDdEeFfGgHhIiJjKkLlMmNn").isOpenMessageErrorFirstNameContain("Ім'я не може містити більше, ніж 25 символів");
+        softAssert.assertTrue(isMessageMore25Characters, "the message more 25 characters in first name field check failed");
+        boolean isMessageWithSpecialCharacters = editProfileModel.deleteFirstName().enterFirstName("!@#$%^&,").isOpenMessageErrorFirstNameContain("Ім’я не може містити спеціальні символи");
+        softAssert.assertTrue(isMessageWithSpecialCharacters, "the message with special characters in first name field check failed");
+        boolean isMessageWithNumbers = editProfileModel.deleteFirstName().enterFirstName("1234").isOpenMessageErrorFirstNameContain("Ім’я не може містити цифри");
+        softAssert.assertTrue(isMessageWithNumbers,"the message with numbers in first name field check failed" );
+        boolean isMessageStartedWithHyphen = editProfileModel.deleteFirstName().enterFirstName("-Name").isOpenMessageErrorFirstNameContain("Ім’я повинно починатися та закінчуватися літерою");
+        softAssert.assertTrue(isMessageStartedWithHyphen, "the message started with hyphen in first name field check failed" );
+        boolean isMessageStartedWithSpace = editProfileModel.deleteFirstName().enterFirstName(" Name").isOpenMessageErrorFirstNameContain("Ім’я повинно починатися та закінчуватися літерою");
+        softAssert.assertTrue(isMessageStartedWithSpace, "the message started with space in first name field check failed" );
+        boolean isMessageStartedWithApostrophe = editProfileModel.deleteFirstName().enterFirstName("'Name").isOpenMessageErrorFirstNameContain("Ім’я повинно починатися та закінчуватися літерою");
+        softAssert.assertTrue(isMessageStartedWithApostrophe, "the message started with apostrophe in first name field check failed" );
+        boolean isMessageEndedWithHyphen = editProfileModel.deleteFirstName().enterFirstName("Name-").isOpenMessageErrorFirstNameContain("Ім’я повинно починатися та закінчуватися літерою");
+        softAssert.assertTrue(isMessageEndedWithHyphen, "the message ended with hyphen in first name field check failed");
+        boolean isMessageEndedWithSpace = editProfileModel.deleteFirstName().enterFirstName("Name ").isOpenMessageErrorFirstNameContain("Ім’я повинно починатися та закінчуватися літерою");
+        softAssert.assertTrue(isMessageEndedWithSpace, "the message ended with space in first name field check failed");
+        boolean isMessageEndedWithApostrophe = editProfileModel.deleteFirstName().enterFirstName("Name'").isOpenMessageErrorFirstNameContain("Ім’я повинно починатися та закінчуватися літерою");
+        softAssert.assertTrue(isMessageEndedWithApostrophe, "the message ended with apostrophe in first name field check failed");
+        boolean isMessageDeleteData = editProfileModel.deleteFirstName().isOpenMessageErrorFirstNameContain("Будь ласка введіть Ваше ім'я");
+        softAssert.assertTrue(isMessageDeleteData, "the message delete data in first name field check failed" );
+        softAssert.assertAll();
+    }
     @Test
     public void MessageAboutIncorrectlyEnteredNumberPhoneTest() {
         SoftAssert softAssert = new SoftAssert();
-        EditProfileModal editProfileModel = new HomePage(driver).openUserProfileMenu().openMyProfileModel().openEditProfileModel();
+        EditProfileModal editProfileModel = new HomePage(driver).openUserProfileMenu().openMyProfileModal().openEditProfileModel();
         boolean isMessageLessThan13Symbols = editProfileModel.enterNumberPhone("06895").isOpenMessageErrorPhoneContain("Телефон не відповідає вказаному формату");
         softAssert.assertTrue(isMessageLessThan13Symbols, "the message less than 13 symbols check failed");
         boolean isMessageMoreThan13Symbols = editProfileModel.enterNumberPhone("06593859632586").isOpenMessageErrorPhoneContain("Телефон не відповідає вказаному формату");
