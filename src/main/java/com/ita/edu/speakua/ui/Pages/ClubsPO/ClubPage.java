@@ -11,6 +11,9 @@ public class ClubPage extends BasePageWithHeader {
     @FindBy(xpath = "//span[@class='contact-name']")
     private WebElement fieldNumberPhone;
 
+    @FindBy(xpath = "//div[@class='links']//div[3]/span[@class='contact-name']")
+    private WebElement fieldLoginSkype;
+
     public ClubPage(WebDriver driver) {
         super(driver);
     }
@@ -28,4 +31,9 @@ public class ClubPage extends BasePageWithHeader {
         wait.visibility(fieldNumberPhone);
         return fieldNumberPhone.getText();
     }
+    public String getLoginOfSkype() {
+        wait.visibility(fieldLoginSkype);
+        return fieldLoginSkype.getText();
+    }
+
 }
