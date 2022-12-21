@@ -133,7 +133,7 @@ public void taskWithInvalidDescription(){
 
 
 
-
+@Description("addTaskWithInvalidTitle")
     @Test
     public void addTaskWithInvalidTitle() {
      AddTaskPage enterInvalidTitle = new HomePage(driver)
@@ -208,6 +208,7 @@ public void taskWithInvalidDescription(){
         softAssert.assertTrue(enterInvalidTitle.isContainErrorMessage("Поле 'Заголовок' може містити мінімум 40 максимум 3000 символів"));
         softAssert.assertAll();
     }
+ @Description("Add Task with Invalid Name")
 @Test
     public void addInvalidTaskName(){
         AddTaskPage enterInvalidTitle = new HomePage(driver)
@@ -230,8 +231,11 @@ public void taskWithInvalidDescription(){
                 .clickSave();
         softAssert.assertTrue(enterInvalidTitle.isContainErrorMessage("Поле 'Назва' не може бути пустим"));
 new AddTaskPage(driver)
-                .enterTaskName("ъэы; ผม, Ÿ, ð")
-                .clickSave();
+        .openAdminProfileMenu()
+        .openTasksPage()
+        .clickAddTask()
+        .enterTaskName("ъэы; ผม, Ÿ, ð")
+        .clickSave();
         softAssert.assertTrue(enterInvalidTitle.isContainErrorMessage("Поле 'Назва' може містити тільки українські та англійські літери, цифри та спеціальні символи"));
        new AddTaskPage(driver)
                 .enterTaskName("Test")
@@ -243,6 +247,7 @@ new AddTaskPage(driver)
         softAssert.assertTrue(enterInvalidTitle.isContainErrorMessage("Поле 'Назва' може містити мінімум 5 максимум 50 символів"));
         softAssert.assertAll();
     }
+    @Description("Add task with invalid date")
     @Test
     public void addTaskWithInvalidDate(){
       AddTaskPage enterInvalidDate = new HomePage(driver)
@@ -270,6 +275,31 @@ new AddTaskPage(driver)
         softAssert.assertTrue(enterInvalidDate.isContainErrorMessage("Дата початку має бути в майбутньому"));
         softAssert.assertAll();
     }
+@Description("Add Task Without Image")
+    @Test
+    public void addTaskWithoutImage(){
+        AddTaskPage uploadImage = new HomePage(driver)
+                .openAdminProfileMenu()
+                .openTasksPage()
+                .clickAddTask();
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(uploadImage.getStartDate().getText(), "", "Start-date field is empty");
+        softAssert.assertEquals(uploadImage.getUploadImage().getText(), "", "Image is not uploaded");
+        softAssert.assertEquals(uploadImage.getTaskName().getText(), "", "Task name field is empty");
+        softAssert.assertEquals(uploadImage.getTaskTitle().getText(), "", "Title for task field is empty");
+        softAssert.assertEquals(uploadImage.getTaskDescription().getText(), "", "Description field is empty");
+        softAssert.assertAll();
+        new AddTaskPage(driver)
+                .enterStartDate("23-03-03")
+             .enterTaskName("2018 FIFA World Cup")
+                .enterTaskTitle("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams")
+                .enterTaskDescription("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams have competed. The trophy has been won by eight national teams. Brazil have won five times, and they are the only team to have played in every tournament. The other World Cup winners are Germany and Italy, with four titles each; Argentina, France, and inaugural winner Uruguay, with two titles each; and England and Spain, with one title each.")
+                .chooseChallenge()
+                .clickSave();
+        softAssert.assertTrue(uploadImage.isContainErrorMessage("Фото не може бути пустим"));
+     softAssert.assertAll();
+    }
+    @Description("Add Task With Valid Data")
     @Test
     public void addTask(){
         AddTaskPage enterValidData = new HomePage(driver)
