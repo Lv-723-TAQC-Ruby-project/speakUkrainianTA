@@ -33,7 +33,7 @@ public class ClubTests extends BaseTestRunner {
     public void addVerifyDescriptionClubTest() {
         AddClubModal addClubModal = new HomePage(driver)
                 .openUserProfileMenu()
-                .openAddClubModel()
+                .openAddClubModal()
                 .EnterNameClub("Спорт")
                 .selectCategoryByName("Спортивні секції")
                 .enterFromAge("5")
@@ -89,7 +89,7 @@ public class ClubTests extends BaseTestRunner {
     public void VerifyCreatingClubAndFindingInformationAboutItTest() {
         new HomePage(driver)
                 .openUserProfileMenu()
-                .openAddClubModel()
+                .openAddClubModal()
                 .EnterNameClub("Малявки18.12.2022(22.00)")
                 .selectCategoryByName("Спортивні секції")
                 .enterFromAge("8")
@@ -102,7 +102,7 @@ public class ClubTests extends BaseTestRunner {
                 .finishAddingCenter();
         new HomePage(driver)
                 .openUserProfileMenu()
-                .openMyProfileModel()
+                .openMyProfileModal()
                 .clickLastElementOfTheListOfCenters()
                 .getClubsPage()
                 .getCardByName("Малявки18.12.2022(22.00)")
@@ -118,7 +118,7 @@ public class ClubTests extends BaseTestRunner {
     public void VerifyEditingClubAndFindingInformationAboutItTest() {
         new HomePage(driver)
                 .openUserProfileMenu()
-                .openMyProfileModel()
+                .openMyProfileModal()
                 .clickLastElementOfTheListOfCenters()
                 .getClubsPage()
                 .getCardByName("Малявки18.12.2022(22.00)")
