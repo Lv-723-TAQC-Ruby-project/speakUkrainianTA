@@ -66,9 +66,8 @@ public class AddLocationToClubTest extends BaseTestRunner {
         String checkInformationAboutCenterByNumber = new ClubPage(driver)
                 .getNumberPhone();
         Assert.assertEquals(checkInformationAboutCenterByNumber, "+38" + phoneNumber);
-        // ToDo change to getDescription logic
-        boolean checkInformationAboutCenterByDescription = new ClubPage(driver).isDescriptionAboutCenter(clubDescription);
-        Assert.assertTrue(checkInformationAboutCenterByDescription);
+        String checkInformationAboutCenterByDescription = new ClubPage(driver).getDescriptionAboutCenter();
+        Assert.assertEquals(checkInformationAboutCenterByDescription, clubDescription);
     }
     @AfterClass
     public void tearDown() {

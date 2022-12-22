@@ -14,17 +14,16 @@ public class ClubPage extends BasePageWithHeader {
     @FindBy(xpath = "//div[@class='links']//div[3]/span[@class='contact-name']")
     private WebElement fieldLoginSkype;
 
+    @FindBy(xpath = "//div[@class='content']")
+    private WebElement fieldDescriptionAboutCenter;
+
     public ClubPage(WebDriver driver) {
         super(driver);
     }
 
-    public boolean isDescriptionAboutCenter(String name) {
-        try {
-            driver.findElement(By.xpath(String.format("//div[@class='content']", name)));
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+    public String getDescriptionAboutCenter() {
+        wait.visibility(fieldDescriptionAboutCenter);
+       return fieldDescriptionAboutCenter.getText();
     }
 
     public String getNumberPhone() {
