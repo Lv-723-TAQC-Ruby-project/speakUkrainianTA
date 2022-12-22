@@ -60,6 +60,7 @@ public class ClubCard extends BasePO {
     }
 
     public String getTitleOfCenter() {
+        wait.visibility(titleOfCenter);
         return this.titleOfCenter.getText();
     }
     public String getTitleInMyProfile() {

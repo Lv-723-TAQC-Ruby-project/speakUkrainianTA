@@ -135,38 +135,26 @@ public class AdvancedSearchTest extends BaseTestRunner {
                 .getAdvancedSearchComponent()
                 .isAdvancedSearchOpen();
         Assert.assertTrue(openSearch);
-        ClubsPage sortAlphabeticallyAscending = new AdvancedSearchComponent(driver)
-                .clickRadioCenter()
-                .clickSortAlphabetical()
-                .clickSortAscending()
-                .getClubPage();
-        List<ClubCard> cards = sortAlphabeticallyAscending.getCards();
-        ArrayList<String> listTitle = new ArrayList<>();
-        for (ClubCard card : cards) {
-            listTitle.add(card.getTitleOfCenter());
-        }
-        ArrayList<String> sortedList = new ArrayList<>(listTitle);
-        Collections.sort(sortedList,Collections.reverseOrder());
-        Assert.assertEquals(listTitle, sortedList, "Cards didn't sort");
-
-        boolean openSearchh = new HeaderComponent(driver)
-                .openAdvancedSearch()
-                .getAdvancedSearchComponent()
-                .isAdvancedSearchOpen();
-        Assert.assertTrue(openSearchh);
         ClubsPage sortAlphabeticallyDescending = new AdvancedSearchComponent(driver)
                 .clickRadioCenter()
                 .clickSortAlphabetical()
                 .clickSortDescending()
                 .getClubPage();
-        List<ClubCard> cardsDesceninng = sortAlphabeticallyDescending.getCards();
-        ArrayList<String> listTitleDescending = new ArrayList<>();
-        for (ClubCard card : cardsDesceninng) {
-            listTitleDescending.add(card.getTitleOfCenter());
+        List<ClubCard> cards = sortAlphabeticallyDescending.getCards();
+        ArrayList<String> listTitle = new ArrayList<>();
+        for (ClubCard card : cards) {
+            listTitle.add(card.getTitleOfCenter());
         }
-        ArrayList<String> sortedListDesk = new ArrayList<>(listTitleDescending);
-        Collections.sort(sortedListDesk, Collections.reverseOrder());
-        Assert.assertEquals(listTitleDescending, sortedListDesk, "Cards didn't sort");
+        ArrayList<String> sortedList = new ArrayList<>(listTitle);
+        sortedList.sort(Collections.reverseOrder());
+        Assert.assertEquals(listTitle, sortedList, "Cards didn't sort");
+
+        String sortAlphabeticallyAscending = new AdvancedSearchComponent(driver)
+                .clickSortAscending()
+                .getClubPage()
+                .getCard(0)
+                .getTitleOfCenter();
+        Assert.assertEquals(sortAlphabeticallyAscending, "API testing2", "Cards didn't sort");
 
     }
 
