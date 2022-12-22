@@ -116,7 +116,6 @@ public class ClubTests extends BaseTestRunner {
         String checkInformationAboutCenterByDescription = new ClubPage(driver).getDescriptionAboutCenter();
         Assert.assertEquals(checkInformationAboutCenterByDescription, "Відділення образотворчого та декоративного мистецтва відкрите з моменту заснування Студії.У 2005р. відбулась перша виставка робіт учасників Студії у Львівському обласному палаці мистецтв.");
     }
-
     @Test
     public void VerifyEditingClubAndFindingInformationAboutItTest() {
         new HomePage(driver)
