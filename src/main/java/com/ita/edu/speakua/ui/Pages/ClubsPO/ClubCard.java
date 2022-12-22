@@ -55,6 +55,7 @@ public class ClubCard extends BasePO {
         return fullRatingStars.size();
     }
 
+
     public String getTitle() {
         return this.title.getText();
     }

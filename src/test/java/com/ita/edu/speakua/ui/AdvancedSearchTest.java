@@ -190,7 +190,9 @@ public class AdvancedSearchTest extends BaseTestRunner {
         SoftAssert softAssert = new SoftAssert();
         ClubsPage clubsPageAsc = new HeaderComponent(driver).openAdvancedSearch();
         clubsPageAsc
-                .getAdvancedSearchComponent().clickSortAlphabetical().clickSortAscending();
+                .getAdvancedSearchComponent()
+                .clickSortAlphabetical()
+                .clickSortAscending();
         List<ClubCard> cardsAsc = clubsPageAsc.getCards();
         ArrayList<String> listTitleAsc = new ArrayList<>();
         for (ClubCard card : cardsAsc) {
@@ -202,7 +204,9 @@ public class AdvancedSearchTest extends BaseTestRunner {
 
         ClubsPage clubsPageDesc = new HeaderComponent(driver).openAdvancedSearch();
         clubsPageDesc
-                .getAdvancedSearchComponent().clickSortAlphabetical().clickSortDescending();
+                .getAdvancedSearchComponent()
+                .clickSortAlphabetical()
+                .clickSortDescending();
         List<ClubCard> cardsDesc = clubsPageDesc.getCards();
         ArrayList<String> listTitleDesc = new ArrayList<>();
         for (ClubCard card : cardsDesc) {
@@ -214,7 +218,10 @@ public class AdvancedSearchTest extends BaseTestRunner {
 
         ClubsPage clubsPageAscRating = new HeaderComponent(driver).openAdvancedSearch();
         clubsPageAscRating
-                .getAdvancedSearchComponent().clickSortByRating().clickSortAscending();
+                .getAdvancedSearchComponent()
+                .clickSortByRating()
+                .clickSortAscending()
+                .getClubPage();
         List<ClubCard> cardsAscRating = clubsPageAscRating.getCards();
         ArrayList<Integer> listTitleAscRating = new ArrayList<>();
         for (ClubCard card : cardsAscRating) {
@@ -224,9 +231,13 @@ public class AdvancedSearchTest extends BaseTestRunner {
         Collections.sort(sortedListAscRating);
         softAssert.assertEquals(listTitleAscRating, sortedListAscRating, "Sorting clubs rating in ascending order failed");
 
+
         ClubsPage clubsPageDescRating = new HeaderComponent(driver).openAdvancedSearch();
         clubsPageDescRating
-                .getAdvancedSearchComponent().clickSortByRating().clickSortDescending();
+                .getAdvancedSearchComponent()
+                .clickSortByRating()
+                .clickSortDescending()
+                .getClubPage();
         List<ClubCard> cardsDescRating = clubsPageDescRating.getCards();
         ArrayList<Integer> listTitleDescRating = new ArrayList<>();
         for (ClubCard card : cardsDescRating) {
