@@ -29,6 +29,7 @@ public class AddCenterModal extends BasePO {
     public AddCenterModal(WebDriver driver) {
         super(driver);
     }
+
     @Step("send center name")
     public AddCenterModal enterCenterName(String nameCenter) {
         nameCenterInput.sendKeys(nameCenter);
@@ -49,6 +50,7 @@ public class AddCenterModal extends BasePO {
         newLocation.click();
         return this;
     }
+
     @Step("click next step button")
     public AddContactsCenterModal clickNextStep() {
         wait.visibility(nextStepButton);

@@ -64,7 +64,8 @@ public class AddLocationToClubTest extends BaseTestRunner {
         String checkInformationAboutCenterByNumber = new ClubPage(driver)
                 .getNumberPhone();
         Assert.assertEquals(checkInformationAboutCenterByNumber, "+380661111111");
-        boolean checkInformationAboutCenterByDescription = new ClubPage(driver).getDescriptionAboutCenter("Відділення образотворчого та декоративного мистецтва відкрите з моменту заснування Студії.У 2005р. відбулась перша виставка робіт учасників Студії у Львівському обласному палаці мистецтв.");
+        // ToDo change to getDescription logic
+        boolean checkInformationAboutCenterByDescription = new ClubPage(driver).isDescriptionAboutCenter("Відділення образотворчого та декоративного мистецтва відкрите з моменту заснування Студії.У 2005р. відбулась перша виставка робіт учасників Студії у Львівському обласному палаці мистецтв.");
         Assert.assertTrue(checkInformationAboutCenterByDescription);
     }
     @AfterClass

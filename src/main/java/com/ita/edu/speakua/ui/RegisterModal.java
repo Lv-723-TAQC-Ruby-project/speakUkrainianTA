@@ -58,44 +58,52 @@ public class RegisterModal extends BasePO {
     public WebElement getPasswordConfirmInput() {
         return passwordConfirmInput;
     }
-@Step
+
+    @Step
     public RegisterModal enterLastName(String lastName) {
         lastNameInput.sendKeys(lastName);
         return this;
     }
-@Step
+
+    @Step
     public RegisterModal enterFirstName(String firstName) {
         firstNameInput.sendKeys(firstName);
         return this;
     }
-@Step
+
+    @Step
     public RegisterModal enterPhone(String phone) {
         phoneInput.sendKeys(phone);
         return this;
     }
-@Step
+
+    @Step
     public RegisterModal enterEmail(String email) {
         emailInput.sendKeys(email);
         return this;
     }
-@Step
+
+    @Step
     public RegisterModal enterPassword(String password) {
         passwordInput.sendKeys(password);
         return this;
     }
-@Step
+
+    @Step
     public RegisterModal enterPasswordConfirm(String passwordConfirm) {
         passwordConfirmInput.sendKeys(passwordConfirm);
         return this;
     }
 
+    @Step
     public HomePage clickRegister() {
         registerButton.click();
         sleep(3);
         return new HomePage(driver);
 
     }
-@Step("Click cancel btn")
+
+    @Step("Click cancel btn")
     public HomePage cancelRegistration() {
         wait.visibility(closeButton);
         action.click(closeButton);

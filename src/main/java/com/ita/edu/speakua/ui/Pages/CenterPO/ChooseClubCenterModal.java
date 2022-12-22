@@ -19,11 +19,13 @@ public class ChooseClubCenterModal extends BasePO {
     public ChooseClubCenterModal(WebDriver driver) {
         super(driver);
     }
+
     @Step("choose club")
     public ChooseClubCenterModal chooseClub() {
         club.click();
         return this;
     }
+
     @Step("finish add center")
     public HomePage finishAddCenter() {
         finishButton.click();

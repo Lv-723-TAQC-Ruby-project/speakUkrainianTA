@@ -1,6 +1,7 @@
 package com.ita.edu.speakua.ui.Pages.ClubsPO;
 
 import com.ita.edu.speakua.ui.BasePageWithHeader;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,6 +17,7 @@ public class ClubsPage extends BasePageWithHeader {
     protected List<WebElement> cardsBody;
     private List<ClubCard> cards;
     private AdvancedSearchComponent advancedSearchComponent;
+
     public ClubsPage(WebDriver driver) {
         super(driver);
     }
@@ -28,11 +30,14 @@ public class ClubsPage extends BasePageWithHeader {
         return cards;
     }
 
-    public ClubCard getCard(int id) { return getCards().get(id); }
+    public ClubCard getCard(int id) {
+        return getCards().get(id);
+    }
 
-    public ClubCard getCardByName(String name){
-        for (ClubCard card: getCards()) {
-            if (Objects.equals(card.getTitleInMyProfile(), name)){
+    @Step
+    public ClubCard getCardByName(String name) {
+        for (ClubCard card : getCards()) {
+            if (Objects.equals(card.getTitleInMyProfile(), name)) {
                 return card;
             }
         }

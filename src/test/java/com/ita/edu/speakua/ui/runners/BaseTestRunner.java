@@ -16,17 +16,19 @@ import java.time.Duration;
 @Listeners(TestNgListener.class)
 public class BaseTestRunner {
     protected WebDriver driver;
-    protected ConfigProperties configProperties;
+    protected static final ConfigProperties configProperties = new ConfigProperties();
 
     @BeforeSuite
     public void initDriver() {
-        configProperties = new ConfigProperties();
+//        configProperties = new ConfigProperties();
         WebDriverManager.chromedriver().setup();
     }
 
     public void setDriver(ITestContext context) {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
+        options.addArguments("--headless");
+        options.addArguments("--window-size=1920,1080", "--no-sandbox", "'--disable-dev-shm-usage");
 
         driver = new ChromeDriver(options);
         context.setAttribute("myDriver", driver);

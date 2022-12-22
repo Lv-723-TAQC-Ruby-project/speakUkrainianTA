@@ -33,16 +33,19 @@ public class AddContactsCenterModal extends BasePO {
     public AddContactsCenterModal(WebDriver driver) {
         super(driver);
     }
+
     @Step("add facebook contact")
     public AddContactsCenterModal centerContactsFacebook(String facebook) {
         contactFacebook.sendKeys(facebook);
         return this;
     }
+
     @Step("add website")
     public AddContactsCenterModal centerContactsWebSite(String webSite) {
         contactWebSite.sendKeys(webSite);
         return this;
     }
+
     @Step("check if error message appears when canter without name")
     public boolean isMessageErrorCenterWithoutName() {
         try {
@@ -58,21 +61,25 @@ public class AddContactsCenterModal extends BasePO {
         contactEmail.sendKeys(email);
         return this;
     }
+
     @Step("add skype contact")
     public AddContactsCenterModal centerContactsSkype(String skype) {
         contactSkype.sendKeys(skype);
         return this;
     }
+
     @Step("add watsapp contact")
     public AddContactsCenterModal centerContactsWhatsApp(String whatsApp) {
         contactWhatsApp.sendKeys(whatsApp);
         return this;
     }
+
     @Step("add telephone number")
     public AddContactsCenterModal centerContactsTelephone(String telephone) {
         contactTelephone.sendKeys(telephone);
         return this;
     }
+
     @Step("click next step")
     public AddDescriptionCenterModal clickNextStep() {
         nextButton.click();

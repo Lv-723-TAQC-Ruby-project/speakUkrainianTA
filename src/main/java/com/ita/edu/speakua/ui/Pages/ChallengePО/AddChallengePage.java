@@ -23,8 +23,8 @@ public class AddChallengePage extends BasePageWithHeader {
     private WebElement uploadPhoto;
     @FindBy(xpath = "//button[contains(@class, 'add-contact-type-button')]")
     private WebElement saveButton;
-  //  @FindBy(xpath = "//div[contains(@class,'ant-message')]")
-  //  private WebElement successMessage;
+    //  @FindBy(xpath = "//div[contains(@class,'ant-message')]")
+    //  private WebElement successMessage;
 
     public AddChallengePage(WebDriver driver) {
         super(driver);
@@ -46,8 +46,7 @@ public class AddChallengePage extends BasePageWithHeader {
         return challengeDescription;
     }
 
-    public WebElement getUploadPhoto()
-    {
+    public WebElement getUploadPhoto() {
         return uploadPhoto;
     }
 
@@ -55,24 +54,28 @@ public class AddChallengePage extends BasePageWithHeader {
     public AddChallengePage enterSequenceNumber(String sequence) {
         Random random = new Random();
         int number = random.nextInt(100);
-        sequenceNumber.sendKeys(sequence+number);
+        sequenceNumber.sendKeys(sequence + number);
         return this;
     }
+
     @Step
     public AddChallengePage enterChallengeName(String name) {
         challengeName.sendKeys(name);
         return this;
     }
+
     @Step
     public AddChallengePage enterTitle(String title) {
         titleInput.sendKeys(title);
         return this;
     }
+
     @Step
     public AddChallengePage enterChallengeDescription(String description) {
         challengeDescription.sendKeys(description);
         return this;
     }
+
     @Step
     public AddChallengePage uploadChallengePhoto(String image) {
         ClassLoader classLoader = getClass().getClassLoader();
@@ -81,6 +84,7 @@ public class AddChallengePage extends BasePageWithHeader {
         uploadPhoto.sendKeys(absolutePath);
         return this;
     }
+
     @Step(" Click save btn")
     public AddChallengePage saveChallengeClick() {
         saveButton.click();

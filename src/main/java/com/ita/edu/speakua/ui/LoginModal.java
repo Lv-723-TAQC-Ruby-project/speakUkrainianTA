@@ -1,5 +1,6 @@
 package com.ita.edu.speakua.ui;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,20 +18,22 @@ public class LoginModal extends BasePO {
         super(driver);
     }
 
+    @Step
     public LoginModal enterEmail(String email) {
         emailInput.sendKeys(email);
         return this;
     }
 
+    @Step
     public LoginModal enterPassword(String password) {
         passwordInput.sendKeys(password);
         return this;
     }
 
+    @Step
     public HomePage clickLogin() {
-        saveScreenshot();
         loginButton.click();
-        sleep(2);
+        sleep(5);
         return new HomePage(driver);
     }
 

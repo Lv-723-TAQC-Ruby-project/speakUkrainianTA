@@ -66,11 +66,13 @@ public class AddTaskPage extends BasePageWithHeader {
     public WebElement getErrorMessage() {
         return errorMessage;
     }
+
     @Step
     public AddTaskPage enterStartDate(String date) {
         startDate.sendKeys(date, Keys.ENTER);
         return this;
     }
+
     @Step
     public AddTaskPage uploadImage(String image) {
         ClassLoader classLoader = getClass().getClassLoader();
@@ -79,16 +81,19 @@ public class AddTaskPage extends BasePageWithHeader {
         uploadImage.sendKeys(absolutePath);
         return this;
     }
- @Step
+
+    @Step
     public AddTaskPage enterTaskName(String taskName) {
         this.taskName.sendKeys(taskName);
         return this;
     }
+
     @Step
     public AddTaskPage enterTaskTitle(String taskTitle) {
         this.taskTitle.sendKeys(taskTitle);
         return this;
     }
+
     @Step
     public AddTaskPage enterTaskDescription(String taskDescription) {
         this.taskDescription.sendKeys(taskDescription);
@@ -103,13 +108,14 @@ public class AddTaskPage extends BasePageWithHeader {
             return false;
         }
     }
-        public boolean successMessage(String names) {
-            try {
-                driver.findElement(By.xpath(String.format("//div[@class='ant-message']", names)));
-                return true;
-            } catch (Exception e) {
-                return false;
-            }
+
+    public boolean successMessage(String names) {
+        try {
+            driver.findElement(By.xpath(String.format("//div[@class='ant-message']", names)));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Step
@@ -118,6 +124,7 @@ public class AddTaskPage extends BasePageWithHeader {
         challenge.click();
         return this;
     }
+
     @Step
     public AddTaskPage clickSave() {
         saveButton.click();

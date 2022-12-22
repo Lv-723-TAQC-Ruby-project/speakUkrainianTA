@@ -20,7 +20,8 @@ public class AdminProfileMenu extends UserProfileMenu {
     public AdminProfileMenu(WebDriver driver) {
         super(driver);
     }
-@Step("open Task")
+
+    @Step("open Task")
     public TasksPage openTasksPage() {
 
         openContentSubMenu();
@@ -45,6 +46,7 @@ public class AdminProfileMenu extends UserProfileMenu {
         action.click(challengesButton);
         return new ChallengePage(driver);
     }
+
     @Step("open Content Sub Menu")
     public AdminProfileMenu openContentSubMenu() {
         wait.visibility(contentButton);

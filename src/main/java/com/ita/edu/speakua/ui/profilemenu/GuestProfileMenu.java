@@ -3,6 +3,7 @@ package com.ita.edu.speakua.ui.profilemenu;
 import com.ita.edu.speakua.ui.BasePO;
 import com.ita.edu.speakua.ui.LoginModal;
 import com.ita.edu.speakua.ui.RegisterModal;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,12 +25,14 @@ public class GuestProfileMenu extends BasePO {
         super(driver);
     }
 
+    @Step
     public LoginModal openLoginModel() {
         new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.visibilityOf(loginButton));
         loginButton.click();
         return new LoginModal(driver);
     }
 
+    @Step
     public RegisterModal openRegistrationModel() {
         registrationButton.click();
         sleep(3);

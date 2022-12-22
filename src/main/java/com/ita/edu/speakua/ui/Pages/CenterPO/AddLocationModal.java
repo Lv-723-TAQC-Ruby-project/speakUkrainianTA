@@ -49,21 +49,25 @@ public class AddLocationModal extends BasePO {
     public AddLocationModal(WebDriver driver) {
         super(driver);
     }
+
     @Step("add location name")
     public AddLocationModal addLocationName(String locationName) {
         nameLocation.sendKeys(locationName);
         return this;
     }
+
     @Step("add location address")
     public AddLocationModal addLocationAddress(String locationAddress) {
         addressLocation.sendKeys(locationAddress);
         return this;
     }
+
     @Step("add location coordinates")
     public AddLocationModal addLocationCoordinates(String locationCoordinates) {
         coordinatesLocation.sendKeys(locationCoordinates);
         return this;
     }
+
     @Step("add location phone")
     public AddLocationModal addLocationPhone(String locationPhone) {
         phoneLocation.sendKeys(locationPhone);
@@ -94,16 +98,19 @@ public class AddLocationModal extends BasePO {
         }
         return this;
     }
+
     @Step("choose location city")
     public AddLocationModal chooseLocationCity(String cityName) {
         selectLocation(chooseCityName, cityName);
         return this;
     }
+
     @Step("choose location station")
     public AddLocationModal chooseLocationStation(String stationName) {
         selectLocation(chooseStationName, stationName);
         return this;
     }
+
     @Step("choose location district")
     public AddLocationModal chooseLocationDistrict(String districtName) {
         selectLocation(chooseDistrictName, districtName);
@@ -115,12 +122,12 @@ public class AddLocationModal extends BasePO {
         addLocationButton.click();
         return new AddCenterModal(driver);
     }
+
     @Step("click add location button")
     public AddClubModal clickAddLocationButtonToClub() {
         addLocationButtonToClub.click();
         return new AddClubModal(driver);
     }
-
 
 
 }

@@ -2,7 +2,7 @@ package com.ita.edu.speakua.ui.Pages.ProfilePO;
 
 import com.ita.edu.speakua.ui.BasePageWithHeader;
 import com.ita.edu.speakua.ui.Pages.CenterPO.AddCenterModal;
-import com.ita.edu.speakua.ui.Pages.ClubsPO.*;
+import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubsPage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -30,6 +30,7 @@ public class MyProfilePage extends BasePageWithHeader {
     public MyProfilePage(WebDriver driver) {
         super(driver);
     }
+
     @Step("open edit profile modal")
     public EditProfileModal openEditProfileModel() {
         wait.visibility(editProfileButton);
@@ -40,19 +41,19 @@ public class MyProfilePage extends BasePageWithHeader {
     public ClubsPage getClubsPage() {
         return new ClubsPage(driver);
     }
+
     public AddCenterModal addCenterModel() {
         addButton.click();
         addCenterButton.click();
         return new AddCenterModal(driver);
     }
 
-    public MyProfilePage clickLastElementOfTheListOfCenters(){
+    public MyProfilePage clickLastElementOfTheListOfCenters() {
         wait.visibility(lastElementOfListOfCentersButton);
         action.click(lastElementOfListOfCentersButton);
         sleep(5);
         return this;
     }
-
 
 
 }

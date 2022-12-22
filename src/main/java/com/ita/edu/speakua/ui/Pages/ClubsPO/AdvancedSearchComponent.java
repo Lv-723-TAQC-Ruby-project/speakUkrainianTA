@@ -8,20 +8,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class AdvancedSearchComponent extends BasePO {
 
-    @FindBy(xpath = "//input[@value='LIST']//ancestor::label")
-    private WebElement controlViewList;
-
-    @FindBy(xpath = "//input[@value='BLOCK']//ancestor::label")
-    private WebElement controlViewBlock;
-
     @FindBy(xpath = "//div[contains(@class,'ant-card-body')]")
     protected List<WebElement> cardsBody;
+    @FindBy(xpath = "//input[@value='LIST']//ancestor::label")
+    private WebElement controlViewList;
+    @FindBy(xpath = "//input[@value='BLOCK']//ancestor::label")
+    private WebElement controlViewBlock;
     private List<ClubCard> cards;
     @FindBy(xpath = "//label[.//span[contains(text(),'Центр')]]//span//input[@type='radio']")
     private WebElement radioCenter;
@@ -184,6 +181,7 @@ public class AdvancedSearchComponent extends BasePO {
         return valueAgeChildField.getAttribute("value");
     }
 
+    @Step
     public AdvancedSearchComponent enterNumberAge(String ageNumber) {
         wait.visibility(inputAgeChildField);
         inputAgeChildField.sendKeys(ageNumber);
@@ -191,6 +189,7 @@ public class AdvancedSearchComponent extends BasePO {
         return this;
     }
 
+    @Step
     public AdvancedSearchComponent clickSortAlphabetical() {
         wait.visibility(sortAlphabetical);
         action.click(sortAlphabetical);
@@ -245,7 +244,8 @@ public class AdvancedSearchComponent extends BasePO {
         clearCity.click();
         return this;
     }
-    public ClubsPage getClubPage(){
+
+    public ClubsPage getClubPage() {
         sleep(2);
         return new ClubsPage(driver);
     }

@@ -32,6 +32,7 @@ public class AddDescriptionCenterModal extends BasePO {
         addLogo.sendKeys(imagePath);
         return this;
     }
+
     @Step("add photo")
     public AddDescriptionCenterModal addPhoto(String photo) {
         File file = new File(getClass().getClassLoader().getResource(photo).getFile());
@@ -39,11 +40,13 @@ public class AddDescriptionCenterModal extends BasePO {
         addPhoto.sendKeys(imagePath);
         return this;
     }
+
     @Step("add description")
     public AddDescriptionCenterModal addDescription(String description) {
         addDescription.sendKeys(description);
         return this;
     }
+
     @Step("click next step")
     public ChooseClubCenterModal clickNextStep() {
         nextButton.click();

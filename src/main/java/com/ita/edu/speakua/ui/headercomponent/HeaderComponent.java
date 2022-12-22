@@ -122,6 +122,7 @@ public class HeaderComponent extends BasePO {
         advancedSearchButton.click();
         return new ClubsPage(driver);
     }
+
     @Step("Open profile menu")
     public UserProfileMenu openUserProfileMenu() {
         wait.visibility(profileMenuButton);

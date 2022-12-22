@@ -18,7 +18,7 @@ public class ClubPage extends BasePageWithHeader {
         super(driver);
     }
 
-    public boolean getDescriptionAboutCenter(String name) {
+    public boolean isDescriptionAboutCenter(String name) {
         try {
             driver.findElement(By.xpath(String.format("//div[@class='content']", name)));
             return true;
@@ -31,6 +31,7 @@ public class ClubPage extends BasePageWithHeader {
         wait.visibility(fieldNumberPhone);
         return fieldNumberPhone.getText();
     }
+
     public String getLoginOfSkype() {
         wait.visibility(fieldLoginSkype);
         return fieldLoginSkype.getText();

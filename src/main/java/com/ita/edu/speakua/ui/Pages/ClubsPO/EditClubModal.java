@@ -31,11 +31,12 @@ public class EditClubModal extends BasePO {
     private WebElement saveInDescriptionSectionButton2;
     @FindBy(xpath = "//input[@id='basic_clubContactSkype']")
     private WebElement loginOfSkypeInput;
+
     public EditClubModal(WebDriver driver) {
         super(driver);
     }
 
-    public EditClubModal openAddressAndContactsSection(){
+    public EditClubModal openAddressAndContactsSection() {
         wait.visibility(addressAndContactsButton);
         action.click(addressAndContactsButton);
         return this;
@@ -49,23 +50,25 @@ public class EditClubModal extends BasePO {
         return this;
     }
 
-    public EditClubModal openDescriptionSection(){
+    public EditClubModal openDescriptionSection() {
         wait.visibility(descriptionButton);
         action.click(descriptionButton);
         return this;
     }
+
     public EditClubModal enterClubDescription(String clubDescription) {
         clubDescriptionInput.clear();
         clubDescriptionInput.sendKeys(clubDescription);
         return this;
     }
 
-    public EditClubModal clickSaveInContactSectionButton(){
+    public EditClubModal clickSaveInContactSectionButton() {
         wait.visibility(saveInContactSectionButton);
         action.click(saveInContactSectionButton);
         return this;
     }
-    public MyProfilePage clickSaveInDescriptionSectionButton(){
+
+    public MyProfilePage clickSaveInDescriptionSectionButton() {
         wait.visibility(saveInDescriptionSectionButton);
         action.click(saveInDescriptionSectionButton);
         sleep(2);

@@ -110,7 +110,7 @@ public class ClubTests extends BaseTestRunner {
         String checkInformationAboutCenterByNumber = new ClubPage(driver)
                 .getNumberPhone();
         Assert.assertEquals(checkInformationAboutCenterByNumber, "+380934444444");
-        boolean checkInformationAboutCenterByDescription = new ClubPage(driver).getDescriptionAboutCenter("Відділення образотворчого та декоративного мистецтва відкрите з моменту заснування Студії.У 2005р. відбулась перша виставка робіт учасників Студії у Львівському обласному палаці мистецтв.");
+        boolean checkInformationAboutCenterByDescription = new ClubPage(driver).isDescriptionAboutCenter("Відділення образотворчого та декоративного мистецтва відкрите з моменту заснування Студії.У 2005р. відбулась перша виставка робіт учасників Студії у Львівському обласному палаці мистецтв.");
         Assert.assertTrue(checkInformationAboutCenterByDescription);
     }
 
@@ -136,7 +136,7 @@ public class ClubTests extends BaseTestRunner {
         String checkInformationAboutCenterByNumber = new ClubPage(driver)
                 .getNumberPhone();
         Assert.assertEquals(checkInformationAboutCenterByNumber, "0672222222");
-        boolean checkInformationAboutCenterByDescription = new ClubPage(driver).getDescriptionAboutCenter("Тестовий гурток для додавання центру Тестовий гурток для додавання центру");
+        boolean checkInformationAboutCenterByDescription = new ClubPage(driver).isDescriptionAboutCenter("Тестовий гурток для додавання центру Тестовий гурток для додавання центру");
         Assert.assertTrue(checkInformationAboutCenterByDescription);
 
 

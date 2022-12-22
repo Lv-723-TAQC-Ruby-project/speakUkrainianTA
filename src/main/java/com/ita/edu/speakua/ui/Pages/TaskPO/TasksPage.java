@@ -14,7 +14,8 @@ public class TasksPage extends BasePageWithHeader {
     public TasksPage(WebDriver driver) {
         super(driver);
     }
-@Step("click Add Task btn")
+
+    @Step("click Add Task btn")
     public AddTaskPage clickAddTask() {
         wait.visibility(addTaskButton);
         addTaskButton.click();

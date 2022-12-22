@@ -231,13 +231,20 @@ public class AdvancedSearchTest extends BaseTestRunner {
         Collections.sort(sortedListDesc, Collections.reverseOrder());
         softAssert.assertEquals(listTitleDesc, sortedListDesc, "Sorting clubs alphabetically in descending order failed");
 
-        ClubsPage clubsPageAscRating = new HeaderComponent(driver).openAdvancedSearch();
-        clubsPageAscRating
+//        ClubsPage clubsPageAscRating = new HeaderComponent(driver).openAdvancedSearch();
+//        clubsPageAscRating
+//                .getAdvancedSearchComponent()
+//                .clickSortByRating()
+//                .clickSortAscending()
+//                .getClubPage();
+//        List<ClubCard> cardsAscRating = clubsPageAscRating.getCards();
+        List<ClubCard> cardsAscRating = new HeaderComponent(driver)
+                .openAdvancedSearch()
                 .getAdvancedSearchComponent()
                 .clickSortByRating()
                 .clickSortAscending()
-                .getClubPage();
-        List<ClubCard> cardsAscRating = clubsPageAscRating.getCards();
+                .getClubPage()
+                .getCards();
         ArrayList<Integer> listTitleAscRating = new ArrayList<>();
         for (ClubCard card : cardsAscRating) {
             listTitleAscRating.add(card.getRatingStars());

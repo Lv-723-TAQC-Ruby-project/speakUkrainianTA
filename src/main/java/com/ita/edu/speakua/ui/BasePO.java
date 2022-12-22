@@ -8,8 +8,6 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
-import java.sql.Driver;
-
 public abstract class BasePO {
     protected WebDriver driver;
     protected ElementWait wait;

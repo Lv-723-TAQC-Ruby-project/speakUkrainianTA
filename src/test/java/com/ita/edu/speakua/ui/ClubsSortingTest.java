@@ -51,7 +51,8 @@ public class ClubsSortingTest extends BaseTestRunner {
                 .getCards()
                 .get(0)
                 .getRatingStars();
-        Assert.assertEquals(rating, 5);
+        int MAX_STAR = 5;
+        Assert.assertEquals(rating, MAX_STAR);
     }
 
     @AfterClass
