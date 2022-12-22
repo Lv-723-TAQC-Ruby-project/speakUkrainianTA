@@ -76,13 +76,12 @@ public class ClubTests extends BaseTestRunner {
                 "Вибір лише за вами, батьки....").isErrorMessageDisplayed("Опис гуртка може містити від 40 до 1500 символів."));
         //TUA-178
         softAssert.assertTrue(addClubModal.enterClubDescription("ё ы э ъ").isErrorMessageDisplayed("Опис гуртка не може містити російські літери"));
-        softAssert.assertTrue(addClubModal.enterClubDescription("ё ы э ъ").isErrorMessageDisplayed("Некоректний опис гуртка"));
         //TUA-173
         softAssert.assertTrue(addClubModal.enterClubDescription("'Education', 'students', 'Школа' 'балету'").successMessageDisplayed());
         softAssert.assertTrue(addClubModal.enterClubDescription("1234567890123456789012345678901234567890").successMessageDisplayed());
         softAssert.assertTrue(addClubModal.enterClubDescription("!#$%&'()*+,-./:;<=>?@[]^_`{}~%^$#)&&^^(_&($%^#@!").successMessageDisplayed());
-        addClubModal.finishAddingCenter();
         softAssert.assertTrue(addClubModal.completeButtonEnabled());
+        softAssert.assertAll();
     }
 
     @Test
