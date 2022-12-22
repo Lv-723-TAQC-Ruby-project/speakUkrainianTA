@@ -22,13 +22,15 @@ public class ChooseClubCenterModal extends BasePO {
 
     @Step("choose club")
     public ChooseClubCenterModal chooseClub() {
-        club.click();
+        wait.visibility(club);
+        action.click(club);
         return this;
     }
 
     @Step("finish add center")
     public HomePage finishAddCenter() {
         finishButton.click();
+        sleep(5);
         return new HomePage(driver);
     }
 }

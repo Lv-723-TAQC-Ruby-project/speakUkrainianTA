@@ -29,6 +29,7 @@ public class AddDescriptionCenterModal extends BasePO {
     public AddDescriptionCenterModal addLogo(String logo) {
         File file = new File(getClass().getClassLoader().getResource(logo).getFile());
         String imagePath = file.getAbsolutePath();
+
         addLogo.sendKeys(imagePath);
         return this;
     }
@@ -43,6 +44,7 @@ public class AddDescriptionCenterModal extends BasePO {
 
     @Step("add description")
     public AddDescriptionCenterModal addDescription(String description) {
+        wait.visibility(addDescription);
         addDescription.sendKeys(description);
         return this;
     }
