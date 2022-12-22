@@ -177,11 +177,12 @@ public class AdvancedSearchComponent extends BasePO {
         return radioValue.getText();
     }
 
+    @Step("Value entered number age")
     public String getAgeChildField() {
         return valueAgeChildField.getAttribute("value");
     }
 
-    @Step
+    @Step("Enter number age")
     public AdvancedSearchComponent enterNumberAge(String ageNumber) {
         wait.visibility(inputAgeChildField);
         inputAgeChildField.sendKeys(ageNumber);
@@ -189,7 +190,7 @@ public class AdvancedSearchComponent extends BasePO {
         return this;
     }
 
-    @Step
+    @Step("Click sort Alphabetically")
     public AdvancedSearchComponent clickSortAlphabetical() {
         wait.visibility(sortAlphabetical);
         action.click(sortAlphabetical);
@@ -224,15 +225,7 @@ public class AdvancedSearchComponent extends BasePO {
         return new ClubsPage(driver);
     }
 
-    public List<WebElement> getClubs() {
-        return cardsBody;
-    }
 
-    public List<WebElement> cardsAlphabetically() {
-        List<WebElement> alphabeticalCardsList = new ArrayList<>();
-        alphabeticalCardsList.addAll(cardsBody);
-        return alphabeticalCardsList.stream().sorted().collect(Collectors.toList());
-    }
 
     public AdvancedSearchComponent clearCityField() {
         cityInputField.findElement(By.xpath("//span[@class='ant-select-arrow']")).click();
