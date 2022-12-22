@@ -46,6 +46,9 @@ public class AddLocationModal extends BasePO {
     @FindBy(xpath = "//div[@class='ant-select-item-option-content']")
     private WebElement city;
 
+    @FindBy(xpath = "//button[@class='ant-btn ant-btn-default flooded-button add-club-content-next-disabled']")
+    private WebElement isLocationButtonDisabled;
+
     public AddLocationModal(WebDriver driver) {
         super(driver);
     }
@@ -129,5 +132,9 @@ public class AddLocationModal extends BasePO {
         return new AddClubModal(driver);
     }
 
+    @Step("is add location button disabled")
+    public boolean isAddLocationButtonDisabled() {
+        return isLocationButtonDisabled.getAttribute("class").contains("disabled");
+    }
 
 }

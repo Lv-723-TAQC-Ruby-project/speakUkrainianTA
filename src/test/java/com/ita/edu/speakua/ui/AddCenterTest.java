@@ -1,5 +1,7 @@
 package com.ita.edu.speakua.ui;
 
+import com.ita.edu.speakua.ui.Pages.CenterPO.AddCenterModal;
+import com.ita.edu.speakua.ui.Pages.CenterPO.AddLocationModal;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import io.qameta.allure.Description;
 import org.testng.Assert;
@@ -69,6 +71,44 @@ public class AddCenterTest extends BaseTestRunner {
                 .chooseClub()
                 .finishAddCenter();
         Assert.assertEquals(driver.getTitle(), "Навчай українською");
+    }
+
+    @Description("Add center without optional fields")
+    @Test
+    public void addCenterOptionalTest(){
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        new HomePage(driver)
+                .openUserProfileMenu()
+                .openAddCenterModal()
+                .enterCenterName("New Center Name " + timestamp)
+                .addLocation()
+                .addLocationName("New Location name")
+                .chooseLocationCity("Харків")
+                .addLocationAddress("New Location address")
+                .addLocationCoordinates("50.4485253, 30.4735083")
+                .addLocationPhone("0661111111")
+                .clickAddLocationButton()
+                .selectCenterLocation()
+                .clickNextStep()
+                .centerContactsTelephone("0661111111")
+                .clickNextStep()
+                .addDescription("There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.")                .clickNextStep()
+                .chooseClub()
+                .finishAddCenter();
+        Assert.assertEquals(driver.getTitle(), "Навчай українською");
+    }
+
+
+    @Description("This test case verifies that a 'Керівник' cannot add a location to the list of locations after leaving all mandatory and optional fields empty")
+    @Test
+    public void addCenterEmptyTest() {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        new HomePage(driver)
+                .openUserProfileMenu()
+                .openAddCenterModal()
+                .enterCenterName("New Center Name " + timestamp)
+                .addLocation();
+        Assert.assertTrue(new AddLocationModal(driver).isAddLocationButtonDisabled(), "Button 'Додати' is disabled");
     }
 
 
