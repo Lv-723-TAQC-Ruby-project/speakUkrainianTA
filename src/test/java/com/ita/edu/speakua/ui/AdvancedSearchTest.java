@@ -129,6 +129,7 @@ public class AdvancedSearchTest extends BaseTestRunner {
         softAssert.assertAll();
     }
 
+    @Description("verify sorting of centers alphabetically in both ascending and descending order")
     @Test
     public void sortOfCentersByAlphabeticallySuccessTest() {
         boolean openSearch = new HeaderComponent(driver)
@@ -159,6 +160,7 @@ public class AdvancedSearchTest extends BaseTestRunner {
 
     }
 
+    @Description("verify sorting of clubs alphabetically and rating in both ascending and descending order")
     @Test
     public void sortOfClubsByAlphabeticallyAndRatingSuccessTest() {
         SoftAssert softAssert = new SoftAssert();

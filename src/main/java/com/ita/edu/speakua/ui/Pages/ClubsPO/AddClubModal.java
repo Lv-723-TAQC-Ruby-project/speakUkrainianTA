@@ -101,6 +101,7 @@ public class AddClubModal extends BasePO {
         return new AddClubModal(driver);
     }
 
+    @Step("Enter club description")
     public AddClubModal enterClubDescription(String clubDescription) {
         clubDescriptionInput.clear();
         clubDescriptionInput.sendKeys(clubDescription);
@@ -121,6 +122,7 @@ public class AddClubModal extends BasePO {
         return this;
     }
 
+    @Step("Click complete button")
     public HomePage finishAddingCenter() {
         completeButton.click();
         sleep(2);

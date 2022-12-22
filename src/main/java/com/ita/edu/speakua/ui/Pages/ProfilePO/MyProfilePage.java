@@ -48,6 +48,7 @@ public class MyProfilePage extends BasePageWithHeader {
         return new AddCenterModal(driver);
     }
 
+    @Step("Click last element of the list of centers")
     public MyProfilePage clickLastElementOfTheListOfCenters() {
         wait.visibility(lastElementOfListOfCentersButton);
         action.click(lastElementOfListOfCentersButton);

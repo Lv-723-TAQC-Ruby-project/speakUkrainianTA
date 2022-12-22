@@ -3,6 +3,7 @@ package com.ita.edu.speakua.ui;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.AddClubModal;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubPage;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
+import jdk.jfr.Description;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
 import org.testng.ITestContext;
@@ -85,6 +86,7 @@ public class ClubTests extends BaseTestRunner {
         softAssert.assertAll();
     }
 
+    @Description("Checking that club is created and after find information about it")
     @Test
     public void VerifyCreatingClubAndFindingInformationAboutItTest() {
         String randomName = RandomStringUtils.random(8, 'a','s','g','y');
@@ -114,6 +116,7 @@ public class ClubTests extends BaseTestRunner {
         String checkInformationAboutCenterByDescription = new ClubPage(driver).getDescriptionAboutCenter();
         Assert.assertEquals(checkInformationAboutCenterByDescription, "Відділення образотворчого та декоративного мистецтва відкрите з моменту заснування Студії.У 2005р. відбулась перша виставка робіт учасників Студії у Львівському обласному палаці мистецтв.");
     }
+    @Description("Checking that club is edited and after find information about it")
     @Test
     public void VerifyEditingClubAndFindingInformationAboutItTest() {
         new HomePage(driver)
@@ -121,7 +124,7 @@ public class ClubTests extends BaseTestRunner {
                 .openMyProfileModal()
                 .clickLastElementOfTheListOfCenters()
                 .getClubsPage()
-                .getCardByName("Малявки18.12.2022(22.00)")
+                .getLastCard()
                 .openEditClubModel()
                 .openAddressAndContactsSection()
                 .enterPhoneNumber("0672222222")

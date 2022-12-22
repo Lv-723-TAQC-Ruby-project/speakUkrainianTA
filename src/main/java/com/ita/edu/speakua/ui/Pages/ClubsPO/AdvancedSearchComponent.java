@@ -149,6 +149,7 @@ public class AdvancedSearchComponent extends BasePO {
     }
 
 
+    @Step("Click center button")
     public AdvancedSearchComponent clickRadioCenter() {
         radioCenter.click();
         return this;
@@ -164,6 +165,7 @@ public class AdvancedSearchComponent extends BasePO {
         return this;
     }
 
+    @Step("Advanced search is opened")
     public boolean isAdvancedSearchOpen() {
         try {
             wait.visibility(By.xpath("//div[contains(text(), 'Розширений пошук')]"));
