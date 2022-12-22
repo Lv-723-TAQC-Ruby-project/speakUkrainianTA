@@ -63,7 +63,8 @@ public class AddClubModal extends BasePO {
     }
 
     @Step("Enter name of club")
-    public AddClubModal EnterNameClub(String nameClub) {
+    public AddClubModal enterNameClub(String nameClub) {
+        wait.visibility(nameClubInput);
         nameClubInput.sendKeys(nameClub);
         return this;
     }
@@ -81,12 +82,14 @@ public class AddClubModal extends BasePO {
     }
 
     public AddLocationModal clickAddLocationButton() {
-        addLocationButton.click();
+        wait.visibility(addLocationButton);
+        action.click(addLocationButton);
         return new AddLocationModal(driver);
     }
 
     @Step("Enter phone number")
     public AddClubModal enterPhoneNumber(String phoneNumber) {
+        wait.visibility(phoneNumberInput);
         phoneNumberInput.sendKeys(phoneNumber);
         return this;
     }
@@ -94,6 +97,7 @@ public class AddClubModal extends BasePO {
     @Step("Click next step button")
     public AddClubModal clickNextStep() {
         nextStepButton.click();
+        sleep(3);
         return new AddClubModal(driver);
     }
 

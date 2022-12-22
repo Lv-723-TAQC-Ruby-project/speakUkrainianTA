@@ -39,7 +39,8 @@ public class UserProfileMenu extends BasePO {
 
     @Step("open add center modal")
     public AddCenterModal openAddCenterModal() {
-        addCenterButton.click();
+        wait.visibility(addCenterButton);
+        action.click(addCenterButton);
         return new AddCenterModal(driver);
     }
 

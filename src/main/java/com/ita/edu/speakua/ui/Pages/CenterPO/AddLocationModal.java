@@ -55,6 +55,7 @@ public class AddLocationModal extends BasePO {
 
     @Step("add location name")
     public AddLocationModal addLocationName(String locationName) {
+        sleep(3);
         nameLocation.sendKeys(locationName);
         return this;
     }
@@ -129,6 +130,7 @@ public class AddLocationModal extends BasePO {
     @Step("click add location button")
     public AddClubModal clickAddLocationButtonToClub() {
         addLocationButtonToClub.click();
+        sleep(3);
         return new AddClubModal(driver);
     }
 

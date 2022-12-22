@@ -32,19 +32,22 @@ public class AddCenterModal extends BasePO {
 
     @Step("send center name")
     public AddCenterModal enterCenterName(String nameCenter) {
+        sleep(5);
         nameCenterInput.sendKeys(nameCenter);
         return this;
     }
 
     @Step("add center location")
     public AddLocationModal addLocation() {
-        addCenterLocation.click();
+        wait.visibility(addCenterLocation);
+        action.click(addCenterLocation);
         return new AddLocationModal(driver);
     }
 
     @Step("select center location")
     public AddCenterModal selectCenterLocation() {
-        scroll.click();
+        wait.visibility(scroll);
+        action.click(scroll);
         scroll.click();
         scroll.sendKeys(Keys.END);
         newLocation.click();

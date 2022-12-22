@@ -33,10 +33,12 @@ public class AddLocationToClubTest extends BaseTestRunner {
     public void addCenterTest() {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         String clubName = "New Club to test add location " + timestamp;
+        String clubDescription = "Some description of club in English #$^*@ Опис клубу українською мовою Some description of club in English #$^*@ Опис клубу українською мовою";
+        String phoneNumber = "0661111111";
         new HomePage(driver)
                 .openUserProfileMenu()
                 .openAddClubModal()
-                .EnterNameClub(clubName)
+                .enterNameClub(clubName)
                 .selectCategoryByName("Спортивні секції")
                 .enterFromAge("5")
                 .enterToAge("10")
@@ -48,11 +50,11 @@ public class AddLocationToClubTest extends BaseTestRunner {
                 .chooseLocationDistrict("Київський")
                 .addLocationAddress("New Location address")
                 .addLocationCoordinates("49.9935, 36.2304")
-                .addLocationPhone("0661111111")
+                .addLocationPhone(phoneNumber)
                 .clickAddLocationButtonToClub()
-                .enterPhoneNumber("0661111111")
+                .enterPhoneNumber(phoneNumber)
                 .clickNextStep()
-                .enterClubDescription("Some description of club in English #$^*@ Опис клубу українською мовою Some description of club in English #$^*@ Опис клубу українською мовою")
+                .enterClubDescription(clubDescription)
                 .finishAddingCenter();
         new HomePage(driver)
                 .openUserProfileMenu()
@@ -63,9 +65,9 @@ public class AddLocationToClubTest extends BaseTestRunner {
                 .getDetailInformation();
         String checkInformationAboutCenterByNumber = new ClubPage(driver)
                 .getNumberPhone();
-        Assert.assertEquals(checkInformationAboutCenterByNumber, "+380661111111");
+        Assert.assertEquals(checkInformationAboutCenterByNumber, "+38" + phoneNumber);
         // ToDo change to getDescription logic
-        boolean checkInformationAboutCenterByDescription = new ClubPage(driver).isDescriptionAboutCenter("Відділення образотворчого та декоративного мистецтва відкрите з моменту заснування Студії.У 2005р. відбулась перша виставка робіт учасників Студії у Львівському обласному палаці мистецтв.");
+        boolean checkInformationAboutCenterByDescription = new ClubPage(driver).isDescriptionAboutCenter(clubDescription);
         Assert.assertTrue(checkInformationAboutCenterByDescription);
     }
     @AfterClass
