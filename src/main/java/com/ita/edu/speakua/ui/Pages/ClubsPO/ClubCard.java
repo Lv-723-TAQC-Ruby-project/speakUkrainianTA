@@ -36,7 +36,7 @@ public class ClubCard extends BasePO {
     @FindBy(xpath = ".//a[text()='Детальніше']")
     private WebElement detailButton;
 
-    @FindBy(xpath = ".//span[@class='ant-dropdown-menu-title-content']//div[text()='Редагувати гурток']")
+    @FindBy(xpath = "//div[text()='Редагувати гурток']")
     private WebElement editClubButton;
     @FindBy(xpath = ".//div[@class='update-club-dropdown']")
     private WebElement menuClubButton;
@@ -61,6 +61,7 @@ public class ClubCard extends BasePO {
     }
 
     public String getTitleOfCenter() {
+        wait.visibility(titleOfCenter);
         return this.titleOfCenter.getText();
     }
     public String getTitleInMyProfile() {
@@ -77,8 +78,9 @@ public class ClubCard extends BasePO {
     public EditClubModal openEditClubModel() {
         wait.visibility(menuClubButton);
         action.click(menuClubButton);
-        wait.visibility(editClubButton);
-        action.click(editClubButton);
+        editClubButton.click();
         return new EditClubModal(driver);
     }
+
+
 }

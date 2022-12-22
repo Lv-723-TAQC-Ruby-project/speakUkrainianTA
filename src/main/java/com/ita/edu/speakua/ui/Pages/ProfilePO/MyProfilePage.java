@@ -49,7 +49,7 @@ public class MyProfilePage extends BasePageWithHeader {
     public MyProfilePage clickLastElementOfTheListOfCenters(){
         wait.visibility(lastElementOfListOfCentersButton);
         action.click(lastElementOfListOfCentersButton);
-        sleep(3);
+        sleep(5);
         return this;
     }
 
