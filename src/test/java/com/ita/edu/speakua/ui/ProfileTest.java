@@ -26,6 +26,7 @@ public class ProfileTest extends BaseTestRunner {
     public void goHomePage() {
         driver.get(configProperties.getBaseWebUrl());}
 
+    @Description("check if message about incorrectly entered fields for last name appears")
     @Test
     public void MessageAboutIncorrectlyEnteredLastNameTest() {
         SoftAssert softAssert = new SoftAssert();
@@ -79,6 +80,7 @@ public class ProfileTest extends BaseTestRunner {
         softAssert.assertTrue(isMessageDeleteData, "the message delete data in first name field check failed" );
         softAssert.assertAll();
     }
+    @Description("check if message about incorrectly entered fields for number phone appears")
     @Test
     public void MessageAboutIncorrectlyEnteredNumberPhoneTest() {
         SoftAssert softAssert = new SoftAssert();

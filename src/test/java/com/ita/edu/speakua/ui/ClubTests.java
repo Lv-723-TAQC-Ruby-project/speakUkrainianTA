@@ -3,7 +3,6 @@ package com.ita.edu.speakua.ui;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.AddClubModal;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubPage;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -11,8 +10,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
-import java.util.Random;
 
 public class ClubTests extends BaseTestRunner {
 
@@ -89,11 +86,10 @@ public class ClubTests extends BaseTestRunner {
 
     @Test
     public void VerifyCreatingClubAndFindingInformationAboutItTest() {
-        String randomName = RandomStringUtils.random(8, (char) ('a'-'z'));
         new HomePage(driver)
                 .openUserProfileMenu()
                 .openAddClubModal()
-                .enterNameClub(randomName)
+                .enterNameClub("Малявки18.12.2022(22.00)")
                 .selectCategoryByName("Спортивні секції")
                 .enterFromAge("8")
                 .enterToAge("16")
@@ -108,13 +104,13 @@ public class ClubTests extends BaseTestRunner {
                 .openMyProfileModal()
                 .clickLastElementOfTheListOfCenters()
                 .getClubsPage()
-                .getCardByName(randomName)
+                .getCardByName("Малявки18.12.2022(22.00)")
                 .getDetailInformation();
         String checkInformationAboutCenterByNumber = new ClubPage(driver)
                 .getNumberPhone();
         Assert.assertEquals(checkInformationAboutCenterByNumber, "+380934444444");
-        String checkInformationAboutCenterByDescription = new ClubPage(driver).getDescriptionAboutCenter();
-        Assert.assertEquals(checkInformationAboutCenterByDescription, "Відділення образотворчого та декоративного мистецтва відкрите з моменту заснування Студії.У 2005р. відбулась перша виставка робіт учасників Студії у Львівському обласному палаці мистецтв.");
+        boolean checkInformationAboutCenterByDescription = new ClubPage(driver).isDescriptionAboutCenter("Відділення образотворчого та декоративного мистецтва відкрите з моменту заснування Студії.У 2005р. відбулась перша виставка робіт учасників Студії у Львівському обласному палаці мистецтв.");
+        Assert.assertTrue(checkInformationAboutCenterByDescription);
     }
     @Test
     public void VerifyEditingClubAndFindingInformationAboutItTest() {
@@ -133,7 +129,7 @@ public class ClubTests extends BaseTestRunner {
                 .clickSaveInDescriptionSectionButton()
                 .clickLastElementOfTheListOfCenters()
                 .getClubsPage()
-                .getLastCard()
+                .getCardByName("Малявки18.12.2022(22.00)")
                 .getDetailInformation();
         String checkInformationAboutCenterByNumber = new ClubPage(driver)
                 .getNumberPhone();
