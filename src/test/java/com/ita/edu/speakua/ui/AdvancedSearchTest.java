@@ -129,7 +129,7 @@ public class AdvancedSearchTest extends BaseTestRunner {
     }
 
     @Test
-    public void sortAlphabeticallySuccessTest() {
+    public void sortOfCentersByAlphabeticallySuccessTest() {
         boolean openSearch = new HeaderComponent(driver)
                 .openAdvancedSearch()
                 .getAdvancedSearchComponent()
@@ -158,6 +158,33 @@ public class AdvancedSearchTest extends BaseTestRunner {
 
     }
 
+    @Test
+    public void sortOfClubsByAlphabeticallyAndRatingSuccessTest() {
+        SoftAssert softAssert = new SoftAssert();
+        ClubsPage clubsPageAscRating = new HeaderComponent(driver)
+                .openAdvancedSearch()
+                .getAdvancedSearchComponent()
+                .clickSortByRating()
+                .clickSortAscending()
+                .getClubPage();
+        List<ClubCard> cardsAscRating = clubsPageAscRating.getCards();
+        ArrayList<Integer> listTitleAscRating = new ArrayList<>();
+        for (ClubCard card : cardsAscRating) {
+            listTitleAscRating.add(card.getRatingStars());
+        }
+        ArrayList<Integer> sortedListAscRating = new ArrayList<>(listTitleAscRating);
+        Collections.sort(sortedListAscRating);
+        softAssert.assertEquals(listTitleAscRating, sortedListAscRating, "Sorting clubs rating in ascending order failed");
+
+        Integer clubsPageDscRating = new AdvancedSearchComponent(driver)
+                .clickSortDescending()
+                .getClubPage()
+                .getCards()
+                .get(0)
+                .getRatingStars();
+        softAssert.assertEquals(clubsPageDscRating, "5", "Sorting clubs rating in ascending order failed");
+
+    }
     @Test
     public void InputAgeChildTest() {
         SoftAssert softAssert = new SoftAssert();
