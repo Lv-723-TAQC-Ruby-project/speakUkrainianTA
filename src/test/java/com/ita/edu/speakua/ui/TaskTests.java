@@ -156,7 +156,15 @@ public void taskWithInvalidDescription(){
                 .clickSave();
         softAssert.assertTrue(enterInvalidTitle.isContainErrorMessage("Поле 'Заголовок' не може бути пустим"));
         new AddTaskPage(driver)
+                .openAdminProfileMenu()
+                .openTasksPage()
+                .clickAddTask()
+                .enterStartDate("2023-01-01")
+                .uploadImage("R.jpeg")
+                .enterTaskName("World Cup task")
+                .enterTaskDescription("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams have competed. The trophy has been won by eight national teams. Brazil have won five times, and they are the only team to have played in every tournament. The other World Cup winners are Germany and Italy, with four titles each; Argentina, France, and inaugural winner Uruguay, with two titles each; and England and Spain, with one title each.")
                 .enterTaskTitle("ъэы, ผม, Ÿ, ðъэы, ผม, Ÿ, ðъэы, ผม, Ÿ, ðъэы, ผม, Ÿ, ð")
+                .chooseChallenge()
                 .clickSave();
         softAssert.assertTrue(enterInvalidTitle.isContainErrorMessage("Поле 'Заголовок' може містити тільки українські та англійські літери, цифри та спеціальні символи"));
         new HomePage(driver)
@@ -234,16 +242,37 @@ new AddTaskPage(driver)
         .openAdminProfileMenu()
         .openTasksPage()
         .clickAddTask()
+        .enterStartDate("2023-01-01")
+        .uploadImage("R.jpeg")
         .enterTaskName("ъэы; ผม, Ÿ, ð")
+        .enterTaskTitle("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams ")
+        .enterTaskDescription("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams have competed. The trophy has been won by eight national teams. Brazil have won five times, and they are the only team to have played in every tournament. The other World Cup winners are Germany and Italy, with four titles each; Argentina, France, and inaugural winner Uruguay, with two titles each; and England and Spain, with one title each.")
+        .chooseChallenge()
         .clickSave();
         softAssert.assertTrue(enterInvalidTitle.isContainErrorMessage("Поле 'Назва' може містити тільки українські та англійські літери, цифри та спеціальні символи"));
        new AddTaskPage(driver)
-                .enterTaskName("Test")
-                .clickSave();
+               .openAdminProfileMenu()
+               .openTasksPage()
+               .clickAddTask()
+               .enterStartDate("2023-01-01")
+               .uploadImage("R.jpeg")
+               .enterTaskName("Test")
+               .enterTaskTitle("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams ")
+               .enterTaskDescription("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams have competed. The trophy has been won by eight national teams. Brazil have won five times, and they are the only team to have played in every tournament. The other World Cup winners are Germany and Italy, with four titles each; Argentina, France, and inaugural winner Uruguay, with two titles each; and England and Spain, with one title each.")
+               .chooseChallenge()
+               .clickSave();
         softAssert.assertTrue(enterInvalidTitle.isContainErrorMessage("Поле 'Назва' може містити мінімум 5 максимум 50 символів"));
 new AddTaskPage(driver)
-                .enterTaskName("As of the 2018 FIFA World Cup, twenty-one final tournaments hav")
-                .clickSave();
+        .openAdminProfileMenu()
+        .openTasksPage()
+        .clickAddTask()
+        .enterStartDate("2023-01-01")
+        .uploadImage("R.jpeg")
+        .enterTaskName("As of the 2018 FIFA World Cup, twenty-one final tournaments hav")
+        .enterTaskTitle("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams ")
+        .enterTaskDescription("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams have competed. The trophy has been won by eight national teams. Brazil have won five times, and they are the only team to have played in every tournament. The other World Cup winners are Germany and Italy, with four titles each; Argentina, France, and inaugural winner Uruguay, with two titles each; and England and Spain, with one title each.")
+        .chooseChallenge()
+        .clickSave();
         softAssert.assertTrue(enterInvalidTitle.isContainErrorMessage("Поле 'Назва' може містити мінімум 5 максимум 50 символів"));
         softAssert.assertAll();
     }
