@@ -30,8 +30,8 @@ public class SearchTests extends BaseTestRunner {
                 .clickSearchField()
                 .enterTextInTheSearchFieldAndWait("з", 10)
                 .getComponentsOfTheSearchList();
-        String initial = searchListInitialState.get(3).getText();
-        String afterAllActions = searchListAfterInputtingData.get(3).getText();
+        String afterAllActions = searchListAfterInputtingData.get(2).getText();
+        String initial = searchListInitialState.get(2).getText();
         Assert.assertNotEquals(initial, afterAllActions);
     }
 
