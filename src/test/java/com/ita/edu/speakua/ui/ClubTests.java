@@ -88,7 +88,7 @@ public class ClubTests extends BaseTestRunner {
 
     @Description("Checking that club is created and after find information about it")
     @Test
-    public void VerifyCreatingClubAndFindingInformationAboutItTest() {
+    public void verifyCreatingClubAndFindingInformationAboutItTest() {
         String randomName = RandomStringUtils.random(8, 'a','s','g','y');
         new HomePage(driver)
                 .openUserProfileMenu()
@@ -118,7 +118,7 @@ public class ClubTests extends BaseTestRunner {
     }
     @Description("Checking that club is edited and after find information about it")
     @Test
-    public void VerifyEditingClubAndFindingInformationAboutItTest() {
+    public void verifyEditingClubAndFindingInformationAboutItTest() {
         new HomePage(driver)
                 .openUserProfileMenu()
                 .openMyProfileModal()
