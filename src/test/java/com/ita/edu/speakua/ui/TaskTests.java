@@ -70,7 +70,7 @@ public void taskWithInvalidDescription(){
     softAssert.assertEquals(enterInvalidData.getTaskDescription().getText(), "", "Description field is empty");
     softAssert.assertAll();
      new AddTaskPage(driver)
-            .enterStartDate("2021-03-03")
+            .enterStartDate("2023-03-03")
             .uploadImage("R.jpeg")
             .enterTaskName("LearnTest")
             .enterTaskTitle("Positive emotions like curiosity, satisfaction, and liveliness have a massive\n impact on how your brain processes your\n learning.")
@@ -78,7 +78,11 @@ public void taskWithInvalidDescription(){
             .clickSave();
      softAssert.assertTrue(enterInvalidData.isContainErrorMessage("Поле опис не може бути пустим"));
     new AddTaskPage(driver)
+            .openAdminProfileMenu()
+            .openTasksPage()
+            .clickAddTask()
             .enterTaskDescription("ъэы, ผม, Ÿ, ðъэы, ผม, Ÿ, ðъэы, ผม, Ÿ, ðъэы, ผม, Ÿ, ð")
+            .chooseChallenge()
             .clickSave();
     softAssert.assertTrue(enterInvalidData.isContainErrorMessage("Поле 'Опис' може містити тільки українські та англійські літери, цифри та спеціальні символи"));
     new HomePage(driver)
@@ -319,7 +323,10 @@ new AddTaskPage(driver)
         softAssert.assertEquals(uploadImage.getTaskDescription().getText(), "", "Description field is empty");
         softAssert.assertAll();
         new AddTaskPage(driver)
-                .enterStartDate("23-03-03")
+                .openAdminProfileMenu()
+                .openTasksPage()
+                .clickAddTask()
+                .enterStartDate("2023-03-03")
              .enterTaskName("2018 FIFA World Cup")
                 .enterTaskTitle("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams")
                 .enterTaskDescription("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams have competed. The trophy has been won by eight national teams. Brazil have won five times, and they are the only team to have played in every tournament. The other World Cup winners are Germany and Italy, with four titles each; Argentina, France, and inaugural winner Uruguay, with two titles each; and England and Spain, with one title each.")
