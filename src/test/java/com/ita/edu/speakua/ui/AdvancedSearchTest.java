@@ -215,10 +215,10 @@ public class AdvancedSearchTest extends BaseTestRunner {
 
     @Description("check sorting of clubs alphabetically and rating in both ascending and descending order")
     @Test
-    public void sortAdvancedSearchByAlphabeticallyAndRatingTest() {
+    public void sortingOfClubsInAdvancedSearchByAlphabeticallyAndRatingTest() {
         SoftAssert softAssert = new SoftAssert();
-        ClubsPage clubsPage = new HeaderComponent(driver).openAdvancedSearch();
-        clubsPage
+        ClubsPage clubsPage = new HeaderComponent(driver)
+                .openAdvancedSearch()
                 .getAdvancedSearchComponent()
                 .clickSortAlphabetical()
                 .clickSortAscending()
@@ -233,10 +233,7 @@ public class AdvancedSearchTest extends BaseTestRunner {
         softAssert.assertEquals(listTitleAscAlpha, sortedListAscAlpha, "Sorting clubs alphabetically in ascending order failed");
 
 
-        List<ClubCard> cardsDescAlpha = new HeaderComponent(driver)
-                .openAdvancedSearch()
-                .getAdvancedSearchComponent()
-                .clickSortAlphabetical()
+        List<ClubCard> cardsDescAlpha = new AdvancedSearchComponent(driver)
                 .clickSortDescending()
                 .getClubPage()
                 .getCards();
@@ -249,9 +246,7 @@ public class AdvancedSearchTest extends BaseTestRunner {
         softAssert.assertEquals(listTitleDescAlpha, sortedListDescAlpha, "Sorting clubs alphabetically in descending order failed");
 
 
-        List<ClubCard> cardsAscRating = new HeaderComponent(driver)
-                .openAdvancedSearch()
-                .getAdvancedSearchComponent()
+        List<ClubCard> cardsAscRating = new AdvancedSearchComponent(driver)
                 .clickSortByRating()
                 .clickSortAscending()
                 .getClubPage()
@@ -265,10 +260,7 @@ public class AdvancedSearchTest extends BaseTestRunner {
         softAssert.assertEquals(listTitleAscRating, sortedListAscRating, "Sorting clubs rating in ascending order failed");
 
 
-        List<ClubCard> cardsDescRating = new HeaderComponent(driver)
-                .openAdvancedSearch()
-                .getAdvancedSearchComponent()
-                .clickSortByRating()
+        List<ClubCard> cardsDescRating = new AdvancedSearchComponent(driver)
                 .clickSortDescending()
                 .getClubPage()
                 .getCards();
