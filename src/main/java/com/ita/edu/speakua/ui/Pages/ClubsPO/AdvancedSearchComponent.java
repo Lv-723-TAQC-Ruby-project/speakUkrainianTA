@@ -3,13 +3,12 @@ package com.ita.edu.speakua.ui.Pages.ClubsPO;
 import com.ita.edu.speakua.ui.BasePO;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class AdvancedSearchComponent extends BasePO {
 
@@ -187,6 +186,8 @@ public class AdvancedSearchComponent extends BasePO {
     @Step("Enter number age")
     public AdvancedSearchComponent enterNumberAge(String ageNumber) {
         wait.visibility(inputAgeChildField);
+        inputAgeChildField.sendKeys(Keys.CONTROL + "a");
+        inputAgeChildField.sendKeys(Keys.DELETE);
         inputAgeChildField.sendKeys(ageNumber);
         sleep(2);
         return this;

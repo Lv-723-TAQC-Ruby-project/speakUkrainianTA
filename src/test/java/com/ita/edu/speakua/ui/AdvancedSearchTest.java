@@ -193,14 +193,23 @@ public class AdvancedSearchTest extends BaseTestRunner {
     public void InputAgeChildTest() {
         SoftAssert softAssert = new SoftAssert();
         AdvancedSearchComponent advancedSearchComponent = new HomePage(driver).openAdvancedSearch().getAdvancedSearchComponent();
-        String textNumber1 = advancedSearchComponent.enterNumberAge("1").getAgeChildField();
+
+        advancedSearchComponent.enterNumberAge("1");
+        String textNumber1 = advancedSearchComponent.getAgeChildField();
         softAssert.assertEquals(textNumber1, "2", "check failed with number 1");
-        String textNumber2 = advancedSearchComponent.enterNumberAge("2").getAgeChildField();
+
+        advancedSearchComponent.enterNumberAge("2");
+        String textNumber2 = advancedSearchComponent.getAgeChildField();
         softAssert.assertEquals(textNumber2, "2", "check failed with number 2");
-        String textNumber18 = advancedSearchComponent.enterNumberAge("18").getAgeChildField();
+
+        advancedSearchComponent.enterNumberAge("18");
+        String textNumber18 = advancedSearchComponent.getAgeChildField();
         softAssert.assertEquals(textNumber18, "18", "check failed with number 18");
-        String textNumber19 = advancedSearchComponent.enterNumberAge("19").getAgeChildField();
+
+        advancedSearchComponent.enterNumberAge("19");
+        String textNumber19 = advancedSearchComponent.getAgeChildField();
         softAssert.assertEquals(textNumber19, "18", "check failed with number 19");
+
         softAssert.assertAll();
     }
 
