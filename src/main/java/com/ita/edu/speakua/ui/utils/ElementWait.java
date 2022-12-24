@@ -1,6 +1,7 @@
 package com.ita.edu.speakua.ui.utils;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -33,13 +34,24 @@ public class ElementWait {
     }
 
     public void clickable(By locator) {
-        wait.until(ExpectedConditions.elementToBeClickable(locator));
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(locator));
+            System.out.println("Element is clickable");
+        }
+        catch(TimeoutException e) {
+            System.out.println("Element isn't clickable");
+        }
     }
 
 
     public void clickable(WebElement element, long seconds) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
-        wait.until(ExpectedConditions.elementToBeClickable(element));
+        try {
+            new WebDriverWait(driver, Duration.ofSeconds(seconds)).until(ExpectedConditions.elementToBeClickable(element));
+            System.out.println("Element is clickable");
+        }
+        catch(TimeoutException e) {
+            System.out.println("Element isn't clickable");
+        }
     }
 
     public void clickable(WebElement element) {

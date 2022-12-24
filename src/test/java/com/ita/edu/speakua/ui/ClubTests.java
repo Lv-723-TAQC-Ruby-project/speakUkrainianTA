@@ -78,6 +78,10 @@ public class ClubTests extends BaseTestRunner {
                 "Вибір лише за вами, батьки....").isErrorMessageDisplayed("Опис гуртка може містити від 40 до 1500 символів."));
         //TUA-178
         softAssert.assertTrue(addClubModal.enterClubDescription("ё ы э ъ").isErrorMessageDisplayed("Опис гуртка не може містити російські літери"));
+        //TUA-172
+        softAssert.assertTrue(addClubModal.enterClubDescription("s".repeat(1000)).successMessageDisplayed());
+        softAssert.assertTrue(addClubModal.enterClubDescription("s".repeat(40)).successMessageDisplayed());
+        softAssert.assertTrue(addClubModal.enterClubDescription("s".repeat(1500)).successMessageDisplayed());
         //TUA-173
         softAssert.assertTrue(addClubModal.enterClubDescription("'Education', 'students', 'Школа' 'балету'").successMessageDisplayed());
         softAssert.assertTrue(addClubModal.enterClubDescription("1234567890123456789012345678901234567890").successMessageDisplayed());
@@ -127,7 +131,7 @@ public class ClubTests extends BaseTestRunner {
                 .getLastCard()
                 .openEditClubModel()
                 .openAddressAndContactsSection()
-                .enterPhoneNumber("0672222222")
+                .enterLoginOfSkype("speakUA")
                 .clickSaveInContactSectionButton()
                 .openDescriptionSection()
                 .enterClubDescription("Тестовий гурток для додавання центру Тестовий гурток для додавання центру")
@@ -136,9 +140,9 @@ public class ClubTests extends BaseTestRunner {
                 .getClubsPage()
                 .getLastCard()
                 .getDetailInformation();
-        String checkInformationAboutCenterByNumber = new ClubPage(driver)
-                .getNumberPhone();
-        Assert.assertEquals(checkInformationAboutCenterByNumber, "0672222222");
+        String checkInformationAboutCenterBySkype = new ClubPage(driver)
+                .getLoginOfSkype();
+        Assert.assertEquals(checkInformationAboutCenterBySkype, "speakUA");
         String checkInformationAboutCenterByDescription = new ClubPage(driver).getDescriptionAboutCenter();
         Assert.assertEquals(checkInformationAboutCenterByDescription, "Тестовий гурток для додавання центру Тестовий гурток для додавання центру");
     }
