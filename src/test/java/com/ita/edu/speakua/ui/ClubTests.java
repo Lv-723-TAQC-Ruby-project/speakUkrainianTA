@@ -127,7 +127,7 @@ public class ClubTests extends BaseTestRunner {
                 .getLastCard()
                 .openEditClubModel()
                 .openAddressAndContactsSection()
-                .enterPhoneNumber("0672222222")
+                .enterLoginOfSkype("speakUA")
                 .clickSaveInContactSectionButton()
                 .openDescriptionSection()
                 .enterClubDescription("Тестовий гурток для додавання центру Тестовий гурток для додавання центру")
@@ -136,9 +136,9 @@ public class ClubTests extends BaseTestRunner {
                 .getClubsPage()
                 .getLastCard()
                 .getDetailInformation();
-        String checkInformationAboutCenterByNumber = new ClubPage(driver)
-                .getNumberPhone();
-        Assert.assertEquals(checkInformationAboutCenterByNumber, "0672222222");
+        String checkInformationAboutCenterBySkype = new ClubPage(driver)
+                .getLoginOfSkype();
+        Assert.assertEquals(checkInformationAboutCenterBySkype, "speakUA");
         String checkInformationAboutCenterByDescription = new ClubPage(driver).getDescriptionAboutCenter();
         Assert.assertEquals(checkInformationAboutCenterByDescription, "Тестовий гурток для додавання центру Тестовий гурток для додавання центру");
     }
