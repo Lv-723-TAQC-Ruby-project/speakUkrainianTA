@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Speak UA tests" parallel="tests" thread-count="3">
+<suite name="Speak UA tests" parallel="tests" thread-count="1">
     <test name="CenterTest"  parallel="classes" thread-count="3">
         <classes>
             <class name="com.ita.edu.speakua.ui.AddCenterTest"/>
@@ -11,14 +11,14 @@
             <class name="com.ita.edu.speakua.ui.TaskTests"/>
         </classes>
     </test>
-    <test name="SearchTest"  parallel="classes" thread-count="2">
+    <test name="SearchTest"  parallel="classes" thread-count="3">
         <classes>
             <class name="com.ita.edu.speakua.ui.AdvancedSearchTest" />
             <class name="com.ita.edu.speakua.ui.SearchClubTest" />
             <class name="com.ita.edu.speakua.ui.SearchTests" />
         </classes>
     </test>
-    <test name="RegistrationTest"  parallel="classes" thread-count="2">
+    <test name="RegistrationTest"  parallel="classes" thread-count="3">
         <classes>
             <class name="com.ita.edu.speakua.ui.NegativeChangePasswordPopUpTests" />
             <class name="com.ita.edu.speakua.ui.ProfileTest" />

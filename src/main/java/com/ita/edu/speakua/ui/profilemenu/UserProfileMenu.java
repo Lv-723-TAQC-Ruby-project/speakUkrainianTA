@@ -33,6 +33,7 @@ public class UserProfileMenu extends BasePO {
 
     @Step("Open add club modal")
     public AddClubModal openAddClubModal() {
+        wait.visibility(addClubButton);
         addClubButton.click();
         return new AddClubModal(driver);
     }
@@ -47,7 +48,7 @@ public class UserProfileMenu extends BasePO {
     @Step("open my profile modal")
     public MyProfilePage openMyProfileModal() {
         wait.visibility(myProfileButton);
-        action.click(myProfileButton);
+        myProfileButton.click();
         return new MyProfilePage(driver);
     }
 
