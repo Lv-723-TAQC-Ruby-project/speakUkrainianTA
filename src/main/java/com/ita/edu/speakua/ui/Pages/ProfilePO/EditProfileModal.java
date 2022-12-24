@@ -148,7 +148,8 @@ public class EditProfileModal extends BasePO {
 
     @Step("delete last name")
     public EditProfileModal deleteLastName() {
-        editLastNameField.clear();
+        editLastNameField.sendKeys(Keys.CONTROL + "a");
+        editLastNameField.sendKeys(Keys.DELETE);
         wait.visibility(editLastNameField);
         return this;
     }
@@ -161,14 +162,14 @@ public class EditProfileModal extends BasePO {
     }
     @Step("enter number phone")
     public EditProfileModal enterNumberPhone(String numberPhone) {
-        editNumberPhoneField.clear();
         wait.visibility(editNumberPhoneField);
         editNumberPhoneField.sendKeys(numberPhone);
         return this;
     }
     @Step("delete number phone")
     public EditProfileModal deleteNumberPhone() {
-        editNumberPhoneField.clear();
+        editNumberPhoneField.sendKeys(Keys.CONTROL + "a");
+        editNumberPhoneField.sendKeys(Keys.DELETE);
         wait.visibility(editNumberPhoneField);
         return this;
     }
