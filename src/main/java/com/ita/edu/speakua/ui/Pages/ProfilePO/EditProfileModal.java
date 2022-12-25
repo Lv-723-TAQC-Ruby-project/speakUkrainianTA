@@ -140,7 +140,6 @@ public class EditProfileModal extends BasePO {
 
     @Step("enter first name")
     public EditProfileModal enterFirstName(String firstName) {
-        editFirstNameField.clear();
         wait.visibility(editFirstNameField);
         editFirstNameField.sendKeys(firstName);
         return this;
