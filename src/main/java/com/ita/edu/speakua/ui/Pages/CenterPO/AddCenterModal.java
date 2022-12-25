@@ -23,7 +23,7 @@ public class AddCenterModal extends BasePO {
     private WebElement scroll;
 
     @FindBy(xpath = "//div[contains(@class, 'ant-checkbox-group location-list')]/div[last()]/label/span/input")
-    private WebElement newLocation;
+    private WebElement locationToSelect;
 
 
     public AddCenterModal(WebDriver driver) {
@@ -32,7 +32,7 @@ public class AddCenterModal extends BasePO {
 
     @Step("send center name")
     public AddCenterModal enterCenterName(String nameCenter) {
-        sleep(5);
+        sleep(3);
         nameCenterInput.sendKeys(nameCenter);
         return this;
     }
@@ -50,7 +50,7 @@ public class AddCenterModal extends BasePO {
         action.click(scroll);
         scroll.click();
         scroll.sendKeys(Keys.END);
-        newLocation.click();
+        locationToSelect.click();
         return this;
     }
 

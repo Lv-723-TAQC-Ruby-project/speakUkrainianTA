@@ -1,6 +1,5 @@
 package com.ita.edu.speakua.ui;
 
-import com.ita.edu.speakua.ui.Pages.CenterPO.AddCenterModal;
 import com.ita.edu.speakua.ui.Pages.CenterPO.AddLocationModal;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import io.qameta.allure.Description;
@@ -68,7 +67,7 @@ public class AddCenterTest extends BaseTestRunner {
                 .addPhoto("centerPhoto.jpeg")
                 .addDescription("There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.")
                 .clickNextStep()
-                .chooseClub()
+                .selectClub()
                 .finishAddCenter();
         Assert.assertEquals(driver.getTitle(), "Навчай українською");
     }
@@ -93,7 +92,7 @@ public class AddCenterTest extends BaseTestRunner {
                 .centerContactsTelephone("0661111111")
                 .clickNextStep()
                 .addDescription("There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.")                .clickNextStep()
-                .chooseClub()
+                .selectClub()
                 .finishAddCenter();
         Assert.assertEquals(driver.getTitle(), "Навчай українською");
     }
