@@ -54,7 +54,7 @@ public class AdvancedSearchTest extends BaseTestRunner {
     }
 
     @Test
-    public void activateClubFiltersCheck() {
+    public void clubFiltersCheck() {
 
         SoftAssert softAssert = new SoftAssert();
 
@@ -78,7 +78,7 @@ public class AdvancedSearchTest extends BaseTestRunner {
     }
 
     @Test
-    public void activateCenterFiltersCheck() {
+    public void centerFiltersCheck() {
         SoftAssert softAssert = new SoftAssert();
 
         String radioValue = new HomePage(driver)
