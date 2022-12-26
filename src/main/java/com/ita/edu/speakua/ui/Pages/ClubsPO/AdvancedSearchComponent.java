@@ -59,20 +59,6 @@ public class AdvancedSearchComponent extends BasePO {
         super(driver);
     }
 
-    public AdvancedSearchComponent chooseCity(String city) {
-
-        wait.visibility(dropDownCity);
-        dropDownCity.click();
-
-        wait.visibility(dropDownCityList);
-
-//        for(){
-//            dropDownCityList.findElement(By.xpath(String.format("//div[contains(text(), '%s')]", city))).click();
-//            break;
-//        }
-        return this;
-    }
-
     public AdvancedSearchComponent clickControlViewList() {
         controlViewList.click();
         return this;
@@ -168,6 +154,12 @@ public class AdvancedSearchComponent extends BasePO {
     public boolean isAdvancedSearchOpen() {
         try {
             wait.visibility(By.xpath("//div[contains(text(), 'Розширений пошук')]"));
+            int advancedSearchMenu = driver.findElement(By.xpath("//aside[contains(@class, 'club-list-side')]")).getLocation().getX();
+            int contentList = driver.findElement(By.xpath("//div[contains(@class,'content-clubs-list')]")).getLocation().getX();
+
+            if (!(advancedSearchMenu < contentList)) {
+                throw new Exception("Advanced search menu does not display properly");
+            }
             return true;
         } catch (Exception e) {
             return false;
