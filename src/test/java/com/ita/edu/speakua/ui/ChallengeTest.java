@@ -54,7 +54,7 @@ public class ChallengeTest extends BaseTestRunner {
                 .saveChallengeClick();
 
 
-        softAssert.assertTrue(dataFilled.successMessage("Челендж додано успішно"));
+        softAssert.assertTrue(dataFilled.successMessage());
         softAssert.assertAll();
     }
 
