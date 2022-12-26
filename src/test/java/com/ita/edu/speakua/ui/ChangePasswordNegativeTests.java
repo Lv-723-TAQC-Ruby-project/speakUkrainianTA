@@ -7,7 +7,7 @@ import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 
-public class NegativeChangePasswordPopUpTests extends BaseTestRunner {
+public class ChangePasswordNegativeTests extends BaseTestRunner {
 
     @BeforeClass
     public void setUp(ITestContext context) {

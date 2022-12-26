@@ -20,7 +20,7 @@
     </test>
     <test name="RegistrationTest"  parallel="classes" thread-count="3">
         <classes>
-            <class name="com.ita.edu.speakua.ui.NegativeChangePasswordPopUpTests" />
+            <class name="com.ita.edu.speakua.ui.ChangePasswordNegativeTests" />
             <class name="com.ita.edu.speakua.ui.ProfileTest" />
             <class name="com.ita.edu.speakua.ui.RegistrationTest" />
         </classes>
