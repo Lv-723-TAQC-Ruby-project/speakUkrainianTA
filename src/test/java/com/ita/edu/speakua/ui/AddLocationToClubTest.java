@@ -44,7 +44,7 @@ public class AddLocationToClubTest extends BaseTestRunner {
                 .enterToAge("10")
                 .clickNextStep()
                 .clickAddLocationButton()
-                .addLocationName("New Location name" + timestamp)
+                .addLocationName("New Location name " + timestamp)
                 .chooseLocationCity("Харків")
                 .chooseLocationStation("23 Серпня")
                 .chooseLocationDistrict("Київський")

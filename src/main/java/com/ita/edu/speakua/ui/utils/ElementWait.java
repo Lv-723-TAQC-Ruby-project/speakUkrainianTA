@@ -36,7 +36,7 @@ public class ElementWait {
     public void clickable(By locator) {
         try {
             wait.until(ExpectedConditions.elementToBeClickable(locator));
-            System.out.println("Element is clickable");
+//            System.out.println("Element is clickable");
         }
         catch(TimeoutException e) {
             System.out.println("Element isn't clickable");
@@ -47,7 +47,7 @@ public class ElementWait {
     public void clickable(WebElement element, long seconds) {
         try {
             new WebDriverWait(driver, Duration.ofSeconds(seconds)).until(ExpectedConditions.elementToBeClickable(element));
-            System.out.println("Element is clickable");
+//            System.out.println("Element is clickable");
         }
         catch(TimeoutException e) {
             System.out.println("Element isn't clickable");

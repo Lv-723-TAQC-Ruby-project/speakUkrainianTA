@@ -41,7 +41,7 @@ public class AddCenterTest extends BaseTestRunner {
     }
 
 
-    @Description("Add center")
+    @Description("Add center test")
     @Test
     public void addCenterTest() {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
@@ -110,7 +110,7 @@ public class AddCenterTest extends BaseTestRunner {
                 .openAddCenterModal()
                 .enterCenterName("New Center Name " + timestamp)
                 .addLocation();
-        Assert.assertTrue(new AddLocationModal(driver).isAddLocationButtonDisabled(), "Button 'Додати' is disabled");
+        Assert.assertTrue(new AddLocationModal(driver).isAddLocationButtonDisabled(), "Button 'Додати' is not disabled");
     }
 
 
