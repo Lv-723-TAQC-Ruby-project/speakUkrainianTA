@@ -110,7 +110,7 @@ public class AddCenterTest extends BaseTestRunner {
                 .openAddCenterModal()
                 .enterCenterName("New Center Name " + timestamp)
                 .addLocation();
-        Assert.assertTrue(new AddLocationModal(driver).isAddLocationButtonDisabled(), "Button 'Додати' is not disabled");
+        Assert.assertTrue(new AddLocationModal(driver).isAddLocationButtonDisabled(), "Button 'Додати' is disabled");
     }
 
 
