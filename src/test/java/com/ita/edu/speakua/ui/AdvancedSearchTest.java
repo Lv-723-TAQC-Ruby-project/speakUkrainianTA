@@ -129,7 +129,7 @@ public class AdvancedSearchTest extends BaseTestRunner {
         softAssert.assertAll();
     }
 
-    @Description("verify sorting of centers alphabetically in both ascending and descending order")
+    @Description("verify sorting of centers by alphabetically in both ascending and descending order")
     @Test
     public void sortOfCentersByAlphabeticallySuccessTest() {
         boolean openSearch = new HeaderComponent(driver)
@@ -160,9 +160,9 @@ public class AdvancedSearchTest extends BaseTestRunner {
 
     }
 
-    @Description("verify sorting of clubs alphabetically and rating in both ascending and descending order")
+    @Description("verify sorting of clubs by rating in both ascending and descending order")
     @Test
-    public void sortOfClubsByAlphabeticallyAndRatingSuccessTest() {
+    public void sortOfClubsByRatingSuccessTest() {
         SoftAssert softAssert = new SoftAssert();
         ClubsPage clubsPageAscRating = new HeaderComponent(driver)
                 .openAdvancedSearch()
@@ -179,13 +179,14 @@ public class AdvancedSearchTest extends BaseTestRunner {
         Collections.sort(sortedListAscRating);
         softAssert.assertEquals(listTitleAscRating, sortedListAscRating, "Sorting clubs rating in ascending order failed");
 
+        Integer MAX_STARS=0;
         Integer clubsPageDscRating = new AdvancedSearchComponent(driver)
                 .clickSortDescending()
                 .getClubPage()
                 .getCards()
                 .get(0)
                 .getRatingStars();
-        softAssert.assertEquals(clubsPageDscRating, "5", "Sorting clubs rating in ascending order failed");
+        softAssert.assertEquals(clubsPageDscRating, MAX_STARS, "Sorting clubs rating in ascending order failed");
 
     }
     @Description("check that the child's age entered in the field is correct")

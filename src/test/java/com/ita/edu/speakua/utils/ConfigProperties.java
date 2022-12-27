@@ -24,12 +24,7 @@ public class ConfigProperties {
     public String getAdminPassword() {
         return properties.getProperty("admin_password");
     }
-    /*public String getUserEmail() {
-        return properties.getProperty("user_email");
-    }
-    public String getUserPassword() {
-        return properties.getProperty("user_password");
-    }*/
+
     public String getBaseWebUrl() {
         return properties.getProperty("base_web_url");
     }
