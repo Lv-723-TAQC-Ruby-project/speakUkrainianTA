@@ -33,26 +33,28 @@ public class AddLocationToClubTest extends BaseTestRunner {
     public void addCenterTest() {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         String clubName = "New Club to test add location " + timestamp;
+        String clubDescription = "Some description of club in English #$^*@ Опис клубу українською мовою Some description of club in English #$^*@ Опис клубу українською мовою";
+        String phoneNumber = "0661111111";
         new HomePage(driver)
                 .openUserProfileMenu()
                 .openAddClubModal()
-                .EnterNameClub(clubName)
+                .enterNameClub(clubName)
                 .selectCategoryByName("Спортивні секції")
                 .enterFromAge("5")
                 .enterToAge("10")
                 .clickNextStep()
                 .clickAddLocationButton()
-                .addLocationName("New Location name" + timestamp)
+                .addLocationName("New Location name " + timestamp)
                 .chooseLocationCity("Харків")
                 .chooseLocationStation("23 Серпня")
                 .chooseLocationDistrict("Київський")
                 .addLocationAddress("New Location address")
                 .addLocationCoordinates("49.9935, 36.2304")
-                .addLocationPhone("0661111111")
+                .addLocationPhone(phoneNumber)
                 .clickAddLocationButtonToClub()
-                .enterPhoneNumber("0661111111")
+                .enterPhoneNumber(phoneNumber)
                 .clickNextStep()
-                .enterClubDescription("Some description of club in English #$^*@ Опис клубу українською мовою Some description of club in English #$^*@ Опис клубу українською мовою")
+                .enterClubDescription(clubDescription)
                 .finishAddingCenter();
         new HomePage(driver)
                 .openUserProfileMenu()
@@ -63,10 +65,9 @@ public class AddLocationToClubTest extends BaseTestRunner {
                 .getDetailInformation();
         String checkInformationAboutCenterByNumber = new ClubPage(driver)
                 .getNumberPhone();
-        Assert.assertEquals(checkInformationAboutCenterByNumber, "+380661111111");
-        // ToDo change to getDescription logic
-        boolean checkInformationAboutCenterByDescription = new ClubPage(driver).isDescriptionAboutCenter("Відділення образотворчого та декоративного мистецтва відкрите з моменту заснування Студії.У 2005р. відбулась перша виставка робіт учасників Студії у Львівському обласному палаці мистецтв.");
-        Assert.assertTrue(checkInformationAboutCenterByDescription);
+        Assert.assertEquals(checkInformationAboutCenterByNumber, "+38" + phoneNumber);
+        String checkInformationAboutCenterByDescription = new ClubPage(driver).getDescriptionAboutCenter();
+        Assert.assertEquals(checkInformationAboutCenterByDescription, clubDescription);
     }
     @AfterClass
     public void tearDown() {

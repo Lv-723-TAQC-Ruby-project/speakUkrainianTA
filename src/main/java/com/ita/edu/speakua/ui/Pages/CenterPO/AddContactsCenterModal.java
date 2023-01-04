@@ -76,6 +76,7 @@ public class AddContactsCenterModal extends BasePO {
 
     @Step("add telephone number")
     public AddContactsCenterModal centerContactsTelephone(String telephone) {
+        wait.visibility(contactTelephone);
         contactTelephone.sendKeys(telephone);
         return this;
     }

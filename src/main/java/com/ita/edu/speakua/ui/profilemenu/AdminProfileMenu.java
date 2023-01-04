@@ -34,11 +34,6 @@ public class AdminProfileMenu extends UserProfileMenu {
 
     @Step("open Challenge")
     public ChallengePage openChallengePage() {
-
-//        wait.visibility(contentButton);
-//        action.click(contentButton);
-//        wait.visibility(challengeButton);
-//        action.click(challengeButton);
         openContentSubMenu();
         openChallengeSubMenu();
 

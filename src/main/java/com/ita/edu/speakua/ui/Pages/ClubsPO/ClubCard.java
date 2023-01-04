@@ -1,6 +1,7 @@
 package com.ita.edu.speakua.ui.Pages.ClubsPO;
 
 import com.ita.edu.speakua.ui.BasePO;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -59,16 +60,19 @@ public class ClubCard extends BasePO {
         return this.title.getText();
     }
 
+    @Step("Get title of center")
     public String getTitleOfCenter() {
         wait.visibility(titleOfCenter);
         return this.titleOfCenter.getText();
     }
 
+    @Step("Get title of club in my profile")
     public String getTitleInMyProfile() {
         wait.visibility(titleCardInMyProfile);
         return this.titleCardInMyProfile.getText();
     }
 
+    @Step("Get detail information about center")
     public ClubPage getDetailInformation() {
         wait.visibility(detailButton);
         action.click(detailButton);
@@ -76,6 +80,7 @@ public class ClubCard extends BasePO {
         return new ClubPage(driver);
     }
 
+    @Step
     public EditClubModal openEditClubModel() {
         wait.visibility(menuClubButton);
         action.click(menuClubButton);

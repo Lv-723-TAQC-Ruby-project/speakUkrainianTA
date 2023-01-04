@@ -13,38 +13,32 @@ import static org.openqa.selenium.By.xpath;
 
 public class AddClubModal extends BasePO {
 
-    @FindBy(xpath = "//input[@id= 'basic_name']")
+    @FindBy(id = "basic_name")
     private WebElement nameClubInput;
 
-    @FindBy(xpath = "//input[@id= 'basic_ageFrom']")
+    @FindBy(id = "basic_ageFrom")
     private WebElement ageFromInput;
 
-    @FindBy(xpath = "//input[@id= 'basic_ageTo']")
+    @FindBy(id = "basic_ageTo")
     private WebElement ageToInput;
 
     @FindBy(xpath = "//span[@class='add-club-location']")
     private WebElement addLocationButton;
 
-    @FindBy(xpath = "//input[@id= 'basic_contactТелефон']")
+    @FindBy(id = "basic_contactТелефон")
     private WebElement phoneNumberInput;
 
-    @FindBy(xpath = "//button[contains(@class, 'add-club-content-next')]")
+    @FindBy(css = ".add-club-content-next")
     private WebElement nextStepButton;
 
     @FindBy(id = "basic_description")
     private WebElement clubDescriptionInput;
 
-    @FindBy(id = "basic_description_help")
-    private WebElement errorMessage;
-
     @FindBy(css = ".anticon-check-circle")
     private WebElement successMessage;
 
-    @FindBy(xpath = "//div[contains(@class, 'ant-form-item-explain-error')]")
+    @FindBy(css = ".ant-form-item-explain-error'")
     private WebElement languageErrorMessage;
-
-    @FindBy(xpath = "//div[contains(@class, 'ant-form-item-explain-error')]")
-    private WebElement inappropriateDescriptionLengthMessage;
 
     @FindBy(xpath = "//input[@id=\"basic_centerId\"][@type='search']")
     private WebElement enterBelongingCenterInput;
@@ -63,7 +57,8 @@ public class AddClubModal extends BasePO {
     }
 
     @Step("Enter name of club")
-    public AddClubModal EnterNameClub(String nameClub) {
+    public AddClubModal enterNameClub(String nameClub) {
+        wait.visibility(nameClubInput);
         nameClubInput.sendKeys(nameClub);
         return this;
     }
@@ -81,12 +76,14 @@ public class AddClubModal extends BasePO {
     }
 
     public AddLocationModal clickAddLocationButton() {
-        addLocationButton.click();
+        wait.visibility(addLocationButton);
+        action.click(addLocationButton);
         return new AddLocationModal(driver);
     }
 
     @Step("Enter phone number")
     public AddClubModal enterPhoneNumber(String phoneNumber) {
+        wait.visibility(phoneNumberInput);
         phoneNumberInput.sendKeys(phoneNumber);
         return this;
     }
@@ -94,9 +91,11 @@ public class AddClubModal extends BasePO {
     @Step("Click next step button")
     public AddClubModal clickNextStep() {
         nextStepButton.click();
+        sleep(3);
         return new AddClubModal(driver);
     }
 
+    @Step("Enter club description")
     public AddClubModal enterClubDescription(String clubDescription) {
         clubDescriptionInput.clear();
         clubDescriptionInput.sendKeys(clubDescription);
@@ -109,7 +108,7 @@ public class AddClubModal extends BasePO {
 
     public boolean isErrorMessageDisplayed(String errorMessage) {
         wait.visibility(xpath(format("//div[text()='%s']", errorMessage)));
-        return driver.findElement(xpath(format("//div[text()='%s']", errorMessage))).isDisplayed();
+        return driver.findElement(xpath(format("//div[text ()='%s']", errorMessage))).isDisplayed();
     }
 
     public AddClubModal enterBelongingToCenter(String nameCenter) {
@@ -117,6 +116,7 @@ public class AddClubModal extends BasePO {
         return this;
     }
 
+    @Step("Click complete button")
     public HomePage finishAddingCenter() {
         completeButton.click();
         sleep(2);

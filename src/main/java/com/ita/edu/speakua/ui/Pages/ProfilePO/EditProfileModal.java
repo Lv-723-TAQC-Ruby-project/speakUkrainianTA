@@ -50,7 +50,7 @@ public class EditProfileModal extends BasePO {
         changePasswordCheckBox.click();
         return this;
     }
-
+    @Step("check if error message for last name field contains required string")
     public boolean isOpenMessageErrorLastNameContain(String name) {
         try {
             driver.findElement(By.xpath(String.format("//div[@class='ant-form-item-explain-error']", name)));
@@ -96,7 +96,7 @@ public class EditProfileModal extends BasePO {
             return false;
         }
     }
-
+    @Step("check if error message for number phone field contains required string")
     public boolean isOpenMessageErrorPhoneContain(String name) {
         try {
             driver.findElement(By.xpath(String.format("//div[@class='ant-form-item-explain-error']", name)));
@@ -130,6 +130,7 @@ public class EditProfileModal extends BasePO {
         return new MyProfilePage(driver);
     }
 
+    @Step("enter last name")
     public EditProfileModal enterLastName(String lastName) {
         editLastNameField.clear();
         wait.visibility(editLastNameField);
@@ -139,15 +140,15 @@ public class EditProfileModal extends BasePO {
 
     @Step("enter first name")
     public EditProfileModal enterFirstName(String firstName) {
-        editFirstNameField.clear();
         wait.visibility(editFirstNameField);
         editFirstNameField.sendKeys(firstName);
         return this;
     }
 
-
+    @Step("delete last name")
     public EditProfileModal deleteLastName() {
-        editLastNameField.clear();
+        editLastNameField.sendKeys(Keys.CONTROL + "a");
+        editLastNameField.sendKeys(Keys.DELETE);
         wait.visibility(editLastNameField);
         return this;
     }
@@ -158,16 +159,16 @@ public class EditProfileModal extends BasePO {
         editFirstNameField.sendKeys(Keys.DELETE);
         return this;
     }
-
+    @Step("enter number phone")
     public EditProfileModal enterNumberPhone(String numberPhone) {
-        editNumberPhoneField.clear();
         wait.visibility(editNumberPhoneField);
         editNumberPhoneField.sendKeys(numberPhone);
         return this;
     }
-
+    @Step("delete number phone")
     public EditProfileModal deleteNumberPhone() {
-        editNumberPhoneField.clear();
+        editNumberPhoneField.sendKeys(Keys.CONTROL + "a");
+        editNumberPhoneField.sendKeys(Keys.DELETE);
         wait.visibility(editNumberPhoneField);
         return this;
     }

@@ -98,6 +98,7 @@ public class HeaderComponent extends BasePO {
 
     @Step("Open profile menu")
     public GuestProfileMenu openGuestProfileMenu() {
+        wait.clickable(profileMenuButton);
         profileMenuButton.click();
         sleep(3);
         return new GuestProfileMenu(driver);
@@ -105,6 +106,7 @@ public class HeaderComponent extends BasePO {
 
     @Step("Open Admin profile Menu")
     public AdminProfileMenu openAdminProfileMenu() {
+        wait.clickable(profileMenuButton);
         profileMenuButton.click();
         sleep(3);
         return new AdminProfileMenu(driver);
@@ -125,7 +127,8 @@ public class HeaderComponent extends BasePO {
 
     @Step("Open profile menu")
     public UserProfileMenu openUserProfileMenu() {
-        wait.visibility(profileMenuButton);
+
+        wait.clickable(profileMenuButton);
         action.click(profileMenuButton);
         return new UserProfileMenu(driver);
     }

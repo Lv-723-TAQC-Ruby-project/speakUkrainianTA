@@ -33,6 +33,11 @@ public class ClubsPage extends BasePageWithHeader {
     public ClubCard getCard(int id) {
         return getCards().get(id);
     }
+    @Step
+    public ClubCard getLastCard() {
+        int lastCard = getCards().size()-1;
+        return getCards().get(lastCard);
+    }
 
     @Step
     public ClubCard getCardByName(String name) {

@@ -3,13 +3,12 @@ package com.ita.edu.speakua.ui.Pages.ClubsPO;
 import com.ita.edu.speakua.ui.BasePO;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class AdvancedSearchComponent extends BasePO {
 
@@ -58,20 +57,6 @@ public class AdvancedSearchComponent extends BasePO {
 
     public AdvancedSearchComponent(WebDriver driver) {
         super(driver);
-    }
-
-    public AdvancedSearchComponent chooseCity(String city) {
-
-        wait.visibility(dropDownCity);
-        dropDownCity.click();
-
-        wait.visibility(dropDownCityList);
-
-//        for(){
-//            dropDownCityList.findElement(By.xpath(String.format("//div[contains(text(), '%s')]", city))).click();
-//            break;
-//        }
-        return this;
     }
 
     public AdvancedSearchComponent clickControlViewList() {
@@ -149,6 +134,7 @@ public class AdvancedSearchComponent extends BasePO {
     }
 
 
+    @Step("Click center button")
     public AdvancedSearchComponent clickRadioCenter() {
         radioCenter.click();
         return this;
@@ -164,9 +150,16 @@ public class AdvancedSearchComponent extends BasePO {
         return this;
     }
 
+    @Step("Advanced search is opened")
     public boolean isAdvancedSearchOpen() {
         try {
             wait.visibility(By.xpath("//div[contains(text(), 'Розширений пошук')]"));
+            int advancedSearchMenu = driver.findElement(By.xpath("//aside[contains(@class, 'club-list-side')]")).getLocation().getX();
+            int contentList = driver.findElement(By.xpath("//div[contains(@class,'content-clubs-list')]")).getLocation().getX();
+
+            if (!(advancedSearchMenu < contentList)) {
+                throw new Exception("Advanced search menu does not display properly");
+            }
             return true;
         } catch (Exception e) {
             return false;
@@ -177,19 +170,22 @@ public class AdvancedSearchComponent extends BasePO {
         return radioValue.getText();
     }
 
+    @Step("Value entered number age")
     public String getAgeChildField() {
         return valueAgeChildField.getAttribute("value");
     }
 
-    @Step
+    @Step("Enter number age")
     public AdvancedSearchComponent enterNumberAge(String ageNumber) {
         wait.visibility(inputAgeChildField);
+        inputAgeChildField.sendKeys(Keys.CONTROL + "a");
+        inputAgeChildField.sendKeys(Keys.DELETE);
         inputAgeChildField.sendKeys(ageNumber);
         sleep(2);
         return this;
     }
 
-    @Step
+    @Step("Click sort Alphabetically")
     public AdvancedSearchComponent clickSortAlphabetical() {
         wait.visibility(sortAlphabetical);
         action.click(sortAlphabetical);
@@ -224,15 +220,7 @@ public class AdvancedSearchComponent extends BasePO {
         return new ClubsPage(driver);
     }
 
-    public List<WebElement> getClubs() {
-        return cardsBody;
-    }
 
-    public List<WebElement> cardsAlphabetically() {
-        List<WebElement> alphabeticalCardsList = new ArrayList<>();
-        alphabeticalCardsList.addAll(cardsBody);
-        return alphabeticalCardsList.stream().sorted().collect(Collectors.toList());
-    }
 
     public AdvancedSearchComponent clearCityField() {
         cityInputField.findElement(By.xpath("//span[@class='ant-select-arrow']")).click();

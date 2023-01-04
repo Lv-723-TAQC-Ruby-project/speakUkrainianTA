@@ -27,6 +27,9 @@ public class AddLocationModal extends BasePO {
     @FindBy(xpath = "//input[@id='phone']")
     private WebElement phoneLocation;
 
+    @FindBy(xpath = "//div[contains(@class, 'ant-select-item-option-active') and contains(@aria-selected, 'false')]")
+    private WebElement locationElement;
+
     @FindBy(xpath = "//input[@id='cityName']")
     private WebElement chooseCityName;
 
@@ -46,12 +49,16 @@ public class AddLocationModal extends BasePO {
     @FindBy(xpath = "//div[@class='ant-select-item-option-content']")
     private WebElement city;
 
+    @FindBy(xpath = "//button[@class='ant-btn ant-btn-default flooded-button add-club-content-next-disabled']")
+    private WebElement isLocationButtonDisabled;
+
     public AddLocationModal(WebDriver driver) {
         super(driver);
     }
 
     @Step("add location name")
     public AddLocationModal addLocationName(String locationName) {
+        sleep(3);
         nameLocation.sendKeys(locationName);
         return this;
     }
@@ -79,19 +86,14 @@ public class AddLocationModal extends BasePO {
         webElement.click();
         List<String> locations = new ArrayList<>();
         while (true) {
-            if (driver.findElements(By.xpath("//div[contains(@class, 'ant-select-item-option-active') and contains(@aria-selected, 'false')]")).isEmpty()) {
-                System.out.println("There is no list to check for " + locationName);
-                break;
-            }
-            WebElement locationWebElement = driver.findElement(By.xpath("//div[contains(@class, 'ant-select-item-option-active') and contains(@aria-selected, 'false')]"));
-            String location = locationWebElement.getAttribute("title");
+            String location = locationElement.getAttribute("title");
             if (locations.size() > 2 && locations.get(0).equals(location)) {
                 System.out.println("There is no such location as " + locationName);
                 break;
             }
             locations.add(location);
             if (locationName.equals(location)) {
-                locationWebElement.click();
+                locationElement.click();
                 break;
             }
             webElement.sendKeys(Keys.ARROW_DOWN);
@@ -126,8 +128,13 @@ public class AddLocationModal extends BasePO {
     @Step("click add location button")
     public AddClubModal clickAddLocationButtonToClub() {
         addLocationButtonToClub.click();
+        sleep(3);
         return new AddClubModal(driver);
     }
 
+    @Step("is add location button disabled")
+    public boolean isAddLocationButtonDisabled() {
+        return isLocationButtonDisabled.getAttribute("class").contains("disabled");
+    }
 
 }

@@ -3,6 +3,8 @@ package com.ita.edu.speakua.ui;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.AddClubModal;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubPage;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
+import jdk.jfr.Description;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -34,7 +36,7 @@ public class ClubTests extends BaseTestRunner {
         AddClubModal addClubModal = new HomePage(driver)
                 .openUserProfileMenu()
                 .openAddClubModal()
-                .EnterNameClub("Спорт")
+                .enterNameClub("Спорт")
                 .selectCategoryByName("Спортивні секції")
                 .enterFromAge("5")
                 .enterToAge("10")
@@ -76,21 +78,26 @@ public class ClubTests extends BaseTestRunner {
                 "Вибір лише за вами, батьки....").isErrorMessageDisplayed("Опис гуртка може містити від 40 до 1500 символів."));
         //TUA-178
         softAssert.assertTrue(addClubModal.enterClubDescription("ё ы э ъ").isErrorMessageDisplayed("Опис гуртка не може містити російські літери"));
-        softAssert.assertTrue(addClubModal.enterClubDescription("ё ы э ъ").isErrorMessageDisplayed("Некоректний опис гуртка"));
+        //TUA-172
+        softAssert.assertTrue(addClubModal.enterClubDescription("s".repeat(1000)).successMessageDisplayed());
+        softAssert.assertTrue(addClubModal.enterClubDescription("s".repeat(40)).successMessageDisplayed());
+        softAssert.assertTrue(addClubModal.enterClubDescription("s".repeat(1500)).successMessageDisplayed());
         //TUA-173
         softAssert.assertTrue(addClubModal.enterClubDescription("'Education', 'students', 'Школа' 'балету'").successMessageDisplayed());
         softAssert.assertTrue(addClubModal.enterClubDescription("1234567890123456789012345678901234567890").successMessageDisplayed());
         softAssert.assertTrue(addClubModal.enterClubDescription("!#$%&'()*+,-./:;<=>?@[]^_`{}~%^$#)&&^^(_&($%^#@!").successMessageDisplayed());
-        addClubModal.finishAddingCenter();
         softAssert.assertTrue(addClubModal.completeButtonEnabled());
+        softAssert.assertAll();
     }
 
+    @Description("Checking that club is created and after find information about it")
     @Test
-    public void VerifyCreatingClubAndFindingInformationAboutItTest() {
+    public void verifyCreatingClubAndFindingInformationAboutItTest() {
+        String randomName = RandomStringUtils.random(8, 'a','s','g','y');
         new HomePage(driver)
                 .openUserProfileMenu()
                 .openAddClubModal()
-                .EnterNameClub("Малявки18.12.2022(22.00)")
+                .enterNameClub(randomName)
                 .selectCategoryByName("Спортивні секції")
                 .enterFromAge("8")
                 .enterToAge("16")
@@ -105,46 +112,39 @@ public class ClubTests extends BaseTestRunner {
                 .openMyProfileModal()
                 .clickLastElementOfTheListOfCenters()
                 .getClubsPage()
-                .getCardByName("Малявки18.12.2022(22.00)")
+                .getCardByName(randomName)
                 .getDetailInformation();
         String checkInformationAboutCenterByNumber = new ClubPage(driver)
                 .getNumberPhone();
         Assert.assertEquals(checkInformationAboutCenterByNumber, "+380934444444");
-        boolean checkInformationAboutCenterByDescription = new ClubPage(driver).isDescriptionAboutCenter("Відділення образотворчого та декоративного мистецтва відкрите з моменту заснування Студії.У 2005р. відбулась перша виставка робіт учасників Студії у Львівському обласному палаці мистецтв.");
-        Assert.assertTrue(checkInformationAboutCenterByDescription);
+        String checkInformationAboutCenterByDescription = new ClubPage(driver).getDescriptionAboutCenter();
+        Assert.assertEquals(checkInformationAboutCenterByDescription, "Відділення образотворчого та декоративного мистецтва відкрите з моменту заснування Студії.У 2005р. відбулась перша виставка робіт учасників Студії у Львівському обласному палаці мистецтв.");
     }
-
+    @Description("Checking that club is edited and after find information about it")
     @Test
-    public void VerifyEditingClubAndFindingInformationAboutItTest() {
+    public void verifyEditingClubAndFindingInformationAboutItTest() {
         new HomePage(driver)
                 .openUserProfileMenu()
                 .openMyProfileModal()
                 .clickLastElementOfTheListOfCenters()
                 .getClubsPage()
-                .getCardByName("Малявки18.12.2022(22.00)")
+                .getLastCard()
                 .openEditClubModel()
                 .openAddressAndContactsSection()
-                .enterPhoneNumber("0672222222")
+                .enterLoginOfSkype("speakUA")
                 .clickSaveInContactSectionButton()
                 .openDescriptionSection()
                 .enterClubDescription("Тестовий гурток для додавання центру Тестовий гурток для додавання центру")
                 .clickSaveInDescriptionSectionButton()
                 .clickLastElementOfTheListOfCenters()
                 .getClubsPage()
-                .getCardByName("Малявки18.12.2022(22.00)")
+                .getLastCard()
                 .getDetailInformation();
-        String checkInformationAboutCenterByNumber = new ClubPage(driver)
-                .getNumberPhone();
-        Assert.assertEquals(checkInformationAboutCenterByNumber, "0672222222");
-        boolean checkInformationAboutCenterByDescription = new ClubPage(driver).isDescriptionAboutCenter("Тестовий гурток для додавання центру Тестовий гурток для додавання центру");
-        Assert.assertTrue(checkInformationAboutCenterByDescription);
-
-
-
-
-
-
-
+        String checkInformationAboutCenterBySkype = new ClubPage(driver)
+                .getLoginOfSkype();
+        Assert.assertEquals(checkInformationAboutCenterBySkype, "speakUA");
+        String checkInformationAboutCenterByDescription = new ClubPage(driver).getDescriptionAboutCenter();
+        Assert.assertEquals(checkInformationAboutCenterByDescription, "Тестовий гурток для додавання центру Тестовий гурток для додавання центру");
     }
 
     @AfterClass
