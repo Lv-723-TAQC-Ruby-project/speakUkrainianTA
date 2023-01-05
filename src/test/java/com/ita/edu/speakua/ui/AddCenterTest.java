@@ -1,5 +1,9 @@
 package com.ita.edu.speakua.ui;
 
+import com.ita.edu.speakua.jdbc.entity.CentersEntity;
+import com.ita.edu.speakua.jdbc.entity.UsersEntity;
+import com.ita.edu.speakua.jdbc.services.CentersService;
+import com.ita.edu.speakua.jdbc.services.UsersService;
 import com.ita.edu.speakua.ui.Pages.CenterPO.AddLocationModal;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import io.qameta.allure.Description;
@@ -45,11 +49,12 @@ public class AddCenterTest extends BaseTestRunner {
     @Test
     public void addCenterTest() {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        String centerName = "New Center Name " + timestamp;
         String phoneNumber = "0661111111";
         new HomePage(driver)
                 .openUserProfileMenu()
                 .openAddCenterModal()
-                .enterCenterName("New Center Name " + timestamp)
+                .enterCenterName(centerName)
                 .addLocation()
                 .addLocationName("New Location name " + timestamp)
                 .chooseLocationCity("Харків")
@@ -71,7 +76,9 @@ public class AddCenterTest extends BaseTestRunner {
                 .clickNextStep()
                 .selectClub()
                 .finishAddCenter();
-        Assert.assertEquals(driver.getTitle(), "Навчай українською");
+        CentersService service = new CentersService();
+        CentersEntity center = service.getByName(centerName);
+        Assert.assertEquals(center.getName(),  centerName);
     }
 
     @Description("Add center without optional fields")
