@@ -17,7 +17,7 @@ public class TasksEntity {
     private String header_text;
     private long id;
     private String name;
-    private Byte picture;
+    private String picture;
     private String start_date;
 
     public static TasksEntity getTask(List<String> row) {
@@ -31,9 +31,14 @@ public class TasksEntity {
             task.setId(Long.parseLong(row.get(3)));
         }
             task.setName(row.get(4));
-            task.setPicture(Byte.parseByte(row.get(5)));
+            task.setPicture(row.get(5));
             task.setStart_date(row.get(6));
 
+        task.setName(row.get(4));
+            task.setPicture(row.get(5));
+        if (row.get(6) != null) {
+            task.setStart_date(row.get(6));
+        }
         return task;
     }
 

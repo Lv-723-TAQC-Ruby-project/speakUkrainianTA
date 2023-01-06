@@ -23,7 +23,7 @@ public class MyTest {
     @Test
     public void DBTask(){
         TasksService service = new TasksService();
-        TasksEntity task = service.getByTaskName("2018 FIFA World Cup");
+        TasksEntity task = service.getByName("2018 FIFA World Cup");
         Assert.assertNotNull(task);
         Assert.assertEquals(task.getName(), "2018 FIFA World Cup");
     }

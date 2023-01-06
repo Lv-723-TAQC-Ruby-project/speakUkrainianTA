@@ -15,7 +15,7 @@ public class TasksService {
     public List<TasksEntity> getAll() {
         return tasksDTO.selectAll();
     }
-    public TasksEntity getByTaskName(String name) {
+    public TasksEntity getByName(String name) {
         return tasksDTO.selectByName(name);
     }
 }

@@ -1,6 +1,7 @@
 package com.ita.edu.speakua.jdbc.dao;
 
 import com.ita.edu.speakua.jdbc.entity.TasksEntity;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -36,3 +37,4 @@ public class TasksDTO {
         return TasksEntity.getTasks(rows).get(0);
     }
 }
+
