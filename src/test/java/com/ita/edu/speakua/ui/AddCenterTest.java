@@ -1,9 +1,7 @@
 package com.ita.edu.speakua.ui;
 
 import com.ita.edu.speakua.jdbc.entity.CentersEntity;
-import com.ita.edu.speakua.jdbc.entity.UsersEntity;
 import com.ita.edu.speakua.jdbc.services.CentersService;
-import com.ita.edu.speakua.jdbc.services.UsersService;
 import com.ita.edu.speakua.ui.Pages.CenterPO.AddLocationModal;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import io.qameta.allure.Description;
