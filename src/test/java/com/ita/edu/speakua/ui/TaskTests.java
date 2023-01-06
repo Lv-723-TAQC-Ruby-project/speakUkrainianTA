@@ -3,15 +3,12 @@ package com.ita.edu.speakua.ui;
 import com.ita.edu.speakua.ui.Pages.TaskPO.AddTaskPage;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import io.qameta.allure.Description;
-import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
-import java.io.File;
 
 public class TaskTests extends BaseTestRunner {
     @BeforeClass
