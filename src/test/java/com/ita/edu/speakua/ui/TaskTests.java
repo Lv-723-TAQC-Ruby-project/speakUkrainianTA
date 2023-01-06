@@ -1,14 +1,21 @@
 package com.ita.edu.speakua.ui;
 
+import com.ita.edu.speakua.jdbc.entity.TasksEntity;
+import com.ita.edu.speakua.jdbc.services.TasksService;
+import com.ita.edu.speakua.jdbc.dao.TasksDTO;
 import com.ita.edu.speakua.ui.Pages.TaskPO.AddTaskPage;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import io.qameta.allure.Description;
+import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+
+import java.nio.file.Paths;
+import java.sql.Timestamp;
 
 public class TaskTests extends BaseTestRunner {
     @BeforeClass
@@ -345,7 +352,7 @@ new AddTaskPage(driver)
         softAssert.assertTrue(uploadImage.isContainErrorMessage("Фото не може бути пустим"));
      softAssert.assertAll();
     }
-    @Description("Add Task With Valid Data")
+    //@Description("Add Task With Valid Data")
     @Test
     public void addTask(){
         AddTaskPage enterValidData = new HomePage(driver)
@@ -368,8 +375,8 @@ new AddTaskPage(driver)
                 .enterTaskDescription("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams have competed. The trophy has been won by eight national teams. Brazil have won five times, and they are the only team to have played in every tournament. The other World Cup winners are Germany and Italy, with four titles each; Argentina, France, and inaugural winner Uruguay, with two titles each; and England and Spain, with one title each.")
                 .chooseChallenge()
                 .clickSave();
-          softAssert.assertTrue(enterValidData.successMessage("All information about the task is saved in the database"));
-          softAssert.assertAll();
+        softAssert.assertTrue(enterValidData.successMessage("All information about the task is saved in the database"));
+        softAssert.assertAll();
     }
 
 
