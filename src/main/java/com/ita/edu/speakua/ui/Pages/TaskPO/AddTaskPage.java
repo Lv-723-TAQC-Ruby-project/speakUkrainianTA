@@ -75,10 +75,9 @@ public class AddTaskPage extends BasePageWithHeader {
 
     @Step
     public AddTaskPage uploadImage(String image) {
-        ClassLoader classLoader = getClass().getClassLoader();
-        File photo = new File(classLoader.getResource(image).getFile());
-        String absolutePath = photo.getAbsolutePath();
-        uploadImage.sendKeys(absolutePath);
+        File file = new File(getClass().getClassLoader().getResource(image).getFile());
+        String imagePath = file.getAbsolutePath();
+        uploadImage.sendKeys(imagePath);
         return this;
     }
 
