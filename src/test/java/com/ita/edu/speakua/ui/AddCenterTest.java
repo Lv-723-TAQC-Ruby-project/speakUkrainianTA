@@ -78,6 +78,7 @@ public class AddCenterTest extends BaseTestRunner {
                 .finishAddCenter();
         CentersService service = new CentersService();
         CentersEntity center = service.getByName(centerName);
+        Assert.assertNotNull(center);
         Assert.assertEquals(center.getName(),  centerName);
     }
 
