@@ -16,4 +16,20 @@ public class ClubsService {
         return clubsDTO.selectAll();
     }
 
+    public List<ClubsEntity> getByRatingASC() {
+        return clubsDTO.checkRatingASC();
+    }
+
+    public List<ClubsEntity> getByRatingDSC() {
+        return clubsDTO.checkRatingDSC();
+    }
+
+    public ClubsEntity getByName(String name) {
+        return clubsDTO.selectWhereClubName(name);
+    }
+
+    public ClubsEntity getWhereCityName(String cityName) {
+        return clubsDTO.selectClubWhereCityName(cityName);
+    }
+
 }
