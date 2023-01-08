@@ -10,8 +10,11 @@ import java.util.List;
 @NoArgsConstructor
 public class ClubsEntity {
     public static final String SELECT_ALL = "SELECT * FROM clubs;";
-    public static final String SELECT_FROM_CLUBS_WHERE_RATING = "";
     public static final String SELECT_FROM_CLUBS_WHERE_NAME = "SELECT name FROM public.clubs WHERE name like 'NAME_FROM_STEP1%';";
+    public static final String SELECT_FROM_CLUBS_WHERE_CITY_NAME = "SELECT * FROM clubs as cl JOIN locations l ON cl.id = l.club_id JOIN cities ct ON l.city_id = ct.id WHERE ct.name = '%s';";
+    public static final String SELECT_NAME_RATING_FROM_CLUBS_WHERE_ORDER_ASC = "SELECT name, rating FROM clubs WHERE id IN (SELECT DISTINCT club_category.club_id FROM club_category) ORDER BY rating ASC, id;";
+    public static final String SELECT_NAME_RATING_FROM_CLUBS_WHERE_ORDER_DSC = "SELECT name, rating FROM clubs WHERE id IN (SELECT DISTINCT club_category.club_id FROM club_category) ORDER BY rating DESC, id;";
+
 
     private int ageFrom;
     private int ageTo;
