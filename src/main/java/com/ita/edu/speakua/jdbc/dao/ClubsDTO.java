@@ -65,7 +65,7 @@ public class ClubsDTO {
         Statement statement = ManagerDAO.getInstance().getStatement();
         List<List<String>> rows = null;
         try {
-            ResultSet resultSet = statement.executeQuery(String.format(ClubsEntity.SELECT_FROM_CLUBS_WHERE_NAME, clubName));
+            ResultSet resultSet = statement.executeQuery(ClubsEntity.SELECT_FROM_CLUBS_WHERE_NAME);
             rows = ManagerDAO.getInstance().parseResultSet(resultSet);
         } catch (SQLException e) {
             throw new RuntimeException(e);
