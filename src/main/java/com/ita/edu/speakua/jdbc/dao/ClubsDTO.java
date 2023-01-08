@@ -48,7 +48,7 @@ public class ClubsDTO {
         return ClubsEntity.getClubs(rows);
     }
 
-    public List<ClubsEntity> selectClubWhereCityName(String cityName) {
+    public ClubsEntity selectClubWhereCityName(String cityName) {
         Statement statement = ManagerDAO.getInstance().getStatement();
         List<List<String>> rows = null;
         try {
@@ -58,10 +58,10 @@ public class ClubsDTO {
             throw new RuntimeException(e);
         }
         ManagerDAO.closeStatement(statement);
-        return ClubsEntity.getClubs(rows);
+        return ClubsEntity.getClubs(rows).get(0);
     }
 
-    public List<ClubsEntity> selectWhereClubName(String clubName) {
+    public ClubsEntity selectWhereClubName(String clubName) {
         Statement statement = ManagerDAO.getInstance().getStatement();
         List<List<String>> rows = null;
         try {
@@ -71,7 +71,7 @@ public class ClubsDTO {
             throw new RuntimeException(e);
         }
         ManagerDAO.closeStatement(statement);
-        return ClubsEntity.getClubs(rows);
+        return ClubsEntity.getClubs(rows).get(0);
     }
 
 }
