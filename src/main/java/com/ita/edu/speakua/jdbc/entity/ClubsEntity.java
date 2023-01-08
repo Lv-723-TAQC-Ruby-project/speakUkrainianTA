@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class ClubsEntity {
-
+    public static final String SELECT_ALL = "SELECT * FROM clubs;";
     public static final String SELECT_FROM_CLUBS_WHERE_RATING = "";
     public static final String SELECT_FROM_CLUBS_WHERE_NAME = "SELECT name FROM public.clubs WHERE name like 'NAME_FROM_STEP1%';";
 
