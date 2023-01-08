@@ -1,14 +1,18 @@
 package com.ita.edu.speakua.ui;
 
+import com.ita.edu.speakua.jdbc.entity.TasksEntity;
+import com.ita.edu.speakua.jdbc.services.TasksService;
 import com.ita.edu.speakua.ui.Pages.TaskPO.AddTaskPage;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import io.qameta.allure.Description;
+import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+
 
 public class TaskTests extends BaseTestRunner {
     @BeforeClass
@@ -348,28 +352,26 @@ new AddTaskPage(driver)
     @Description("Add Task With Valid Data")
     @Test
     public void addTask(){
-        AddTaskPage enterValidData = new HomePage(driver)
+       AddTaskPage enterValidData=new HomePage(driver)
                 .openAdminProfileMenu()
                 .openTasksPage()
-                .clickAddTask();
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(enterValidData.getStartDate().getText(), "", "Start-date field is empty");
-        softAssert.assertEquals(enterValidData.getUploadImage().getText(), "", "Image is not uploaded");
-        softAssert.assertEquals(enterValidData.getTaskName().getText(), "", "Task name field is empty");
-        softAssert.assertEquals(enterValidData.getTaskTitle().getText(), "", "Title for task field is empty");
-        softAssert.assertEquals(enterValidData.getTaskDescription().getText(), "", "Description field is empty");
-        softAssert.assertAll();
-        softAssert = new SoftAssert();
-        new AddTaskPage(driver)
+                .clickAddTask()
                 .enterStartDate("2023-03-03")
                 .uploadImage("R.jpeg")
-                .enterTaskName("2018 FIFA World Cup")
+                .enterTaskName("Task test checking")
                 .enterTaskTitle("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams")
                 .enterTaskDescription("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams have competed. The trophy has been won by eight national teams. Brazil have won five times, and they are the only team to have played in every tournament. The other World Cup winners are Germany and Italy, with four titles each; Argentina, France, and inaugural winner Uruguay, with two titles each; and England and Spain, with one title each.")
                 .chooseChallenge()
                 .clickSave();
-          softAssert.assertTrue(enterValidData.successMessage("All information about the task is saved in the database"));
-          softAssert.assertAll();
+       SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(enterValidData.successMessage("All information about the task is saved in the database"));
+        softAssert.assertAll();
+
+        TasksService service = new TasksService();
+        TasksEntity task = service.getByName("Task test checking");
+        Assert.assertEquals(task.getName(), "Task test checking");
+
+
     }
 
 
