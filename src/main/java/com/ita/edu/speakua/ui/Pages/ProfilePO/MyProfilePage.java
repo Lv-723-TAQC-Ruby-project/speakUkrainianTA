@@ -50,6 +50,7 @@ public class MyProfilePage extends BasePageWithHeader {
 
     @Step("Click last element of the list of centers")
     public MyProfilePage clickLastElementOfTheListOfCenters() {
+        sleep(5);
         wait.visibility(lastElementOfListOfCentersButton);
         action.click(lastElementOfListOfCentersButton);
         sleep(5);

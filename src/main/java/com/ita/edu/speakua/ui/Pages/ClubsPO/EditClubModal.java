@@ -12,6 +12,7 @@ public class EditClubModal extends BasePO {
     @FindBy(xpath = "//div[text()='Адреса і контакти']")
     private WebElement addressAndContactsButton;
 
+
     @FindBy(id = "basic_clubContactТелефон")
     private WebElement phoneNumberInput;
 
@@ -24,21 +25,26 @@ public class EditClubModal extends BasePO {
     @FindBy(xpath = "//*[@id=\"basic\"]/div[4]/button[1]/span")
     private WebElement saveInContactSectionButton;
 
-    @FindBy(xpath = "//div[@tabindex='0']/form[@class='ant-form ant-form-horizontal']/div[5]//span[text()='Зберегти зміни вікна']")
-    private WebElement saveInDescriptionSectionButton;
+    @FindBy(xpath = "//span[text()='Наступний крок']")
+    private WebElement nextStepButton;
+
+    @FindBy(xpath = "//span[text()='Завершити']")
+    private WebElement theEndButton;
 
     @FindBy(xpath = "//div[@tabindex='0']/form[@class='ant-form ant-form-horizontal']/div[5]//span[text()='Зберегти гурток']")
     private WebElement saveInDescriptionSectionButton2;
-    @FindBy(xpath = "//input[@id='basic_clubContactSkype']")
+    @FindBy(xpath = "//input[@id='basic_Skype']")
     private WebElement loginOfSkypeInput;
 
     public EditClubModal(WebDriver driver) {
         super(driver);
     }
 
-    public EditClubModal openAddressAndContactsSection() {
-        wait.visibility(addressAndContactsButton);
-        action.click(addressAndContactsButton);
+    public EditClubModal nextStepClick() {
+        sleep(3);
+        wait.visibility(nextStepButton);
+        action.click(nextStepButton);
+        sleep(3);
         return this;
     }
 
@@ -68,17 +74,14 @@ public class EditClubModal extends BasePO {
         return this;
     }
 
-    public MyProfilePage clickSaveInDescriptionSectionButton() {
-        wait.visibility(saveInDescriptionSectionButton);
-        action.click(saveInDescriptionSectionButton);
-        sleep(2);
-        wait.visibility(saveInDescriptionSectionButton2);
-        action.click(saveInDescriptionSectionButton2);
-        sleep(3);
+    public MyProfilePage clickTheEnd() {
+        wait.visibility(theEndButton);
+        action.click(theEndButton);
         return new MyProfilePage(driver);
     }
 
     public EditClubModal enterLoginOfSkype(String login) {
+        sleep(5);
         loginOfSkypeInput.sendKeys(login);
         return this;
     }
