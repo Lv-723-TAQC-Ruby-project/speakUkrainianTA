@@ -38,8 +38,8 @@ public class ClubsEntity {
     public static ClubsEntity getClub(List<String> row) {
         ClubsEntity club = new ClubsEntity();
 
-        club.setAgeFrom(Integer.parseInt(row.get(0)));
-        club.setAgeTo(Integer.parseInt(row.get(1)));
+        club.setAgeFrom(Integer.parseInt(row.get(2)));
+        club.setAgeTo(Integer.parseInt(row.get(3)));
         club.setCenterExternalId(Long.parseLong((row.get(2))));
         if (row.get(2) != null) {
             club.setCenterExternalId(Long.parseLong(row.get(2)));
@@ -49,7 +49,7 @@ public class ClubsEntity {
         club.setContacts(row.get(5));
         club.setDescription(row.get(6));
         club.setFeedbackCount(Integer.parseInt(row.get(7)));
-        club.setId(Integer.parseInt(row.get(8)));
+        club.setId(Integer.parseInt(row.get(0)));
         club.setApproved(Boolean.parseBoolean(row.get(9)));
         club.setOnline(Boolean.parseBoolean(row.get(10)));
         club.setName(row.get(11));

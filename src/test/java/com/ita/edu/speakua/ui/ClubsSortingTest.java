@@ -1,5 +1,8 @@
 package com.ita.edu.speakua.ui;
 
+import com.ita.edu.speakua.jdbc.entity.ClubsEntity;
+import com.ita.edu.speakua.jdbc.services.ClubsService;
+import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubCard;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import io.qameta.allure.Description;
 import org.testng.Assert;
@@ -24,7 +27,7 @@ public class ClubsSortingTest extends BaseTestRunner {
     @Test
     @Description("Test sorting clubs by rating in ASC order")
     public void verifyThatTheClubsCanBeSortedByRatingAsc() {
-        int rating = new HomePage(driver)
+        ClubCard card = new HomePage(driver)
                 .openAdvancedSearch()
                 .getAdvancedSearchComponent()
                 .clearCityFieldClick()
@@ -32,15 +35,21 @@ public class ClubsSortingTest extends BaseTestRunner {
                 .clickSortAscending()
                 .getClubPage()
                 .getCards()
-                .get(0)
-                .getRatingStars();
-        Assert.assertEquals(rating, 0);
+                .get(0);
+        int rating = card.getRatingStars();
+        String clubName = card.getTitle();
+        ClubsService service = new ClubsService();
+        ClubsEntity club = service.getByRatingASC().get(0);
+        int ratingByDB = club.getRating();
+        String clubNameByDB = club.getName();
+        Assert.assertEquals(rating, ratingByDB);
+        Assert.assertEquals(clubName, clubNameByDB);
     }
 
     @Test
     @Description("Test sorting clubs by rating in DSC order")
     public void verifyThatTheClubsCanBeSortedByRatingDsc() {
-        int rating = new HomePage(driver)
+        ClubCard card = new HomePage(driver)
                 .openAdvancedSearch()
                 .getAdvancedSearchComponent()
                 .clearCityFieldClick()
@@ -49,10 +58,15 @@ public class ClubsSortingTest extends BaseTestRunner {
                 .clickSortDescending()
                 .getClubPage()
                 .getCards()
-                .get(0)
-                .getRatingStars();
-        int MAX_STAR = 5;
-        Assert.assertEquals(rating, MAX_STAR);
+                .get(0);
+        int rating = card.getRatingStars();
+        String clubName = card.getTitle();
+        ClubsService service = new ClubsService();
+        ClubsEntity club = service.getByRatingDSC().get(0);
+        int ratingByDB = club.getRating();
+        String clubNameByDB = club.getName();
+        Assert.assertEquals(clubName, clubNameByDB);
+        Assert.assertEquals(rating, ratingByDB);
     }
 
     @AfterClass
