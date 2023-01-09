@@ -1,5 +1,7 @@
 package com.ita.edu.speakua.ui;
 
+import com.ita.edu.speakua.jdbc.entity.ClubsEntity;
+import com.ita.edu.speakua.jdbc.services.ClubsService;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import io.qameta.allure.Description;
 import org.testng.Assert;
@@ -24,18 +26,20 @@ public class SearchClubTest extends BaseTestRunner {
     @Test
     @Description("Verify if name of club is attached to the location of this club")
     public void searchByNameOfClubAttachedToTheLocation() {
-        String expectedTitle = new HomePage(driver)
+        ClubsService service = new ClubsService();
+        ClubsEntity club = service.getWhereCityName("Київ").get(1);
+        String nameOfClubFromDB = club.getName();
+        String resultOfSearch = new HomePage(driver)
                 .clickLocationButton()
                 .clickCityInTheLocationSection(0)
-                .getCard(0)
-                .getTitle();
-        String actualResult = new HomePage(driver)
-                .enterTextInTheSearchField(expectedTitle)
+                .enterTextInTheSearchField(nameOfClubFromDB)
                 .clickSearchButton()
                 .getCards()
                 .get(0)
                 .getTitle();
-        Assert.assertEquals(actualResult, expectedTitle);
+        Assert.assertEquals(resultOfSearch, nameOfClubFromDB);
+        ClubsEntity clubByNameFromDB = service.getByName(nameOfClubFromDB);
+        Assert.assertEquals(clubByNameFromDB.getName(), resultOfSearch);
     }
 
     @AfterClass
