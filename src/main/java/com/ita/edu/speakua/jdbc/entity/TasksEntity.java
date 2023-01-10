@@ -26,11 +26,11 @@ public class TasksEntity {
         task.setId(Long.parseLong(row.get(0)));
         task.setDescription(row.get(1));
         task.setHeader_text(row.get(2));
-        if(row.get(3)!=null) {
-            task.setChallenge_id(Long.parseLong(row.get(3)));
-        }
+        task.setPicture(row.get(3));
         task.setName(row.get(4));
-        task.setPicture(row.get(5));
+        if(row.get(5)!=null) {
+            task.setChallenge_id(Long.parseLong(row.get(5)));
+        }
         task.setStart_date(row.get(6));
 
         return task;

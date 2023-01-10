@@ -33,7 +33,8 @@ public class TasksDTO {
         ManagerDAO.closeStatement(statement);
 
 
-        if(TasksEntity.getTasks(rows).size() == 0) {
+//        if(TasksEntity.getTasks(rows).size() == 0) {
+        if(rows.size() == 0) {
             return null;
         }
         return TasksEntity.getTasks(rows).get(0);
