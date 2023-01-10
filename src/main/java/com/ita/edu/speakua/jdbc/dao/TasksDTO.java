@@ -20,6 +20,7 @@ public class TasksDTO {
         ManagerDAO.closeStatement(statement);
         return TasksEntity.getTasks(rows);
     }
+
     public TasksEntity selectByName(String name){
         Statement statement = ManagerDAO.getInstance().getStatement();
         List<List<String>> rows = null;
@@ -30,6 +31,7 @@ public class TasksDTO {
             throw new RuntimeException(e);
         }
         ManagerDAO.closeStatement(statement);
+
 
         if(TasksEntity.getTasks(rows).size() == 0) {
             return null;
