@@ -28,7 +28,7 @@ public class ClubsService {
         return clubsDTO.selectWhereClubName(name);
     }
 
-    public ClubsEntity getWhereCityName(String cityName) {
+    public List<ClubsEntity> getWhereCityName(String cityName) {
 
         return clubsDTO.selectClubWhereCityName(cityName);
     }
