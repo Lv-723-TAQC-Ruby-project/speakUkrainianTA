@@ -48,24 +48,24 @@ public class ClubsDTO {
         return ClubsEntity.getClubs(rows);
     }
 
-    public List<ClubsEntity> selectClubWhereCityName(String cityName) {
+    public ClubsEntity selectClubWhereCityName(String cityName) {
         Statement statement = ManagerDAO.getInstance().getStatement();
         List<List<String>> rows = null;
         try {
-            ResultSet resultSet = statement.executeQuery(ClubsEntity.SELECT_FROM_CLUBS_WHERE_CITY_NAME);
+            ResultSet resultSet = statement.executeQuery(String.format(ClubsEntity.SELECT_FROM_CLUBS_WHERE_CITY_NAME, cityName));
             rows = ManagerDAO.getInstance().parseResultSet(resultSet);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         ManagerDAO.closeStatement(statement);
-        return ClubsEntity.getClubs(rows);
+        return ClubsEntity.getClubs(rows).get(0);
     }
 
     public ClubsEntity selectWhereClubName(String clubName) {
         Statement statement = ManagerDAO.getInstance().getStatement();
         List<List<String>> rows = null;
         try {
-            ResultSet resultSet = statement.executeQuery(String.format(ClubsEntity.SELECT_FROM_CLUBS_WHERE_NAME,clubName));
+            ResultSet resultSet = statement.executeQuery(String.format(ClubsEntity.SELECT_FROM_CLUBS_WHERE_NAME, clubName));
             rows = ManagerDAO.getInstance().parseResultSet(resultSet);
         } catch (SQLException e) {
             throw new RuntimeException(e);
