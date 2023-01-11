@@ -16,7 +16,7 @@ public class ClubsEntity {
     public static final String SELECT_NAME_RATING_FROM_CLUBS_WHERE_ORDER_ASC = "SELECT name, rating FROM clubs WHERE id IN (SELECT DISTINCT club_category.club_id FROM club_category) ORDER BY rating ASC, id;";
     public static final String SELECT_NAME_RATING_FROM_CLUBS_WHERE_ORDER_DSC = "SELECT name, rating FROM clubs WHERE id IN (SELECT DISTINCT club_category.club_id FROM club_category) ORDER BY rating DESC, id;";
 
-    private long id;
+    private int id;
     private int age_from;
     private int age_to;
     private long center_external_id;
@@ -38,7 +38,9 @@ public class ClubsEntity {
     public static ClubsEntity getClub(List<String> row) {
         ClubsEntity club = new ClubsEntity();
 
-        club.setId(Long.parseLong(row.get(0)));
+        if (row.get(0) != null) {
+            club.setId(Integer.parseInt(row.get(0)));
+        }
         club.setAge_from(Integer.parseInt(row.get(1)));
         club.setAge_to(Integer.parseInt(row.get(2)));
         if (row.get(3) != null) {
@@ -53,7 +55,9 @@ public class ClubsEntity {
         club.setDescription(row.get(6));
         club.set_approved(Boolean.parseBoolean(row.get(7)));
         club.set_online(Boolean.parseBoolean(row.get(8)));
-        club.setName(row.get(9));
+        if (row.get(9) != null) {
+            club.setName(row.get(9));
+        }
         if (row.get(10) != null) {
             club.setRating(Double.parseDouble(row.get(10)));
         }
