@@ -10,58 +10,76 @@ import java.util.List;
 @NoArgsConstructor
 public class ClubsEntity {
     public static final String SELECT_ALL = "SELECT * FROM clubs;";
-    public static final String SELECT_FROM_CLUBS_WHERE_NAME = "SELECT name FROM public.clubs WHERE name like 'NAME_FROM_STEP1%';";
+    public static final String SELECT_FROM_CLUBS_WHERE_NAME = "SELECT * FROM clubs WHERE name = '%s';";
+
     public static final String SELECT_FROM_CLUBS_WHERE_CITY_NAME = "SELECT * FROM clubs as cl JOIN locations l ON cl.id = l.club_id JOIN cities ct ON l.city_id = ct.id WHERE ct.name = '%s';";
     public static final String SELECT_NAME_RATING_FROM_CLUBS_WHERE_ORDER_ASC = "SELECT name, rating FROM clubs WHERE id IN (SELECT DISTINCT club_category.club_id FROM club_category) ORDER BY rating ASC, id;";
     public static final String SELECT_NAME_RATING_FROM_CLUBS_WHERE_ORDER_DSC = "SELECT name, rating FROM clubs WHERE id IN (SELECT DISTINCT club_category.club_id FROM club_category) ORDER BY rating DESC, id;";
 
-
-    private int ageFrom;
-    private int ageTo;
-    private long centerExternalId;
-    private int centerId;
-    private int clubExternalId;
+    private long id;
+    private int age_from;
+    private int age_to;
+    private long center_external_id;
+    private int club_external_id;
     private String contacts;
     private String description;
-    private int feedbackCount;
-    private int id;
-    private boolean isApproved;
-    private boolean isOnline;
+    private boolean is_approved;
+    private boolean is_online;
     private String name;
-    private int rating;
-    private String urlBackground;
-    private String urlLogo;
-    private String urlWeb;
-    private int userId;
-    private int workTime;
+    private double rating;
+    private String url_background;
+    private String url_logo;
+    private String url_web;
+    private int work_time;
+    private int center_id;
+    private int user_id;
+    private int feedback_count;
 
     public static ClubsEntity getClub(List<String> row) {
         ClubsEntity club = new ClubsEntity();
 
-        club.setAgeFrom(Integer.parseInt(row.get(2)));
-        club.setAgeTo(Integer.parseInt(row.get(3)));
-        club.setCenterExternalId(Long.parseLong((row.get(2))));
-        if (row.get(2) != null) {
-            club.setCenterExternalId(Long.parseLong(row.get(2)));
+        club.setId(Long.parseLong(row.get(0)));
+        club.setAge_from(Integer.parseInt(row.get(1)));
+        club.setAge_to(Integer.parseInt(row.get(2)));
+        if (row.get(3) != null) {
+            club.setCenter_external_id(Long.parseLong(row.get(3)));
         }
-        club.setCenterId(Integer.parseInt(row.get(3)));
-        club.setClubExternalId(Integer.parseInt(row.get(4)));
-        club.setContacts(row.get(5));
+        if (row.get(4) != null) {
+            club.setClub_external_id(Integer.parseInt(row.get(4)));
+        }
+        if (row.get(5) != null) {
+            club.setContacts(row.get(5));
+        }
         club.setDescription(row.get(6));
-        club.setFeedbackCount(Integer.parseInt(row.get(7)));
-        club.setId(Integer.parseInt(row.get(0)));
-        club.setApproved(Boolean.parseBoolean(row.get(9)));
-        club.setOnline(Boolean.parseBoolean(row.get(10)));
-        club.setName(row.get(11));
-        club.setRating(Integer.parseInt(row.get(12)));
-        club.setUrlBackground(row.get(13));
-        club.setUrlLogo(row.get(14));
-        club.setUrlWeb(row.get(15));
-        club.setUserId(Integer.parseInt(row.get(16)));
-        club.setWorkTime(Integer.parseInt(row.get(17)));
+        club.set_approved(Boolean.parseBoolean(row.get(7)));
+        club.set_online(Boolean.parseBoolean(row.get(8)));
+        club.setName(row.get(9));
+        if (row.get(10) != null) {
+            club.setRating(Double.parseDouble(row.get(10)));
+        }
+        if (row.get(11) != null) {
+            club.setUrl_background(row.get(11));
+        }
+        if (row.get(12) != null) {
+            club.setUrl_logo(row.get(12));
+        }
+        if (row.get(13) != null) {
+            club.setUrl_web(row.get(13));
+        }
+        if (row.get(14) != null) {
+            club.setWork_time(Integer.parseInt(row.get(14)));
+        }
+        if (row.get(15) != null) {
+            club.setCenter_id(Integer.parseInt(row.get(15)));
+        }
+        if (row.get(16) != null) {
+            club.setUser_id(Integer.parseInt(row.get(16)));
+        }
+        if (row.get(17) != null) {
+            club.setFeedback_count(Integer.parseInt(row.get(17)));
+        }
         return club;
     }
-
 
     public static List<ClubsEntity> getClubs(List<List<String>> rows) {
         List<ClubsEntity> clubs = new ArrayList<>();
@@ -70,5 +88,4 @@ public class ClubsEntity {
         }
         return clubs;
     }
-
 }

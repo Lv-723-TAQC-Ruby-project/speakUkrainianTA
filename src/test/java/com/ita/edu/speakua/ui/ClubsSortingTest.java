@@ -40,7 +40,7 @@ public class ClubsSortingTest extends BaseTestRunner {
         String clubName = card.getTitle();
         ClubsService service = new ClubsService();
         ClubsEntity club = service.getByRatingASC().get(0);
-        int ratingByDB = club.getRating();
+        double ratingByDB = club.getRating();
         String clubNameByDB = club.getName();
         Assert.assertEquals(rating, ratingByDB);
         Assert.assertEquals(clubName, clubNameByDB);
@@ -63,7 +63,7 @@ public class ClubsSortingTest extends BaseTestRunner {
         String clubName = card.getTitle();
         ClubsService service = new ClubsService();
         ClubsEntity club = service.getByRatingDSC().get(0);
-        int ratingByDB = club.getRating();
+        double ratingByDB = club.getRating();
         String clubNameByDB = club.getName();
         Assert.assertEquals(clubName, clubNameByDB);
         Assert.assertEquals(rating, ratingByDB);

@@ -41,10 +41,10 @@ public class EditClubModal extends BasePO {
     }
 
     public EditClubModal nextStepClick() {
-        sleep(3);
+        sleep(7);
         wait.visibility(nextStepButton);
         action.click(nextStepButton);
-        sleep(3);
+        sleep(7);
         return this;
     }
 

@@ -1,7 +1,9 @@
 package com.ita.edu.speakua;
 
+import com.ita.edu.speakua.jdbc.entity.ClubsEntity;
 import com.ita.edu.speakua.jdbc.entity.TasksEntity;
 import com.ita.edu.speakua.jdbc.entity.UsersEntity;
+import com.ita.edu.speakua.jdbc.services.ClubsService;
 import com.ita.edu.speakua.jdbc.services.TasksService;
 import com.ita.edu.speakua.jdbc.services.UsersService;
 import org.testng.Assert;
@@ -26,7 +28,14 @@ public class MyTest {
         TasksService service = new TasksService();
         TasksEntity task = service.getByName("Task test checking");
         Assert.assertNotNull(task);
-        Assert.assertEquals(task.getId(),957);
+        Assert.assertEquals(task.getId(),1019);
+    }
+    @Test
+    public void DBCenter() {
+        ClubsService service = new ClubsService();
+        ClubsEntity club = service.getByName("test123456");
+        Assert.assertNotNull(club);
+        Assert.assertEquals(club.getId(), 498);
     }
 
 

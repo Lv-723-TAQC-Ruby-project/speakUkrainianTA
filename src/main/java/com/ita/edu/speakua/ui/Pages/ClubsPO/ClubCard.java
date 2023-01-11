@@ -82,9 +82,12 @@ public class ClubCard extends BasePO {
 
     @Step
     public EditClubModal openEditClubModel() {
+        sleep(5);
         wait.visibility(menuClubButton);
         action.click(menuClubButton);
-        editClubButton.click();
+        wait.visibility(editClubButton);
+        action.click(editClubButton);
+        sleep(5);
         return new EditClubModal(driver);
     }
 

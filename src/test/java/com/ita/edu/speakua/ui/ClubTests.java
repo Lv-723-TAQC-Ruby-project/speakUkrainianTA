@@ -5,6 +5,7 @@ import com.ita.edu.speakua.jdbc.entity.ClubsEntity;
 import com.ita.edu.speakua.jdbc.services.CentersService;
 import com.ita.edu.speakua.jdbc.services.ClubsService;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.AddClubModal;
+import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubCard;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubPage;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import jdk.jfr.Description;
@@ -131,7 +132,7 @@ public class ClubTests extends BaseTestRunner {
     @Description("Checking that club is edited and after find information about it")
     @Test
     public void verifyEditingClubAndFindingInformationAboutItTest() {
-        new HomePage(driver)
+        String nameOfCard = new HomePage(driver)
                 .openUserProfileMenu()
                 .openMyProfileModal()
                 .clickLastElementOfTheListOfCenters()
@@ -146,16 +147,18 @@ public class ClubTests extends BaseTestRunner {
                 .clickLastElementOfTheListOfCenters()
                 .getClubsPage()
                 .getLastCard()
-                .getDetailInformation();
+                .getTitle();
+        new ClubCard(driver).getDetailInformation();
         String checkInformationAboutCenterBySkype = new ClubPage(driver)
                 .getLoginOfSkype();
         Assert.assertEquals(checkInformationAboutCenterBySkype, "speakUA");
         String checkInformationAboutCenterByDescription = new ClubPage(driver).getDescriptionAboutCenter();
         Assert.assertEquals(checkInformationAboutCenterByDescription, "Тестовий гурток для додавання центру Тестовий гурток для додавання центру");
-//        ClubsService service = new ClubsService();
-//        ClubsEntity club = service.getByName(randomName);
-//        Assert.assertNotNull(club);
-//        Assert.assertEquals(club.getName(), randomName);
+        ClubsService service = new ClubsService();
+        ClubsEntity club = service.getByName(nameOfCard);
+        Assert.assertEquals(club.getDescription(), "Тестовий гурток для додавання центру Тестовий гурток для додавання центру");
+        Assert.assertNotNull(club);
+        Assert.assertEquals(club.getName(), nameOfCard);
     }
 
     @AfterClass
