@@ -59,6 +59,9 @@ public class ClubCard extends BasePO {
     public String getTitle() {
         return this.title.getText();
     }
+    public String getTitleOfCard() {
+        return this.title.getText();
+    }
 
     @Step("Get title of center")
     public String getTitleOfCenter() {
@@ -85,6 +88,7 @@ public class ClubCard extends BasePO {
         sleep(5);
         wait.visibility(menuClubButton);
         action.click(menuClubButton);
+        sleep(5);
         wait.visibility(editClubButton);
         action.click(editClubButton);
         sleep(5);
