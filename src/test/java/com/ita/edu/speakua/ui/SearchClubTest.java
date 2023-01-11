@@ -27,7 +27,7 @@ public class SearchClubTest extends BaseTestRunner {
     @Description("Verify if name of club is attached to the location of this club")
     public void searchByNameOfClubAttachedToTheLocation() {
         ClubsService service = new ClubsService();
-        ClubsEntity club = service.getWhereCityName("Київ").get(1);
+        ClubsEntity club = service.getWhereCityName("Київ");
         String nameOfClubFromDB = club.getName();
         String resultOfSearch = new HomePage(driver)
                 .clickLocationButton()

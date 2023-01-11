@@ -38,5 +38,4 @@ public class MyTest {
         Assert.assertEquals(club.getId(), 498);
     }
 
-
 }
