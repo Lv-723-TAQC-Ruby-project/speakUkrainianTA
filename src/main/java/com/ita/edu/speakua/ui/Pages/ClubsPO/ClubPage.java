@@ -11,7 +11,7 @@ public class ClubPage extends BasePageWithHeader {
     @FindBy(xpath = "//span[@class='contact-name']")
     private WebElement fieldNumberPhone;
 
-    @FindBy(xpath = "//span[@class='contact-name']")
+    @FindBy(xpath = "//*[@id=\"root\"]/section/section/main/section/section/aside/div/div[3]/div/div[1]/span/a")
     private WebElement fieldLoginSkype;
 
     @FindBy(xpath = "//div[@class='content']")

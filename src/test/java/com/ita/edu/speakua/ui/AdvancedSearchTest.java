@@ -1,5 +1,7 @@
 package com.ita.edu.speakua.ui;
 
+import com.ita.edu.speakua.jdbc.entity.ClubsEntity;
+import com.ita.edu.speakua.jdbc.services.ClubsService;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.AdvancedSearchComponent;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubCard;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubsPage;
@@ -187,7 +189,6 @@ public class AdvancedSearchTest extends BaseTestRunner {
                 .get(0)
                 .getRatingStars();
         softAssert.assertEquals(clubsPageDscRating, MAX_STARS, "Sorting clubs rating in ascending order failed");
-
     }
     @Description("check that the child's age entered in the field is correct")
     @Test
