@@ -62,6 +62,7 @@ public class ClubsEntity {
         return club;
     }
 
+
     public static List<ClubsEntity> getClubs(List<List<String>> rows) {
         List<ClubsEntity> clubs = new ArrayList<>();
         for (List<String> row : rows) {

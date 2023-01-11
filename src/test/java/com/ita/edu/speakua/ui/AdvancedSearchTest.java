@@ -1,5 +1,7 @@
 package com.ita.edu.speakua.ui;
 
+import com.ita.edu.speakua.jdbc.entity.ClubsEntity;
+import com.ita.edu.speakua.jdbc.services.ClubsService;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.AdvancedSearchComponent;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubCard;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubsPage;
@@ -157,7 +159,6 @@ public class AdvancedSearchTest extends BaseTestRunner {
                 .getCard(0)
                 .getTitleOfCenter();
         Assert.assertEquals(sortAlphabeticallyAscending, "API testing2", "Cards didn't sort");
-
     }
 
     @Description("verify sorting of clubs by rating in both ascending and descending order")
@@ -187,6 +188,11 @@ public class AdvancedSearchTest extends BaseTestRunner {
                 .get(0)
                 .getRatingStars();
         softAssert.assertEquals(clubsPageDscRating, MAX_STARS, "Sorting clubs rating in ascending order failed");
+
+//        ClubsService service = new ClubsService();
+//        ClubsEntity clubASC = service.getByRatingASC();
+//        int ratingByDBASC = clubASC.getRating();
+//        Assert.assertEquals(listTitleAscRating, ratingByDBASC);
 
     }
     @Description("check that the child's age entered in the field is correct")
