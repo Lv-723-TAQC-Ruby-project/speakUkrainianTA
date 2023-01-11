@@ -38,4 +38,12 @@ public class MyTest {
         Assert.assertEquals(club.getId(), 498);
     }
 
+    @Test
+    public void DBClub() {
+        ClubsService service = new ClubsService();
+        ClubsEntity club = service.getByRatingDSC().get(0);
+        Assert.assertNotNull(club);
+        Assert.assertEquals(club.getId(), 1);
+    }
+
 }
