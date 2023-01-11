@@ -48,7 +48,7 @@ public class MyTest {
 }
 
     @Test
-    public void DBClub() {
+    public void DBClubRating() {
         ClubsService service = new ClubsService();
         ClubsEntity club = service.getByRatingDSC().get(0);
         Assert.assertNotNull(club);
