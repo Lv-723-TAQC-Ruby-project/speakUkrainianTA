@@ -58,6 +58,9 @@ public class ClubsDTO {
             throw new RuntimeException(e);
         }
         ManagerDAO.closeStatement(statement);
+        if(ClubsEntity.getClubs(rows).size() == 0) {
+            return null;
+        }
         return ClubsEntity.getClubs(rows).get(0);
     }
 
