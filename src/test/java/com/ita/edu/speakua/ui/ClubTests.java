@@ -7,6 +7,7 @@ import com.ita.edu.speakua.jdbc.services.ClubsService;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.AddClubModal;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubCard;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubPage;
+import com.ita.edu.speakua.ui.Pages.ProfilePO.MyProfilePage;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import jdk.jfr.Description;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -147,8 +148,11 @@ public class ClubTests extends BaseTestRunner {
                 .clickLastElementOfTheListOfCenters()
                 .getClubsPage()
                 .getLastCard()
-                .getTitle();
-        new ClubCard(driver).getDetailInformation();
+                .getTitleInMyProfile();
+        new MyProfilePage(driver)
+                .getClubsPage()
+                .getLastCard()
+                .getDetailInformation();
         String checkInformationAboutCenterBySkype = new ClubPage(driver)
                 .getLoginOfSkype();
         Assert.assertEquals(checkInformationAboutCenterBySkype, "speakUA");
@@ -156,7 +160,8 @@ public class ClubTests extends BaseTestRunner {
         Assert.assertEquals(checkInformationAboutCenterByDescription, "Тестовий гурток для додавання центру Тестовий гурток для додавання центру");
         ClubsService service = new ClubsService();
         ClubsEntity club = service.getByName(nameOfCard);
-        Assert.assertEquals(club.getDescription(), "Тестовий гурток для додавання центру Тестовий гурток для додавання центру");
+        Assert.assertTrue(club.getDescription().contains("Тестовий гурток для додавання центру Тестовий гурток для додавання центру"));
+        Assert.assertTrue(club.getContacts().contains("speakUA"));
         Assert.assertNotNull(club);
         Assert.assertEquals(club.getName(), nameOfCard);
     }

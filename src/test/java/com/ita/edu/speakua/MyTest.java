@@ -37,5 +37,22 @@ public class MyTest {
         Assert.assertNotNull(club);
         Assert.assertEquals(club.getName(), "test123456");
     }
+    @Test
+    public void DBClub() {
+    ClubsService service = new ClubsService();
+    ClubsEntity club = service.getByName("syyygsyy");
+        Assert.assertTrue(club.getDescription().contains("Тестовий гурток для додавання центру Тестовий гурток для додавання центру"));
+        Assert.assertTrue(club.getContacts().contains("speakUA"));
+        Assert.assertNotNull(club);
+        Assert.assertEquals(club.getName(), "syyygsyy");
+}
+
+    @Test
+    public void DBClubRating() {
+        ClubsService service = new ClubsService();
+        ClubsEntity club = service.getByRatingDSC().get(0);
+        Assert.assertNotNull(club);
+        Assert.assertEquals(club.getId(), 1);
+    }
 
 }
