@@ -57,6 +57,7 @@ public class ClubCard extends BasePO {
 
 
     public String getTitle() {
+        wait.visibility(title);
         return this.title.getText();
     }
     public String getTitleOfCard() {
