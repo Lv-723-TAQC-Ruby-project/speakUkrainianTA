@@ -99,7 +99,7 @@ public class ClubTests extends BaseTestRunner {
     @Description("Checking that club is created and after find information about it")
     @Test
     public void verifyCreatingClubAndFindingInformationAboutItTest() {
-        String randomName = RandomStringUtils.random(8, 'a','s','g','y');
+        String randomName = RandomStringUtils.random(7, 'S','p','e','a','k', 'U','A');
         new HomePage(driver)
                 .openUserProfileMenu()
                 .openAddClubModal()

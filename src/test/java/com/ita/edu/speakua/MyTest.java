@@ -31,7 +31,7 @@ public class MyTest {
         Assert.assertEquals(task.getId(),1019);
     }
     @Test
-    public void DBClub1() {
+    public void DBClub2() {
         ClubsService service = new ClubsService();
         ClubsEntity club = service.getByName("test123456");
         Assert.assertNotNull(club);
