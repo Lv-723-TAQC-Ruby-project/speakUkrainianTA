@@ -3,6 +3,7 @@ package com.ita.edu.speakua.jdbc.services;
 import com.ita.edu.speakua.jdbc.dao.CentersDTO;
 import com.ita.edu.speakua.jdbc.dao.UsersDTO;
 import com.ita.edu.speakua.jdbc.entity.CentersEntity;
+import com.ita.edu.speakua.jdbc.entity.ClubsEntity;
 import com.ita.edu.speakua.jdbc.entity.UsersEntity;
 
 import java.util.List;
@@ -19,5 +20,12 @@ public class CentersService {
     }
     public CentersEntity getByName(String name) {
         return centersDTO.selectByName(name);
+    }
+
+    public List<CentersEntity> getByAlphabeticallyASC() {
+        return centersDTO.checkAlphabeticallyASC();
+    }
+    public List<CentersEntity> getByAlphabeticallyDSC() {
+        return centersDTO.checkAlphabeticallyDSC();
     }
 }

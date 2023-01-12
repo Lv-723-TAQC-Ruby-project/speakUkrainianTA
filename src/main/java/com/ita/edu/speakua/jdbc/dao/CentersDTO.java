@@ -1,6 +1,7 @@
 package com.ita.edu.speakua.jdbc.dao;
 
 import com.ita.edu.speakua.jdbc.entity.CentersEntity;
+import com.ita.edu.speakua.jdbc.entity.ClubsEntity;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,6 +36,33 @@ public class CentersDTO {
             return null;
         }
         return CentersEntity.getCenters(rows).get(0);
+    }
+
+
+    public List<CentersEntity> checkAlphabeticallyASC() {
+        Statement statement = ManagerDAO.getInstance().getStatement();
+        List<List<String>> rows = null;
+        try {
+            ResultSet resultSet = statement.executeQuery(CentersEntity.SELECT_NAME_ALPHABETICALLY_FROM_CENTERS_WHERE_ORDER_ASC);
+            rows = ManagerDAO.getInstance().parseResultSet(resultSet);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        ManagerDAO.closeStatement(statement);
+        return CentersEntity.getCenters(rows);
+    }
+
+    public List<CentersEntity> checkAlphabeticallyDSC() {
+        Statement statement = ManagerDAO.getInstance().getStatement();
+        List<List<String>> rows = null;
+        try {
+            ResultSet resultSet = statement.executeQuery(CentersEntity.SELECT_NAME_ALPHABETICALLY_FROM_CENTERS_WHERE_ORDER_DSC);
+            rows = ManagerDAO.getInstance().parseResultSet(resultSet);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        ManagerDAO.closeStatement(statement);
+        return CentersEntity.getCenters(rows);
     }
 
 }

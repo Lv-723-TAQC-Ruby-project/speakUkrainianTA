@@ -1,6 +1,8 @@
 package com.ita.edu.speakua.ui;
 
+import com.ita.edu.speakua.jdbc.entity.CentersEntity;
 import com.ita.edu.speakua.jdbc.entity.ClubsEntity;
+import com.ita.edu.speakua.jdbc.services.CentersService;
 import com.ita.edu.speakua.jdbc.services.ClubsService;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.AdvancedSearchComponent;
 import com.ita.edu.speakua.ui.Pages.ClubsPO.ClubCard;
@@ -152,6 +154,11 @@ public class AdvancedSearchTest extends BaseTestRunner {
         ArrayList<String> sortedList = new ArrayList<>(listTitle);
         sortedList.sort(Collections.reverseOrder());
         Assert.assertEquals(listTitle, sortedList, "Cards didn't sort");
+        CentersService serviceDesc = new CentersService();
+        CentersEntity centerDesc = serviceDesc.getByAlphabeticallyDSC().get(0);
+        String AlphabeticallyByDBDesc = centerDesc.getName();
+        Assert.assertEquals(AlphabeticallyByDBDesc,"Школа мистецтв імені Миколи Дмитровича Леонтовича");
+
 
         String sortAlphabeticallyAscending = new AdvancedSearchComponent(driver)
                 .clickSortAscending()
@@ -159,36 +166,54 @@ public class AdvancedSearchTest extends BaseTestRunner {
                 .getCard(0)
                 .getTitleOfCenter();
         Assert.assertEquals(sortAlphabeticallyAscending, "API testing2", "Cards didn't sort");
-
+        CentersService serviceAsc = new CentersService();
+        CentersEntity centerAsc = serviceAsc.getByAlphabeticallyASC().get(0);
+        String AlphabeticallyByDB = centerAsc.getName();
+        Assert.assertEquals(AlphabeticallyByDB, "API testing2 ");
     }
 
     @Description("verify sorting of clubs by rating in both ascending and descending order")
     @Test
     public void sortOfClubsByRatingSuccessTest() {
         SoftAssert softAssert = new SoftAssert();
-        ClubsPage clubsPageAscRating = new HeaderComponent(driver)
+        List<ClubCard> cardsAscRating = new HeaderComponent(driver)
                 .openAdvancedSearch()
                 .getAdvancedSearchComponent()
                 .clickSortByRating()
                 .clickSortAscending()
-                .getClubPage();
-        List<ClubCard> cardsAscRating = clubsPageAscRating.getCards();
-        ArrayList<Integer> listTitleAscRating = new ArrayList<>();
+                .getClubPage()
+                .getCards();
+        ArrayList<Integer> listAscRating = new ArrayList<>();
         for (ClubCard card : cardsAscRating) {
-            listTitleAscRating.add(card.getRatingStars());
+            listAscRating.add(card.getRatingStars());
         }
-        ArrayList<Integer> sortedListAscRating = new ArrayList<>(listTitleAscRating);
+        ArrayList<Integer> sortedListAscRating = new ArrayList<>(listAscRating);
         Collections.sort(sortedListAscRating);
-        softAssert.assertEquals(listTitleAscRating, sortedListAscRating, "Sorting clubs rating in ascending order failed");
+        softAssert.assertEquals(listAscRating, sortedListAscRating, "Sorting clubs rating in ascending order failed");
 
-        Integer MAX_STARS=0;
-        Integer clubsPageDscRating = new AdvancedSearchComponent(driver)
+        Double MIN_STARS=0.00;
+        ClubsService serviceASC = new ClubsService();
+        ClubsEntity clubASC = serviceASC.getByRatingASC().get(0);
+        Double ratingByDBASC = clubASC.getRating();
+        Assert.assertEquals(MIN_STARS, ratingByDBASC);
+
+        List<ClubCard> cardsDescRating = new AdvancedSearchComponent(driver)
                 .clickSortDescending()
                 .getClubPage()
-                .getCards()
-                .get(0)
-                .getRatingStars();
-        softAssert.assertEquals(clubsPageDscRating, MAX_STARS, "Sorting clubs rating in ascending order failed");
+                .getCards();
+        ArrayList<Integer> listTitleDescRating = new ArrayList<>();
+        for (ClubCard card : cardsDescRating) {
+            listTitleDescRating.add(card.getRatingStars());
+        }
+        ArrayList<Integer> sortedListDescRating = new ArrayList<>(listTitleDescRating);
+        Collections.sort(sortedListDescRating, Collections.reverseOrder());
+        softAssert.assertEquals(listTitleDescRating, sortedListDescRating, "Sorting clubs rating in descending order failed");
+
+        Double MAX_STARS=10.00;
+        ClubsService serviceDESC = new ClubsService();
+        ClubsEntity clubDESC = serviceDESC.getByRatingDSC().get(0);
+        Double ratingByDBDESC = clubDESC.getRating();
+        Assert.assertEquals(MAX_STARS, ratingByDBDESC);
     }
     @Description("check that the child's age entered in the field is correct")
     @Test
