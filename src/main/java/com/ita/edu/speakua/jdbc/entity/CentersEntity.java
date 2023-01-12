@@ -11,6 +11,8 @@ import java.util.List;
 public class CentersEntity {
     public static final String SELECT_FROM_CENTERS_WHERE_NAME_IS = "SELECT * FROM centers WHERE name = '%s';";
     public static final String SELECT_ALL = "SELECT * FROM centers;";
+    public static final String SELECT_NAME_ALPHABETICALLY_FROM_CENTERS_WHERE_ORDER_ASC = "SELECT * FROM centers WHERE name NOT IN ('All clubs') ORDER BY name;";
+    public static final String SELECT_NAME_ALPHABETICALLY_FROM_CENTERS_WHERE_ORDER_DSC = "SELECT * FROM centers ORDER BY name DESC;";
 
     private long id;
     private long centerExternalId;
