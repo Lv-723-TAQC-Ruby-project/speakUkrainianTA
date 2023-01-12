@@ -96,11 +96,13 @@ public class ClubTests extends BaseTestRunner {
         softAssert.assertAll();
     }
 
-    @Description("Checking that club is created and after find information about it")
+    @Description("Checking that club is created and after find information about it in website and data base")
     @Test
-    public void verifyCreatingClubAndFindingInformationAboutItTest() {
+    public void creatingClubAndFindingInformationAboutIt() {
         String randomName = RandomStringUtils.random(7, 'S','p','e','a','k', 'U','A');
-        new HomePage(driver)
+        String numberPhone = "+380934444444";
+        String descriptionOfCenter = "Відділення образотворчого та декоративного мистецтва відкрите з моменту заснування Студії.У 2005р. відбулась перша виставка робіт учасників Студії у Львівському обласному палаці мистецтв.";
+        String checkingInformationAboutCenterByNumber = new HomePage(driver)
                 .openUserProfileMenu()
                 .openAddClubModal()
                 .enterNameClub(randomName)
@@ -111,25 +113,24 @@ public class ClubTests extends BaseTestRunner {
                 .clickNextStep()
                 .enterPhoneNumber("0934444444")
                 .clickNextStep()
-                .enterClubDescription("Відділення образотворчого та декоративного мистецтва відкрите з моменту заснування Студії.У 2005р. відбулась перша виставка робіт учасників Студії у Львівському обласному палаці мистецтв.")
-                .finishAddingCenter();
-        new HomePage(driver)
+                .enterClubDescription(descriptionOfCenter)
+                .finishAddingCenter()
                 .openUserProfileMenu()
                 .openMyProfileModal()
                 .clickLastElementOfTheListOfCenters()
                 .getClubsPage()
                 .getCardByName(randomName)
-                .getDetailInformation();
-        String checkInformationAboutCenterByNumber = new ClubPage(driver)
+                .getDetailInformation()
                 .getNumberPhone();
-        Assert.assertEquals(checkInformationAboutCenterByNumber, "+380934444444");
-        String checkInformationAboutCenterByDescription = new ClubPage(driver).getDescriptionAboutCenter();
-        Assert.assertEquals(checkInformationAboutCenterByDescription, "Відділення образотворчого та декоративного мистецтва відкрите з моменту заснування Студії.У 2005р. відбулась перша виставка робіт учасників Студії у Львівському обласному палаці мистецтв.");
+        Assert.assertEquals(checkingInformationAboutCenterByNumber, numberPhone);
+        String checkingInformationAboutCenterByDescription = new ClubPage(driver).getDescriptionAboutCenter();
+        Assert.assertEquals(checkingInformationAboutCenterByDescription, descriptionOfCenter);
         ClubsService service = new ClubsService();
         ClubsEntity club = service.getByName(randomName);
         Assert.assertNotNull(club);
         Assert.assertEquals(club.getName(), randomName);
     }
+
     @Description("Checking that club is edited and after find information about it")
     @Test
     public void verifyEditingClubAndFindingInformationAboutItTest() {

@@ -133,43 +133,44 @@ public class AdvancedSearchTest extends BaseTestRunner {
         softAssert.assertAll();
     }
 
-    @Description("verify sorting of centers by alphabetically in both ascending and descending order")
+    @Description("verifying sort of centers by alphabetically in ascending and descending order in website and data base")
     @Test
-    public void sortOfCentersByAlphabeticallySuccessTest() {
-        boolean openSearch = new HeaderComponent(driver)
+    public void sortingOfCentersByAlphabetically() {
+        List<ClubCard> cardsByAlphabeticallyDESC = new HeaderComponent(driver)
                 .openAdvancedSearch()
                 .getAdvancedSearchComponent()
-                .isAdvancedSearchOpen();
-        Assert.assertTrue(openSearch);
-        ClubsPage sortAlphabeticallyDescending = new AdvancedSearchComponent(driver)
                 .clickRadioCenter()
                 .clickSortAlphabetical()
                 .clickSortDescending()
-                .getClubPage();
-        List<ClubCard> cards = sortAlphabeticallyDescending.getCards();
-        ArrayList<String> listTitle = new ArrayList<>();
-        for (ClubCard card : cards) {
-            listTitle.add(card.getTitleOfCenter());
+                .getClubPage()
+                .getCards();
+        ArrayList<String> firstListOfTitle = new ArrayList<>();
+        for (ClubCard card : cardsByAlphabeticallyDESC) {
+            firstListOfTitle.add(card.getTitleOfCenter());
         }
-        ArrayList<String> sortedList = new ArrayList<>(listTitle);
-        sortedList.sort(Collections.reverseOrder());
-        Assert.assertEquals(listTitle, sortedList, "Cards didn't sort");
-        CentersService serviceDesc = new CentersService();
-        CentersEntity centerDesc = serviceDesc.getByAlphabeticallyDSC().get(0);
-        String AlphabeticallyByDBDesc = centerDesc.getName();
-        Assert.assertEquals(AlphabeticallyByDBDesc,"Школа мистецтв імені Миколи Дмитровича Леонтовича");
+        ArrayList<String> secondListOfTitle = new ArrayList<>(firstListOfTitle);
+        secondListOfTitle.sort(Collections.reverseOrder());
+        Assert.assertEquals(firstListOfTitle, secondListOfTitle, "Cards didn't sort");
+        CentersService service = new CentersService();
+        CentersEntity center = service.getByAlphabeticallyDSC().get(0);
+        String firstCenterByAlphabeticallyDescDB = center.getName();
+        String firstCenterByAlphabeticallyDesc = "Школа мистецтв імені Миколи Дмитровича Леонтовича";
+        Assert.assertEquals(firstCenterByAlphabeticallyDescDB, firstCenterByAlphabeticallyDesc);
 
+        //SORT ASCENDING
 
-        String sortAlphabeticallyAscending = new AdvancedSearchComponent(driver)
+        String nameOfFirstCenterByAlphabeticallyASC = new AdvancedSearchComponent(driver)
                 .clickSortAscending()
                 .getClubPage()
                 .getCard(0)
                 .getTitleOfCenter();
-        Assert.assertEquals(sortAlphabeticallyAscending, "API testing2", "Cards didn't sort");
+        String nameOfFirstCenterInWebsite = "API testing2";
+        Assert.assertEquals(nameOfFirstCenterByAlphabeticallyASC, nameOfFirstCenterInWebsite , "Cards didn't sort");
         CentersService serviceAsc = new CentersService();
         CentersEntity centerAsc = serviceAsc.getByAlphabeticallyASC().get(0);
-        String AlphabeticallyByDB = centerAsc.getName();
-        Assert.assertEquals(AlphabeticallyByDB, "API testing2 ");
+        String nameOfFirstCenterByAlphabeticallyAscDB = centerAsc.getName();
+        String nameOfFirstCenterDB = "API testing2 ";
+        Assert.assertEquals(nameOfFirstCenterByAlphabeticallyAscDB, nameOfFirstCenterDB);
     }
 
     @Description("verify sorting of clubs by rating in both ascending and descending order")
