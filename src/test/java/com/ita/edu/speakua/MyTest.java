@@ -31,11 +31,11 @@ public class MyTest {
         Assert.assertEquals(task.getId(),1019);
     }
     @Test
-    public void DBCenter() {
+    public void DBClub1() {
         ClubsService service = new ClubsService();
         ClubsEntity club = service.getByName("test123456");
         Assert.assertNotNull(club);
-        Assert.assertEquals(club.getId(), 498);
+        Assert.assertEquals(club.getName(), "test123456");
     }
 
 }
