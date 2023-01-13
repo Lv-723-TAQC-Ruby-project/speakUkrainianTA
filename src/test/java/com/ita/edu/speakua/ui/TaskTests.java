@@ -80,7 +80,7 @@ public class TaskTests extends BaseTestRunner {
         softAssert = new SoftAssert();
         new AddTaskPage(driver)
                 .enterStartDate("2023-03-03")
-                .uploadImage("src/main/resources/R.jpeg")
+                .uploadImage("\\src\\test\\resources\\R.jpeg")
                 .enterTaskName("LearnTest")
                 .enterTaskTitle("Positive emotions like curiosity, satisfaction, and liveliness have a massive\n impact on how your brain processes your\n learning.")
                 .chooseChallenge()
@@ -101,7 +101,7 @@ public class TaskTests extends BaseTestRunner {
                 .openTasksPage()
                 .clickAddTask()
                 .enterStartDate("2023-03-03")
-                .uploadImage("src/main/resources/R.jpeg")
+                .uploadImage("\\src\\test\\resources\\R.jpeg")
                 .enterTaskName("LearnTest")
                 .enterTaskTitle("Positive emotions like curiosity, satisfaction, and liveliness have a massive\n impact on how your brain processes your\n learning.")
                 .enterTaskDescription("Positive emotions like curiosity, satis")
@@ -114,7 +114,7 @@ public class TaskTests extends BaseTestRunner {
                 .openTasksPage()
                 .clickAddTask()
                 .enterStartDate("2023-03-03")
-                .uploadImage("src/main/resources/R.jpeg")
+                .uploadImage("\\src\\test\\resources\\R.jpeg")
                 .enterTaskName("LearnTest")
                 .enterTaskTitle("Positive emotions like curiosity, satisfaction, and liveliness have a massive\n impact on how your brain processes your\n learning.")
                 .enterTaskDescription("Knowing the most effective strategies for how to learn can help you maximize your efforts when you are trying to learn new ideas, concepts, and skills. If you are like many people, your time is limited, so it is important to get the most educational value out of the time you have.\n" +
@@ -165,7 +165,7 @@ public class TaskTests extends BaseTestRunner {
         softAssert = new SoftAssert();
         new AddTaskPage(driver)
                 .enterStartDate("2023-01-01")
-                .uploadImage("src/main/resources/R.jpeg")
+                .uploadImage("\\src\\test\\resources\\R.jpeg")
                 .enterTaskName("World Cup task")
                 .enterTaskDescription("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams have competed. The trophy has been won by eight national teams. Brazil have won five times, and they are the only team to have played in every tournament. The other World Cup winners are Germany and Italy, with four titles each; Argentina, France, and inaugural winner Uruguay, with two titles each; and England and Spain, with one title each.")
                 .chooseChallenge()
@@ -177,7 +177,7 @@ public class TaskTests extends BaseTestRunner {
                 .openTasksPage()
                 .clickAddTask()
                 .enterStartDate("2023-01-01")
-                .uploadImage("src/main/resources/R.jpeg")
+                .uploadImage("\\src\\test\\resources\\R.jpeg")
                 .enterTaskName("World Cup task")
                 .enterTaskTitle("ъэы, ผม, Ÿ, ðъэы, ผม, Ÿ, ðъэы, ผม, Ÿ, ðъэы, ผม, Ÿ, ð")
                 .enterTaskDescription("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams have competed. The trophy has been won by eight national teams. Brazil have won five times, and they are the only team to have played in every tournament. The other World Cup winners are Germany and Italy, with four titles each; Argentina, France, and inaugural winner Uruguay, with two titles each; and England and Spain, with one title each.")
@@ -190,7 +190,7 @@ public class TaskTests extends BaseTestRunner {
                 .openTasksPage()
                 .clickAddTask()
                 .enterStartDate("2023-03-03")
-                .uploadImage("src/main/resources/R.jpeg")
+                .uploadImage("\\src\\test\\resources\\R.jpeg")
                 .enterTaskName("LearnTest")
                 .enterTaskTitle("As of the 2018 FIFA World Cup, twenty-one final.")
                 .enterTaskDescription("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams have competed. The trophy has been won by eight national teams. Brazil have won five times, and they are the only team to have played in every tournament. The other World Cup winners are Germany and Italy, with four titles each; Argentina, France, and inaugural winner Uruguay, with two titles each; and England and Spain, with one title each.")
@@ -203,7 +203,7 @@ public class TaskTests extends BaseTestRunner {
                 .openTasksPage()
                 .clickAddTask()
                 .enterStartDate("2023-03-03")
-                .uploadImage("src/main/resources/R.jpeg")
+                .uploadImage("\\src\\test\\resources\\R.jpeg")
                 .enterTaskName("FIFA World Cup")
                 .enterTaskTitle("Knowing the most effective strategies for how to learn can help you maximize your efforts when you are trying to learn new ideas, concepts, and skills. If you are like many people, your time is limited, so it is important to get the most educational value out of the time you have.\n" +
                         "\n" +
@@ -253,7 +253,7 @@ public class TaskTests extends BaseTestRunner {
         softAssert = new SoftAssert();
         new AddTaskPage(driver)
                 .enterStartDate("2023-01-01")
-                .uploadImage("src/main/resources/R.jpeg")
+                .uploadImage("\\src\\test\\resources\\R.jpeg")
                 .enterTaskTitle("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams ")
                 .enterTaskDescription("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams have competed. The trophy has been won by eight national teams. Brazil have won five times, and they are the only team to have played in every tournament. The other World Cup winners are Germany and Italy, with four titles each; Argentina, France, and inaugural winner Uruguay, with two titles each; and England and Spain, with one title each.")
                 .chooseChallenge()
@@ -265,7 +265,7 @@ public class TaskTests extends BaseTestRunner {
                 .openTasksPage()
                 .clickAddTask()
                 .enterStartDate("2023-01-01")
-                .uploadImage("src/main/resources/R.jpeg")
+                .uploadImage("\\src\\test\\resources\\R.jpeg")
                 .enterTaskName("ъэы; ผม, Ÿ, ð")
                 .enterTaskTitle("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams ")
                 .enterTaskDescription("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams have competed. The trophy has been won by eight national teams. Brazil have won five times, and they are the only team to have played in every tournament. The other World Cup winners are Germany and Italy, with four titles each; Argentina, France, and inaugural winner Uruguay, with two titles each; and England and Spain, with one title each.")
@@ -278,7 +278,7 @@ public class TaskTests extends BaseTestRunner {
                 .openTasksPage()
                 .clickAddTask()
                 .enterStartDate("2023-01-01")
-                .uploadImage("src/main/resources/R.jpeg")
+                .uploadImage("\\src\\test\\resources\\R.jpeg")
                 .enterTaskName("Test")
                 .enterTaskTitle("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams ")
                 .enterTaskDescription("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams have competed. The trophy has been won by eight national teams. Brazil have won five times, and they are the only team to have played in every tournament. The other World Cup winners are Germany and Italy, with four titles each; Argentina, France, and inaugural winner Uruguay, with two titles each; and England and Spain, with one title each.")
@@ -291,7 +291,7 @@ public class TaskTests extends BaseTestRunner {
                 .openTasksPage()
                 .clickAddTask()
                 .enterStartDate("2023-01-01")
-                .uploadImage("src/main/resources/R.jpeg")
+                .uploadImage("\\src\\test\\resources\\R.jpeg")
                 .enterTaskName("As of the 2018 FIFA World Cup, twenty-one final tournaments hav")
                 .enterTaskTitle("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams ")
                 .enterTaskDescription("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams have competed. The trophy has been won by eight national teams. Brazil have won five times, and they are the only team to have played in every tournament. The other World Cup winners are Germany and Italy, with four titles each; Argentina, France, and inaugural winner Uruguay, with two titles each; and England and Spain, with one title each.")
@@ -317,8 +317,8 @@ public class TaskTests extends BaseTestRunner {
         softAssert.assertAll();
         softAssert = new SoftAssert();
         new AddTaskPage(driver)
-                .uploadImage("src/main/resources/R.jpeg")
-                .enterTaskName("2018 FIFA World Cup")
+                .uploadImage("\\src\\test\\resources\\R.jpeg")
+                .enterTaskName("Task test 2018 FIFA")
                 .enterTaskTitle("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams")
                 .enterTaskDescription("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams have competed. The trophy has been won by eight national teams. Brazil have won five times, and they are the only team to have played in every tournament. The other World Cup winners are Germany and Italy, with four titles each; Argentina, France, and inaugural winner Uruguay, with two titles each; and England and Spain, with one title each.")
                 .chooseChallenge()
@@ -330,6 +330,9 @@ public class TaskTests extends BaseTestRunner {
                 .clickSave();
         softAssert.assertTrue(enterInvalidDate.isContainErrorMessage("Дата початку має бути в майбутньому"));
         softAssert.assertAll();
+        TasksService service = new TasksService();
+        TasksEntity task = service.getByName("Task test 2018 FIFA");
+        Assert.assertNull(task);
     }
 
     @Description("Add Task Without Image")
@@ -349,13 +352,16 @@ public class TaskTests extends BaseTestRunner {
         softAssert = new SoftAssert();
         new AddTaskPage(driver)
                 .enterStartDate("2023-03-03")
-                .enterTaskName("2018 FIFA World Cup")
+                .enterTaskName("Task Without Image")
                 .enterTaskTitle("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams")
                 .enterTaskDescription("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams have competed. The trophy has been won by eight national teams. Brazil have won five times, and they are the only team to have played in every tournament. The other World Cup winners are Germany and Italy, with four titles each; Argentina, France, and inaugural winner Uruguay, with two titles each; and England and Spain, with one title each.")
                 .chooseChallenge()
                 .clickSave();
         softAssert.assertTrue(uploadImage.isContainErrorMessage("Фото не може бути пустим"));
         softAssert.assertAll();
+        TasksService service = new TasksService();
+        TasksEntity task = service.getByName("Task Without Image");
+        Assert.assertNull(task);
     }
 
     @Description("Add Task With Valid Data")
