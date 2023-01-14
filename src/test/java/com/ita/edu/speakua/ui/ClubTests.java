@@ -134,6 +134,8 @@ public class ClubTests extends BaseTestRunner {
     @Description("Checking that club is edited and after find information about it")
     @Test
     public void verifyEditingClubAndFindingInformationAboutItTest() {
+        String description = "Тестовий гурток для додавання центру Тестовий гурток для додавання центру";
+        String skype ="speakUA";
         String nameOfCard = new HomePage(driver)
                 .openUserProfileMenu()
                 .openMyProfileModal()
@@ -142,9 +144,9 @@ public class ClubTests extends BaseTestRunner {
                 .getLastCard()
                 .openEditClubModel()
                 .nextStepClick()
-                .enterLoginOfSkype("speakUA")
+                .enterLoginOfSkype(skype)
                 .nextStepClick()
-                .enterClubDescription("Тестовий гурток для додавання центру Тестовий гурток для додавання центру")
+                .enterClubDescription(description)
                 .clickTheEnd()
                 .clickLastElementOfTheListOfCenters()
                 .getClubsPage()
@@ -156,13 +158,13 @@ public class ClubTests extends BaseTestRunner {
                 .getDetailInformation();
         String checkInformationAboutCenterBySkype = new ClubPage(driver)
                 .getLoginOfSkype();
-        Assert.assertEquals(checkInformationAboutCenterBySkype, "speakUA");
+        Assert.assertEquals(checkInformationAboutCenterBySkype, skype);
         String checkInformationAboutCenterByDescription = new ClubPage(driver).getDescriptionAboutCenter();
-        Assert.assertEquals(checkInformationAboutCenterByDescription, "Тестовий гурток для додавання центру Тестовий гурток для додавання центру");
+        Assert.assertEquals(checkInformationAboutCenterByDescription, description);
         ClubsService service = new ClubsService();
         ClubsEntity club = service.getByName(nameOfCard);
-        Assert.assertTrue(club.getDescription().contains("Тестовий гурток для додавання центру Тестовий гурток для додавання центру"));
-        Assert.assertTrue(club.getContacts().contains("speakUA"));
+        Assert.assertTrue(club.getDescription().contains(description));
+        Assert.assertTrue(club.getContacts().contains(skype));
         Assert.assertNotNull(club);
         Assert.assertEquals(club.getName(), nameOfCard);
     }
