@@ -14,8 +14,16 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import java.util.Date;
+import java.util.concurrent.ThreadLocalRandom;
+
 
 public class TaskTests extends BaseTestRunner {
+    String taskName =  RandomStringUtils.random(10, true, true);
+    String taskTitle = RandomStringUtils.random(60, true, true);
+    String taskDescription = RandomStringUtils.random(50, true, true);
+    String imagepath = "\\src\\test\\resources\\R.jpeg";
+
     @BeforeClass
     public void setUp(ITestContext context) {
         setDriver(context);
@@ -33,10 +41,10 @@ public class TaskTests extends BaseTestRunner {
         driver.get(configProperties.getBaseWebUrl());
     }
 
+
     @Description("Add Task Without Challenge")
     @Test
     public void addTaskWithoutChallenge() {
-        String taskName =  RandomStringUtils.random(10, true, true);
         AddTaskPage enterTaskData = new HomePage(driver)
                 .openAdminProfileMenu()
                 .openTasksPage()
@@ -51,10 +59,10 @@ public class TaskTests extends BaseTestRunner {
         softAssert = new SoftAssert();
         new AddTaskPage(driver)
                 .enterStartDate("2021-03-03")
-                .uploadImage("\\src\\test\\resources\\R.jpeg")
+                .uploadImage(imagepath)
                 .enterTaskName(taskName)
-                .enterTaskTitle("Positive emotions like curiosity, satisfaction, and liveliness have a massive\n impact on how your brain processes your\n learning.")
-                .enterTaskDescription("One of the key benefits of having fun while learning is that it creates a sense of reward in learning.\n That inherently motivates people.")
+                .enterTaskTitle(taskTitle)
+                .enterTaskDescription(taskDescription)
                 .clickSave();
         softAssert.assertTrue(enterTaskData.isContainErrorMessage("Please,select challenge"));
         softAssert.assertAll();
@@ -80,9 +88,9 @@ public class TaskTests extends BaseTestRunner {
         softAssert = new SoftAssert();
         new AddTaskPage(driver)
                 .enterStartDate("2023-03-03")
-                .uploadImage("\\src\\test\\resources\\R.jpeg")
-                .enterTaskName("LearnTest")
-                .enterTaskTitle("Positive emotions like curiosity, satisfaction, and liveliness have a massive\n impact on how your brain processes your\n learning.")
+                .uploadImage(imagepath)
+                .enterTaskName(taskName)
+                .enterTaskTitle(taskTitle)
                 .chooseChallenge()
                 .clickSave();
         softAssert.assertTrue(enterInvalidData.isContainErrorMessage("Поле опис не може бути пустим"));
@@ -96,55 +104,38 @@ public class TaskTests extends BaseTestRunner {
                 .clickSave();
         softAssert.assertTrue(enterInvalidData.isContainErrorMessage("Поле 'Опис' може містити тільки українські та англійські літери, цифри та спеціальні символи"));
         softAssert = new SoftAssert();
+        String taskDescriptionLess = RandomStringUtils.random(30, true, true);
         new HomePage(driver)
                 .openAdminProfileMenu()
                 .openTasksPage()
                 .clickAddTask()
                 .enterStartDate("2023-03-03")
-                .uploadImage("\\src\\test\\resources\\R.jpeg")
-                .enterTaskName("LearnTest")
-                .enterTaskTitle("Positive emotions like curiosity, satisfaction, and liveliness have a massive\n impact on how your brain processes your\n learning.")
-                .enterTaskDescription("Positive emotions like curiosity, satis")
+                .uploadImage(imagepath)
+                .enterTaskName(taskName)
+                .enterTaskTitle(taskTitle)
+                .enterTaskDescription(taskDescriptionLess)
                 .chooseChallenge()
                 .clickSave();
         softAssert.assertTrue(enterInvalidData.isContainErrorMessage("Поле 'Опис' може містити мінімум 40 максимум 3000 символів"));
         softAssert = new SoftAssert();
+        String taskDescriptionMore =  RandomStringUtils.random(3005, true, true);
         new HomePage(driver)
                 .openAdminProfileMenu()
                 .openTasksPage()
                 .clickAddTask()
                 .enterStartDate("2023-03-03")
-                .uploadImage("\\src\\test\\resources\\R.jpeg")
-                .enterTaskName("LearnTest")
-                .enterTaskTitle("Positive emotions like curiosity, satisfaction, and liveliness have a massive\n impact on how your brain processes your\n learning.")
-                .enterTaskDescription("Knowing the most effective strategies for how to learn can help you maximize your efforts when you are trying to learn new ideas, concepts, and skills. If you are like many people, your time is limited, so it is important to get the most educational value out of the time you have.\n" +
-                        "\n" +
-                        "Speed of learning is not the only important factor, however. It is important to be able to accurately remember the information that you learn, recall it at a later time, and use it effectively in a wide variety of situations.\n" +
-                        "\n" +
-                        "Knowing how to learn well is not something that happens overnight, but putting a few of these learning techniques into daily practice can help you get more out of your study time.There are a number of different strategies that can boost memory. Basic tips such as improving your focus, avoiding cram sessions, and structuring your study time are good places to start, but there are even more lessons from psychology that can dramatically improve your learning efficiency.\n" +
-                        "\n" +
-                        "Strategies that can help improve your memory include:\n" +
-                        "\n" +
-                        "Getting regular physical exercise, which is linked to improvements in memory and brain health1\n" +
-                        "Spending time socializing with other people\n" +
-                        "Getting enough sleep2\n" +
-                        "Eliminating distractions so you can focus on what you are learning\n" +
-                        "Organizing the information you are studying to make it easier to remember3\n" +
-                        "Using elaborative rehearsal when studying; when you learn something new, spend a few moments describing it to yourself in your own words\n" +
-                        "Using visual aids like photographs, graphs, and charts\n" +
-                        "Reading the information you are studying out loud4\n" +
-                        "For example, you might use general learning techniques like setting aside quiet time to study, rehearsing, and reading information aloud. You might combine this with strategies that can foster better memory, such as exercising and socializing.One sure-fire way to become a more effective learner is to simply keep learning. Research has found that the brain is capable of producing new brain cells, a process known as neurogenesis. However, many of these cells will eventually die unless a person engages in some type of effortful learning.\n" +
-                        "By learning new things, these cells are kept alive and incorporated into brain circuits.5\n" +
-                        "\n" +
-                        "So, if you are learning a new language, it is important to keep practicing the language in order to maintain the gains you have achieved. This \"use-it-or-lose-it\" phenomenon involves a brain process known as \"pruning.\"\n" +
-                        "\n" +
-                        "In pruning, certain pathways in the brain are maintained, while others are eliminated. If you want the new information you just learned to stay put, keep practicing and rehearsing it.Another one of the best ways to learn is to focus on learning in more than one way. For example, instead of just listening to a podcast, which involves auditory learning, find a way to rehearse the information both verbally and visually.\n" +
-                        "\n" +
-                        "This might involve describing what you learned to a friend, taking notes, or drawing a mind map. By learning in more than one way, you’re furth")
+                .uploadImage(imagepath)
+                .enterTaskName(taskName)
+                .enterTaskTitle(taskTitle)
+                .enterTaskDescription(taskDescriptionMore)
                 .chooseChallenge()
                 .clickSave();
         softAssert.assertTrue(enterInvalidData.isContainErrorMessage("Поле 'Опис' може містити мінімум 40 максимум 3000 символів"));
         softAssert.assertAll();
+        TasksService service = new TasksService();
+        TasksEntity task = service.getByName(taskName);
+        Assert.assertNotEquals(task.getId(),1061);
+
     }
 
 
@@ -165,9 +156,9 @@ public class TaskTests extends BaseTestRunner {
         softAssert = new SoftAssert();
         new AddTaskPage(driver)
                 .enterStartDate("2023-01-01")
-                .uploadImage("\\src\\test\\resources\\R.jpeg")
-                .enterTaskName("World Cup task")
-                .enterTaskDescription("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams have competed. The trophy has been won by eight national teams. Brazil have won five times, and they are the only team to have played in every tournament. The other World Cup winners are Germany and Italy, with four titles each; Argentina, France, and inaugural winner Uruguay, with two titles each; and England and Spain, with one title each.")
+                .uploadImage(imagepath)
+                .enterTaskName(taskName)
+                .enterTaskDescription(taskDescription)
                 .chooseChallenge()
                 .clickSave();
         softAssert.assertTrue(enterInvalidTitle.isContainErrorMessage("Поле 'Заголовок' не може бути пустим"));
@@ -177,59 +168,38 @@ public class TaskTests extends BaseTestRunner {
                 .openTasksPage()
                 .clickAddTask()
                 .enterStartDate("2023-01-01")
-                .uploadImage("\\src\\test\\resources\\R.jpeg")
-                .enterTaskName("World Cup task")
+                .uploadImage(imagepath)
+                .enterTaskName(taskName)
                 .enterTaskTitle("ъэы, ผม, Ÿ, ðъэы, ผม, Ÿ, ðъэы, ผม, Ÿ, ðъэы, ผม, Ÿ, ð")
-                .enterTaskDescription("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams have competed. The trophy has been won by eight national teams. Brazil have won five times, and they are the only team to have played in every tournament. The other World Cup winners are Germany and Italy, with four titles each; Argentina, France, and inaugural winner Uruguay, with two titles each; and England and Spain, with one title each.")
+                .enterTaskDescription(taskDescription)
                 .chooseChallenge()
                 .clickSave();
         softAssert.assertTrue(enterInvalidTitle.isContainErrorMessage("Поле 'Заголовок' може містити тільки українські та англійські літери, цифри та спеціальні символи"));
         softAssert = new SoftAssert();
+        String taskTitle =  RandomStringUtils.random(30, true, true);
         new HomePage(driver)
                 .openAdminProfileMenu()
                 .openTasksPage()
                 .clickAddTask()
                 .enterStartDate("2023-03-03")
-                .uploadImage("\\src\\test\\resources\\R.jpeg")
-                .enterTaskName("LearnTest")
-                .enterTaskTitle("As of the 2018 FIFA World Cup, twenty-one final.")
-                .enterTaskDescription("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams have competed. The trophy has been won by eight national teams. Brazil have won five times, and they are the only team to have played in every tournament. The other World Cup winners are Germany and Italy, with four titles each; Argentina, France, and inaugural winner Uruguay, with two titles each; and England and Spain, with one title each.")
+                .uploadImage(imagepath)
+                .enterTaskName(taskName)
+                .enterTaskTitle(taskTitle)
+                .enterTaskDescription(taskDescription)
                 .chooseChallenge()
                 .clickSave();
         softAssert.assertTrue(enterInvalidTitle.isContainErrorMessage("Поле 'Заголовок' може містити мінімум 40 максимум 3000 символів"));
         softAssert = new SoftAssert();
+        String taskTitleMore =  RandomStringUtils.random(3007, true, true);
         new HomePage(driver)
                 .openAdminProfileMenu()
                 .openTasksPage()
                 .clickAddTask()
                 .enterStartDate("2023-03-03")
-                .uploadImage("\\src\\test\\resources\\R.jpeg")
-                .enterTaskName("FIFA World Cup")
-                .enterTaskTitle("Knowing the most effective strategies for how to learn can help you maximize your efforts when you are trying to learn new ideas, concepts, and skills. If you are like many people, your time is limited, so it is important to get the most educational value out of the time you have.\n" +
-                        "\n" +
-                        "Speed of learning is not the only important factor, however. It is important to be able to accurately remember the information that you learn, recall it at a later time, and use it effectively in a wide variety of situations.\n" +
-                        "\n" +
-                        "Knowing how to learn well is not something that happens overnight, but putting a few of these learning techniques into daily practice can help you get more out of your study time.There are a number of different strategies that can boost memory. Basic tips such as improving your focus, avoiding cram sessions, and structuring your study time are good places to start, but there are even more lessons from psychology that can dramatically improve your learning efficiency.\n" +
-                        "\n" +
-                        "Strategies that can help improve your memory include:\n" +
-                        "\n" +
-                        "Getting regular physical exercise, which is linked to improvements in memory and brain health1\n" +
-                        "Spending time socializing with other people\n" +
-                        "Getting enough sleep2\n" +
-                        "Eliminating distractions so you can focus on what you are learning\n" +
-                        "Organizing the information you are studying to make it easier to remember3\n" +
-                        "Using elaborative rehearsal when studying; when you learn something new, spend a few moments describing it to yourself in your own words\n" +
-                        "Using visual aids like photographs, graphs, and charts\n" +
-                        "Reading the information you are studying out loud4\n" +
-                        "For example, you might use general learning techniques like setting aside quiet time to study, rehearsing, and reading information aloud. You might combine this with strategies that can foster better memory, such as exercising and socializing.One sure-fire way to become a more effective learner is to simply keep learning. Research has found that the brain is capable of producing new brain cells, a process known as neurogenesis. However, many of these cells will eventually die unless a person engages in some type of effortful learning.\n" +
-                        "By learning new things, these cells are kept alive and incorporated into brain circuits.5\n" +
-                        "\n" +
-                        "So, if you are learning a new language, it is important to keep practicing the language in order to maintain the gains you have achieved. This \"use-it-or-lose-it\" phenomenon involves a brain process known as \"pruning.\"\n" +
-                        "\n" +
-                        "In pruning, certain pathways in the brain are maintained, while others are eliminated. If you want the new information you just learned to stay put, keep practicing and rehearsing it.Another one of the best ways to learn is to focus on learning in more than one way. For example, instead of just listening to a podcast, which involves auditory learning, find a way to rehearse the information both verbally and visually.\n" +
-                        "\n" +
-                        "This might involve describing what you learned to a friend, taking notes, or drawing a mind map. By learning in more than one way, you’re furth")
-                .enterTaskDescription("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams have competed. The trophy has been won by eight national teams. Brazil have won five times, and they are the only team to have played in every tournament. The other World Cup winners are Germany and Italy, with four titles each; Argentina, France, and inaugural winner Uruguay, with two titles each; and England and Spain, with one title each.")
+                .uploadImage(imagepath)
+                .enterTaskName(taskName)
+                .enterTaskTitle(taskTitleMore)
+                .enterTaskDescription(taskDescription)
                 .chooseChallenge()
                 .clickSave();
         softAssert.assertTrue(enterInvalidTitle.isContainErrorMessage("Поле 'Заголовок' може містити мінімум 40 максимум 3000 символів"));
@@ -253,10 +223,9 @@ public class TaskTests extends BaseTestRunner {
         softAssert = new SoftAssert();
         new AddTaskPage(driver)
                 .enterStartDate("2023-01-01")
-                .uploadImage("\\src\\test\\resources\\R.jpeg")
-                .enterTaskTitle("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams ")
-                .enterTaskDescription("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams have competed. The trophy has been won by eight national teams. Brazil have won five times, and they are the only team to have played in every tournament. The other World Cup winners are Germany and Italy, with four titles each; Argentina, France, and inaugural winner Uruguay, with two titles each; and England and Spain, with one title each.")
-                .chooseChallenge()
+                .uploadImage(imagepath)
+                .enterTaskTitle(taskTitle)
+                .enterTaskDescription(taskDescription)
                 .clickSave();
         softAssert.assertTrue(enterInvalidTitle.isContainErrorMessage("Поле 'Назва' не може бути пустим"));
         softAssert = new SoftAssert();
@@ -265,36 +234,38 @@ public class TaskTests extends BaseTestRunner {
                 .openTasksPage()
                 .clickAddTask()
                 .enterStartDate("2023-01-01")
-                .uploadImage("\\src\\test\\resources\\R.jpeg")
+                .uploadImage(imagepath)
                 .enterTaskName("ъэы; ผม, Ÿ, ð")
-                .enterTaskTitle("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams ")
-                .enterTaskDescription("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams have competed. The trophy has been won by eight national teams. Brazil have won five times, and they are the only team to have played in every tournament. The other World Cup winners are Germany and Italy, with four titles each; Argentina, France, and inaugural winner Uruguay, with two titles each; and England and Spain, with one title each.")
+                .enterTaskTitle(taskTitle)
+                .enterTaskDescription(taskDescription)
                 .chooseChallenge()
                 .clickSave();
         softAssert.assertTrue(enterInvalidTitle.isContainErrorMessage("Поле 'Назва' може містити тільки українські та англійські літери, цифри та спеціальні символи"));
         softAssert = new SoftAssert();
+        String taskName =  RandomStringUtils.random(3, true, true);
         new AddTaskPage(driver)
                 .openAdminProfileMenu()
                 .openTasksPage()
                 .clickAddTask()
                 .enterStartDate("2023-01-01")
-                .uploadImage("\\src\\test\\resources\\R.jpeg")
-                .enterTaskName("Test")
-                .enterTaskTitle("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams ")
-                .enterTaskDescription("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams have competed. The trophy has been won by eight national teams. Brazil have won five times, and they are the only team to have played in every tournament. The other World Cup winners are Germany and Italy, with four titles each; Argentina, France, and inaugural winner Uruguay, with two titles each; and England and Spain, with one title each.")
+                .uploadImage(imagepath)
+                .enterTaskName(taskName)
+                .enterTaskTitle(taskTitle)
+                .enterTaskDescription(taskDescription)
                 .chooseChallenge()
                 .clickSave();
         softAssert.assertTrue(enterInvalidTitle.isContainErrorMessage("Поле 'Назва' може містити мінімум 5 максимум 50 символів"));
         softAssert = new SoftAssert();
+        String taskNameMore =  RandomStringUtils.random(60, true, true);
         new AddTaskPage(driver)
                 .openAdminProfileMenu()
                 .openTasksPage()
                 .clickAddTask()
                 .enterStartDate("2023-01-01")
-                .uploadImage("\\src\\test\\resources\\R.jpeg")
-                .enterTaskName("As of the 2018 FIFA World Cup, twenty-one final tournaments hav")
-                .enterTaskTitle("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams ")
-                .enterTaskDescription("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams have competed. The trophy has been won by eight national teams. Brazil have won five times, and they are the only team to have played in every tournament. The other World Cup winners are Germany and Italy, with four titles each; Argentina, France, and inaugural winner Uruguay, with two titles each; and England and Spain, with one title each.")
+                .uploadImage(imagepath)
+                .enterTaskName(taskNameMore)
+                .enterTaskTitle(taskTitle)
+                .enterTaskDescription(taskDescription)
                 .chooseChallenge()
                 .clickSave();
         softAssert.assertTrue(enterInvalidTitle.isContainErrorMessage("Поле 'Назва' може містити мінімум 5 максимум 50 символів"));
@@ -317,10 +288,10 @@ public class TaskTests extends BaseTestRunner {
         softAssert.assertAll();
         softAssert = new SoftAssert();
         new AddTaskPage(driver)
-                .uploadImage("\\src\\test\\resources\\R.jpeg")
-                .enterTaskName("Task test 2018 FIFA")
-                .enterTaskTitle("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams")
-                .enterTaskDescription("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams have competed. The trophy has been won by eight national teams. Brazil have won five times, and they are the only team to have played in every tournament. The other World Cup winners are Germany and Italy, with four titles each; Argentina, France, and inaugural winner Uruguay, with two titles each; and England and Spain, with one title each.")
+                .uploadImage(imagepath)
+                .enterTaskName(taskName)
+                .enterTaskTitle(taskTitle)
+                .enterTaskDescription(taskDescription)
                 .chooseChallenge()
                 .clickSave();
         softAssert.assertTrue(enterInvalidDate.isContainErrorMessage("Дата початку не може бути відсутня"));
@@ -331,7 +302,7 @@ public class TaskTests extends BaseTestRunner {
         softAssert.assertTrue(enterInvalidDate.isContainErrorMessage("Дата початку має бути в майбутньому"));
         softAssert.assertAll();
         TasksService service = new TasksService();
-        TasksEntity task = service.getByName("Task test 2018 FIFA");
+        TasksEntity task = service.getByName(taskName);
         Assert.assertNull(task);
     }
 
@@ -352,15 +323,15 @@ public class TaskTests extends BaseTestRunner {
         softAssert = new SoftAssert();
         new AddTaskPage(driver)
                 .enterStartDate("2023-03-03")
-                .enterTaskName("Task Without Image")
-                .enterTaskTitle("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams")
-                .enterTaskDescription("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams have competed. The trophy has been won by eight national teams. Brazil have won five times, and they are the only team to have played in every tournament. The other World Cup winners are Germany and Italy, with four titles each; Argentina, France, and inaugural winner Uruguay, with two titles each; and England and Spain, with one title each.")
+                .enterTaskName(taskName)
+                .enterTaskTitle(taskTitle)
+                .enterTaskDescription(taskDescription)
                 .chooseChallenge()
                 .clickSave();
         softAssert.assertTrue(uploadImage.isContainErrorMessage("Фото не може бути пустим"));
         softAssert.assertAll();
         TasksService service = new TasksService();
-        TasksEntity task = service.getByName("Task Without Image");
+        TasksEntity task = service.getByName(taskName);
         Assert.assertNull(task);
     }
 
@@ -372,16 +343,20 @@ public class TaskTests extends BaseTestRunner {
                 .openTasksPage()
                 .clickAddTask()
                 .enterStartDate("2023-03-03")
-                .uploadImage("\\src\\test\\resources\\R.jpeg")
-                .enterTaskName("Task test checking")
-                .enterTaskTitle("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams")
-                .enterTaskDescription("As of the 2018 FIFA World Cup, twenty-one final tournaments have been held and a total of 79 national teams have competed. The trophy has been won by eight national teams. Brazil have won five times, and they are the only team to have played in every tournament. The other World Cup winners are Germany and Italy, with four titles each; Argentina, France, and inaugural winner Uruguay, with two titles each; and England and Spain, with one title each.")
+                .uploadImage(imagepath)
+                .enterTaskName(taskName)
+                .enterTaskTitle(taskTitle)
+                .enterTaskDescription(taskDescription)
                 .chooseChallenge()
                 .clickSave();
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(enterValidData.successMessage("Завдання успішно збережене"));
+        softAssert.assertAll();
+
         TasksService service = new TasksService();
-        TasksEntity task = service.getByName("Task test checking");
+        TasksEntity task = service.getByName(taskName);
         Assert.assertNotNull(task);
-        Assert.assertEquals(task.getChallenge_id(), 424);
+        Assert.assertEquals(task.getId(),1070);
 
 
     }

@@ -88,8 +88,13 @@ public class AddChallengePage extends BasePageWithHeader {
         return new AddChallengePage(driver);
     }
 
-    public boolean successMessage() {
-        return successMessage.isDisplayed();
+    public boolean successMessage(String names) {
+        try {
+            driver.findElement(By.xpath(String.format("//div[@class='ant-message']", names)));
+            return true;
+        } catch (Exception e) {
+            return false;
         }
+    }
     }
 

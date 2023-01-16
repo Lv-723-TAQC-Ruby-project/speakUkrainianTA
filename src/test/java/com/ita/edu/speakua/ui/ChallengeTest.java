@@ -1,9 +1,7 @@
 package com.ita.edu.speakua.ui;
 
 import com.ita.edu.speakua.jdbc.entity.ChallengesEntity;
-import com.ita.edu.speakua.jdbc.entity.TasksEntity;
 import com.ita.edu.speakua.jdbc.services.ChallengesService;
-import com.ita.edu.speakua.jdbc.services.TasksService;
 import com.ita.edu.speakua.ui.Pages.ChallengePО.AddChallengePage;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import io.qameta.allure.Description;
@@ -36,7 +34,7 @@ public class ChallengeTest extends BaseTestRunner {
 
 
     @Description("Add challenge")
-    @Test//(invocationCount = 10)
+    @Test
     public void addChallenge() {
         AddChallengePage addChallengePage = new HomePage(driver)
                 .openAdminProfileMenu()
@@ -57,7 +55,7 @@ public class ChallengeTest extends BaseTestRunner {
                 .enterTitle("ChallengeTest")
                 .enterChallengeDescription("Racing in an event like Red Bull Defiance is an emotional rollercoaster of highs and lows,\n but knowing about the biggest challenges you'll have to face beforehand\n gives you the best chance of making it to the finish.")
                 .saveChallengeClick();
-        softAssert.assertTrue(dataFilled.successMessage());
+        softAssert.assertTrue(dataFilled.successMessage("Челендж успішно додано"));
         softAssert.assertAll();
 
         ChallengesService service = new ChallengesService();

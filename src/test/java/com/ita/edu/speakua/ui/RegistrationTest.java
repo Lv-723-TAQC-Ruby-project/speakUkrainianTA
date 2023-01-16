@@ -30,14 +30,13 @@ public class RegistrationTest extends BaseTestRunner {
                 .openGuestProfileMenu()
                 .openRegistrationModel();
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertAll();
         softAssert.assertEquals(dataSaved.getLastNameInput().getText(),"Войтович","Not empty last name field");
         softAssert.assertEquals(dataSaved.getFirstNameInput().getText(),"Світлана","Not empty first name field");
         softAssert.assertEquals(dataSaved.getPhoneInput().getText(),"671234567","Not empty phone field");
         softAssert.assertEquals(dataSaved.getEmailInput().getText(),"svitlanawhite@gmail.com","Not empty email field");
         softAssert.assertEquals(dataSaved.getPasswordInput().getText(),"12345678","Not empty password field");
         softAssert.assertEquals(dataSaved.getPasswordConfirmInput().getText(),"12345678","Not empty password confirm field");
-
+        softAssert.assertAll();
     }
     @AfterMethod
     public void tearDown() {

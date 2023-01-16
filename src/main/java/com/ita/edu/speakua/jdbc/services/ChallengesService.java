@@ -3,8 +3,6 @@ package com.ita.edu.speakua.jdbc.services;
 import com.ita.edu.speakua.jdbc.dao.ChallengesDTO;
 
 import com.ita.edu.speakua.jdbc.entity.ChallengesEntity;
-
-
 import java.util.List;
 
 public class ChallengesService {
