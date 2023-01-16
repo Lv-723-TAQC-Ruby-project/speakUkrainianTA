@@ -78,10 +78,7 @@ public class AddChallengePage extends BasePageWithHeader {
 
     @Step
     public AddChallengePage uploadChallengePhoto(String image) {
-        ClassLoader classLoader = getClass().getClassLoader();
-        File photo = new File(classLoader.getResource(image).getFile());
-        String absolutePath = photo.getAbsolutePath();
-        uploadPhoto.sendKeys(absolutePath);
+        uploadPhoto.sendKeys(System.getProperty("user.dir")+image);
         return this;
     }
 

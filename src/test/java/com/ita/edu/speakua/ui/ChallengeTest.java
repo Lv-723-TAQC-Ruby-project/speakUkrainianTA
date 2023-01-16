@@ -1,8 +1,13 @@
 package com.ita.edu.speakua.ui;
 
+import com.ita.edu.speakua.jdbc.entity.ChallengesEntity;
+import com.ita.edu.speakua.jdbc.entity.TasksEntity;
+import com.ita.edu.speakua.jdbc.services.ChallengesService;
+import com.ita.edu.speakua.jdbc.services.TasksService;
 import com.ita.edu.speakua.ui.Pages.ChallengePО.AddChallengePage;
 import com.ita.edu.speakua.ui.runners.BaseTestRunner;
 import io.qameta.allure.Description;
+import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -46,16 +51,20 @@ public class ChallengeTest extends BaseTestRunner {
         softAssert.assertAll();
         softAssert = new SoftAssert();
         AddChallengePage dataFilled = new AddChallengePage(driver)
-                .enterSequenceNumber("215")
-                .uploadChallengePhoto("OIP.jpeg")
-                .enterChallengeName("ChallengeTest")
+                .enterSequenceNumber("115")
+                .uploadChallengePhoto("\\src\\test\\resources\\OIP.jpeg")
+                .enterChallengeName("Challenge for emotional people")
                 .enterTitle("ChallengeTest")
                 .enterChallengeDescription("Racing in an event like Red Bull Defiance is an emotional rollercoaster of highs and lows,\n but knowing about the biggest challenges you'll have to face beforehand\n gives you the best chance of making it to the finish.")
                 .saveChallengeClick();
-
-
         softAssert.assertTrue(dataFilled.successMessage());
         softAssert.assertAll();
+
+        ChallengesService service = new ChallengesService();
+        ChallengesEntity challenge = service.getByName("Challenge for emotional people");
+        Assert.assertNotNull(challenge);
+        Assert.assertEquals(challenge.getName(), "Challenge for emotional people");
+
     }
 
     @AfterClass
