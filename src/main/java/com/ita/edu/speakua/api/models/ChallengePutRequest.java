@@ -1,9 +1,11 @@
 package com.ita.edu.speakua.api.models;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder(toBuilder = true)
 @AllArgsConstructor
 public class ChallengePutRequest {
 
