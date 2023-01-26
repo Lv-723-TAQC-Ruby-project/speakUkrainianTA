@@ -13,6 +13,8 @@ public class ChallengesEntity {
     public static final String SELECT_FROM_CHALLENGES_WHERE_DESCRIPTION_IS = "SELECT * FROM challenges WHERE DESCRIPTION = '%s';";
     public static final String SELECT_ALL = "SELECT * FROM challenges;";
 
+    public static final String SELECT_SORT_NUMBERS = "SELECT sort_number FROM challenges;";
+
     private long id;
     private String description;
     private boolean is_active;

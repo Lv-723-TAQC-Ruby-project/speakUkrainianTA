@@ -18,5 +18,10 @@ public class ChallengesService {
     public ChallengesEntity getByName(String name) {
         return challengesDTO.selectByName(name);
     }
+
+    public int getUniqueNumber() {
+        return challengesDTO.getUniqueSortNumber();
+    }
+
 }
 

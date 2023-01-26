@@ -2,8 +2,8 @@ package com.ita.edu.speakua.api;
 
 import com.ita.edu.speakua.api.clients.ChallengeClient;
 import com.ita.edu.speakua.api.clients.SignInClient;
-import com.ita.edu.speakua.api.clients.UserClient;
 import com.ita.edu.speakua.api.models.*;
+import com.ita.edu.speakua.jdbc.services.ChallengesService;
 import com.ita.edu.speakua.utils.ConfigProperties;
 import io.qameta.allure.Description;
 import org.testng.annotations.Test;
@@ -29,15 +29,17 @@ public class ChallengeTest {
         softAssert.assertAll();
     }
 
-    @Description("success SingIn")
+    @Description("success create Challenge")
     @Test
-    public void sPost1() {
+    public void createChallenge() {
         SignInClient clientSI = new SignInClient();
         SingInRequest credential = new SingInRequest(configProperties.getAdminEmail(), configProperties.getAdminPassword());
         SingInResponse responseSI = clientSI.post(credential);
         ChallengeClient client = new ChallengeClient(responseSI.getAccessToken());
-        int sortNumber = 111; // ToDo get DB
-        ChallengPostRequest requestBody = new ChallengPostRequest("name1",
+        ChallengesService service = new ChallengesService();
+        int sortNumber = service.getUniqueNumber();
+
+                ChallengPostRequest requestBody = new ChallengPostRequest("name1",
                 "title",
                 "stringstringstringstringstringstringstri",
                 "https://docs.google.com/forms/d/e/145/viewform?embedded=true",

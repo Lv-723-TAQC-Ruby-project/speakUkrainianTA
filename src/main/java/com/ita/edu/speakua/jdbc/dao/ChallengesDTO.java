@@ -4,6 +4,7 @@ import com.ita.edu.speakua.jdbc.entity.ChallengesEntity;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Collections;
 import java.util.List;
 
 public class ChallengesDTO {
@@ -35,5 +36,23 @@ public class ChallengesDTO {
             return null;
         }
         return ChallengesEntity.getChallenges(rows).get(0);
+    }
+
+    public int getUniqueSortNumber(){
+        Statement statement = ManagerDAO.getInstance().getStatement();
+        List<Integer> rows = null;
+        try {
+            ResultSet resultSet = statement.executeQuery(ChallengesEntity.SELECT_SORT_NUMBERS);
+            rows = ManagerDAO.getInstance().parseResulColumn(resultSet);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        ManagerDAO.closeStatement(statement);
+        if(rows.size() == 0) {
+            return 0;
+        }
+        Collections.sort(rows);
+        int lastNumber = rows.get(rows.size() - 1);
+        return lastNumber+1;
     }
 }
