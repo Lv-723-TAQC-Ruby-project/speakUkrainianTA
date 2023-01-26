@@ -118,6 +118,7 @@ public class ManagerDAO {
 
     public List<Integer> parseResulColumn(ResultSet resultSet) throws SQLException {
         List<Integer> result = new ArrayList<>();
+
         while (resultSet.next()) {
             int n = resultSet.getInt("SORT_NUMBER");
             result.add(n);

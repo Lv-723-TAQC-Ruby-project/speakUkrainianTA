@@ -48,6 +48,7 @@ public class ChallengesDTO {
             throw new RuntimeException(e);
         }
         ManagerDAO.closeStatement(statement);
+
         if(rows.size() == 0) {
             return 0;
         }

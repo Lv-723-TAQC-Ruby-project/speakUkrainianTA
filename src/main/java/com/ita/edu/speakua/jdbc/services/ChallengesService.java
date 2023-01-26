@@ -19,6 +19,7 @@ public class ChallengesService {
         return challengesDTO.selectByName(name);
     }
 
+
     public int getUniqueNumber() {
         return challengesDTO.getUniqueSortNumber();
     }

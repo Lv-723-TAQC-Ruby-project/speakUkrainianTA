@@ -38,8 +38,7 @@ public class ChallengeTest {
         ChallengeClient client = new ChallengeClient(responseSI.getAccessToken());
         ChallengesService service = new ChallengesService();
         int sortNumber = service.getUniqueNumber();
-
-                ChallengPostRequest requestBody = new ChallengPostRequest("name1",
+        ChallengPostRequest requestBody = new ChallengPostRequest("name1",
                 "title",
                 "stringstringstringstringstringstringstri",
                 "https://docs.google.com/forms/d/e/145/viewform?embedded=true",
