@@ -52,7 +52,7 @@ public class MyTest {
         ClubsService service = new ClubsService();
         ClubsEntity club = service.getByRatingDSC().get(0);
         Assert.assertNotNull(club);
-        Assert.assertEquals(club.getId(), 1);
+        Assert.assertEquals(club.getId(), 860);
     }
 
 }
