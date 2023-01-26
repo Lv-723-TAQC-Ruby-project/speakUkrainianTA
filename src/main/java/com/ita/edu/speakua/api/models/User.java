@@ -1,6 +1,7 @@
 package com.ita.edu.speakua.api.models;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 @Builder(toBuilder = true)
@@ -16,3 +17,4 @@ public class User {
     private String urlLogo;
     private Boolean status;
 }
+

@@ -21,6 +21,7 @@ public class LoginTest {
         softAssert.assertEquals(response.getRoleName(), "ROLE_ADMIN");
         softAssert.assertEquals(response.getEmail(), configProperties.getAdminEmail());
         softAssert.assertNotNull(response.getAccessToken());
+        System.out.println(response.getAccessToken());
         softAssert.assertAll();
     }
 }

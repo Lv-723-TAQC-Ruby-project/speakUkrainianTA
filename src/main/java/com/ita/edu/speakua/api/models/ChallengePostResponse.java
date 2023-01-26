@@ -12,7 +12,7 @@ public class ChallengePostResponse {
     private String picture;
     private int sortNumber;
     private Boolean isActive;
-    private User user;
+    private UserChallenge user;
 
 }
 

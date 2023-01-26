@@ -16,7 +16,7 @@ public class ChallengeTest {
     @Test
     public void badPost1() {
         ChallengeClient client = new ChallengeClient();
-        ChallengPostRequest requestBody = new ChallengPostRequest("name",
+        ChallengePostRequest requestBody = new ChallengePostRequest("name",
                 "title",
                 "description",
                 "https://docs.google.com/forms/d/e/145/viewform?embedded=true",
@@ -38,7 +38,7 @@ public class ChallengeTest {
         ChallengeClient client = new ChallengeClient(responseSI.getAccessToken());
         ChallengesService service = new ChallengesService();
         int sortNumber = service.getUniqueNumber();
-        ChallengPostRequest requestBody = new ChallengPostRequest("name1",
+        ChallengePostRequest requestBody = new ChallengePostRequest("name1",
                 "title",
                 "stringstringstringstringstringstringstri",
                 "https://docs.google.com/forms/d/e/145/viewform?embedded=true",

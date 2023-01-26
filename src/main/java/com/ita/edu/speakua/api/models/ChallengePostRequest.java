@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class ChallengPostRequest {
+public class ChallengePostRequest {
 
     private String name;
     private String title;

@@ -1,10 +1,9 @@
 package com.ita.edu.speakua.api.clients;
 
-import com.ita.edu.speakua.api.models.ChallengPostRequest;
+import com.ita.edu.speakua.api.models.ChallengePostRequest;
 import com.ita.edu.speakua.api.models.ChallengePostResponse;
 import com.ita.edu.speakua.api.models.ChallengePutRequest;
 import com.ita.edu.speakua.api.models.ErrorResponse;
-import io.restassured.response.Response;
 
 public class ChallengeClient extends BaseClient {
     private String token;
@@ -15,14 +14,14 @@ public class ChallengeClient extends BaseClient {
         super();
         this.token = token;
     }
-    public ErrorResponse badPost(ChallengPostRequest request){
+    public ErrorResponse badPost(ChallengePostRequest request){
         return prepareRequest()
                 .body(request)
                 .when()
                 .post("/api/challenge")
                 .as(ErrorResponse.class);
     }
-    public ChallengePostResponse successPost(ChallengPostRequest request){
+    public ChallengePostResponse successPost(ChallengePostRequest request){
         return prepareRequest()
                 .header("Authorization", "Bearer " + token)
                 .body(request)
