@@ -1,30 +1,35 @@
 package com.ita.edu.speakua.api;
 
-import com.ita.edu.speakua.api.clients.ChallengeClient;
 import com.ita.edu.speakua.api.clients.ClubClient;
 import com.ita.edu.speakua.api.clients.SignInClient;
 import com.ita.edu.speakua.api.models.*;
-import com.ita.edu.speakua.jdbc.services.ChallengesService;
 import com.ita.edu.speakua.utils.ConfigProperties;
 import io.qameta.allure.Description;
+import io.restassured.response.Response;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
+
 import java.util.List;
 
 public class ClubTest {
     protected static final ConfigProperties configProperties = new ConfigProperties();
+    private ClubClient client;
+
+    @BeforeClass
+    public void beforeClass() {
+        SignInClient clientSI = new SignInClient();
+        SingInRequest credential = new SingInRequest(configProperties.getAdminEmail(), configProperties.getAdminPassword());
+        SingInResponse responseSI = clientSI.post(credential);
+        client = new ClubClient(responseSI.getAccessToken());
+    }
+
 
     @Description("Error creating club")
     @Test
     public void badPost() {
-        SignInClient clientSI = new SignInClient();
-        SingInRequest credential = new SingInRequest(configProperties.getAdminEmail(), configProperties.getAdminPassword());
-        SingInResponse responseSI = clientSI.post(credential);
-        ClubClient client = new ClubClient(responseSI.getAccessToken());
         List<String> categoriesName = new ArrayList<String>() {{
             add("Вокальна студія, музика, музичні інструменти");
         } };
@@ -66,7 +71,7 @@ public class ClubTest {
                 0,
                 0
                 );
-        ErrorResponse response = client.badPost(requestBody);
+        ErrorResponse response = this.client.badPost(requestBody);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(response.getStatus(), 400);
         softAssert.assertEquals(response.getMessage(), "Помилка під час парсингу опису. Неправильний JSON формат");
