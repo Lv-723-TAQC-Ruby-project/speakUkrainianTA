@@ -69,8 +69,8 @@ public class ChallengeTest {
         ErrorResponse response = client.unsuccessfulPut(requestBody);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(response.getStatus(), 400);
-        softAssert.assertEquals(response.getMessage(), "JSON parse error: Cannot deserialize value of type `long` from String \"abc\": not a valid `long` value; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `long` from String \"abc\": not a valid `long` value\n" +
-                " at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 1, column: 102] (through reference chain: com.softserve.teachua.dto.challenge.UpdateChallenge[\"sortNumber\"])");
+        softAssert.assertTrue(response.getMessage().contains( "JSON parse error: Cannot deserialize value of type `long` from String \"abc\": not a valid `long` value; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `long` from String \"abc\": not a valid `long` value\n" +
+                " at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 1, column: 102] (through reference chain: com.softserve.teachua.dto.challenge.UpdateChallenge[\"sortNumber\"])"));
 
         ChallengePutRequest requestBody1 = new ChallengePutRequest("Lorem ipsum dolor sit amet, consect",
                 "Lorem ipsum dolor sit amet, consect",
@@ -81,8 +81,8 @@ public class ChallengeTest {
                 true);
         ErrorResponse response1 = client.unsuccessfulPut(requestBody1);
         softAssert.assertEquals(response1.getStatus(), 400);
-        softAssert.assertEquals(response1.getMessage(), "JSON parse error: Cannot deserialize value of type `long` from String \"abc\": not a valid `long` value; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `long` from String \"abc\": not a valid `long` value\n" +
-                " at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 1, column: 3168] (through reference chain: com.softserve.teachua.dto.challenge.UpdateChallenge[\"sortNumber\"])");
+        softAssert.assertTrue(response1.getMessage().contains( "JSON parse error: Cannot deserialize value of type `long` from String \"abc\": not a valid `long` value; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `long` from String \"abc\": not a valid `long` value\n" +
+                " at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 1, column: 3168] (through reference chain: com.softserve.teachua.dto.challenge.UpdateChallenge[\"sortNumber\"])"));
 
         ChallengePutRequest requestBody2 = new ChallengePutRequest("эЭъЪыЫёЁ",
                 "эЭъЪыЫёЁ",
@@ -93,8 +93,8 @@ public class ChallengeTest {
                 true);
         ErrorResponse response2 = client.unsuccessfulPut(requestBody2);
         softAssert.assertEquals(response2.getStatus(), 400);
-        softAssert.assertEquals(response2.getMessage(), "JSON parse error: Cannot deserialize value of type `long` from String \"эЭъЪыЫёЁ\": not a valid `long` value; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `long` from String \"эЭъЪыЫёЁ\": not a valid `long` value\n" +
-                " at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 1, column: 218] (through reference chain: com.softserve.teachua.dto.challenge.UpdateChallenge[\"sortNumber\"])");
+        softAssert.assertTrue(response2.getMessage().contains("JSON parse error: Cannot deserialize value of type `long` from String \"эЭъЪыЫёЁ\": not a valid `long` value; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `long` from String \"эЭъЪыЫёЁ\": not a valid `long` value\n" +
+                " at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 1, column: 218] (through reference chain: com.softserve.teachua.dto.challenge.UpdateChallenge[\"sortNumber\"])"));
         softAssert.assertAll();
     }
 

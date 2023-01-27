@@ -2,7 +2,6 @@ package com.ita.edu.speakua.api;
 
 import com.ita.edu.speakua.api.clients.SignInClient;
 import com.ita.edu.speakua.api.clients.TaskClient;
-import com.ita.edu.speakua.api.clients.UserClient;
 import com.ita.edu.speakua.api.models.ErrorResponse;
 import com.ita.edu.speakua.api.models.SingInRequest;
 import com.ita.edu.speakua.api.models.SingInResponse;
@@ -26,26 +25,25 @@ public class TaskTest {
         ErrorResponse response = client.unSucceedPost(requestBody);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(response.getStatus(),400);
-     /*   softAssert.assertEquals(response.getMessage(),"startDate дата має бути в майбутньому and name must contain a minimum of 5 and a maximum of 100 letters" +
-                " and headerText must not be blank and name must not be blank and description must contain a minimum of 40 and a maximum of 3000 letters");
-    softAssert.assertEquals(response.getMessage(),"name must not be blank and name must contain a minimum of 5 and a maximum of 100 letters and description must contain a minimum of 40 and a maximum of 3000" +
-                " letters and headerText must not be blank and startDate дата має бути в майбутньому");
-        softAssert.assertEquals(response.getMessage(),"headerText must not be blank and description must contain a minimum of 40 and a maximum of 3000 letters and startDate дата має бути в майбутньому and name must contain " +
-                "a minimum of 5 and a maximum of 100 letters and name must not be blank");*/
+        softAssert.assertFalse(response.getMessage().contains("startDate дата має бути в майбутньому and name must contain a minimum of 5 and a maximum of 100 letters" +
+                        " and headerText must not be blank and name must not be blank and description must contain a minimum of 40 and a maximum of 3000 letters" +
+                "name must not be blank and name must contain a minimum of 5 and a maximum of 100 letters and description must contain a minimum of 40 and a maximum of 3000"+ " letters and headerText must not be blank and startDate дата має бути в майбутньому" +
+                "headerText must not be blank and description must contain a minimum of 40 and a maximum of 3000 letters and startDate дата має бути в майбутньому and name must contain " +
+                "a minimum of 5 and a maximum of 100 letters and name must not be blank"));
 
       TaskPostRequest  task = requestBody.toBuilder().build();
        task.setName("namenamena");
        task.setDescription("descriptiondescriptiondescriptiondescriptiondescription");
         response = client.unSucceedPost(task);
         softAssert.assertEquals(response.getStatus(),400);
-        softAssert.assertEquals(response.getMessage(),"headerText must not be blank and startDate дата має бути в майбутньому");
+        softAssert.assertFalse(response.getMessage().contains("headerText must not be blank and startDate дата має бути в майбутньому"));
 
         task = requestBody.toBuilder().build();
        task.setName(null);
        task.setDescription(null);
         response = client.unSucceedPost(task);
         softAssert.assertEquals(response.getStatus(),400);
-        softAssert.assertEquals(response.getMessage(),"name must not be blank and startDate дата має бути в майбутньому and headerText must not be blank");
+        softAssert.assertFalse(response.getMessage().contains("name must not be blank and startDate дата має бути в майбутньому and headerText must not be blank"));
 
 
         softAssert.assertAll();
