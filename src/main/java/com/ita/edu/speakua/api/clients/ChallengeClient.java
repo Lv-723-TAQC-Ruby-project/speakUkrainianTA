@@ -1,9 +1,6 @@
 package com.ita.edu.speakua.api.clients;
 
-import com.ita.edu.speakua.api.models.ChallengePostRequest;
-import com.ita.edu.speakua.api.models.ChallengePostResponse;
-import com.ita.edu.speakua.api.models.ChallengePutRequest;
-import com.ita.edu.speakua.api.models.ErrorResponse;
+import com.ita.edu.speakua.api.models.*;
 
 public class ChallengeClient extends BaseClient {
     private String token;
@@ -37,5 +34,13 @@ public class ChallengeClient extends BaseClient {
                 .when()
                 .put("/api/challenge/236")
                 .as(ErrorResponse.class);
+    }
+
+    public ChallengeDeleteResponse successfulDelete(){
+        return prepareRequest()
+                .header("Authorization", "Bearer " + token)
+                .when()
+                .delete("/api/challenge/409")
+                .as(ChallengeDeleteResponse.class);
     }
 }

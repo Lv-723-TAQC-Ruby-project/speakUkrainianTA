@@ -1,13 +1,12 @@
 package com.ita.edu.speakua.api;
 
 import com.ita.edu.speakua.api.clients.ChallengeClient;
-import com.ita.edu.speakua.api.clients.ClubClient;
 import com.ita.edu.speakua.api.clients.SignInClient;
-import com.ita.edu.speakua.api.clients.UserClient;
 import com.ita.edu.speakua.api.models.*;
 import com.ita.edu.speakua.jdbc.services.ChallengesService;
 import com.ita.edu.speakua.utils.ConfigProperties;
 import io.qameta.allure.Description;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -166,4 +165,11 @@ public class ChallengeTest {
                 "a minimum of 5 and a maximum of 30 letters and name must not be blank and title must contain a minimum of 5 and a maximum of 100 letters"));
     softAssert.assertAll();
     }
+
+    @Description("success delete Challenge")
+    @Test
+        public void DeleteChallenge() {
+        ChallengeDeleteResponse response = client.successfulDelete();
+        Assert.assertEquals(response.getId(), 409);
+        }
 }
