@@ -96,9 +96,9 @@ public class UserTest {
         softAssert.assertEquals(response.getRoleName(),"ROLE_USER");
 
         user = requestBody.toBuilder().build();
-        user.setRoleName("ROLE_MANAGER");
+        user.setRoleName("ROLE_ADMIN");
         response = client.successfulChanges(user);
-        softAssert.assertEquals(response.getRoleName(),"ROLE_MANAGER");
+        softAssert.assertEquals(response.getRoleName(),"ROLE_ADMIN");
 softAssert.assertAll();
 
     }
