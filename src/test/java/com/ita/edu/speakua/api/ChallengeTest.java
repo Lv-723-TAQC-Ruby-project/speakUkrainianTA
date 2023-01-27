@@ -166,10 +166,17 @@ public class ChallengeTest {
     softAssert.assertAll();
     }
 
-    @Description("success delete Challenge")
+    @Description("success create and delete Challenge")
     @Test
-        public void DeleteChallenge() {
-        ChallengeDeleteResponse response = client.successfulDelete();
-        Assert.assertEquals(response.getId(), 409);
+        public void SuccessCreateAndDeleteChallenge() {
+        ChallengePostRequest requestBody = new ChallengePostRequest("name for delete",
+                "title for delete",
+                "stringstringstringstringstringstringstri",
+                "https://docs.google.com/forms/d/e/145/viewform?embedded=true",
+                "/upload/1/1.png",6861);
+        ChallengePostResponse response = client.successPost(requestBody);
+        int idChallenge = response.getId();
+        ChallengeDeleteResponse responseForDelete = client.successfulDelete(idChallenge);
+        Assert.assertEquals(responseForDelete.getId(), idChallenge);
         }
 }

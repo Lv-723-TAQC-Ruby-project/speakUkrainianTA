@@ -36,14 +36,15 @@ public class ChallengeClient extends BaseClient {
                 .as(ErrorResponse.class);
     }
 
-<<<<<<< HEAD
-    public ChallengeDeleteResponse successfulDelete(){
+
+    public ChallengeDeleteResponse successfulDelete(int idChallenge) {
         return prepareRequest()
                 .header("Authorization", "Bearer " + token)
                 .when()
-                .delete("/api/challenge/409")
+                .delete("/api/challenge/" +idChallenge )
                 .as(ChallengeDeleteResponse.class);
-=======
+    }
+
     public ChallengePutResponse successPut(ChallengePutRequest request, int idChallenge){
         return prepareRequest()
                 .header("Authorization", "Bearer " + token)
@@ -51,7 +52,5 @@ public class ChallengeClient extends BaseClient {
                 .when()
                 .put("/api/challenge/" +idChallenge)
                 .as(ChallengePutResponse.class);
-
->>>>>>> 79c5220a746154911ac064e6d3734c62fbacfe36
     }
 }
