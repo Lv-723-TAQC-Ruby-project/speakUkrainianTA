@@ -97,4 +97,25 @@ public class ChallengeTest {
                 " at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 1, column: 218] (through reference chain: com.softserve.teachua.dto.challenge.UpdateChallenge[\"sortNumber\"])");
         softAssert.assertAll();
     }
+
+    @Description("Edit Challenge with valid data")
+    @Test
+    public void validChallengeEdit() {
+        SignInClient signInClient = new SignInClient();
+        SingInRequest credentials = new SingInRequest(configProperties.getAdminEmail(), configProperties.getAdminPassword());
+        SingInResponse responseSI = signInClient.post(credentials);
+        ChallengeClient client = new ChallengeClient(responseSI.getAccessToken());
+        ChallengePutRequest requestBody = new ChallengePutRequest("Example name",
+                "Example title",
+                "Lorem ipsum dolor sit amet, consectetuer adipiscin",
+                "https://docs.google.com/forms/d/e/236/viewform?embedded=true",
+                "/upload/test/test.png",
+                "1",
+                true);
+        ErrorResponse response = client.unsuccessfulPut(requestBody);
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(response.getStatus(), 401);
+        softAssert.assertEquals(response.getMessage(), "You have no necessary permissions (role)");
+        softAssert.assertAll();
+    }
 }
