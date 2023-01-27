@@ -16,9 +16,9 @@ public class ChallengeTest {
     @Test
     public void badPost1() {
         ChallengeClient client = new ChallengeClient();
-        ChallengePostRequest requestBody = new ChallengePostRequest("name",
+        ChallengePostRequest requestBody = new ChallengePostRequest("name123",
                 "title",
-                "description",
+                "descriptiondescriptiondescriptiondescriptiondescription",
                 "https://docs.google.com/forms/d/e/145/viewform?embedded=true",
                 "/upload/1/1.png",
                 0);
@@ -101,10 +101,7 @@ public class ChallengeTest {
     @Description("Edit Challenge with valid data")
     @Test
     public void validChallengeEdit() {
-        SignInClient signInClient = new SignInClient();
-        SingInRequest credentials = new SingInRequest(configProperties.getAdminEmail(), configProperties.getAdminPassword());
-        SingInResponse responseSI = signInClient.post(credentials);
-        ChallengeClient client = new ChallengeClient(responseSI.getAccessToken());
+        ChallengeClient client = new ChallengeClient();
         ChallengePutRequest requestBody = new ChallengePutRequest("Example name",
                 "Example title",
                 "Lorem ipsum dolor sit amet, consectetuer adipiscin",
