@@ -1,12 +1,9 @@
 package com.ita.edu.speakua.api.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-@Builder(toBuilder = true)
+
 @Data
-@AllArgsConstructor
-public class User {
+public class UserResponse {
     private int id;
     private String email;
     private String firstName;
@@ -14,6 +11,5 @@ public class User {
     private String phone;
     private String roleName;
     private String urlLogo;
-    private Boolean status;
+    private String status;
 }
-

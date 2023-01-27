@@ -2,24 +2,29 @@ package com.ita.edu.speakua.api;
 
 import com.ita.edu.speakua.api.clients.SignInClient;
 import com.ita.edu.speakua.api.clients.UserClient;
-import com.ita.edu.speakua.api.models.ErrorResponse;
-import com.ita.edu.speakua.api.models.SingInRequest;
-import com.ita.edu.speakua.api.models.SingInResponse;
-import com.ita.edu.speakua.api.models.User;
+import com.ita.edu.speakua.api.models.*;
+import com.ita.edu.speakua.utils.ConfigProperties;
 import io.qameta.allure.Description;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 public class UserTest {
+    protected static final ConfigProperties configProperties = new ConfigProperties();
 
+    private UserClient client;
+
+    @BeforeClass
+    public void beforeClass() {
+        SignInClient clientSI = new SignInClient();
+        SingInRequest credential = new SingInRequest(configProperties.getAdminEmail(), configProperties.getAdminPassword());
+        SingInResponse responseSI = clientSI.post(credential);
+        client = new UserClient(responseSI.getAccessToken());
+    }
     @Description("User with invalid data cannot save changes")
     @Test
     public void invalidNameRequest(){
-        SignInClient clientSI = new SignInClient();
-        SingInRequest credential = new SingInRequest("soyec48727@busantei.com", "12345678");
-        SingInResponse responseSI = clientSI.post(credential);
-        UserClient client = new UserClient(responseSI.getAccessToken());
-        User requestBody = new User(203,
+        UserRequest requestBody = new UserRequest(203,
                 "soyec48727@busantei.com",
                 "Nastia1234",
                 "Kukh",
@@ -32,7 +37,7 @@ public class UserTest {
         softAssert.assertEquals(response.getStatus(),400);
         softAssert.assertEquals(response.getMessage(),"\"firstName\" can`t contain numbers");
 
-        User user = requestBody.toBuilder().build();
+        UserRequest user = requestBody.toBuilder().build();
         user.setFirstName("NastiaNastiaNastiaNastiaNastia");
         response = client.badPut(user);
         softAssert.assertEquals(response.getStatus(),400);
@@ -62,6 +67,39 @@ public class UserTest {
         softAssert.assertEquals(response.getStatus(),400);
         softAssert.assertEquals(response.getMessage(),"\"lastName\" can`t contain numbers");
         softAssert.assertAll();
+
+    }
+
+    @Description("The user or manager can change their role")
+    @Test
+    public void successUserChanges(){
+        UserRequest requestBody = new UserRequest(1,
+                "admin@gmail.com",
+                "Admin",
+                "Admin",
+                "0689543242",
+                "ROLE_MANAGER",
+                null,
+                true);
+        UserResponse response = client.successfulChanges(requestBody);
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(response.getId(),1);
+        softAssert.assertEquals(response.getEmail(),"admin@gmail.com");
+        softAssert.assertEquals(response.getFirstName(),"Admin");
+        softAssert.assertEquals(response.getLastName(),"Admin");
+        softAssert.assertEquals(response.getPhone(),"0689543242");
+        softAssert.assertEquals(response.getRoleName(),"ROLE_MANAGER");
+
+        UserRequest user = requestBody.toBuilder().build();
+        user.setRoleName("ROLE_USER");
+        response = client.successfulChanges(user);
+        softAssert.assertEquals(response.getRoleName(),"ROLE_USER");
+
+        user = requestBody.toBuilder().build();
+        user.setRoleName("ROLE_MANAGER");
+        response = client.successfulChanges(user);
+        softAssert.assertEquals(response.getRoleName(),"ROLE_MANAGER");
+softAssert.assertAll();
 
     }
 }

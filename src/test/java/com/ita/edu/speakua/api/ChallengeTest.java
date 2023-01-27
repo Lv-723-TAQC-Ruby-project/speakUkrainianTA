@@ -109,6 +109,7 @@ public class ChallengeTest {
                 "/upload/test/test.png",
                 "1",
                 true);
+
         ErrorResponse response = client.unsuccessfulPut(requestBody);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(response.getStatus(), 401);
