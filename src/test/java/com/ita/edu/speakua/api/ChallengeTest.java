@@ -1,16 +1,28 @@
 package com.ita.edu.speakua.api;
 
 import com.ita.edu.speakua.api.clients.ChallengeClient;
+import com.ita.edu.speakua.api.clients.ClubClient;
 import com.ita.edu.speakua.api.clients.SignInClient;
+import com.ita.edu.speakua.api.clients.UserClient;
 import com.ita.edu.speakua.api.models.*;
 import com.ita.edu.speakua.jdbc.services.ChallengesService;
 import com.ita.edu.speakua.utils.ConfigProperties;
 import io.qameta.allure.Description;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 public class ChallengeTest {
     protected static final ConfigProperties configProperties = new ConfigProperties();
+    private ChallengeClient client;
+
+    @BeforeClass
+    public void beforeClass() {
+        SignInClient clientSI = new SignInClient();
+        SingInRequest credential = new SingInRequest(configProperties.getAdminEmail(), configProperties.getAdminPassword());
+        SingInResponse responseSI = clientSI.post(credential);
+        client = new ChallengeClient(responseSI.getAccessToken());
+    }
 
     @Description("success SingIn")
     @Test
@@ -32,10 +44,6 @@ public class ChallengeTest {
     @Description("success create Challenge")
     @Test
     public void createChallenge() {
-        SignInClient clientSI = new SignInClient();
-        SingInRequest credential = new SingInRequest(configProperties.getAdminEmail(), configProperties.getAdminPassword());
-        SingInResponse responseSI = clientSI.post(credential);
-        ChallengeClient client = new ChallengeClient(responseSI.getAccessToken());
         ChallengesService service = new ChallengesService();
         int sortNumber = service.getUniqueNumber();
         ChallengePostRequest requestBody = new ChallengePostRequest("name1",
@@ -55,10 +63,6 @@ public class ChallengeTest {
     @Description("Edit Challenge with invalid data")
     @Test
     public void invalidChallengeEdit() {
-        SignInClient clientSI = new SignInClient();
-        SingInRequest credential = new SingInRequest(configProperties.getAdminEmail(), configProperties.getAdminPassword());
-        SingInResponse responseSI = clientSI.post(credential);
-        ChallengeClient client = new ChallengeClient(responseSI.getAccessToken());
         ChallengePutRequest requestBody = new ChallengePutRequest("nam",
                 "tit",
                 "des",
@@ -69,31 +73,31 @@ public class ChallengeTest {
         ErrorResponse response = client.unsuccessfulPut(requestBody);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(response.getStatus(), 400);
-        softAssert.assertTrue(response.getMessage().contains( "JSON parse error: Cannot deserialize value of type `long` from String \"abc\": not a valid `long` value; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `long` from String \"abc\": not a valid `long` value\n" +
+        softAssert.assertTrue(response.getMessage().contains("JSON parse error: Cannot deserialize value of type `long` from String \"abc\": not a valid `long` value; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `long` from String \"abc\": not a valid `long` value\n" +
                 " at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 1, column: 102] (through reference chain: com.softserve.teachua.dto.challenge.UpdateChallenge[\"sortNumber\"])"));
 
-        ChallengePutRequest requestBody1 = new ChallengePutRequest("Lorem ipsum dolor sit amet, consect",
+        requestBody = new ChallengePutRequest("Lorem ipsum dolor sit amet, consect",
                 "Lorem ipsum dolor sit amet, consect",
                 "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eu",
                 null,
                 "abc",
                 "abc",
                 true);
-        ErrorResponse response1 = client.unsuccessfulPut(requestBody1);
-        softAssert.assertEquals(response1.getStatus(), 400);
-        softAssert.assertTrue(response1.getMessage().contains( "JSON parse error: Cannot deserialize value of type `long` from String \"abc\": not a valid `long` value; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `long` from String \"abc\": not a valid `long` value\n" +
+        response = client.unsuccessfulPut(requestBody);
+        softAssert.assertEquals(response.getStatus(), 400);
+        softAssert.assertTrue(response.getMessage().contains("JSON parse error: Cannot deserialize value of type `long` from String \"abc\": not a valid `long` value; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `long` from String \"abc\": not a valid `long` value\n" +
                 " at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 1, column: 3168] (through reference chain: com.softserve.teachua.dto.challenge.UpdateChallenge[\"sortNumber\"])"));
 
-        ChallengePutRequest requestBody2 = new ChallengePutRequest("эЭъЪыЫёЁ",
+        requestBody = new ChallengePutRequest("эЭъЪыЫёЁ",
                 "эЭъЪыЫёЁ",
                 "эЭъЪыЫёЁэЭъЪыЫёЁэЭъЪыЫёЁэЭъЪыЫёЁэЭъЪыЫёЁ",
                 null,
                 "эЭъЪыЫёЁ",
                 "эЭъЪыЫёЁ",
                 true);
-        ErrorResponse response2 = client.unsuccessfulPut(requestBody2);
-        softAssert.assertEquals(response2.getStatus(), 400);
-        softAssert.assertTrue(response2.getMessage().contains("JSON parse error: Cannot deserialize value of type `long` from String \"эЭъЪыЫёЁ\": not a valid `long` value; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `long` from String \"эЭъЪыЫёЁ\": not a valid `long` value\n" +
+        response = client.unsuccessfulPut(requestBody);
+        softAssert.assertEquals(response.getStatus(), 400);
+        softAssert.assertTrue(response.getMessage().contains("JSON parse error: Cannot deserialize value of type `long` from String \"эЭъЪыЫёЁ\": not a valid `long` value; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `long` from String \"эЭъЪыЫёЁ\": not a valid `long` value\n" +
                 " at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 1, column: 218] (through reference chain: com.softserve.teachua.dto.challenge.UpdateChallenge[\"sortNumber\"])"));
         softAssert.assertAll();
     }
@@ -115,5 +119,51 @@ public class ChallengeTest {
         softAssert.assertEquals(response.getStatus(), 401);
         softAssert.assertEquals(response.getMessage(), "You have no necessary permissions (role)");
         softAssert.assertAll();
+    }
+
+    @Description("User is not able to edit information using null, spaces or absence of symbols")
+    @Test
+    public void challengeWithNullValues() {
+        ChallengePutRequest requestBody = new ChallengePutRequest(null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                true);
+        ErrorResponse response = client.unsuccessfulPut(requestBody);
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(response.getStatus(), 400);
+        softAssert.assertFalse(response.getMessage().contains("description must not be blank and sortNumber must not be null and picture must not be blank and name must not be blank and title must not be blank"));
+
+      requestBody = new ChallengePutRequest(
+              " ",
+                " ",
+                " ",
+                null,
+                " ",
+                " ",
+                true);
+        response = client.unsuccessfulPut(requestBody);
+        softAssert.assertEquals(response.getStatus(), 400);
+        softAssert.assertFalse(response.getMessage().contains("description must contain a minimum of 40 and a maximum of 25000 letters and picture Incorrect file path." +
+                " It must be like /upload/*/*.png and sortNumber must not be null and picture " +
+                "must not be blank and description must not be blank and title must not be blank and name Name must contain " +
+                "a minimum of 5 and a maximum of 30 letters and name must not be blank and title must contain a minimum of 5 and a maximum of 100 letters"));
+        requestBody = new ChallengePutRequest(
+                "",
+                "",
+                "",
+                null,
+                "",
+                "",
+                true);
+        response = client.unsuccessfulPut(requestBody);
+        softAssert.assertEquals(response.getStatus(), 400);
+        softAssert.assertFalse(response.getMessage().contains("description must contain a minimum of 40 and a maximum of 25000 letters and picture Incorrect file path." +
+                " It must be like /upload/*/*.png and sortNumber must not be null and picture " +
+                "must not be blank and description must not be blank and title must not be blank and name Name must contain " +
+                "a minimum of 5 and a maximum of 30 letters and name must not be blank and title must contain a minimum of 5 and a maximum of 100 letters"));
+    softAssert.assertAll();
     }
 }
