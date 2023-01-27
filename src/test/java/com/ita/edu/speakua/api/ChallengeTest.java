@@ -70,7 +70,7 @@ public class ChallengeTest {
                 "abc",
                 "abc",
                 true);
-        ErrorResponse response = client.unsuccessfulPut(requestBody);
+        ErrorResponse response = client.unsuccessfulPut(requestBody, 236);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(response.getStatus(), 400);
         softAssert.assertTrue(response.getMessage().contains("JSON parse error: Cannot deserialize value of type `long` from String \"abc\": not a valid `long` value; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `long` from String \"abc\": not a valid `long` value\n" +
@@ -83,7 +83,7 @@ public class ChallengeTest {
                 "abc",
                 "abc",
                 true);
-        response = client.unsuccessfulPut(requestBody);
+        response = client.unsuccessfulPut(requestBody, 236);
         softAssert.assertEquals(response.getStatus(), 400);
         softAssert.assertTrue(response.getMessage().contains("JSON parse error: Cannot deserialize value of type `long` from String \"abc\": not a valid `long` value; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `long` from String \"abc\": not a valid `long` value\n" +
                 " at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 1, column: 3168] (through reference chain: com.softserve.teachua.dto.challenge.UpdateChallenge[\"sortNumber\"])"));
@@ -95,7 +95,7 @@ public class ChallengeTest {
                 "эЭъЪыЫёЁ",
                 "эЭъЪыЫёЁ",
                 true);
-        response = client.unsuccessfulPut(requestBody);
+        response = client.unsuccessfulPut(requestBody, 236);
         softAssert.assertEquals(response.getStatus(), 400);
         softAssert.assertTrue(response.getMessage().contains("JSON parse error: Cannot deserialize value of type `long` from String \"эЭъЪыЫёЁ\": not a valid `long` value; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `long` from String \"эЭъЪыЫёЁ\": not a valid `long` value\n" +
                 " at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 1, column: 218] (through reference chain: com.softserve.teachua.dto.challenge.UpdateChallenge[\"sortNumber\"])"));
@@ -105,7 +105,7 @@ public class ChallengeTest {
     @Description("Edit Challenge with valid data")
     @Test
     public void validChallengeEdit() {
-        ChallengeClient client = new ChallengeClient();
+        int idOfChallenge = 377;
         ChallengePutRequest requestBody = new ChallengePutRequest("Example name",
                 "Example title",
                 "Lorem ipsum dolor sit amet, consectetuer adipiscin",
@@ -113,11 +113,11 @@ public class ChallengeTest {
                 "/upload/test/test.png",
                 "1",
                 true);
-
-        ErrorResponse response = client.unsuccessfulPut(requestBody);
+        ChallengePutResponse response = client.successPut(requestBody, idOfChallenge);
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(response.getStatus(), 401);
-        softAssert.assertEquals(response.getMessage(), "You have no necessary permissions (role)");
+        softAssert.assertEquals(response.getId(), idOfChallenge);
+        softAssert.assertEquals(response.getName(), "Example name");
+        softAssert.assertEquals(response.getDescription(), "Lorem ipsum dolor sit amet, consectetuer adipiscin");
         softAssert.assertAll();
     }
 
@@ -131,7 +131,7 @@ public class ChallengeTest {
                 null,
                 null,
                 true);
-        ErrorResponse response = client.unsuccessfulPut(requestBody);
+        ErrorResponse response = client.unsuccessfulPut(requestBody, 236);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(response.getStatus(), 400);
         softAssert.assertFalse(response.getMessage().contains("description must not be blank and sortNumber must not be null and picture must not be blank and name must not be blank and title must not be blank"));
@@ -144,7 +144,7 @@ public class ChallengeTest {
                 " ",
                 " ",
                 true);
-        response = client.unsuccessfulPut(requestBody);
+        response = client.unsuccessfulPut(requestBody, 236);
         softAssert.assertEquals(response.getStatus(), 400);
         softAssert.assertFalse(response.getMessage().contains("description must contain a minimum of 40 and a maximum of 25000 letters and picture Incorrect file path." +
                 " It must be like /upload/*/*.png and sortNumber must not be null and picture " +
@@ -158,7 +158,7 @@ public class ChallengeTest {
                 "",
                 "",
                 true);
-        response = client.unsuccessfulPut(requestBody);
+        response = client.unsuccessfulPut(requestBody, 236);
         softAssert.assertEquals(response.getStatus(), 400);
         softAssert.assertFalse(response.getMessage().contains("description must contain a minimum of 40 and a maximum of 25000 letters and picture Incorrect file path." +
                 " It must be like /upload/*/*.png and sortNumber must not be null and picture " +
