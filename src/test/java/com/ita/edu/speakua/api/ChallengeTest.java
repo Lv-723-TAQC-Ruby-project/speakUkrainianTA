@@ -105,7 +105,7 @@ public class ChallengeTest {
     @Description("Edit Challenge with valid data")
     @Test
     public void validChallengeEdit() {
-        int idOfChallenge = 377;
+        int idOfChallenge = 359;
         ChallengePutRequest requestBody = new ChallengePutRequest("Example name",
                 "Example title",
                 "Lorem ipsum dolor sit amet, consectetuer adipiscin",
