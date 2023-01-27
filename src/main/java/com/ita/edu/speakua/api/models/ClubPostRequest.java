@@ -13,7 +13,7 @@ public class ClubPostRequest {
     private String description;
     private int centerId = 0;
     private List<String> categoriesName;
-    private Location locations;
+    private List<Location> locations;
     private int ageFrom;
     private int ageTo;
     private String urlBackground;
