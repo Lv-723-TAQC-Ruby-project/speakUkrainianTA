@@ -5,13 +5,11 @@ import com.ita.edu.speakua.api.clients.SignInClient;
 import com.ita.edu.speakua.api.models.*;
 import com.ita.edu.speakua.utils.ConfigProperties;
 import io.qameta.allure.Description;
-import io.restassured.response.Response;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 public class ClubTest {
@@ -107,6 +105,38 @@ public class ClubTest {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(response.getStatus(), 400);
         softAssert.assertEquals(response.getMessage(), "name Помилка. Присутні недопустимі символи");
+        softAssert.assertAll();
+    }
+
+    @Description("Verifying that admin can't create new club with less than 5 characters for name field")
+    @Test
+    public void InvalidNameLessThan5CharactersClub() {
+        List<String> categoriesName = new ArrayList<>() {
+            {
+                add("Вокальна студія, музика, музичні інструменти");
+            } };
+        ClubPostRequest requestBody = new ClubPostRequest(0,
+                "Жук",
+                "{\"blocks\":[{\"key\":\"brl63\",\"text\":\"Ми поставили перед собою ціль створити мережу найкращих центрів раннього розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів.\",\"type\":\"unstyled\",\"depth\":1,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+                0,
+                categoriesName,
+                null,
+                2,
+                18,
+                "/dev/static/images/user/avatar/user1.png",
+                "/dev/static/images/user/avatar/user1.png",
+                null,
+                true,
+                "{\"1\"::\"ліл\"}",
+                true,
+                264,
+                0,
+                0
+        );
+        ErrorResponse response = client.badPost(requestBody);
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(response.getStatus(), 400);
+        softAssert.assertEquals(response.getMessage(), "name Довжина назви має бути від 5 до 100 символів");
         softAssert.assertAll();
     }
 }
