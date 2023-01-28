@@ -36,5 +36,11 @@ public class ConfigProperties {
     public String getUserPassword() {
         return properties.getProperty("user_password");
     }
+    public String getUserSoyecEmail() {
+        return properties.getProperty("user_soyec_email");
+    }
+    public String getUserSoyecPassword() {
+        return properties.getProperty("user_soyec_password");
+    }
 
 }
