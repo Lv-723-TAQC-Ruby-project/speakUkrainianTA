@@ -2,9 +2,10 @@ package com.ita.edu.speakua.api;
 
 import com.ita.edu.speakua.api.clients.ClubClient;
 import com.ita.edu.speakua.api.clients.SignInClient;
-import com.ita.edu.speakua.api.models.*;
+import com.ita.edu.speakua.api.models.ErrorResponse;
+import com.ita.edu.speakua.api.models.SingInRequest;
+import com.ita.edu.speakua.api.models.SingInResponse;
 import com.ita.edu.speakua.api.models.club.ClubPostRequest;
-import com.ita.edu.speakua.api.models.club.ClubPostResponse;
 import com.ita.edu.speakua.api.models.club.Location;
 import com.ita.edu.speakua.utils.ConfigProperties;
 import io.qameta.allure.Description;
@@ -113,9 +114,9 @@ public class ClubTest {
             {
                 add("Вокальна студія, музика, музичні інструменти");
             } };
-        ClubPostRequest requestBody = new ClubPostRequest(0,
+        ClubPostRequest requestBody = new ClubPostRequest(
                 "Жук",
-                "{\"blocks\":[{\"key\":\"brl63\",\"text\":\"Ми  створити мережу найкращих центрів.\",\"type\":\"unstyled\",\"depth\":1,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+                "{\"blocks\":[{\"key\":\"brl63\",\"text\":\"Ми поставили перед собою ціль створити мережу найкращих центрів раннього розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів.\",\"type\":\"unstyled\",\"depth\":1,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
                 0,
                 categoriesName,
                 null,
@@ -123,12 +124,8 @@ public class ClubTest {
                 18,
                 "/dev/static/images/user/avatar/user1.png",
                 "/dev/static/images/user/avatar/user1.png",
-                null,
                 true,
-                "{\"1\"::\"ліл\"}",
-                true,
-                264,
-                0,
+                "contactContact",
                 0
         );
         ErrorResponse response = client.badPost(requestBody);
