@@ -1,9 +1,9 @@
 package com.ita.edu.speakua.api.clients;
 
-import com.ita.edu.speakua.api.models.ChallengePostRequest;
-import com.ita.edu.speakua.api.models.ClubPostRequest;
-import com.ita.edu.speakua.api.models.ClubPostResponse;
 import com.ita.edu.speakua.api.models.ErrorResponse;
+import com.ita.edu.speakua.api.models.club.ClubPostResponse;
+import com.ita.edu.speakua.api.models.club.ClubPostRequest;
+import io.restassured.response.Response;
 
 public class ClubClient extends BaseClient {
     private String token;
@@ -16,13 +16,12 @@ public class ClubClient extends BaseClient {
         this.token = token;
     }
 
-    public ClubPostResponse successPost(ClubPostRequest request) {
+    public Response successPost(ClubPostRequest request) {
         return prepareRequest()
                 .header("Authorization", "Bearer " + token)
                 .body(request)
                 .when()
-                .post(baseUrl + "/api/club")
-                .as(ClubPostResponse.class);
+                .post(baseUrl + "/api/club");
     }
 
     public ErrorResponse badPost(ClubPostRequest request){
