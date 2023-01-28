@@ -30,5 +30,11 @@ public class ConfigProperties {
     public String getBaseWebUrl() {
         return properties.getProperty("base_web_url");
     }
+    public String getUserEmail() {
+        return properties.getProperty("user_email");
+    }
+    public String getUserPassword() {
+        return properties.getProperty("user_password");
+    }
 
 }
