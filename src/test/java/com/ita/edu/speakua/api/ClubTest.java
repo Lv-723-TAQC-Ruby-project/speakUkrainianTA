@@ -3,6 +3,9 @@ package com.ita.edu.speakua.api;
 import com.ita.edu.speakua.api.clients.ClubClient;
 import com.ita.edu.speakua.api.clients.SignInClient;
 import com.ita.edu.speakua.api.models.*;
+import com.ita.edu.speakua.api.models.club.ClubPostRequest;
+import com.ita.edu.speakua.api.models.club.ClubPostResponse;
+import com.ita.edu.speakua.api.models.club.Location;
 import com.ita.edu.speakua.utils.ConfigProperties;
 import io.qameta.allure.Description;
 import io.restassured.response.Response;
@@ -10,6 +13,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import java.util.List;
