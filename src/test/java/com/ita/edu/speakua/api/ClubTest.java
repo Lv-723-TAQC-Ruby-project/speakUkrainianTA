@@ -108,7 +108,7 @@ public class ClubTest {
         softAssert.assertAll();
     }
 
-    @Description("Verifying that admin can't create new club with less than 5 characters for name field")
+    @Description("Check that admin can't create new club with less than 5 characters for name field")
     @Test
     public void InvalidNameLessThan5CharactersClub() {
         List<String> categoriesName = new ArrayList<>() {
@@ -117,7 +117,7 @@ public class ClubTest {
             } };
         ClubPostRequest requestBody = new ClubPostRequest(0,
                 "Жук",
-                "{\"blocks\":[{\"key\":\"brl63\",\"text\":\"Ми поставили перед собою ціль створити мережу найкращих центрів раннього розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів.\",\"type\":\"unstyled\",\"depth\":1,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+                "{\"blocks\":[{\"key\":\"brl63\",\"text\":\"Ми  створити мережу найкращих центрів.\",\"type\":\"unstyled\",\"depth\":1,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
                 0,
                 categoriesName,
                 null,

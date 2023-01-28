@@ -26,4 +26,13 @@ public class TaskClient extends BaseClient{
                 .put("api/challenge/task/202")
                 .as(TaskResponse.class);
     }
+
+    public ErrorResponse unsuccessfulPutTask(TaskRequest request){
+        return prepareRequest()
+                .header("Authorization", "Bearer " + token)
+                .body(request)
+                .when()
+                .put("/api/challenge/207")
+                .as(ErrorResponse.class);
+    }
 }

@@ -1,21 +1,15 @@
 package com.ita.edu.speakua.api;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ita.edu.speakua.api.clients.SignInClient;
 import com.ita.edu.speakua.api.clients.TaskClient;
-import com.ita.edu.speakua.api.clients.UserClient;
 import com.ita.edu.speakua.api.models.*;
 import com.ita.edu.speakua.utils.ConfigProperties;
 import io.qameta.allure.Description;
-import org.openqa.selenium.json.Json;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class TaskTest {
@@ -84,6 +78,42 @@ public class TaskTest {
         softAssert.assertEquals(response.getPicture(),"/upload/test/test.png");
         softAssert.assertEquals(response.getStartDate(), startDate);
         softAssert.assertEquals(response.getChallengeId(),32);
-softAssert.assertAll();
+        softAssert.assertAll();
+    }
+
+    @Description("Task cannot be editing with invalid values")
+    @Test
+    public void editTaskUnSuccessful(){
+        TaskRequest requestBody = new TaskRequest("namename",
+                "stringstringstringstringstringstringstri",
+                "descriptiondescriptiondescriptiondescri",
+                "/upload/test/test.png",
+                "2021-12-03",
+                0);
+        ErrorResponse response = client.unsuccessfulPutTask(requestBody);
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(response.getStatus(),400);
+        softAssert.assertFalse(response.getMessage().contains("name must contain a minimum of 5"));
+
+        requestBody = new TaskRequest("namenamename",
+                "stringst",
+                "descriptiondescriptiondescriptiondescri",
+                "/upload/test/test.png",
+                "2021-12-03",
+                0);
+        response = client.unsuccessfulPutTask(requestBody);
+        softAssert.assertEquals(response.getStatus(),400);
+        softAssert.assertFalse(response.getMessage().contains("headerText must contain a minimum of 40 and a maximum of 10000 letters"));
+
+        requestBody = new TaskRequest("namenamename",
+                "descriptiondescriptiondescriptiondescriptiondescription Ё, Ы,Э",
+                "descriptiondescriptiondescriptiondescriptiondescriptio",
+                "/upload/test/test.png",
+                "2021-12-03",
+                0);
+        response = client.unsuccessfulPutTask(requestBody);
+        softAssert.assertEquals(response.getStatus(),400);
+        softAssert.assertFalse(response.getMessage().contains("headerText Помилка. Текст містить недопустимі символи"));
+        softAssert.assertAll();
     }
 }
