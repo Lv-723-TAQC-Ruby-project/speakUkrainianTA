@@ -116,4 +116,70 @@ public class TaskTest {
         softAssert.assertFalse(response.getMessage().contains("headerText Помилка. Текст містить недопустимі символи"));
         softAssert.assertAll();
     }
+
+    @Description("Verifying that user can not create Task with invalid values")
+    @Test
+    public void createTaskInvalidValues(){
+        TaskRequest requestBody = new TaskRequest("name",
+                "stringstringstringstringstringstringstri",
+                "descriptiondescriptiondescriptiondescriptiondescription",
+                "/upload/test/test.png",
+                "2023-12-03",
+                0);
+        ErrorResponse response = client.unSucceedPost(requestBody);
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(response.getStatus(),400);
+        softAssert.assertEquals(response.getMessage(), "name must contain a minimum of 5 and a maximum of 100 letters", "4");
+
+        requestBody = new TaskRequest("namenamenamenamenamenamenamenamenamenaamenamenamenamenanamenamenamenamenamenamenamenamenamenaamenamenm",
+                "stringst",
+                "descriptiondescriptiondescriptiondescriptiondescription",
+                "/upload/test/test.png",
+                "2023-12-03",
+                0);
+        response = client.unsuccessfulPutTask(requestBody);
+        softAssert.assertEquals(response.getStatus(),400);
+        softAssert.assertFalse(response.getMessage().contains("name must contain a minimum of 5 and a maximum of 30 letters"));
+
+        requestBody = new TaskRequest("namenameЁ, Ы,Э",
+                "descriptiondescriptiondescriptiondescriptiondescription",
+                "descriptiondescriptiondescriptiondescriptiondescriptio",
+                "/upload/test/test.png",
+                "2023-12-03",
+                0);
+        response = client.unsuccessfulPutTask(requestBody);
+        softAssert.assertEquals(response.getStatus(),400);
+        softAssert.assertTrue(response.getMessage().contains("name Помилка. Текст містить недопустимі символи"));
+//
+        requestBody = new TaskRequest("namename",
+                "description",
+                "test",
+                "/upload/test/test.png",
+                "2023-12-03",
+                0);
+        response = client.unsuccessfulPutTask(requestBody);
+        softAssert.assertEquals(response.getStatus(),400);
+        softAssert.assertFalse(response.getMessage().contains("description must contain a minimum of 40 and a maximum of 3000 letters"));
+
+        requestBody = new TaskRequest("namename",
+                "description",
+                "descriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondedescriptiondescriptiondescridescriptionde",
+                "/upload/test/test.png",
+                "2023-12-03",
+                0);
+        response = client.unsuccessfulPutTask(requestBody);
+        softAssert.assertEquals(response.getStatus(),400);
+        softAssert.assertFalse(response.getMessage().contains("description must contain a minimum of 40 and a maximum of 3000 letters"));
+
+        requestBody = new TaskRequest("namename",
+                "description",
+                "descriptionЁЁЁЁЫdescriptionЁЁЁЁЫdescriptionЁЁЁЁЫ",
+                "/upload/test/test.png",
+                "2023-12-03",
+                0);
+        response = client.unsuccessfulPutTask(requestBody);
+        softAssert.assertEquals(response.getStatus(),400);
+        softAssert.assertTrue(response.getMessage().contains("description Помилка. Текст містить недопустимі символи"));
+        softAssert.assertAll();
+    }
 }
