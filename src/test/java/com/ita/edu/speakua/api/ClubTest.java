@@ -87,7 +87,7 @@ public class ClubTest {
             {
                 add("Вокальна студія, музика, музичні інструменти");
             } };
-        ClubPostRequest requestBody = new ClubPostRequest(0,
+        ClubPostRequest requestBody = new ClubPostRequest(
                 "Тестовый экземпляр",
                 "{\"blocks\":[{\"key\":\"brl63\",\"text\":\"Ми поставили перед собою ціль створити мережу найкращих центрів раннього розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів.\",\"type\":\"unstyled\",\"depth\":1,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
                 0,
@@ -97,13 +97,9 @@ public class ClubTest {
                 18,
                 "/dev/static/images/user/avatar/user1.png",
                 "/dev/static/images/user/avatar/user1.png",
-                null,
                 true,
                 "testTestTest",
-                true,
-                999,
-                999,
-                999
+                 999
         );
         ErrorResponse response = client.badPost(requestBody);
         SoftAssert softAssert = new SoftAssert();
