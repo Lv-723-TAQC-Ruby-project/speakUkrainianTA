@@ -78,7 +78,35 @@ public class ClubTest {
         softAssert.assertAll();
     }
 
-
-
-
+    @Description("Verifying that admin can't create new club with Russian alphabet for name field")
+    @Test
+    public void errorMessageInvalidNameClub() {
+        List<String> categoriesName = new ArrayList<>() {
+            {
+                add("Вокальна студія, музика, музичні інструменти");
+            } };
+        ClubPostRequest requestBody = new ClubPostRequest(0,
+                "Тестовый экземпляр",
+                "{\"blocks\":[{\"key\":\"brl63\",\"text\":\"Ми поставили перед собою ціль створити мережу найкращих центрів раннього розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів.\",\"type\":\"unstyled\",\"depth\":1,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+                0,
+                categoriesName,
+                null,
+                17,
+                18,
+                "/dev/static/images/user/avatar/user1.png",
+                "/dev/static/images/user/avatar/user1.png",
+                null,
+                true,
+                "testTestTest",
+                true,
+                999,
+                999,
+                999
+        );
+        ErrorResponse response = client.badPost(requestBody);
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(response.getStatus(), 400);
+        softAssert.assertEquals(response.getMessage(), "name Помилка. Присутні недопустимі символи");
+        softAssert.assertAll();
+    }
 }
