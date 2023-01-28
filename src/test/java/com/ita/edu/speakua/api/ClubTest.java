@@ -27,54 +27,52 @@ public class ClubTest {
     }
 
 
-    @Description("Error creating club")
+     @Description("Successful creating club")
     @Test
-    public void badPost() {
-        List<String> categoriesName = new ArrayList<String>() {{
-            add("Вокальна студія, музика, музичні інструменти");
-        } };
-        Location location = new Location(
-                0,
-                "Голосівська",
-                "https://speak-ukrainian.org.ua/dev/club/910",
-                0,
-                0,
-                0,
-                "Київ",
-                "Голосіївський",
-                "Голосіївська",
-                "50.35535081747696, 30.51765754176391",
-                0,
-                0,
-                0,
-                0,
-                "937777777"
-        );
-        List<Location> locations = new ArrayList<Location>() {{
-            add(location);
-        } };
-        ClubPostRequest requestBody = new ClubPostRequest(0,
-                "Голосистi діти",
-                "Деякий опис клубу Голосистi діти",
-                0,
+    public void successfulPost() {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        String clubName = "Голосистi діти " + timestamp;
+        List<String> categoriesName = new ArrayList<String>() {
+            {
+                add("Вокальна студія, музика, музичні інструменти");
+            }
+        };
+        Location location = Location
+                .builder()
+                .name("Голосівська")
+                .cityName("Київ")
+                .districtName("Голосіївський")
+                .stationName("Голосіївська")
+                .address("https://speak-ukrainian.org.ua/dev/club/910")
+                .coordinates("50.35535081747696, 30.51765754176391")
+                .phone("0937777777")
+                .key(0.00)
+                .build();
+
+        List<Location> locations = new ArrayList<Location>() {
+            {
+                add(location);
+            }
+        };
+        ClubPostRequest requestBody = new ClubPostRequest(
+                clubName,
+                "{\"blocks\":[{\"key\":\"brl63\",\"text\":\"аааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааа\",\"type\":\"unstyled\",\"depth\":1,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+                2,
                 categoriesName,
                 locations,
                 2,
                 18,
                 null,
                 null,
-                null,
                 true,
                 "{\"1\"::\"ліл\"}",
-                true,
-                264,
-                0,
-                0
-                );
-        ErrorResponse response = this.client.badPost(requestBody);
+                264
+        );
+        Response response = this.client.successPost(requestBody);
+        ClubPostResponse clubsResponse = response.as(ClubPostResponse.class);
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(response.getStatus(), 400);
-        softAssert.assertEquals(response.getMessage(), "Помилка під час парсингу опису. Неправильний JSON формат");
+        softAssert.assertEquals(response.getStatusCode(), 200);
+        softAssert.assertEquals(clubsResponse.getName(), clubName);
         softAssert.assertAll();
     }
 
