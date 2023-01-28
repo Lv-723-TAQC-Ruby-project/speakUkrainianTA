@@ -3,7 +3,8 @@ package com.ita.edu.speakua.api.clients;
 import com.ita.edu.speakua.api.models.ErrorResponse;
 import com.ita.edu.speakua.api.models.UserRequest;
 import com.ita.edu.speakua.api.models.UserResponse;
-
+import io.qameta.allure.Step;
+import io.restassured.response.Response;
 public class UserClient extends BaseClient{
     private String token;
     public UserClient(String token){
@@ -27,5 +28,12 @@ public class UserClient extends BaseClient{
                 .put("/api/user/1")
                 .as(UserResponse.class);
 
+    }
+    public Response put(UserRequest body, int id) {
+        return prepareRequest()
+                .header("Authorization", "Bearer " + token)
+                .when()
+                .body(body)
+                .put("/api/user/" + id);
     }
 }

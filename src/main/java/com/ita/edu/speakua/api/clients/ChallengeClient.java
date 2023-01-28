@@ -1,6 +1,7 @@
 package com.ita.edu.speakua.api.clients;
 
 import com.ita.edu.speakua.api.models.*;
+import io.restassured.response.Response;
 
 public class ChallengeClient extends BaseClient {
     private String token;
@@ -52,5 +53,12 @@ public class ChallengeClient extends BaseClient {
                 .when()
                 .put("/api/challenge/" +idChallenge)
                 .as(ChallengePutResponse.class);
+    }
+
+    public Response getById(int idChallenge){
+        return prepareRequest()
+                .header("Authorization", "Bearer " + token)
+                .when()
+                .get("/api/challenge/" +idChallenge);
     }
 }
