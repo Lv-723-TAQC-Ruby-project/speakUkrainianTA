@@ -36,7 +36,7 @@ public class ClubTest {
     }
 
 
-    @Description("Successful creating club")
+    @Description("TUA-429 - Verify that user is able to create Challenge using valid values")
     @Test
     public void successfulPost() {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
