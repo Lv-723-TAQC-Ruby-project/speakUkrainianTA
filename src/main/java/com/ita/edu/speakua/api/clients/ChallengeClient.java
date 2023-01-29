@@ -38,12 +38,11 @@ public class ChallengeClient extends BaseClient {
     }
 
 
-    public ChallengeDeleteResponse successfulDelete(int idChallenge) {
+    public Response delete(int idChallenge) {
         return prepareRequest()
                 .header("Authorization", "Bearer " + token)
                 .when()
-                .delete("/api/challenge/" +idChallenge )
-                .as(ChallengeDeleteResponse.class);
+                .delete("/api/challenge/" +idChallenge );
     }
 
     public ChallengePutResponse successPut(ChallengePutRequest request, int idChallenge){

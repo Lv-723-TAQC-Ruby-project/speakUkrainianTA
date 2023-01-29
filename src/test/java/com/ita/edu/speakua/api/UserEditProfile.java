@@ -2,13 +2,17 @@ package com.ita.edu.speakua.api;
 
 import com.ita.edu.speakua.api.clients.SignInClient;
 import com.ita.edu.speakua.api.clients.UserClient;
-import com.ita.edu.speakua.api.models.*;
+import com.ita.edu.speakua.api.models.ErrorResponse;
+import com.ita.edu.speakua.api.models.SingInRequest;
+import com.ita.edu.speakua.api.models.SingInResponse;
+import com.ita.edu.speakua.api.models.UserRequest;
 import com.ita.edu.speakua.utils.ConfigProperties;
 import io.qameta.allure.Description;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 public class UserEditProfile {
     protected static final ConfigProperties configProperties = new ConfigProperties();
@@ -36,7 +40,7 @@ public class UserEditProfile {
                 "Kukh",
                  "0123456786",
                 "ROLE_MANAGER",
-                null,
+                "",
                 true);
         Response response = client.put(requestBody,id);
         Assert.assertEquals(response.statusCode(), 200);
