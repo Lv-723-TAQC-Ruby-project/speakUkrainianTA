@@ -15,18 +15,20 @@ public class ViewChallenge {
     protected static final ConfigProperties configProperties = new ConfigProperties();
     private ChallengeClient client;
 
-    @BeforeClass
-    public void beforeClass() {
-        SignInClient clientSI = new SignInClient();
-        SingInRequest credential = new SingInRequest(configProperties.getUserEmail(), configProperties.getUserPassword());
-        SingInResponse responseSI = clientSI.post(credential);
-        client = new ChallengeClient(responseSI.getAccessToken());
-    }
-
     @Description("TUA-437 - Verify that user with any rights can view info about specific Challenge")
     @Test
     public void userViewChallenge() {
-        Response response = client.getById(212);
-        Assert.assertEquals(response.getStatusCode(), 200);
+        SignInClient clientSI = new SignInClient();
+        SingInRequest credentialUser = new SingInRequest(configProperties.getUserEmail(), configProperties.getUserPassword());
+        SingInResponse responseUserSI = clientSI.post(credentialUser);
+        client = new ChallengeClient(responseUserSI.getAccessToken());
+        Response responseUser = client.getById(212);
+        Assert.assertEquals(responseUser.getStatusCode(), 200);
+
+        SingInRequest credentialAdmin = new SingInRequest(configProperties.getAdminEmail(), configProperties.getAdminPassword());
+        SingInResponse responseAdminSI = clientSI.post(credentialAdmin);
+        client = new ChallengeClient(responseAdminSI.getAccessToken());
+        Response responseAdmin = client.getById(212);
+        Assert.assertEquals(responseAdmin.getStatusCode(), 200);
     }
 }
