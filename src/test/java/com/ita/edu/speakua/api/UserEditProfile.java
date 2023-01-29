@@ -11,7 +11,6 @@ import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 public class UserEditProfile {
     protected static final ConfigProperties configProperties = new ConfigProperties();
@@ -26,7 +25,7 @@ public class UserEditProfile {
         client = new UserClient(responseSI.getAccessToken());
     }
 
-    @Description("TUA-408 - User can edit profile with valid data")
+    @Description("User can edit profile with valid data")
     @Test
     public void userCanEditProfileWithValidData(){
         String firstName = "Anna";
