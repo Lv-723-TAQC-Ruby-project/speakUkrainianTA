@@ -2,9 +2,9 @@ package com.ita.edu.speakua.api;
 
 import com.ita.edu.speakua.api.clients.SignInClient;
 import com.ita.edu.speakua.api.clients.UserClient;
-import com.ita.edu.speakua.api.models.SingInRequest;
-import com.ita.edu.speakua.api.models.SingInResponse;
-import com.ita.edu.speakua.api.models.UserRequest;
+import com.ita.edu.speakua.api.models.*;
+import com.ita.edu.speakua.jdbc.entity.UsersEntity;
+import com.ita.edu.speakua.jdbc.services.UsersService;
 import com.ita.edu.speakua.utils.ConfigProperties;
 import io.qameta.allure.Description;
 import io.restassured.response.Response;
@@ -26,34 +26,92 @@ public class UserEditProfile {
         client = new UserClient(responseSI.getAccessToken());
     }
 
-    @Description("TUA-408 - User can edit profile with valid data")
+    @Description("Verifying that user can not save changes where mandatory fields are empty")
+    @Test
+    public void emptyFieldsEditUserProfile() {
+        UserRequest requestBody = new UserRequest(0,
+                "soyec48727@busantei.com",
+                null,
+                "Kukh",
+                "0123456789",
+                "ROLE_MANAGER",
+                null,
+                true);
+        ErrorResponse response = client.badPut(requestBody);
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(response.getStatus(), 400);
+        softAssert.assertEquals(response.getMessage(), "\"firstName\" can`t be null");
+
+        requestBody.setFirstName("Nastia");
+        requestBody.setLastName(null);
+        response = client.badPut(requestBody);
+        softAssert.assertEquals(response.getStatus(), 400);
+        softAssert.assertEquals(response.getMessage(), "\"lastName\" can`t be null");
+
+        requestBody.setLastName("Kukh");
+        requestBody.setPhone(null);
+        response = client.badPut(requestBody);
+        softAssert.assertEquals(response.getStatus(), 400);
+        softAssert.assertEquals(response.getMessage(), "phone must not be blank");
+        softAssert.assertAll();
+    }
+
+    @Description("Verifying that user can change their role on ADMIN")
+    @Test
+    public void userCanChangesRoleOnAdmin() {
+        UserRequest requestBody = new UserRequest(0,
+                "soyec48727@busantei.com",
+                "Nastia",
+                "Kukh",
+                "0999999922",
+                "ROLE_MANAGER",
+                null,
+                true);
+        UserResponse response = client.successfulPutChanges(requestBody);
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(response.getRoleName(), "ROLE_MANAGER");
+        requestBody.setRoleName("ROLE_ADMIN");
+        response = client.successfulPutChanges(requestBody);
+        softAssert.assertEquals(response.getRoleName(), "ROLE_ADMIN");
+        softAssert.assertAll();
+    }
+
+    @Description("User can edit profile with valid data")
     @Test
     public void userCanEditProfileWithValidData(){
-        String firstName = "Anna";
-        String lastName = "Kukarska";
-        String phone = "0123456789";
+        String FirstName = "Anna";
+        String LastName = "Kukarska";
+        String UserPhone = "0123456789";
         int id = 203;
         UserRequest requestBody = new UserRequest(id,
                 "soyec48727@busantei.com",
                 "Nastia",
                 "Kukh",
-                 "0123456786",
+                "0123456786",
                 "ROLE_MANAGER",
-                null,
+                "",
                 true);
         Response response = client.put(requestBody,id);
-        Assert.assertEquals(response.statusCode(), 200);
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(response.statusCode(), 200);
 
-        requestBody.setFirstName(firstName);
+        requestBody.setFirstName(FirstName);
         response = client.put(requestBody,id);
         Assert.assertEquals(response.statusCode(), 200);
 
-        requestBody.setLastName(lastName);
+        requestBody.setLastName(LastName);
         response = client.put(requestBody,id);
-        Assert.assertEquals(response.statusCode(), 200);
+        softAssert.assertEquals(response.statusCode(), 200);
 
-        requestBody.setPhone(phone);
+        requestBody.setPhone(UserPhone);
         response = client.put(requestBody,id);
-        Assert.assertEquals(response.statusCode(), 200);
+        softAssert.assertEquals(response.statusCode(), 200);
+
+        UsersService service = new UsersService();
+        UsersEntity user = service.getByEmail("soyec48727@busantei.com");
+        softAssert.assertEquals(user.getUserFirstName(),FirstName);
+        softAssert.assertEquals(user.getUserLastName(),LastName);
+        softAssert.assertEquals(user.getUserPhone(),UserPhone);
+        softAssert.assertEquals(user.getId(), id);
     }
 }

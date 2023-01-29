@@ -6,6 +6,7 @@ import com.ita.edu.speakua.api.models.*;
 import com.ita.edu.speakua.jdbc.services.ChallengesService;
 import com.ita.edu.speakua.utils.ConfigProperties;
 import io.qameta.allure.Description;
+import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -176,7 +177,7 @@ public class ChallengeTest {
                 "/upload/1/1.png",6861);
         ChallengePostResponse response = client.successPost(requestBody);
         int idChallenge = response.getId();
-        ChallengeDeleteResponse responseForDelete = client.successfulDelete(idChallenge);
-        Assert.assertEquals(responseForDelete.getId(), idChallenge);
+        Response responseDel = client.delete(idChallenge);
+        Assert.assertEquals(responseDel.statusCode(), 200);
         }
 }

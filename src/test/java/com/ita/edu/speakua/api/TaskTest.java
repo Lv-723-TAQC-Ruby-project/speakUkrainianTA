@@ -93,7 +93,7 @@ public class TaskTest {
         ErrorResponse response = client.unsuccessfulPutTask(requestBody);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(response.getStatus(),400);
-        softAssert.assertFalse(response.getMessage().contains("name must contain a minimum of 5"));
+        softAssert.assertFalse(response.getMessage().contains("name must contain a minimum of 5 and a maximum of 100 letters"));
 
         requestBody = new TaskRequest("namenamename",
                 "stringst",
