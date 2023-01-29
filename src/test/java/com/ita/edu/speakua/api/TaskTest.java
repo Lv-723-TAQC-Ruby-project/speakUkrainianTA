@@ -182,4 +182,31 @@ public class TaskTest {
         softAssert.assertTrue(response.getMessage().contains("description Помилка. Текст містить недопустимі символи"));
         softAssert.assertAll();
     }
+
+    @Description("TUA-446 - Verify that user can not edit Task using null, spaces as values")
+    @Test
+    public void verifyThatUserCannotEditTaskUsingNullOrSpacesAsValues(){
+        TaskRequest requestBodySpaces = new TaskRequest(" ",
+                " ",
+                " ",
+                "/upload/test/test.png",
+                "2021-11-03",
+                0);
+        ErrorResponse responseSpaces = client.unsuccessfulPutTask(requestBodySpaces);
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(responseSpaces.getStatus(),400);
+        softAssert.assertFalse(responseSpaces.getMessage().contains("name must contain a minimum of 5 and a maximum of 255 letters and headerText must not be blank and name must not be blank and headerText must contain a minimum of 40 and a maximum of 10000 letters"));
+
+        TaskRequest requestBodyNull = new TaskRequest(null,
+                null,
+                null,
+                "/upload/test/test.png",
+                "2021-11-03",
+                0);
+        ErrorResponse responseNull = client.unsuccessfulPutTask(requestBodyNull);
+        softAssert.assertEquals(responseNull.getStatus(),400);
+        softAssert.assertFalse(responseNull.getMessage().contains("name must not be blank and headerText must not be blank"));
+        softAssert.assertAll();
+    }
+
 }
