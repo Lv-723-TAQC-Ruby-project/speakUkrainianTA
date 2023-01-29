@@ -209,4 +209,18 @@ public class TaskTest {
         softAssert.assertAll();
     }
 
+    @Description("Verify that user can create Task with valid values")
+    @Test
+    public void creatingTaskWithValidData(){
+        TaskPostRequest requestBody = new TaskPostRequest("namenamename1213#$%",
+                "stringstr",
+                "descriptiondescriptiondescriptiondescriptiondescription12345$%%^$#",
+                "/upload/test/test.png",
+                "2025-12-03");
+        TaskPostResponse response = client.successfulCreatedTask(requestBody,514);
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(response.getId() , 512);
+        softAssert.assertEquals(response.getStatus(), 200);
+    }
+
 }
