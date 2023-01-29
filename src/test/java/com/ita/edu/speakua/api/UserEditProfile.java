@@ -3,6 +3,8 @@ package com.ita.edu.speakua.api;
 import com.ita.edu.speakua.api.clients.SignInClient;
 import com.ita.edu.speakua.api.clients.UserClient;
 import com.ita.edu.speakua.api.models.*;
+import com.ita.edu.speakua.jdbc.entity.UsersEntity;
+import com.ita.edu.speakua.jdbc.services.UsersService;
 import com.ita.edu.speakua.utils.ConfigProperties;
 import io.qameta.allure.Description;
 import io.restassured.response.Response;
@@ -77,9 +79,9 @@ public class UserEditProfile {
     @Description("User can edit profile with valid data")
     @Test
     public void userCanEditProfileWithValidData(){
-        String firstName = "Anna";
-        String lastName = "Kukarska";
-        String phone = "0123456789";
+        String FirstName = "Anna";
+        String LastName = "Kukarska";
+        String UserPhone = "0123456789";
         int id = 203;
         UserRequest requestBody = new UserRequest(id,
                 "soyec48727@busantei.com",
@@ -90,19 +92,26 @@ public class UserEditProfile {
                 "",
                 true);
         Response response = client.put(requestBody,id);
-        Assert.assertEquals(response.statusCode(), 200);
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(response.statusCode(), 200);
 
-        requestBody.setFirstName(firstName);
+        requestBody.setFirstName(FirstName);
         response = client.put(requestBody,id);
         Assert.assertEquals(response.statusCode(), 200);
 
-        requestBody.setLastName(lastName);
+        requestBody.setLastName(LastName);
         response = client.put(requestBody,id);
-        Assert.assertEquals(response.statusCode(), 200);
+        softAssert.assertEquals(response.statusCode(), 200);
 
-        requestBody.setPhone(phone);
+        requestBody.setPhone(UserPhone);
         response = client.put(requestBody,id);
-        Assert.assertEquals(response.statusCode(), 200);
+        softAssert.assertEquals(response.statusCode(), 200);
+
+        UsersService service = new UsersService();
+        UsersEntity user = service.getByEmail("soyec48727@busantei.com");
+        softAssert.assertEquals(user.getUserFirstName(),FirstName);
+        softAssert.assertEquals(user.getUserLastName(),LastName);
+        softAssert.assertEquals(user.getUserPhone(),UserPhone);
+        softAssert.assertEquals(user.getId(), id);
     }
-
 }
