@@ -2,9 +2,7 @@ package com.ita.edu.speakua.api;
 
 import com.ita.edu.speakua.api.clients.SignInClient;
 import com.ita.edu.speakua.api.clients.UserClient;
-import com.ita.edu.speakua.api.models.SingInRequest;
-import com.ita.edu.speakua.api.models.SingInResponse;
-import com.ita.edu.speakua.api.models.UserRequest;
+import com.ita.edu.speakua.api.models.*;
 import com.ita.edu.speakua.utils.ConfigProperties;
 import io.qameta.allure.Description;
 import io.restassured.response.Response;
@@ -55,5 +53,35 @@ public class UserEditProfile {
         requestBody.setPhone(phone);
         response = client.put(requestBody,id);
         Assert.assertEquals(response.statusCode(), 200);
+    }
+
+    @Description("Verifying that user can not save changes where mandatory fields are empty")
+    @Test
+    public void emptyFieldsEditUserProfile() {
+        UserRequest requestBody = new UserRequest(0,
+                "soyec48727@busantei.com",
+                null,
+                "Kukh",
+                "0123456789",
+                "ROLE_MANAGER",
+                null,
+                true);
+        ErrorResponse response = client.badPut(requestBody);
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(response.getStatus(), 400);
+        softAssert.assertEquals(response.getMessage(), "\"firstName\" can`t be null");
+
+        requestBody.setFirstName("Nastia");
+        requestBody.setLastName(null);
+        response = client.badPut(requestBody);
+        softAssert.assertEquals(response.getStatus(), 400);
+        softAssert.assertEquals(response.getMessage(), "\"lastName\" can`t be null");
+
+        requestBody.setLastName("Kukh");
+        requestBody.setPhone(null);
+        response = client.badPut(requestBody);
+        softAssert.assertEquals(response.getStatus(), 400);
+        softAssert.assertEquals(response.getMessage(), "phone must not be blank");
+        softAssert.assertAll();
     }
 }
