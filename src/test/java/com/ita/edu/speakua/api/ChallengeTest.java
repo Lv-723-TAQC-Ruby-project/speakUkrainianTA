@@ -40,7 +40,7 @@ public class ChallengeTest {
         softAssert.assertAll();
     }
 
-    @Description("success create Challenge")
+    @Description("TUA-429 - Verify that user is able to create Challenge using valid values")
     @Test
     public void createChallenge() {
         ChallengesService service = new ChallengesService();
