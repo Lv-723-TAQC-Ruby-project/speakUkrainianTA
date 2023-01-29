@@ -24,4 +24,19 @@ public class LoginTest {
         System.out.println(response.getAccessToken());
         softAssert.assertAll();
     }
+
+    @Description("success SingIn")
+    @Test
+    public void successSingInManager() {
+        SignInClient client = new SignInClient();
+        SingInRequest credential = new SingInRequest(configProperties.getUserSoyecEmail(), configProperties.getUserSoyecPassword());
+        SingInResponse response = client.post(credential);
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(response.getId(), 203);
+        softAssert.assertEquals(response.getRoleName(), "ROLE_MANAGER");
+        softAssert.assertEquals(response.getEmail(), configProperties.getUserSoyecEmail());
+        softAssert.assertNotNull(response.getAccessToken());
+        System.out.println(response.getAccessToken());
+        softAssert.assertAll();
+    }
 }

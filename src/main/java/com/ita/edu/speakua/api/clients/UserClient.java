@@ -35,4 +35,14 @@ public class UserClient extends BaseClient{
                 .when()
                 .put("/api/user/" + id);
     }
+
+    public UserResponse successfulPutChanges(UserRequest request){
+        return prepareRequest()
+                .header("Authorization", "Bearer " + token)
+                .body(request)
+                .when()
+                .put("/api/user/203")
+                .as(UserResponse.class);
+
+    }
 }
