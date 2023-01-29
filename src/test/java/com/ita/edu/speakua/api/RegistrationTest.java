@@ -3,6 +3,8 @@ package com.ita.edu.speakua.api;
 import com.ita.edu.speakua.api.clients.SignUpClient;
 import com.ita.edu.speakua.api.models.ErrorResponse;
 import com.ita.edu.speakua.api.models.SignUpPostRequest;
+import com.ita.edu.speakua.jdbc.entity.UsersEntity;
+import com.ita.edu.speakua.jdbc.services.UsersService;
 import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -28,8 +30,10 @@ public class RegistrationTest {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(response.getStatus(), 400);
         softAssert.assertTrue(response.getMessage().contains("password size must be between 8 and 20"));
+
+        UsersService service = new UsersService();
+        UsersEntity user = service.getByEmail("example@test.com");
+        softAssert.assertNull(user);
         softAssert.assertAll();
-
-
     }
 }
