@@ -1,7 +1,9 @@
 package com.ita.edu.speakua.api.models;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
@@ -14,5 +16,5 @@ public class ChallengePostRequest {
     private String registrationLink;
     // picture Incorrect file path. It must be like /upload/*/*.png
     private String picture;
-    private int sortNumber;
+    private Integer sortNumber;
 }

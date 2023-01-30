@@ -136,8 +136,8 @@ public class ChallengeTest {
         softAssert.assertEquals(response.getStatus(), 400);
         softAssert.assertFalse(response.getMessage().contains("description must not be blank and sortNumber must not be null and picture must not be blank and name must not be blank and title must not be blank"));
 
-      requestBody = new ChallengePutRequest(
-              " ",
+        requestBody = new ChallengePutRequest(
+                " ",
                 " ",
                 " ",
                 null,
@@ -164,20 +164,62 @@ public class ChallengeTest {
                 " It must be like /upload/*/*.png and sortNumber must not be null and picture " +
                 "must not be blank and description must not be blank and title must not be blank and name Name must contain " +
                 "a minimum of 5 and a maximum of 30 letters and name must not be blank and title must contain a minimum of 5 and a maximum of 100 letters"));
-    softAssert.assertAll();
+        softAssert.assertAll();
     }
 
     @Description("success create and delete Challenge")
     @Test
-        public void SuccessCreateAndDeleteChallenge() {
+    public void SuccessCreateAndDeleteChallenge() {
         ChallengePostRequest requestBody = new ChallengePostRequest("name for delete",
                 "title for delete",
                 "stringstringstringstringstringstringstri",
                 "https://docs.google.com/forms/d/e/145/viewform?embedded=true",
-                "/upload/1/1.png",6861);
+                "/upload/1/1.png", 6861);
         ChallengePostResponse response = client.successPost(requestBody);
         int idChallenge = response.getId();
         Response responseDel = client.delete(idChallenge);
         Assert.assertEquals(responseDel.statusCode(), 200);
-        }
+    }
+
+    @Description("Verify that user is not able to create Challenge using null, spaces or absence of symbols as values")
+    @Test
+    public void InabilityCreateChallengeWithInappropriateSymbols() {
+        ChallengePostRequest requestBody = new ChallengePostRequest(null,
+                null,
+                null,
+                "https://docs.google.com/forms/d/e/236/viewform?embedded=true",
+                null,
+                null);
+        ErrorResponse response = client.badPost(requestBody);
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(response.getStatus(), 400);
+        softAssert.assertFalse(response.getMessage().contains("picture must not be blank and title must not be blank and " +
+                "name must not be blank and description must not be blank and sortNumber must not be null"));
+
+        requestBody = new ChallengePostRequest(" ",
+                " ",
+                " ",
+                "https://docs.google.com/forms/d/e/236/viewform?embedded=true",
+                " ",
+                0);
+        response = client.badPost(requestBody);
+        softAssert.assertEquals(response.getStatus(), 400);
+        softAssert.assertFalse(response.getMessage().contains("picture Incorrect file path. It must be like /upload/*/*.png and title не може бути пустим " +
+                "and description не може бути пустим and title must contain a minimum of 5 and a maximum of 100 letters and name  must contain a minimum of 5 and a maximum of 30 letters " +
+                "and picture не може бути пустим and description must contain a maximum of 25000 letters and name не може бути пустим"));
+
+        requestBody = new ChallengePostRequest("",
+                "",
+                "",
+                "https://docs.google.com/forms/d/e/236/viewform?embedded=true",
+                "",
+                0);
+        response = client.badPost(requestBody);
+        softAssert.assertEquals(response.getStatus(), 400);
+        softAssert.assertFalse(response.getMessage().contains("name  must contain a minimum of 5 and a maximum of 30 letters and title не може бути пустим " +
+                "and picture не може бути пустим and description must contain a maximum of 25000 letters and description не може бути пустим and picture Incorrect file path. It must be like /upload/*/*.png " +
+                "and name не може бути пустим and title must contain a minimum of 5 and a maximum of 100 letters"));
+        softAssert.assertAll();
+
+    }
 }
