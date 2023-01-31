@@ -78,7 +78,7 @@ public class UserEditProfile {
 
     @Description("User can edit profile with valid data")
     @Test
-    public void userCanEditProfileWithValidData(){
+    public void userCanEditProfileWithValidData() {
         String FirstName = "Anna";
         String LastName = "Kukarska";
         String UserPhone = "0123456789";
@@ -91,27 +91,59 @@ public class UserEditProfile {
                 "ROLE_MANAGER",
                 "",
                 true);
-        Response response = client.put(requestBody,id);
+        Response response = client.put(requestBody, id);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(response.statusCode(), 200);
 
         requestBody.setFirstName(FirstName);
-        response = client.put(requestBody,id);
+        response = client.put(requestBody, id);
         Assert.assertEquals(response.statusCode(), 200);
 
         requestBody.setLastName(LastName);
-        response = client.put(requestBody,id);
+        response = client.put(requestBody, id);
         softAssert.assertEquals(response.statusCode(), 200);
 
         requestBody.setPhone(UserPhone);
-        response = client.put(requestBody,id);
+        response = client.put(requestBody, id);
         softAssert.assertEquals(response.statusCode(), 200);
 
         UsersService service = new UsersService();
         UsersEntity user = service.getByEmail("soyec48727@busantei.com");
-        softAssert.assertEquals(user.getUserFirstName(),FirstName);
-        softAssert.assertEquals(user.getUserLastName(),LastName);
-        softAssert.assertEquals(user.getUserPhone(),UserPhone);
+        softAssert.assertEquals(user.getUserFirstName(), FirstName);
+        softAssert.assertEquals(user.getUserLastName(), LastName);
+        softAssert.assertEquals(user.getUserPhone(), UserPhone);
         softAssert.assertEquals(user.getId(), id);
     }
+
+    @Description("Verify that user can not save changes where enter invalid data in field 'Phone'")
+    @Test
+    public void editProfileWithInvalidPhoneData() {
+        UserRequest requestBody = new UserRequest(11,
+                "soyec48727@busantei.com",
+                "Nastia",
+                "Kukh",
+                "0345682971",
+                "ROLE_MANAGER",
+                null,
+                true);
+
+        UserRequest user = requestBody.toBuilder().build();
+        user.setPhone("123456789121212");
+        ErrorResponse response = client.badPut(user);
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(response.getStatus(), 400);
+        softAssert.assertEquals(response.getMessage(), "phone Phone number must contain 10 numbers and can`t contain other symbols");
+
+        requestBody.setPhone("assdsdsd");
+        response = client.badPut(user);
+        softAssert.assertEquals(response.getStatus(), 400);
+        softAssert.assertEquals(response.getMessage(), "phone Phone number must contain 10 numbers and can`t contain other symbols");
+
+        requestBody.setPhone("@$#%#%^");
+        response = client.badPut(user);
+        softAssert.assertEquals(response.getStatus(), 400);
+        softAssert.assertEquals(response.getMessage(), "phone Phone number must contain 10 numbers and can`t contain other symbols");
+        softAssert.assertAll();
+    }
+
 }
