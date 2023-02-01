@@ -5,7 +5,7 @@ import com.ita.edu.speakua.api.models.*;
 import static java.lang.String.format;
 
 public class TaskClient extends BaseClient{
-    private String token;
+    private final String token;
     public TaskClient(String token){
         super();
     this.token = token;}

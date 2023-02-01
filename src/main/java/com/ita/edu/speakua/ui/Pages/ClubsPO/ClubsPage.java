@@ -15,17 +15,15 @@ public class ClubsPage extends BasePageWithHeader {
 
     @FindBy(xpath = "//div[contains(@class,'ant-card ant-card-bordered card')]")
     protected List<WebElement> cardsBody;
-    private List<ClubCard> cards;
-    private AdvancedSearchComponent advancedSearchComponent;
 
     public ClubsPage(WebDriver driver) {
         super(driver);
     }
 
     public List<ClubCard> getCards() {
-        this.cards = new ArrayList<>();
+        List<ClubCard> cards = new ArrayList<>();
         for (WebElement cardBody : cardsBody) {
-            this.cards.add(new ClubCard(this.driver, cardBody));
+            cards.add(new ClubCard(this.driver, cardBody));
         }
         return cards;
     }
@@ -50,7 +48,7 @@ public class ClubsPage extends BasePageWithHeader {
     }
 
     public AdvancedSearchComponent getAdvancedSearchComponent() {
-        advancedSearchComponent = new AdvancedSearchComponent(driver);
+        AdvancedSearchComponent advancedSearchComponent = new AdvancedSearchComponent(driver);
         return advancedSearchComponent;
     }
 
