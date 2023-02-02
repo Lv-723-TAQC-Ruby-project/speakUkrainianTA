@@ -10,15 +10,11 @@ import com.ita.edu.speakua.api.models.club.ClubPostResponse;
 import com.ita.edu.speakua.api.models.club.Location;
 import com.ita.edu.speakua.utils.ConfigProperties;
 import io.qameta.allure.Description;
-import io.qameta.allure.Issue;
 import io.restassured.response.Response;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import org.testng.reporters.Files;
 
-import java.io.File;
-import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +22,30 @@ import java.util.List;
 public class ClubTest {
     protected static final ConfigProperties configProperties = new ConfigProperties();
     private ClubClient client;
+
+    List<String> categoriesName = new ArrayList<String>() {
+        {
+            add("Вокальна студія, музика, музичні інструменти");
+        }
+    };
+
+    Location location = Location
+            .builder()
+            .name("Голосівська")
+            .cityName("Київ")
+            .districtName("Голосіївський")
+            .stationName("Голосіївська")
+            .address("https://speak-ukrainian.org.ua/dev/club/910")
+            .coordinates("50.35535081747696, 30.51765754176391")
+            .phone("0937777777")
+            .key(0.00)
+            .build();
+
+    List<Location> locations = new ArrayList<Location>() {
+        {
+            add(location);
+        }
+    };
 
     @BeforeClass
     public void beforeClass() {
@@ -41,28 +61,6 @@ public class ClubTest {
     public void successfulPost() {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         String clubName = "Голосистi діти " + timestamp;
-        List<String> categoriesName = new ArrayList<String>() {
-            {
-                add("Вокальна студія, музика, музичні інструменти");
-            }
-        };
-        Location location = Location
-                .builder()
-                .name("Голосівська")
-                .cityName("Київ")
-                .districtName("Голосіївський")
-                .stationName("Голосіївська")
-                .address("https://speak-ukrainian.org.ua/dev/club/910")
-                .coordinates("50.35535081747696, 30.51765754176391")
-                .phone("0937777777")
-                .key(0.00)
-                .build();
-
-        List<Location> locations = new ArrayList<Location>() {
-            {
-                add(location);
-            }
-        };
         ClubPostRequest requestBody = new ClubPostRequest(
                 clubName,
                 "{\"blocks\":[{\"key\":\"brl63\",\"text\":\"аааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааа\",\"type\":\"unstyled\",\"depth\":1,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
@@ -88,10 +86,6 @@ public class ClubTest {
     @Description("Verifying that admin can't create new club with Russian alphabet for name field")
     @Test
     public void errorMessageInvalidNameClub() {
-        List<String> categoriesName = new ArrayList<>() {
-            {
-                add("Вокальна студія, музика, музичні інструменти");
-            } };
         ClubPostRequest requestBody = new ClubPostRequest(
                 "Тестовый экземпляр",
                 "{\"blocks\":[{\"key\":\"brl63\",\"text\":\"Ми поставили перед собою ціль створити мережу найкращих центрів раннього розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів.\",\"type\":\"unstyled\",\"depth\":1,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
@@ -104,7 +98,7 @@ public class ClubTest {
                 "/dev/static/images/user/avatar/user1.png",
                 true,
                 "testTestTest",
-                 999
+                999
         );
         ErrorResponse response = client.badPost(requestBody);
         SoftAssert softAssert = new SoftAssert();
@@ -116,10 +110,6 @@ public class ClubTest {
     @Description("Check that admin can't create new club with less than 5 characters for name field")
     @Test
     public void InvalidNameLessThan5CharactersClub() {
-        List<String> categoriesName = new ArrayList<>() {
-            {
-                add("Вокальна студія, музика, музичні інструменти");
-            } };
         ClubPostRequest requestBody = new ClubPostRequest(
                 "Жук",
                 "{\"blocks\":[{\"key\":\"brl63\",\"text\":\"Ми поставили перед собою ціль створити мережу найкращих центрів раннього розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів.\",\"type\":\"unstyled\",\"depth\":1,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
@@ -145,28 +135,6 @@ public class ClubTest {
     @Description("TUA-503 - Verify that User as 'Керiвник гуртка' cannot create new club is in a center if 'Назва' field contain more than 100 characters")
     @Test
     public void verifyThatUserCannotCreateNewClubIfNameContainMore100Characters() {
-        List<String> categoriesName = new ArrayList<String>() {
-            {
-                add("Вокальна студія, музика, музичні інструменти");
-            }
-        };
-        Location location = Location
-                .builder()
-                .name("Голосівська")
-                .cityName("Київ")
-                .districtName("Голосіївський")
-                .stationName("Голосіївська")
-                .address("https://speak-ukrainian.org.ua/dev/club/910")
-                .coordinates("50.35535081747696, 30.51765754176391")
-                .phone("0937777777")
-                .key(0.00)
-                .build();
-
-        List<Location> locations = new ArrayList<Location>() {
-            {
-                add(location);
-            }
-        };
         ClubPostRequest requestBody = new ClubPostRequest(
                 "Ми поставили перед собою ціль створити мережу найкращих центрів раннього розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів",
                 "{\"blocks\":[{\"key\":\"brl63\",\"text\":\"аааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааа\",\"type\":\"unstyled\",\"depth\":1,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",

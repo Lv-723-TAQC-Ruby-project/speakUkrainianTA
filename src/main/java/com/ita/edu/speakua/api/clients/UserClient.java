@@ -5,7 +5,7 @@ import com.ita.edu.speakua.api.models.UserRequest;
 import com.ita.edu.speakua.api.models.UserResponse;
 import io.restassured.response.Response;
 public class UserClient extends BaseClient{
-    private String token;
+    private final String token;
     public UserClient(String token){
         super();
         this.token = token;}

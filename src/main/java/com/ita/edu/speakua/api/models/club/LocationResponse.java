@@ -18,5 +18,4 @@ public class LocationResponse {
     private double latitude;
     private double longitude;
     private String phone;
-//    private Double key;
 }
