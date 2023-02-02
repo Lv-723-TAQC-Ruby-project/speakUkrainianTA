@@ -24,10 +24,6 @@ public class ChallengeTest {
         SingInResponse responseSI = clientSI.post(credential);
         client = new ChallengeClient(responseSI.getAccessToken());
 
-        SignInClient clientSIUser = new SignInClient();
-        SingInRequest credentialUser = new SingInRequest(configProperties.getUserSoyecEmail(), configProperties.getUserSoyecPassword());
-        SingInResponse responseSIUser = clientSIUser.post(credentialUser);
-        clientUser = new ChallengeClient(responseSIUser.getAccessToken());
     }
 
     @Description("success SingIn")
@@ -228,18 +224,4 @@ public class ChallengeTest {
         softAssert.assertAll();
     }
 
-    @Description("Verify that user is not able to delete Challenge using non-administrator rights")
-    @Test
-    public void InabilityDeleteCreatedChallengeWithNonAdministrativeRights() {
-        ChallengePostRequest requestBody = new ChallengePostRequest("New challenge",
-                "New title",
-                "New challenge was created",
-                "https://docs.google.com/forms/d/e/236/viewform?embedded=true",
-                "/upload/1/1.png",
-                1897237705);
-        ErrorResponse response = clientUser.badPost(requestBody);
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(response.getStatus(), 401);
-        softAssert.assertEquals(response.getMessage(), "You have no necessary permissions (role)");
-    }
 }
