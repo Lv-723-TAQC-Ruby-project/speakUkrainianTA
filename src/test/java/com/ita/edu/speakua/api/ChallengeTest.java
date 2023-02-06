@@ -24,10 +24,6 @@ public class ChallengeTest {
         SingInResponse responseSI = clientSI.post(credential);
         client = new ChallengeClient(responseSI.getAccessToken());
 
-        SignInClient clientSIUser = new SignInClient();
-        SingInRequest credentialUser = new SingInRequest(configProperties.getUserSoyecEmail(), configProperties.getUserSoyecPassword());
-        SingInResponse responseSIUser = clientSIUser.post(credentialUser);
-        clientUser = new ChallengeClient(responseSIUser.getAccessToken());
     }
 
     @Description("success SingIn")

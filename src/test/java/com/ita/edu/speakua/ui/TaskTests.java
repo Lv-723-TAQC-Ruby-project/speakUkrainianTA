@@ -66,9 +66,12 @@ public class TaskTests extends BaseTestRunner {
                 .clickSave();
         softAssert.assertTrue(enterTaskData.isContainErrorMessage("Please,select challenge"));
         softAssert.assertAll();
-        TasksService service = new TasksService();
+       TasksService service = new TasksService();
         TasksEntity task = service.getByName(taskName);
         Assert.assertNull(task);
+
+
+
     }
 
     @Description("Add Task with Invalid Description")
@@ -134,7 +137,7 @@ public class TaskTests extends BaseTestRunner {
         softAssert.assertAll();
         TasksService service = new TasksService();
         TasksEntity task = service.getByName(taskName);
-        Assert.assertNotEquals(task.getId(),1061);
+        Assert.assertNotEquals(task.getName(),taskName);
 
     }
 
@@ -301,9 +304,11 @@ public class TaskTests extends BaseTestRunner {
                 .clickSave();
         softAssert.assertTrue(enterInvalidDate.isContainErrorMessage("Дата початку має бути в майбутньому"));
         softAssert.assertAll();
-        TasksService service = new TasksService();
-        TasksEntity task = service.getByName(taskName);
+      TasksService service = new TasksService();
+      TasksEntity task = service.getByName(taskName);
         Assert.assertNull(task);
+
+
     }
 
     @Description("Add Task Without Image")
@@ -330,9 +335,11 @@ public class TaskTests extends BaseTestRunner {
                 .clickSave();
         softAssert.assertTrue(uploadImage.isContainErrorMessage("Фото не може бути пустим"));
         softAssert.assertAll();
-        TasksService service = new TasksService();
+       TasksService service = new TasksService();
         TasksEntity task = service.getByName(taskName);
         Assert.assertNull(task);
+
+
     }
 
     @Description("Add Task With Valid Data")
@@ -353,10 +360,10 @@ public class TaskTests extends BaseTestRunner {
         softAssert.assertTrue(enterValidData.successMessage("Завдання успішно збережене"));
         softAssert.assertAll();
 
-        TasksService service = new TasksService();
+       TasksService service = new TasksService();
         TasksEntity task = service.getByName(taskName);
-        Assert.assertNotNull(task);
-        Assert.assertEquals(task.getId(),1070);
+       Assert.assertNotNull(task);
+       Assert.assertEquals(task.getName(),taskName);
 
 
     }

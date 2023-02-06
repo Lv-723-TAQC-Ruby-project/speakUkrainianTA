@@ -30,7 +30,7 @@ public class AddTaskPage extends BasePageWithHeader {
     @FindBy(xpath = "//input[@id='challengeId']")
     public WebElement chooseChallenge;
 
-    @FindBy(xpath = "//div[contains(text(), 'New Challenge')]")
+    @FindBy(xpath = "//div[contains(text(), 'name1')]")
     public WebElement challenge;
 
     @FindBy(xpath = "//button[contains(@class, 'ant-btn ant-btn-primary flooded-button add-contact-type-button')]")
