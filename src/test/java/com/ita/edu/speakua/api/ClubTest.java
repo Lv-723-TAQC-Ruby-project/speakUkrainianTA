@@ -157,4 +157,33 @@ public class ClubTest {
         softAssert.assertAll();
 
     }
+
+    @Description("Verify that User as \"Керiвник гуртка\" can create new club is in a center using valid characters for \"Назва\" field")
+    @Test
+    public void verifyThatUserCanCreateNewClubAsAdmin() {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        String clubName = "Джмелик&company =,/ , , *, (, ), _, :, ;, #, %, ^, ?, [, ] " + timestamp;
+        ClubPostRequest requestBody = new ClubPostRequest(
+                clubName,
+                "{\"blocks\":[{\"key\":\"brl63\",\"text\":\"Ми поставили перед собою ціль створити мережу найкращих центрів раннього розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів\",\"type\":\"unstyled\",\"depth\":1,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+                2,
+                categoriesName,
+                locations,
+                2,
+                18,
+                null,
+                null,
+                true,
+                "{\"1\"::\"ліл\"}",
+                264
+        );
+        Response response = this.client.successPost(requestBody);
+        ClubPostResponse clubsResponse = response.as(ClubPostResponse.class);
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(response.getStatusCode(), 200);
+        softAssert.assertEquals(clubsResponse.getName(), clubName);
+        softAssert.assertAll();
+
+
+    }
 }
