@@ -56,7 +56,7 @@ public class ClubTest {
     }
 
 
-    @Description("TUA-463 - Verify that User as 'Керiвник гуртка' can create and new club, which will registered on him.")
+    @Description("TUA-463 - Verify that User as 'Керiвник гуртка' can create a new club, which will registered on him.")
     @Test
     public void successfulPost() {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
@@ -81,6 +81,32 @@ public class ClubTest {
         softAssert.assertEquals(response.getStatusCode(), 200);
         softAssert.assertEquals(clubsResponse.getName(), clubName);
         softAssert.assertAll();
+    }
+
+    @Description("TUA-503 - Verify that User as 'Керiвник гуртка' cannot create a new club if 'Назва' field contain more than 100 characters")
+    @Test
+    public void verifyThatUserCannotCreateNewClubIfNameContainMore100Characters() {
+        ClubPostRequest requestBody = new ClubPostRequest(
+                "Ми поставили перед собою ціль створити мережу найкращих центрів раннього розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів",
+                "{\"blocks\":[{\"key\":\"brl63\",\"text\":\"аааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааа\",\"type\":\"unstyled\",\"depth\":1,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+                2,
+                categoriesName,
+                locations,
+                2,
+                18,
+                null,
+                null,
+                true,
+                "{\"1\"::\"ліл\"}",
+                264
+        );
+        Response response = this.client.successPost(requestBody);
+        ErrorResponse errorResponse = response.as(ErrorResponse.class);
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(response.statusCode(), 400);
+        softAssert.assertEquals(errorResponse.getMessage(), "name Довжина назви має бути від 5 до 100 символів");
+        softAssert.assertAll();
+
     }
 
     @Description("Verifying that admin can't create new club with Russian alphabet for name field")
@@ -132,29 +158,4 @@ public class ClubTest {
     }
 
 
-    @Description("TUA-503 - Verify that User as 'Керiвник гуртка' cannot create new club is in a center if 'Назва' field contain more than 100 characters")
-    @Test
-    public void verifyThatUserCannotCreateNewClubIfNameContainMore100Characters() {
-        ClubPostRequest requestBody = new ClubPostRequest(
-                "Ми поставили перед собою ціль створити мережу найкращих центрів раннього розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів",
-                "{\"blocks\":[{\"key\":\"brl63\",\"text\":\"аааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааа\",\"type\":\"unstyled\",\"depth\":1,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
-                2,
-                categoriesName,
-                locations,
-                2,
-                18,
-                null,
-                null,
-                true,
-                "{\"1\"::\"ліл\"}",
-                264
-        );
-        Response response = this.client.successPost(requestBody);
-        ErrorResponse errorResponse = response.as(ErrorResponse.class);
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(response.statusCode(), 400);
-        softAssert.assertEquals(errorResponse.getMessage(), "name Довжина назви має бути від 5 до 100 символів");
-        softAssert.assertAll();
-
-    }
 }
