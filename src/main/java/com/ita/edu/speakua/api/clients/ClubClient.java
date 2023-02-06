@@ -1,7 +1,6 @@
 package com.ita.edu.speakua.api.clients;
 
 import com.ita.edu.speakua.api.models.ErrorResponse;
-import com.ita.edu.speakua.api.models.club.ClubPostResponse;
 import com.ita.edu.speakua.api.models.club.ClubPostRequest;
 import io.restassured.response.Response;
 
