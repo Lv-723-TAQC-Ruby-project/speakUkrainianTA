@@ -10,7 +10,7 @@ public class ConfigProperties {
     public ConfigProperties() {
         properties = new Properties();
         try {
-            FileInputStream file = new FileInputStream("src/main/resources/config.properties");
+            FileInputStream file = new FileInputStream(System.getProperty("user.dir") + "src/main/resources/config.properties");
             properties.load(file);
         } catch (IOException e) {
             e.printStackTrace();
